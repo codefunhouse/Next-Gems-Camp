@@ -1,10 +1,4 @@
-import AwardsSection from "@/components/about/AwardsSection";
-import HeroSection from "@/components/about/HeroSection";
-import MissionSection from "@/components/about/MissionSection";
-import StatSection from "@/components/about/StatSection";
-import ValuesSection from "@/components/about/ValuesSection";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Award,
   BookOpen,
@@ -53,36 +47,27 @@ const values = [
   },
 ];
 
-const stats = [
-  { number: "15+", label: "Years of Excellence" },
-  { number: "40+", label: "Academic Subjects" },
-  { number: "100+", label: "Countries Represented" },
-  { number: "95%", label: "Satisfaction Rate" },
-];
-
-const About = () => {
+function ValuesSection() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Stats Section */}
-      <StatSection />
-
-      {/* Mission Section */}
-      <MissionSection />
-
-      {/* Values Section */}
-      <ValuesSection />
-
-      {/* Awards Section */}
-      <AwardsSection />
-
-      <Footer />
-    </div>
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Our Core Values
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {values.map((value, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <value.icon className="h-12 w-12 text-primary mb-4" />
+                <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
   );
-};
+}
 
-export default About;
+export default ValuesSection;

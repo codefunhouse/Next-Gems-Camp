@@ -1,47 +1,9 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import ContactCTA from "@/components/parents/ContactCTA";
-import FAQSection from "@/components/parents/FAQSection";
-import HeroSection from "@/components/parents/HeroSection";
-import SafetySection from "@/components/parents/SafetySection";
-import WhatToExpect from "@/components/parents/WhatToExpect";
-import { FileText, Heart, Home, Phone, Shield, Users } from "lucide-react";
-
-const safetyFeatures = [
-  {
-    icon: Shield,
-    title: "24/7 Supervision",
-    description:
-      "Experienced staff provide round-the-clock care and supervision",
-  },
-  {
-    icon: Heart,
-    title: "Welfare Support",
-    description: "Dedicated welfare team available for any concerns or issues",
-  },
-  {
-    icon: Phone,
-    title: "Regular Communication",
-    description:
-      "Daily updates and easy contact with your child throughout the program",
-  },
-  {
-    icon: Users,
-    title: "Background Checks",
-    description:
-      "All staff undergo comprehensive DBS checks and safeguarding training",
-  },
-  {
-    icon: Home,
-    title: "Safe Accommodation",
-    description: "Secure, comfortable rooms in prestigious college settings",
-  },
-  {
-    icon: FileText,
-    title: "Insurance Coverage",
-    description: "Comprehensive insurance included for all participants",
-  },
-];
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const faqs = [
   {
@@ -86,29 +48,34 @@ const faqs = [
   },
 ];
 
-const Parents = () => {
+function FAQSection() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Safety Section */}
-      <SafetySection />
-
-      {/* What to Expect Section */}
-      <WhatToExpect />
-
-      {/* FAQ Section */}
-      <FAQSection />
-
-      {/* Contact CTA */}
-      <ContactCTA />
-
-      <Footer />
-    </div>
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border rounded-lg px-6"
+              >
+                <AccordionTrigger className="text-left font-semibold">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </section>
   );
-};
+}
 
-export default Parents;
+export default FAQSection;
