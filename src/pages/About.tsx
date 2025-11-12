@@ -3,8 +3,8 @@ import HeroSection from "@/components/about/HeroSection";
 import MissionSection from "@/components/about/MissionSection";
 import StatSection from "@/components/about/StatSection";
 import ValuesSection from "@/components/about/ValuesSection";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Footer from "@/components/general/Footer";
+import Navbar from "@/components/general/Navbar";
 import {
   Award,
   BookOpen,

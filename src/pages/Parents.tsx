@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Footer from "@/components/general/Footer";
+import Navbar from "@/components/general/Navbar";
 import ContactCTA from "@/components/parents/ContactCTA";
 import FAQSection from "@/components/parents/FAQSection";
 import HeroSection from "@/components/parents/HeroSection";

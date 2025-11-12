@@ -1,11 +1,11 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/general/Footer";
+import Navbar from "@/components/general/Navbar";
 import Courses from "@/components/location/second/Courses";
 import HeroSection from "@/components/location/second/HeroSection";
 import Highlights from "@/components/location/second/Highlights";
 import Overview from "@/components/location/second/Overview";
 import SecondLocationCTA from "@/components/location/second/SecondLocationCTA";
 import TravelSection from "@/components/location/second/TravelSection";
-import Navbar from "@/components/Navbar";
 import { Book, Building2, Coffee, Users } from "lucide-react";
 
 const highlights = [

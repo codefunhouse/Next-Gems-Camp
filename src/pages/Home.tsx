@@ -1,9 +1,9 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/general/Footer";
+import Navbar from "@/components/general/Navbar";
 import CTASection from "@/components/landing/CTASection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import Testimonials from "@/components/landing/Testimonials";
-import Navbar from "@/components/Navbar";
 
 const Home = () => {
   return (
