@@ -14,7 +14,7 @@ function HeroSection() {
   const [subject, setSubject] = useState("");
   const [location, setLocation] = useState("");
   return (
-    <section className="relative pt-16 min-h-[600px] flex items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white">
+    <section className="relative py-20 flex items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white">
       <div
         className="absolute inset-0 opacity-20 bg-cover bg-center"
         style={{

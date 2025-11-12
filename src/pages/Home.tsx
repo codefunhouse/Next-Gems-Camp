@@ -1,4 +1,5 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
+import CoursesSection from "@/components/landing/CoursesSection";
 import CTASection from "@/components/landing/CTASection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
@@ -9,6 +10,7 @@ const Home = () => {
     <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
+      <CoursesSection />
 
       {/* Features Section */}
       <FeaturesSection />

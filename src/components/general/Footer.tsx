@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-white">
           <p>&copy; 2024 Elite Summer Academy. All rights reserved.</p>
         </div>
       </div>
