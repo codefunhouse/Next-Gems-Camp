@@ -1,3 +1,4 @@
+# Next-Gems-Camp
 # Welcome to your Lovable project
 
 ## Project info
