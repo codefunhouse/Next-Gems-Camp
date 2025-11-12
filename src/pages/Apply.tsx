@@ -1,5 +1,4 @@
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -88,8 +87,7 @@ const Apply = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
+      <PublicPagesLayout>
         <div className="flex-1 flex items-center justify-center bg-muted pt-16">
           <Card className="max-w-2xl mx-4">
             <CardContent className="p-12 text-center">
@@ -109,15 +107,12 @@ const Apply = () => {
             </CardContent>
           </Card>
         </div>
-        <Footer />
-      </div>
+      </PublicPagesLayout>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 bg-gradient-to-br from-hero-start to-hero-end text-white">
         <div className="relative z-10 container mx-auto px-4 text-center">
@@ -429,9 +424,7 @@ const Apply = () => {
           </Card>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 

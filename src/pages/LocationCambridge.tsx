@@ -1,5 +1,4 @@
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import Activities from "@/components/location/first/Activities";
 import Courses from "@/components/location/first/Courses";
 import HeroSection from "@/components/location/first/HeroSection";
@@ -10,9 +9,7 @@ import TravelSection from "@/components/location/first/TravelSection";
 
 const LocationCambridge = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -32,9 +29,7 @@ const LocationCambridge = () => {
       <TravelSection />
       {/* CTA Section */}
       <LocationCTASection />
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 

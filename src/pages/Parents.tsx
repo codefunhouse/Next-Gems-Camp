@@ -1,5 +1,4 @@
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ContactCTA from "@/components/parents/ContactCTA";
 import FAQSection from "@/components/parents/FAQSection";
 import HeroSection from "@/components/parents/HeroSection";
@@ -88,9 +87,7 @@ const faqs = [
 
 const Parents = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -105,9 +102,7 @@ const Parents = () => {
 
       {/* Contact CTA */}
       <ContactCTA />
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 

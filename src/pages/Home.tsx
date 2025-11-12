@@ -1,5 +1,4 @@
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import CTASection from "@/components/landing/CTASection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
@@ -7,9 +6,7 @@ import Testimonials from "@/components/landing/Testimonials";
 
 const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -21,9 +18,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <CTASection />
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 

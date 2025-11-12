@@ -1,5 +1,4 @@
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import Courses from "@/components/location/second/Courses";
 import HeroSection from "@/components/location/second/HeroSection";
 import Highlights from "@/components/location/second/Highlights";
@@ -44,9 +43,7 @@ const courses = [
 ];
 const LocationOxford = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -64,9 +61,7 @@ const LocationOxford = () => {
 
       {/* CTA Section */}
       <SecondLocationCTA />
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 

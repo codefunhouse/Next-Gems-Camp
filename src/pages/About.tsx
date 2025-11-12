@@ -3,8 +3,7 @@ import HeroSection from "@/components/about/HeroSection";
 import MissionSection from "@/components/about/MissionSection";
 import StatSection from "@/components/about/StatSection";
 import ValuesSection from "@/components/about/ValuesSection";
-import Footer from "@/components/general/Footer";
-import Navbar from "@/components/general/Navbar";
+import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import {
   Award,
   BookOpen,
@@ -62,9 +61,7 @@ const stats = [
 
 const About = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -79,9 +76,7 @@ const About = () => {
 
       {/* Awards Section */}
       <AwardsSection />
-
-      <Footer />
-    </div>
+    </PublicPagesLayout>
   );
 };
 
