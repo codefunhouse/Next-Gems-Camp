@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
@@ -18,18 +19,7 @@ const Navbar = () => {
       </div>
       <div className="container px-4 bg-secondary/95 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between py-3 sm:px-[4.8rem]">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-secondary-foreground hover:text-primary transition-colors"
-          >
-            <div>
-              <img
-                src="/images/logo.png"
-                alt="Next Gems Camp Logo"
-                className="h-8 w-8"
-              />
-            </div>
-          </Link>
+          <Logo />
 
           <div className="hidden md:flex items-center gap-8">
             <Link

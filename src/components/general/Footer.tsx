@@ -1,29 +1,13 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
     <footer className="bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <Link
-              to="/"
-              className="flex items-center gap-2 text-secondary-foreground hover:text-primary transition-colors"
-            >
-              <div>
-                <img
-                  src="/images/logo.png"
-                  alt="Next Gems Camp Logo"
-                  className="h-8 w-8"
-                />
-              </div>
-            </Link>
-            {/* <p className="text-muted-foreground text-sm">
-              Nurturing independent thought through exceptional education at
-              prestigious locations.
-            </p> */}
-          </div>
+          <Logo />
 
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
@@ -106,7 +90,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-white">
-          <p>&copy; 2024 Elite Summer Academy. All rights reserved.</p>
+          <p>&copy; 2025 Next Gems Camps. All rights reserved.</p>
         </div>
       </div>
     </footer>
