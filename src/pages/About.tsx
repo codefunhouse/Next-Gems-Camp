@@ -4,6 +4,8 @@ import MissionSection from "@/components/about/MissionSection";
 import StatSection from "@/components/about/StatSection";
 import ValuesSection from "@/components/about/ValuesSection";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
+import CTASection from "@/components/landing/CTASection";
+import ReviewsSection from "@/components/landing/ReviewsSection";
 import {
   Award,
   BookOpen,
@@ -76,6 +78,10 @@ const About = () => {
 
       {/* Awards Section */}
       <AwardsSection />
+      {/* Reviews */}
+      <ReviewsSection />
+
+      <CTASection />
     </PublicPagesLayout>
   );
 };
