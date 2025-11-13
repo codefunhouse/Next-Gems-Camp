@@ -9,9 +9,7 @@ function HeroSection() {
         }}
       />
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6">
-          Why Choose Elite Summer Academy
-        </h1>
+        <h1 className="font-bold mb-6">Why Choose Elite Summer Academy</h1>
         <p className="text-xl max-w-3xl mx-auto opacity-90">
           Discover what makes our summer programs the premier choice for
           ambitious students worldwide

@@ -9,9 +9,7 @@ function HeroSection() {
         }}
       />
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6">
-          Information for Parents
-        </h1>
+        <h1 className="font-bold mb-6">Information for Parents</h1>
         <p className="text-xl max-w-3xl mx-auto opacity-90">
           Everything you need to know about keeping your child safe, happy, and
           academically challenged

@@ -15,7 +15,7 @@ function HeroSection() {
           <MapPin className="h-6 w-6" />
           <span className="text-lg">Cambridge, England</span>
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-center">
+        <h1 className=" font-bold mb-6 text-center">
           Cambridge Summer Programs
         </h1>
         <p className="text-xl max-w-3xl mx-auto text-center opacity-90">

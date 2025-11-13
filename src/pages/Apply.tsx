@@ -114,9 +114,16 @@ const Apply = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 bg-gradient-to-br from-hero-start to-hero-end text-white">
+      <section className="relative pt-24 sm:pt-48 pb-16 sm:pb-48 bg-gradient-to-br from-hero-start to-hero-end text-white">
+        <div
+          className="absolute inset-0 opacity-30 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://www.edgehill.ac.uk/wp-content/uploads/2024/05/mhaw-web-hero.jpg')",
+          }}
+        />
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Apply Now</h1>
+          <h1 className="font-bold mb-4">Apply Now</h1>
           <p className="text-xl max-w-2xl mx-auto opacity-90">
             Take the first step towards an unforgettable summer of academic
             excellence
