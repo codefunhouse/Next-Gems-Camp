@@ -63,10 +63,10 @@ function FAQSection() {
                 value={`item-${index}`}
                 className="border rounded-lg px-6"
               >
-                <AccordionTrigger className="text-left font-semibold">
+                <AccordionTrigger className="text-left font-semibold text-base sm:text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-muted-foreground text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

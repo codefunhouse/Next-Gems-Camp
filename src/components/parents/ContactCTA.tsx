@@ -16,7 +16,7 @@ function ContactCTA() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            className="border-white text-gray-700 hover:bg-white/10"
           >
             Download Brochure
           </Button>
