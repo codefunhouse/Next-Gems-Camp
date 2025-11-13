@@ -10,9 +10,10 @@ import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ResourcesAndEvents from "@/components/landing/ResourcesAndEvents";
+import ReviewsSection from "@/components/landing/ReviewsSection";
 import TakeQuizSection from "@/components/landing/TakeQuizSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
-import Testimonials from "@/components/landing/Testimonials";
+import WhyOurCourses from "@/components/landing/WhyOurCourses";
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
 
       {/* Features Section */}
       <FeaturesSection />
+      <WhyOurCourses />
       <TeachingMethods />
       <ResourcesAndEvents />
       <DiscoverCourses />
@@ -36,7 +38,7 @@ const Home = () => {
       <Awards />
 
       {/* Testimonials Section */}
-      <Testimonials />
+      <ReviewsSection />
 
       {/* CTA Section */}
       <CTASection />
