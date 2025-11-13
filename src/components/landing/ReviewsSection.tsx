@@ -1,4 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 
 const testimonials = [
   {
@@ -22,38 +24,201 @@ const testimonials = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
   },
+  {
+    name: "Marcus",
+    country: "Australia",
+    text: "An incredible learning experience that pushed me beyond my comfort zone. The tutors were exceptional mentors.",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+  },
+  {
+    name: "Sophie",
+    country: "France",
+    text: "The blend of academic rigor and practical application made this program stand out. Truly transformative!",
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
+  },
 ];
 
 function ReviewsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Responsive card display - show different number of cards based on screen size
+  const getCardsToShow = () => {
+    if (typeof window === "undefined") return 3;
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 3;
+  };
+
+  const [cardsToShow, setCardsToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCardsToShow(getCardsToShow());
+      // Reset to first slide when resizing to avoid empty spaces
+      setCurrentIndex(0);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, testimonials.length - cardsToShow);
+
+  // Use useCallback to memoize the nextSlide function
+  const nextSlide = useCallback(() => {
+    if (isAnimating || currentIndex >= maxIndex) return;
+
+    setIsAnimating(true);
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating, currentIndex, maxIndex]);
+
+  const prevSlide = useCallback(() => {
+    if (isAnimating || currentIndex <= 0) return;
+
+    setIsAnimating(true);
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating, currentIndex]);
+
+  // Auto-slide every 5 seconds - fixed useEffect dependency
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentIndex >= maxIndex) {
+        setCurrentIndex(0);
+      } else {
+        nextSlide();
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, maxIndex, nextSlide]); // Added nextSlide to dependencies
+
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Student Experiences
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.country}
-                    </p>
-                  </div>
+    <section className="py-20 bg-muted/50 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 ">
+            Student Experiences
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Discover what our students have to say about their transformative
+            learning journey
+          </p>
+        </div>
+
+        <div className="relative">
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0 || isAnimating}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-20 bg-background/80 backdrop-blur-sm rounded-full p-2 md:p-3 shadow-lg border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
+            aria-label="Previous testimonials"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= maxIndex || isAnimating}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-20 bg-background/80 backdrop-blur-sm rounded-full p-2 md:p-3 shadow-lg border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
+            aria-label="Next testimonials"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+          </button>
+
+          {/* Slider Container */}
+          <div className="overflow-hidden">
+            <div
+              className={`flex gap-6 transition-transform duration-500 ease-out ${
+                isAnimating ? "ease-out" : "ease-in-out"
+              }`}
+              style={{
+                transform: `translateX(-${
+                  currentIndex * (100 / cardsToShow)
+                }%)`,
+              }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0"
+                  style={{ width: `${100 / cardsToShow}%` }}
+                >
+                  <Card className="hover:shadow-xl transition-all duration-300 border-primary/10 h-full group hover:border-primary/20 hover:-translate-y-2">
+                    <CardContent className="p-6 md:p-8 h-full flex flex-col">
+                      {/* Quote icon */}
+                      <div className="text-4xl text-primary/20 mb-4 group-hover:text-primary/30 transition-colors">
+                        "
+                      </div>
+
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="relative">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-16 h-16 rounded-full object-cover border-2 border-primary/10 group-hover:border-primary/30 transition-colors"
+                          />
+                          <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg">
+                            {testimonial.name}
+                          </h3>
+                          <p className="text-sm text-muted-foreground flex items-center gap-1">
+                            <span>🇩🇪</span>
+                            {testimonial.country}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="text-muted-foreground italic flex-grow leading-relaxed">
+                        "{testimonial.text}"
+                      </p>
+
+                      {/* Rating stars */}
+                      <div className="flex gap-1 mt-4">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-yellow-400 text-lg">
+                            ⭐
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-                <p className="text-muted-foreground italic">
-                  "{testimonial.text}"
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Progress Indicators */}
+          <div className="flex justify-center items-center gap-2 mt-8">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "bg-primary w-8"
+                    : "bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Slide counter */}
+          <div className="text-center mt-4 text-sm text-muted-foreground">
+            {currentIndex + 1} of {maxIndex + 1}
+          </div>
         </div>
       </div>
     </section>
