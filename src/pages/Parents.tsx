@@ -1,9 +1,9 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ContactCTA from "@/components/info/parents/ContactCTA";
-import FAQSection from "@/components/info/parents/FAQSection";
 import HeroSection from "@/components/info/parents/HeroSection";
-import SafetySection from "@/components/info/parents/SafetySection";
+import WhatsIncludedSection from "@/components/info/parents/WhatsIncluded";
 import WhatToExpect from "@/components/info/parents/WhatToExpect";
+import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import { FileText, Heart, Home, Phone, Shield, Users } from "lucide-react";
 
 const safetyFeatures = [
@@ -91,14 +91,12 @@ const Parents = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Safety Section */}
-      <SafetySection />
-
       {/* What to Expect Section */}
       <WhatToExpect />
 
+      <WhatsIncludedSection />
       {/* FAQ Section */}
-      <FAQSection />
+      <QuestionsAndAnswers />
 
       {/* Contact CTA */}
       <ContactCTA />
