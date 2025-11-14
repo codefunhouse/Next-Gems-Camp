@@ -1,3 +1,4 @@
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
@@ -10,45 +11,22 @@ const Footer = () => {
           <Logo />
 
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4">
+              {landingPageDummyData.footerData.quickLinks.title}
+            </h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/" className="hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="hover:text-primary transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/locations/canterbury"
-                  className="hover:text-primary transition-colors"
-                >
-                  Locations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="info/parents"
-                  className="hover:text-primary transition-colors"
-                >
-                  Parents
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="info/agents"
-                  className="hover:text-primary transition-colors"
-                >
-                  Agents
-                </Link>
-              </li>
+              {landingPageDummyData.footerData.quickLinks.links.map(
+                (item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      to={item.link}
+                      className="hover:text-blue-primary transition-colors"
+                    >
+                      {item.text}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 

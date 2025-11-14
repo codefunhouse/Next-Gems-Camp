@@ -9,34 +9,56 @@ export const landingPageDummyData = {
 
   reviews: {
     title: "What Families Say About Us",
-    parentReviews: [
+    description:
+      "Discover what our students have to say about their transformative learning journey",
+    reviews: [
       {
-        text: "“A transformative experience for our daughter. Our daughter came home more confident, independent, and inspired. The English lessons were excellent, but it was the friendships and cultural activities that truly made it special. Next Gems delivered everything they promised — luxury, learning, and care.”",
-        author: "Emma T., Parent (Italy)",
+        title: "A transformative experience for our daughter",
+        description:
+          "Our daughter came home more confident, independent, and inspired. The English lessons were excellent, but it was the friendships and cultural activities that truly made it special. Next Gems delivered everything they promised — luxury, learning, and care.",
+        reviewer: "Emma T., Parent (Italy)",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
       },
       {
-        text: "“Safe, structured, and truly international. As a parent, I was impressed by how well-organised and personal the experience was. Small group sizes meant our son was always supported, and he loved meeting students from all over the world. Worth every penny.”",
-        author: "David L., Parent (United Arab Emirates)",
-      },
-    ],
-    agentReviews: [
-      {
-        text: "“Our top recommendation for premium families. Next Gems has become our go-to summer camp partner in England. The team's attention to detail, communication, and high academic standards make it a standout choice for families seeking quality and safety.”",
-        author: "Sophie R., Education Agent (France)",
+        title: "Safe, structured, and truly international",
+        description:
+          "As a parent, I was impressed by how well-organised and personal the experience was. Small group sizes meant our son was always supported, and he loved meeting students from all over the world. Worth every penny.",
+        reviewer: "David L., Parent (United Arab Emirates)",
+        image:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
       },
       {
-        text: "“A benchmark for luxury summer programs. Everything about Next Gems speaks of quality — from accommodation and teaching to the cultural excursions. Our students return with glowing feedback year after year.”",
-        author: "Luis M., Study Abroad Consultant (Spain)",
-      },
-    ],
-    studentReviews: [
-      {
-        text: "“The best summer of my life! I improved my English so much and made friends from Japan, Brazil, and Saudi Arabia! The teachers were amazing, and the trips around England were unforgettable.”",
-        author: "Mia K., Student (Germany, Age 15)",
+        title: "Our top recommendation for premium families",
+        description:
+          "Next Gems has become our go-to summer camp partner in England. The team's attention to detail, communication, and high academic standards make it a standout choice for families seeking quality and safety.",
+        reviewer: "Sophie R., Education Agent (France)",
+        image:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
       },
       {
-        text: "“Fun, learning, and adventure all in one. I chose the Tech specialism and got to build my own app while exploring London on weekends. It was both exciting and challenging — I can't wait to come back next summer!”",
-        author: "Omar A., Student (Kuwait, Age 16)",
+        title: "A benchmark for luxury summer programs",
+        description:
+          "Everything about Next Gems speaks of quality — from accommodation and teaching to the cultural excursions. Our students return with glowing feedback year after year.",
+        reviewer: "Luis M., Study Abroad Consultant (Spain)",
+        image:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+      },
+      {
+        title: "The best summer of my life!",
+        description:
+          "I improved my English so much and made friends from Japan, Brazil, and Saudi Arabia! The teachers were amazing, and the trips around England were unforgettable.",
+        reviewer: "Mia K., Student (Germany, Age 15)",
+        image:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
+      },
+      {
+        title: "Fun, learning, and adventure all in one",
+        description:
+          "I chose the Tech specialism and got to build my own app while exploring London on weekends. It was both exciting and challenging — I can't wait to come back next summer!",
+        reviewer: "Omar A., Student (Kuwait, Age 16)",
+        image:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
       },
     ],
   },
@@ -152,6 +174,7 @@ export const landingPageDummyData = {
       },
     ],
   },
+
   faqs: {
     title: "Quick FAQ for Parents",
     questions: [
@@ -191,5 +214,45 @@ export const landingPageDummyData = {
           "Register online via our website. Spaces are limited, so early booking is recommended. Visa guidance is provided for international students.",
       },
     ],
+  },
+
+  ctaSection: {
+    title: "Ready to Start Your Journey?",
+    subtitle: "Join thousands of students from around the world",
+    buttonText: "Register Now for 2026",
+    buttonLink: "/apply",
+  },
+
+  footerData: {
+    quickLinks: {
+      title: "Quick Links",
+      links: [
+        {
+          text: "Home",
+          link: "/",
+        },
+        {
+          text: "About",
+          link: "/about",
+        },
+        {
+          text: "Locations",
+          link: "/canterbury",
+        },
+        {
+          text: "Info",
+          link: "/info/parent",
+        },
+      ],
+    },
+    contact: {
+      title: "Contact",
+      contacts: {
+        email: "hello@nextgemscamp.com",
+        phone: "+44 20 1234 5678",
+        location: "London, UK",
+      },
+    },
+    copyrightText: "© 2025 Next Gems Camps. All rights reserved.",
   },
 };

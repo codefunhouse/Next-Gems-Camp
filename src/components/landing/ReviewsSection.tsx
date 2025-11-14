@@ -1,6 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const testimonials = [
   {
@@ -96,22 +99,26 @@ function ReviewsSection() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, maxIndex, nextSlide]); // Added nextSlide to dependencies
+  }, [currentIndex, maxIndex, nextSlide]);
 
   return (
-    <section className="py-20 bg-muted/50 relative overflow-hidden">
+    <section
+      className={twMerge(
+        "py-20 bg-muted/50 relative overflow-hidden",
+        commonSectionStyles
+      )}
+    >
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 ">
-            Student Experiences
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <h2 className="font-bold mb-4 ">
+            {landingPageDummyData.reviews.title}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Discover what our students have to say about their transformative
-            learning journey
+            {landingPageDummyData.reviews.description}
           </p>
         </div>
 
@@ -147,55 +154,53 @@ function ReviewsSection() {
                 }%)`,
               }}
             >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0"
-                  style={{ width: `${100 / cardsToShow}%` }}
-                >
-                  <Card className="hover:shadow-xl transition-all duration-300 border-primary/10 h-full group hover:border-primary/20 hover:-translate-y-2">
-                    <CardContent className="p-6 md:p-8 h-full flex flex-col">
-                      {/* Quote icon */}
-                      <div className="text-4xl text-primary/20 mb-4 group-hover:text-primary/30 transition-colors">
-                        "
-                      </div>
+              {landingPageDummyData.reviews.reviews.map(
+                (testimonial, index) => {
+                  const [name, reviewerGroup] = testimonial.reviewer.split(",");
+                  const [reviewerType, country] = reviewerGroup.split("(");
+                  return (
+                    <div
+                      key={index}
+                      className="flex-shrink-0"
+                      style={{ width: `${100 / cardsToShow}%` }}
+                    >
+                      <Card className="hover:shadow-xl transition-all duration-300 border-primary/10 h-full group hover:border-primary/20 hover:-translate-y-2">
+                        <CardContent className="p-6 md:p-8 h-full flex flex-col">
+                          {/* Quote icon */}
+                          <div className="text-4xl text-primary/20 mb-4 group-hover:text-primary/30 transition-colors">
+                            "
+                          </div>
 
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="relative">
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                            className="w-16 h-16 rounded-full object-cover border-2 border-primary/10 group-hover:border-primary/30 transition-colors"
-                          />
-                          <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg">
-                            {testimonial.name}
-                          </h3>
-                          <p className="text-sm text-muted-foreground flex items-center gap-1">
-                            <span>🇩🇪</span>
-                            {testimonial.country}
+                          <div className="flex items-center gap-4 mb-4">
+                            <div className="relative">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.title}
+                                className="w-16 h-16 rounded-full object-cover border-2 border-primary/10 group-hover:border-primary/30 transition-colors"
+                              />
+                              <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-lg">{name}</h3>
+                              <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                <span>🇩🇪</span>
+                                <span className="font-semibold">
+                                  {reviewerType}
+                                </span>
+                                {`(${country}`}
+                              </p>
+                            </div>
+                          </div>
+
+                          <p className="text-muted-foreground italic flex-grow leading-relaxed">
+                            "{testimonial.description}"
                           </p>
-                        </div>
-                      </div>
-
-                      <p className="text-muted-foreground italic flex-grow leading-relaxed">
-                        "{testimonial.text}"
-                      </p>
-
-                      {/* Rating stars */}
-                      <div className="flex gap-1 mt-4">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-yellow-400 text-lg">
-                            ⭐
-                          </span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                }
+              )}
             </div>
           </div>
 
@@ -207,8 +212,8 @@ function ReviewsSection() {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-primary w-8"
-                    : "bg-primary/30 hover:bg-primary/50"
+                    ? "bg-blue-primary w-8"
+                    : "bg-blue-primary/30 hover:bg-blue-primary/50"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

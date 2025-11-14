@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { twMerge } from "tailwind-merge";
 
 function TeachingMethods() {
   const renderCard = ({
@@ -32,7 +34,12 @@ function TeachingMethods() {
     );
   };
   return (
-    <section className="py-20 border-t border-slate-200">
+    <section
+      className={twMerge(
+        "py-20 border-t border-slate-200",
+        commonSectionStyles
+      )}
+    >
       <div className="container mx-auto px-4 flex flex-col items-center">
         <div className="text-center mb-12 max-w-3xl flex flex-col gap-3">
           <h2 className="text-4xl font-bold">

@@ -1,7 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { Award, BookOpen, Globe, Users } from "lucide-react";
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 const features = [
   {
@@ -56,7 +58,7 @@ function FeaturesSection() {
     );
   };
   return (
-    <section className="py-20 bg-background">
+    <section className={twMerge("py-20 bg-muted", commonSectionStyles)}>
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12">
           {landingPageDummyData.whyChooseUs.title}

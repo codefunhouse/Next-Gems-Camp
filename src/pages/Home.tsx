@@ -11,7 +11,6 @@ import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 const Home = () => {
   return (
     <PublicPagesLayout>
-      {/* Hero Section */}
       <HeroSection
         title={landingPageDummyData.heroSection.title}
         subtitle={landingPageDummyData.heroSection.subtitle}
@@ -20,17 +19,14 @@ const Home = () => {
 
       <CoursesSection />
 
-      {/* Features Section */}
       <FeaturesSection />
 
       <TeachingMethods />
 
       <QuestionsAndAnswers />
 
-      {/* Testimonials Section */}
       <ReviewsSection />
 
-      {/* CTA Section */}
       <CTASection />
     </PublicPagesLayout>
   );

@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 
 function HeroSection({
@@ -25,10 +26,22 @@ function HeroSection({
         }}
       />
       <div className="relative z-10 container mx-auto px-4 text-center max-w-5xl">
-        <h1 className="font-bold mb-6 animate-fade-in">{title}</h1>
-        <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+        <motion.h2
+          className="font-bold mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {title}
+        </motion.h2>
+        <motion.p
+          className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
           {subtitle}
-        </p>
+        </motion.p>
       </div>
     </section>
   );

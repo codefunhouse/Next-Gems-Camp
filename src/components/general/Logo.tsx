@@ -4,7 +4,7 @@ function Logo() {
   return (
     <Link
       to="/"
-      className="flex items-center gap-2 text-secondary-foreground hover:text-primary transition-colors"
+      className="flex items-center gap-2 text-secondary-foreground hover:text-blue-primary transition-colors"
     >
       <div>
         <img
