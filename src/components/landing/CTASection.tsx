@@ -5,12 +5,7 @@ import Button from "../general/Button";
 
 function CTASection() {
   return (
-    <section
-      className={twMerge(
-        "py-20 bg-blue-primary text-primary-foreground",
-        commonSectionStyles
-      )}
-    >
+    <section className={twMerge("py-20 bg-muted", commonSectionStyles)}>
       <div className="container mx-auto px-4 text-center flex flex-col items-center">
         <h2 className="text-4xl font-bold mb-6">
           {landingPageDummyData.ctaSection.title}

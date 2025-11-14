@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="bg-blue-primary flex justify-center items-center w-full py-4 sm:py-4 px-2">
+      <div className="bg-blue-sec flex justify-center items-center w-full py-4 sm:py-4 px-2">
         <Link
           to="/apply"
           className="text-white no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-white before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
@@ -59,7 +59,7 @@ const Navbar = () => {
           Register Now to secure your place for 2026
         </Link>
       </div>
-      <div className="container px-4 bg-secondary/80 backdrop-blur-sm border-b border-border">
+      <div className="container px-4 bg-blue-primary border border-border">
         <div className="flex items-center justify-between py-3 sm:px-[4.8rem]">
           <Logo />
 
@@ -117,14 +117,6 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-
-            <Link
-              to="/about"
-              className="text-white hover:text-blue-primary transition-colors"
-            >
-              WHY US
-            </Link>
-
             {/* Info Dropdown */}
             <div ref={infoRef} className="relative">
               <button
@@ -257,14 +249,6 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-
-              <Link
-                to="/about"
-                className="text-gray-800 hover:text-blue-primary transition-colors py-2 border-b border-gray-100 font-medium"
-                onClick={closeMobileMenu}
-              >
-                WHY US
-              </Link>
 
               {/* Mobile Info Dropdown */}
               <div className="border-b border-gray-100 pb-2">

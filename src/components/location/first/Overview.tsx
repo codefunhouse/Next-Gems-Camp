@@ -6,30 +6,12 @@ function Overview() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-center">
-            The Cambridge Experience
+            Discover Canterbury: A Historic Gem in the Heart of England
           </h2>
           <Card>
-            <CardContent className="p-8">
-              <p className="text-lg mb-4">
-                Cambridge University has produced more Nobel Prize winners than
-                any other institution in the world. Our summer programs offer
-                students the extraordinary opportunity to study at this iconic
-                university, immersing themselves in its rich academic
-                traditions.
-              </p>
-              <p className="text-lg mb-4">
-                Students live in historic college buildings, many dating back
-                centuries, and participate in the time-honored Cambridge
-                traditions. Small group tutorials—Cambridge's signature teaching
-                method—encourage critical thinking and in-depth discussion with
-                expert tutors.
-              </p>
-              <p className="text-lg">
-                The compact city center means everything is within easy reach.
-                Students can punt along the River Cam, explore world-class
-                museums, attend evensong at King's College Chapel, and cycle
-                through the picturesque streets just like generations of
-                Cambridge students before them.
+            <CardContent className="p-8 w-full">
+              <p className="text-lg mb-4 whitespace-pre-line">
+                {`Nestled in the picturesque county of Kent, Canterbury is a city where history, culture, and elegance come together. Famous for its magnificent Canterbury Cathedral, a UNESCO World Heritage site, the city blends medieval charm with modern sophistication. Stroll along cobbled streets and explore boutique shops, artisan cafes, and gourmet restaurants.\n\nEnjoy a leisurely punt along the River Stour or relax in the city’s quaint squares and gardens. With its Roman walls, historic churches, and museums, Canterbury offers rich cultural experiences for all ages. Just a short train ride from London, the city combines accessibility with an exclusive, boutique atmosphere—perfect for families seeking a luxury cultural immersion in England.`}
               </p>
             </CardContent>
           </Card>
