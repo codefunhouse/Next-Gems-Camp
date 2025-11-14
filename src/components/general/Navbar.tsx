@@ -6,8 +6,10 @@ import Logo from "./Logo";
 
 const Navbar = () => {
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const locationsRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,13 +18,18 @@ const Navbar = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsLocationsOpen(false);
+    setIsInfoOpen(false);
   };
 
   const toggleLocationsDropdown = () => {
     setIsLocationsOpen(!isLocationsOpen);
   };
 
-  // Close dropdown when clicking outside
+  const toggleInfoDropdown = () => {
+    setIsInfoOpen(!isInfoOpen);
+  };
+
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -30,6 +37,9 @@ const Navbar = () => {
         !locationsRef.current.contains(event.target as Node)
       ) {
         setIsLocationsOpen(false);
+      }
+      if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+        setIsInfoOpen(false);
       }
     };
 
@@ -91,18 +101,18 @@ const Navbar = () => {
               >
                 <div className="px-2">
                   <Link
-                    to="/locations/oxford"
+                    to="/locations/canterbury"
                     className="block px-2 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md"
                     onClick={() => setIsLocationsOpen(false)}
                   >
-                    Oxford
+                    Canterbury
                   </Link>
                   <Link
-                    to="/locations/cambridge"
+                    to="/locations/norfolk"
                     className="block px-2 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md"
                     onClick={() => setIsLocationsOpen(false)}
                   >
-                    Cambridge
+                    Norfolk
                   </Link>
                 </div>
               </div>
@@ -114,12 +124,52 @@ const Navbar = () => {
             >
               WHY US
             </Link>
-            <Link
-              to="/parents"
-              className="text-white hover:text-primary transition-colors"
-            >
-              INFO FOR PARENTS
-            </Link>
+
+            {/* Info Dropdown */}
+            <div ref={infoRef} className="relative">
+              <button
+                className="flex items-center gap-1 text-white hover:text-primary transition-colors focus:outline-none"
+                onClick={toggleInfoDropdown}
+                onMouseEnter={() => setIsInfoOpen(true)}
+              >
+                INFO
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    isInfoOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Animated Dropdown */}
+              <div
+                className={`
+                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[180px] py-2 z-50
+                transition-all duration-300 ease-in-out overflow-hidden
+                ${
+                  isInfoOpen
+                    ? "max-h-32 opacity-100 animate-in fade-in-0 zoom-in-95 slide-in-from-top-2"
+                    : "max-h-0 opacity-0 animate-out fade-out-0 zoom-out-95 slide-out-to-top-2"
+                }
+              `}
+              >
+                <div className="px-2">
+                  <Link
+                    to="/info/parents"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md"
+                    onClick={() => setIsInfoOpen(false)}
+                  >
+                    Parents
+                  </Link>
+                  <Link
+                    to="/info/agents"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md"
+                    onClick={() => setIsInfoOpen(false)}
+                  >
+                    Agents
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Apply Now Button - Hidden on mobile */}
@@ -187,18 +237,18 @@ const Navbar = () => {
                 >
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
-                      to="/locations/oxford"
+                      to="/locations/canterbury"
                       className="block py-2 text-sm text-gray-600 hover:text-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
-                      Oxford
+                      Canterbury
                     </Link>
                     <Link
-                      to="/locations/cambridge"
+                      to="/locations/norfolk"
                       className="block py-2 text-sm text-gray-600 hover:text-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
-                      Cambridge
+                      Norfolk
                     </Link>
                   </div>
                 </div>
@@ -211,13 +261,49 @@ const Navbar = () => {
               >
                 WHY US
               </Link>
-              <Link
-                to="/parents"
-                className="text-gray-800 hover:text-primary transition-colors py-2 border-b border-gray-100 font-medium"
-                onClick={closeMobileMenu}
-              >
-                INFO FOR PARENTS
-              </Link>
+
+              {/* Mobile Info Dropdown */}
+              <div className="border-b border-gray-100 pb-2">
+                <button
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-primary transition-colors py-2 focus:outline-none font-medium"
+                  onClick={() => setIsInfoOpen(!isInfoOpen)}
+                >
+                  <span>INFO</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      isInfoOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  className={`
+                  transition-all duration-300 ease-in-out overflow-hidden
+                  ${
+                    isInfoOpen
+                      ? "max-h-32 opacity-100 animate-in fade-in-0 slide-in-from-top-2"
+                      : "max-h-0 opacity-0 animate-out fade-out-0 slide-out-to-top-2"
+                  }
+                `}
+                >
+                  <div className="pl-4 mt-2 space-y-2">
+                    <Link
+                      to="/info/parents"
+                      className="block py-2 text-sm text-gray-600 hover:text-primary transition-colors font-normal"
+                      onClick={closeMobileMenu}
+                    >
+                      Parents
+                    </Link>
+                    <Link
+                      to="/info/agents"
+                      className="block py-2 text-sm text-gray-600 hover:text-primary transition-colors font-normal"
+                      onClick={closeMobileMenu}
+                    >
+                      Agents
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
               {/* Mobile Apply Now Button */}
               <Button

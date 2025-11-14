@@ -1,9 +1,9 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import ContactCTA from "@/components/parents/ContactCTA";
-import FAQSection from "@/components/parents/FAQSection";
-import HeroSection from "@/components/parents/HeroSection";
-import SafetySection from "@/components/parents/SafetySection";
-import WhatToExpect from "@/components/parents/WhatToExpect";
+import ContactCTA from "@/components/info/parents/ContactCTA";
+import FAQSection from "@/components/info/parents/FAQSection";
+import HeroSection from "@/components/info/parents/HeroSection";
+import SafetySection from "@/components/info/parents/SafetySection";
+import WhatToExpect from "@/components/info/parents/WhatToExpect";
 import { FileText, Heart, Home, Phone, Shield, Users } from "lucide-react";
 
 const safetyFeatures = [

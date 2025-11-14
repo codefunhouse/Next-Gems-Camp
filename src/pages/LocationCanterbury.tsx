@@ -41,7 +41,7 @@ const courses = [
   { name: "English Literature", ages: "13-18", weeks: "2 weeks" },
   { name: "Mathematics", ages: "13-18", weeks: "2 weeks" },
 ];
-const LocationOxford = () => {
+const Canterbury = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
@@ -65,4 +65,4 @@ const LocationOxford = () => {
   );
 };
 
-export default LocationOxford;
+export default Canterbury;
