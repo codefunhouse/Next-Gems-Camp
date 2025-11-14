@@ -22,7 +22,7 @@ function HeroSection() {
     );
   };
   return (
-    <section className="relative pt-24 sm:pt-44 pb-16 sm:pb-40 bg-gradient-to-br from-hero-start to-hero-end text-white">
+    <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-32 bg-gradient-to-br from-hero-start to-hero-end text-white">
       <div
         className="absolute inset-0 opacity-30 bg-cover bg-center"
         style={{

@@ -59,7 +59,7 @@ const Navbar = () => {
           Register Now to secure your place for 2026
         </Link>
       </div>
-      <div className="container px-4 bg-blue-primary border border-border">
+      <div className="container px-4 bg-blue-primary border-b border-border font-medium">
         <div className="flex items-center justify-between py-3 sm:px-[4.8rem]">
           <Logo />
 
@@ -67,7 +67,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <Link
               to="/"
-              className="text-white hover:text-blue-primary transition-colors"
+              className="text-white hover:text-blue-sec transition-colors"
             >
               HOME
             </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
             {/* Custom Locations Dropdown */}
             <div ref={locationsRef} className="relative">
               <button
-                className="flex items-center gap-1 text-white hover:text-blue-primary transition-colors focus:outline-none"
+                className="flex items-center gap-1 text-white hover:text-blue-sec transition-colors focus:outline-none"
                 onClick={toggleLocationsDropdown}
                 onMouseEnter={() => setIsLocationsOpen(true)}
               >
@@ -120,7 +120,7 @@ const Navbar = () => {
             {/* Info Dropdown */}
             <div ref={infoRef} className="relative">
               <button
-                className="flex items-center gap-1 text-white hover:text-blue-primary transition-colors focus:outline-none"
+                className="flex items-center gap-1 text-white hover:text-blue-sec transition-colors focus:outline-none"
                 onClick={toggleInfoDropdown}
                 onMouseEnter={() => setIsInfoOpen(true)}
               >
@@ -173,7 +173,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white hover:text-blue-primary transition-colors"
+            className="md:hidden p-2 text-white hover:text-blue-sec transition-colors"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -201,7 +201,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
-                className="text-gray-800 hover:text-blue-primary transition-colors py-2 border-b border-gray-100 font-medium"
+                className="text-gray-800 hover:text-blue-sec transition-colors py-2 border-b border-gray-100 font-medium"
                 onClick={closeMobileMenu}
               >
                 HOME
@@ -210,7 +210,7 @@ const Navbar = () => {
               {/* Mobile Locations Dropdown */}
               <div className="border-b border-gray-100 pb-2">
                 <button
-                  className="flex items-center justify-between w-full text-gray-800 hover:text-blue-primary transition-colors py-2 focus:outline-none font-medium"
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsLocationsOpen(!isLocationsOpen)}
                 >
                   <span>LOCATIONS</span>
@@ -234,14 +234,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/locations/canterbury"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Canterbury
                     </Link>
                     <Link
                       to="/locations/norfolk"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Norfolk
@@ -277,14 +277,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/info/parents"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Parents
                     </Link>
                     <Link
                       to="/info/agents"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Agents

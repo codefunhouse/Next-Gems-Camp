@@ -1,34 +1,25 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import Activities from "@/components/location/first/Activities";
-import Courses from "@/components/location/first/Courses";
+import CTASection from "@/components/landing/CTASection";
+import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import HeroSection from "@/components/location/first/HeroSection";
-import Highlights from "@/components/location/first/Highlights";
-import LocationCTASection from "@/components/location/first/LocationCTASection";
 import Overview from "@/components/location/first/Overview";
-import TravelSection from "@/components/location/first/TravelSection";
+import { canterburyImageData } from "@/lib/dummyData/locationData";
 
 const LocationCambridge = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection />
-
       {/* Overview Section */}
       <Overview />
-
-      {/* Highlights Section */}
-      <Highlights />
-
-      {/* Courses Section */}
-      <Courses />
-
-      {/* Activities Section */}
-      <Activities />
-
-      {/* Travel Section */}
-      <TravelSection />
-      {/* CTA Section */}
-      <LocationCTASection />
+      <ImageDisplayer
+        data={canterburyImageData}
+        autoSlide={true}
+        autoSlideInterval={3000}
+        className="my-8"
+      />
+      ;
+      <CTASection />
     </PublicPagesLayout>
   );
 };
