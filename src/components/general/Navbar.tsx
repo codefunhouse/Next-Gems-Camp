@@ -65,17 +65,14 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              to="/"
-              className="text-white hover:text-blue-sec transition-colors"
-            >
+            <Link to="/" className=" hover:text-blue-sec transition-colors">
               HOME
             </Link>
 
             {/* Custom Locations Dropdown */}
             <div ref={locationsRef} className="relative">
               <button
-                className="flex items-center gap-1 text-white hover:text-blue-sec transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-blue-sec transition-colors focus:outline-none"
                 onClick={toggleLocationsDropdown}
                 onMouseEnter={() => setIsLocationsOpen(true)}
               >
@@ -120,7 +117,7 @@ const Navbar = () => {
             {/* Info Dropdown */}
             <div ref={infoRef} className="relative">
               <button
-                className="flex items-center gap-1 text-white hover:text-blue-sec transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-blue-sec transition-colors focus:outline-none"
                 onClick={toggleInfoDropdown}
                 onMouseEnter={() => setIsInfoOpen(true)}
               >
@@ -173,12 +170,12 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white hover:text-blue-sec transition-colors"
+            className="md:hidden p-2  hover:text-blue-sec transition-colors"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 animate-in fade-in-0 zoom-in-95 text-white" />
+              <X className="h-6 w-6 animate-in fade-in-0 zoom-in-95 " />
             ) : (
               <Menu className="h-6 w-6 animate-in fade-in-0 zoom-in-95" />
             )}
