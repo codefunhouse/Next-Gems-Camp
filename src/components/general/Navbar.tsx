@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 import Logo from "./Logo";
 
 const Navbar = () => {
@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="bg-[#894619] flex justify-center items-center w-full py-4 sm:py-4 px-2">
+      <div className="bg-blue-primary flex justify-center items-center w-full py-4 sm:py-4 px-2">
         <Link
           to="/apply"
           className="text-white no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-white before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
@@ -49,7 +49,7 @@ const Navbar = () => {
           Apply Now to secure your place for 2026
         </Link>
       </div>
-      <div className="container px-4 bg-secondary/95 backdrop-blur-sm border-b border-border">
+      <div className="container px-4 bg-secondary/80 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between py-3 sm:px-[4.8rem]">
           <Logo />
 
@@ -123,11 +123,7 @@ const Navbar = () => {
           </div>
 
           {/* Apply Now Button - Hidden on mobile */}
-          <Link to="/apply" className="hidden md:block">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Apply Now
-            </Button>
-          </Link>
+          <Button label="Apply Now" classNames="!max-w-[120px]" link="/apply" />
 
           {/* Mobile Menu Button */}
           <button
@@ -224,11 +220,12 @@ const Navbar = () => {
               </Link>
 
               {/* Mobile Apply Now Button */}
-              <Link to="/apply" className="pt-2" onClick={closeMobileMenu}>
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-in fade-in-0 zoom-in-95">
-                  Apply Now
-                </Button>
-              </Link>
+              <Button
+                label="Apply Now"
+                classNames="max-w-[120px]"
+                onClick={closeMobileMenu}
+                link="/apply"
+              />
             </div>
           </div>
         </div>

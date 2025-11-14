@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -8,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import Button from "../general/Button";
 
 function HeroSection() {
   const [age, setAge] = useState("15");
@@ -71,7 +71,7 @@ function HeroSection() {
                 </SelectContent>
               </Select>
 
-              <Button className="bg-primary hover:bg-primary/90">Search</Button>
+              <Button label="Search" />
             </div>
           </CardContent>
         </Card>

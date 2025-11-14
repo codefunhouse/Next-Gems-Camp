@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Button from "../general/Button";
 
 function BrowseCourses() {
   return (
@@ -50,9 +50,10 @@ function BrowseCourses() {
                   <p className="text-lg font-bold text-primary mb-4">
                     FROM {course.price}
                   </p>
-                  <Button variant="outline" className="w-full">
+                  {/* <Button variant="outline" className="w-full">
                     Find Out More
-                  </Button>
+                  </Button> */}
+                  <Button label="Find Out More" />
                 </div>
               </CardContent>
             </Card>
