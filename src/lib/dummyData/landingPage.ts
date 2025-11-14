@@ -127,28 +127,31 @@ export const landingPageDummyData = {
       "At Next Gems Summer Camp, we believe learning flourishes when it is engaging, personalised, and inspired by real-world experiences. Our expert teachers guide every student to grow in confidence, skill, and curiosity, making every lesson meaningful and memorable.",
     approaches: [
       {
+        icon: "💬",
         title: "Interactive & Engaging Lessons",
         description:
           "Dynamic, student-centered classes use discussions, role-plays, and projects to make learning practical and fun.",
       },
       {
+        icon: "🎯",
         title: "Personalised Learning",
         description:
           "Small groups ensure each student receives tailored guidance, accelerating progress and building confidence.",
       },
       {
+        icon: "🌍",
         title: "Real-World Communication",
         description:
           "English is practised beyond the classroom through cultural immersion, collaborative projects, and exciting excursions.",
       },
       {
+        icon: "👩‍🏫",
         title: "Expert & Caring Educators",
         description:
           "Qualified, experienced teachers provide professional instruction, mentorship, and support every step of the way.",
       },
     ],
   },
-
   faqs: {
     title: "Quick FAQ for Parents",
     questions: [

@@ -1,56 +1,55 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Globe, GraduationCap, Users } from "lucide-react";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 
 function TeachingMethods() {
+  const renderCard = ({
+    icon,
+    title,
+    description,
+    idx,
+  }: {
+    icon: string | React.ReactNode;
+    title: string;
+    description: string;
+    idx: string | number;
+  }) => {
+    return (
+      <Card>
+        <CardContent className="p-6">
+          {typeof icon === "string" ? (
+            <div className="h-12 w-12 text-primary mb-4 text-2xl flex items-center justify-center">
+              {icon}
+            </div>
+          ) : (
+            <div className="h-12 w-12 text-primary mb-4 flex items-center justify-center">
+              {icon}
+            </div>
+          )}
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-muted-foreground">{description}</p>
+        </CardContent>
+      </Card>
+    );
+  };
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          World-Leading Teaching Methods
-        </h2>
+    <section className="py-20 border-t border-slate-200">
+      <div className="container mx-auto px-4 flex flex-col items-center">
+        <div className="text-center mb-12 max-w-3xl flex flex-col gap-3">
+          <h2 className="text-4xl font-bold">
+            {landingPageDummyData.teachingApproaches.title}
+          </h2>
+          <p>{landingPageDummyData.teachingApproaches.description}</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <Card>
-            <CardContent className="p-6">
-              <BookOpen className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Small Class Sizes</h3>
-              <p className="text-muted-foreground">
-                Average class size of 8 students ensures personalized attention
-                from expert tutors.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <Users className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Expert Tutors</h3>
-              <p className="text-muted-foreground">
-                Learn from academics at world's top universities with passion
-                for their subjects.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <GraduationCap className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">
-                University-Style Teaching
-              </h3>
-              <p className="text-muted-foreground">
-                Teaching inspired by Oxford and Cambridge methodologies for
-                rapid development.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <Globe className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Global Perspective</h3>
-              <p className="text-muted-foreground">
-                Study with students from over 120 countries and gain
-                international insights.
-              </p>
-            </CardContent>
-          </Card>
+          {landingPageDummyData.teachingApproaches.approaches.map(
+            (approach, idx) =>
+              renderCard({
+                icon: approach.icon,
+                title: approach.title,
+                description: approach.description,
+                idx,
+              })
+          )}
         </div>
       </div>
     </section>
