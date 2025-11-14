@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { Award, BookOpen, Globe, Users } from "lucide-react";
+import { ReactNode } from "react";
 
 const features = [
   {
@@ -28,20 +30,46 @@ const features = [
 ];
 
 function FeaturesSection() {
+  const renderCard = ({
+    icon,
+    title,
+    description,
+    idx,
+  }: {
+    icon: ReactNode | string;
+    title: string;
+    description: string;
+    idx: string | number;
+  }) => {
+    return (
+      <Card className="hover:shadow-lg transition-shadow" key={idx}>
+        <CardContent className="p-6 text-center flex flex-col gap-1">
+          {typeof icon === "string" ? (
+            <span className="text-4xl">{icon}</span>
+          ) : (
+            icon
+          )}
+          <h3 className="text-xl font-semibold mt-1">{title}</h3>
+          <p className="text-muted-foreground">{description}</p>
+        </CardContent>
+      </Card>
+    );
+  };
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Why Choose Us</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">
+          {landingPageDummyData.whyChooseUs.title}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+          {landingPageDummyData.whyChooseUs.features.map((feature, index) =>
+            renderCard({
+              icon: feature.icon,
+              title: feature.title,
+              description: feature.desc,
+              idx: index,
+            })
+          )}
         </div>
       </div>
     </section>

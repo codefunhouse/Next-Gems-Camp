@@ -45,28 +45,32 @@ export const landingPageDummyData = {
     title: "Our Pathway Programmes",
     programmes: [
       {
-        title: "Tech & Innovation",
+        title: "💻 Tech & Innovation",
         description:
           "Step into the future with hands-on digital skills. From coding and app design to robotics and AI, students explore real-world technology challenges and unleash their creativity through interactive projects guided by expert mentors.",
-        icon: "💻",
+        imgUrl:
+          "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop",
       },
       {
-        title: "Business & Enterprise",
+        title: "💼 Business & Enterprise",
         description:
           "Learn to think like an entrepreneur. Students develop leadership, teamwork, and creative problem-solving skills through exciting business simulations and real-world case studies—building confidence to lead in tomorrow's global economy.",
-        icon: "💼",
+        imgUrl:
+          "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=250&fit=crop",
       },
       {
-        title: "Sports Leadership",
+        title: "⚽ Sports Leadership",
         description:
           "Train, compete, and grow. Combining professional coaching with English communication and teamwork, this pathway helps students build discipline, confidence, and leadership both on and off the field.",
-        icon: "⚽",
+        imgUrl:
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=250&fit=crop",
       },
       {
-        title: "Creative Arts & Media",
+        title: "🎨 Creative Arts & Media",
         description:
           "Ignite your imagination through film, design, performance, and visual arts. Students express their ideas, collaborate across cultures, and create portfolio-worthy projects that showcase their unique talent and voice.",
-        icon: "🎨",
+        imgUrl:
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=250&fit=crop",
       },
     ],
   },
@@ -74,14 +78,46 @@ export const landingPageDummyData = {
   whyChooseUs: {
     title: "Why Choose Next Gems?",
     features: [
-      "Accredited English Tuition - Qualified teachers delivering 30 hours of certified language learning.",
-      "Luxury & Safety Assured - Premium accommodation, nutritious meals, and 24/7 care.",
-      "Small Groups, Big Progress - Personalised learning that builds confidence and results.",
-      "Global Friendships - An international mix of students sharing cultures and experiences.",
-      "Four Inspiring Pathways - Choose from Tech, Business, Sport, or Arts.",
-      "Explore Iconic England - Unforgettable excursions to London, Oxford, and beyond.",
-      "Exceptional Staff Team - Expert teachers and caring mentors supporting every step.",
-      "Trusted Worldwide - The premium choice for families and agents seeking excellence.",
+      {
+        icon: "🎓",
+        title: "Accredited English Tuition",
+        desc: "Qualified teachers delivering 30 hours of certified language learning.",
+      },
+      {
+        icon: "🏨",
+        title: "Luxury & Safety Assured",
+        desc: "Premium accommodation, nutritious meals, and 24/7 care.",
+      },
+      {
+        icon: "👥",
+        title: "Small Groups, Big Progress",
+        desc: "Personalised learning that builds confidence and results.",
+      },
+      {
+        icon: "🌍",
+        title: "Global Friendships",
+        desc: "An international mix of students sharing cultures and experiences.",
+      },
+      {
+        icon: "🛣️",
+        title: "Four Inspiring Pathways",
+        desc: "Choose from Tech, Business, Sport, or Arts.",
+      },
+      {
+        icon: "🏰",
+        title: "Explore Iconic England",
+        desc: "Unforgettable excursions to London, Oxford, and beyond.",
+      },
+      {
+        icon: "👩‍🏫",
+        title: "Exceptional Staff Team",
+        desc: "Expert teachers and caring mentors supporting every step.",
+      },
+      {
+        icon: "✅",
+        title: "Trusted Worldwide",
+        desc: "The premium choice for families and agents seeking excellence.",
+      },
     ],
   },
 
