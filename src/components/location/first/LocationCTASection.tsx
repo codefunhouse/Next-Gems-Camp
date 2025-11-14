@@ -13,7 +13,7 @@ function LocationCTASection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/apply">
             <Button size="lg" variant="secondary">
-              Apply Now
+              Register Now
             </Button>
           </Link>
           <Link to="/locations/oxford">

@@ -1,6 +1,4 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import AboutTutors from "@/components/landing/AboutTutors";
-import Awards from "@/components/landing/Awards";
 import BrowseCourses from "@/components/landing/BrowseCourses";
 import ChooseSubjects from "@/components/landing/ChooseSubjects";
 import CoursesSection from "@/components/landing/CoursesSection";
@@ -34,8 +32,6 @@ const Home = () => {
       <BrowseCourses />
       <QuestionsAndAnswers />
       <ChooseSubjects />
-      <AboutTutors />
-      <Awards />
 
       {/* Testimonials Section */}
       <ReviewsSection />

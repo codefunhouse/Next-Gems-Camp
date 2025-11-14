@@ -11,7 +11,7 @@ function CTASection() {
           Join thousands of students from around the world
         </p>
         <Button
-          label="Apply Now for 2026"
+          label="Register Now for 2026"
           classNames="max-w-[200px] w-full"
           link="/apply"
         />

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-blue-sec text-secondary-foreground">
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col items-center md:items-stretch md:grid md:grid-cols-4 gap-8 px-4 sm:px-10">
+        <div className="flex flex-col items-center md:items-start md:grid md:grid-cols-4 gap-8 px-4 sm:px-10">
           <Logo />
 
           <div>
@@ -27,7 +27,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/locations/oxford"
+                  to="/locations/canterbury"
                   className="hover:text-primary transition-colors"
                 >
                   Locations
@@ -35,16 +35,24 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/parents"
+                  to="info/parents"
                   className="hover:text-primary transition-colors"
                 >
                   Parents
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="info/agents"
+                  className="hover:text-primary transition-colors"
+                >
+                  Agents
+                </Link>
+              </li>
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <h3 className="font-semibold mb-4">Programs</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -68,7 +76,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
