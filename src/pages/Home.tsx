@@ -1,37 +1,31 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import BrowseCourses from "@/components/landing/BrowseCourses";
-import ChooseSubjects from "@/components/landing/ChooseSubjects";
 import CoursesSection from "@/components/landing/CoursesSection";
 import CTASection from "@/components/landing/CTASection";
-import DiscoverCourses from "@/components/landing/DiscoverCourses";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
-import ResourcesAndEvents from "@/components/landing/ResourcesAndEvents";
 import ReviewsSection from "@/components/landing/ReviewsSection";
-import TakeQuizSection from "@/components/landing/TakeQuizSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
-import WhyOurCourses from "@/components/landing/WhyOurCourses";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 
 const Home = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        title={landingPageDummyData.heroSection.title}
+        subtitle={landingPageDummyData.heroSection.subtitle}
+        bgImage={landingPageDummyData.heroSection.image}
+      />
 
       <CoursesSection />
 
-      <TakeQuizSection />
-
       {/* Features Section */}
       <FeaturesSection />
-      <WhyOurCourses />
+
       <TeachingMethods />
-      <ResourcesAndEvents />
-      <DiscoverCourses />
-      <BrowseCourses />
+
       <QuestionsAndAnswers />
-      <ChooseSubjects />
 
       {/* Testimonials Section */}
       <ReviewsSection />

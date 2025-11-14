@@ -1,6 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
 
 function CoursesSection() {
   return (
@@ -24,11 +22,11 @@ function CoursesSection() {
                 29 subjects, ages 13-24. Experience the summer of a lifetime at
                 historic Oxford colleges.
               </p>
-              <Link to="/location-oxford">
+              {/* <Link to="/location-oxford">
                 <Button variant="outline" className="w-full">
                   Learn More
                 </Button>
-              </Link>
+              </Link> */}
             </CardContent>
           </Card>
           <Card className="hover:shadow-lg transition-shadow">
@@ -45,11 +43,11 @@ function CoursesSection() {
                 23 subjects, ages 13-24. Study at prestigious Cambridge colleges
                 with expert tutors.
               </p>
-              <Link to="/location-cambridge">
+              {/* <Link to="/location-cambridge">
                 <Button variant="outline" className="w-full">
                   Learn More
                 </Button>
-              </Link>
+              </Link> */}
             </CardContent>
           </Card>
           <Card className="hover:shadow-lg transition-shadow">
@@ -64,9 +62,9 @@ function CoursesSection() {
                 8 subjects, ages 12-14. Designed for young scholars ready for
                 academic challenge.
               </p>
-              <Button variant="outline" className="w-full">
+              {/* <Button variant="outline" className="w-full">
                 Learn More
-              </Button>
+              </Button> */}
             </CardContent>
           </Card>
           <Card className="hover:shadow-lg transition-shadow">
@@ -83,9 +81,9 @@ function CoursesSection() {
                 8 subjects, ages 9-12. Introduction to academic excellence in a
                 supportive environment.
               </p>
-              <Button variant="outline" className="w-full">
+              {/* <Button variant="outline" className="w-full">
                 Learn More
-              </Button>
+              </Button> */}
             </CardContent>
           </Card>
         </div>

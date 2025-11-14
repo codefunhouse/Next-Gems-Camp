@@ -1,23 +1,33 @@
-import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-function HeroSection() {
-  const [age, setAge] = useState("15");
-  const [subject, setSubject] = useState("");
-  const [location, setLocation] = useState("");
+function HeroSection({
+  title,
+  subtitle,
+  className,
+  bgImage,
+}: {
+  title: string;
+  subtitle: string;
+  className?: string;
+  bgImage: string;
+}) {
   return (
-    <section className="relative py-20 flex items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white">
+    <section
+      className={twMerge(
+        "relative py-40 flex items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white",
+        className
+      )}
+    >
       <div
         className="absolute inset-0 opacity-20 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1562774053-701939374585?w=1600&h=900&fit=crop')",
+          backgroundImage: `url('${bgImage}')`,
         }}
       />
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="font-bold mb-6 animate-fade-in">Next Gems Camp</h1>
+      <div className="relative z-10 container mx-auto px-4 text-center max-w-5xl">
+        <h1 className="font-bold mb-6 animate-fade-in">{title}</h1>
         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-          Nurturing independent thought through award-winning exceptional
-          education. Choose from over 40 subjects for ages 9-24.
+          {subtitle}
         </p>
       </div>
     </section>
