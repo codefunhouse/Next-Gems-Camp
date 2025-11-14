@@ -12,6 +12,7 @@ interface ImageDisplayerProps {
   className?: string;
   autoSlide?: boolean;
   autoSlideInterval?: number;
+  title?: string;
 }
 
 function ImageDisplayer({
@@ -19,6 +20,7 @@ function ImageDisplayer({
   className,
   autoSlide = true,
   autoSlideInterval = 5000,
+  title,
 }: ImageDisplayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -56,11 +58,16 @@ function ImageDisplayer({
 
   return (
     <section
-      className={twMerge("w-full py-10", commonSectionStyles, className)}
+      className={twMerge(
+        "w-full py-10 border-t border-slate-200",
+        commonSectionStyles,
+        className
+      )}
     >
       <div className="flex flex-col gap-8">
+        {title && <h3 className="text-center">{title}</h3>}
         {/* Image Section */}
-        <div className="w-full">
+        <div className="w-full max-w-3xl mx-auto">
           <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden">
             <img
               src={currentItem.image}

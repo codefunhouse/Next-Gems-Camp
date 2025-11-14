@@ -10,7 +10,7 @@ function Logo() {
         <img
           src="/images/logo.png"
           alt="Next Gems Camp Logo"
-          className="h-10 w-10 aspect-square object-contain sm:h-20 sm:w-20 rounded-md border-[0.1px] border-blue-sec/20"
+          className="h-12 w-12 aspect-square object-contain sm:h-16 sm:w-16 rounded-md border-[0.1px] border-blue-sec/20"
         />
       </div>
       {/* <span className="text-xs sm:text-sm">Next Gems Camp</span> */}
