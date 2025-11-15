@@ -61,6 +61,9 @@ export default {
           start: "hsl(var(--hero-gradient-start))",
           end: "hsl(var(--hero-gradient-end))",
         },
+        grey: {
+          primary: "#F1F5F9",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,20 +1,35 @@
 import { Card, CardContent } from "@/components/ui/card";
 
+interface ListItem {
+  item: string;
+  nestedList?: string[]; // Optional nested list for items that have sub-items
+}
+
 interface WhatToExpectCardProps {
   title: string;
-  list?: string[]; // List as array of strings
+  list?: ListItem[]; // List as array of objects with item field
   description?: string;
   lowerDescription?: string;
-  subsections?: { title: string; list: string[] }[]; // Subsections with title and array of strings
+  subsections?: { title: string; list: ListItem[] }[]; // Subsections with title and array of ListItem objects
   className?: string;
 }
 
 // Recursive component for rendering nested lists
-function NestedList({ items }: { items: string[] }) {
+function NestedList({ items }: { items: ListItem[] }) {
   return (
     <ul className="space-y-2 text-muted-foreground list-disc list-inside pl-4">
-      {items.map((item, itemIdx) => (
-        <li key={itemIdx}>{item}</li>
+      {items.map((listItem, itemIdx) => (
+        <li key={itemIdx}>
+          {listItem.item}
+          {/* Render nested list if it exists */}
+          {listItem.nestedList && listItem.nestedList.length > 0 && (
+            <ul className="mt-2 space-y-1 list-circle list-inside pl-6">
+              {listItem.nestedList.map((nestedItem, nestedIdx) => (
+                <li key={nestedIdx}>{nestedItem}</li>
+              ))}
+            </ul>
+          )}
+        </li>
       ))}
     </ul>
   );

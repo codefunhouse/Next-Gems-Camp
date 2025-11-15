@@ -10,7 +10,7 @@ function WhatsIncludedSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-grey-primary">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           {/* Header */}

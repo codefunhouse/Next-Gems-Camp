@@ -37,13 +37,15 @@ function SplitSection({
           <h2 className="text-3xl font-bold text-center mb-4">{mainTitle}</h2>
         )}
         {mainDesc && (
-          <p className="text-center max-w-3xl mx-auto">{mainDesc}</p>
+          <p className="text-center text-lg sm:text-xl max-w-3xl mx-auto">
+            {mainDesc}
+          </p>
         )}
       </div>
       <div className="container mx-auto px-4">
         <div
           className={twMerge(
-            "flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto",
+            "flex flex-col sm:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto",
             contentClassName
           )}
         >

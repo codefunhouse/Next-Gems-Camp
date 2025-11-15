@@ -1,5 +1,6 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ContactCTA from "@/components/info/parents/ContactCTA";
+import TravelAndTransfer from "@/components/info/parents/TravelAndTransfer";
 import WhatsIncludedSection from "@/components/info/parents/WhatsIncluded";
 import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
@@ -20,6 +21,7 @@ const Parents = () => {
       />
 
       <SplitSection
+        mainDesc="Next Gems Summer Camp combines 30 hours of accredited English tuition with global cultural immersion and exciting specialist programs in Technology, Business, Sport, Arts, and Leadership. Our safe, small-group environment ensures every child learns, grows, and enjoys a truly international experience."
         leftContent={
           <WhatToExpectCard
             title={parentInfoData.learningAndEnrichment.leftData.title}
@@ -40,6 +42,9 @@ const Parents = () => {
         }
         background="gray"
       />
+
+      <TravelAndTransfer />
+
       <SplitSection
         leftContent={
           <WhatToExpectCard
@@ -59,8 +64,9 @@ const Parents = () => {
             alt={parentInfoData.accommodationAndWelfare.rightData.alt}
           />
         }
-        // background="gray"
+        background="gray"
       />
+
       <SplitSection
         leftContent={
           <WhatToExpectCard
@@ -82,15 +88,15 @@ const Parents = () => {
             alt={parentInfoData.safeguardingAndChildProtection.rightData.alt}
           />
         }
-        background="gray"
+        // background="gray"
       />
 
       <WhatsIncludedSection />
       {/* FAQ Section */}
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers className="bg-white" />
 
       {/* Contact CTA */}
-      <ContactCTA />
+      <ContactCTA className="bg-grey-primary" />
     </PublicPagesLayout>
   );
 };

@@ -19,6 +19,7 @@ function Agents() {
       />
 
       <SplitSection
+        mainDesc="Next Gems Summer Camp offers an exclusive opportunity for international education agents to represent a high-quality, accredited summer program that combines English language learning, cultural immersion, and specialist pathways in a safe, luxury environment."
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.whyPartnerWithUs.leftData.title}
@@ -117,7 +118,7 @@ function Agents() {
       <QuestionsAndAnswers className="bg-white" />
 
       {/* Contact CTA */}
-      <ContactCTA className="bg-[#F1F5F9]" />
+      <ContactCTA className="bg-grey-primary" />
     </PublicPagesLayout>
   );
 }

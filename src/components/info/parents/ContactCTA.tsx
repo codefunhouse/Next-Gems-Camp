@@ -1,9 +1,9 @@
 import Button from "@/components/general/Button";
 import { Link } from "react-router-dom";
 
-function ContactCTA() {
+function ContactCTA({ className }: { className?: string }) {
   return (
-    <section className="py-16 bg-white">
+    <section className={`py-16 bg-white ${className}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center flex flex-col gap-4 items-center">
           {/* Header */}

@@ -6,16 +6,23 @@ export const parentInfoData = {
         30 hours of accredited English tuition taught by qualified teachers.
       `,
       lists: [
-        "Small, ability-based classes focused on communication and confidence.",
-        "Daily English practice through excursions, workshops, and teamwork.",
-        "Choice of 5 specialisms: Tech, Business, Sport, Arts, or Leadership.",
-        "End-of-camp certificate and personal progress report.",
+        {
+          item: "Small, ability-based classes focused on communication and confidence.",
+        },
+        {
+          item: "Daily English practice through excursions, workshops, and teamwork.",
+        },
+        {
+          item: "Choice of 5 specialisms: Tech, Business, Sport, Arts, or Leadership.",
+        },
+        { item: "End-of-camp certificate and personal progress report." },
       ],
       nestedList: [],
       lowerDesc: "",
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1586159116861-16d9444be5da",
+      imageUrl:
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=60",
       alt: "Students participating in a group class",
     },
   },
@@ -25,39 +32,57 @@ export const parentInfoData = {
     mainDesc: `
       We welcome students from all over the world and offer full arrival support.
     `,
-    leftData: {
-      title: "Travel & Visa Support",
-      upperDesc: ``,
-      lists: [
-        "International students may require a Standard Visitor Visa for short study stays in the UK.",
-        "Upon enrolment, we provide all supporting documents to assist with your child’s visa application.",
-        "Our admissions team is available to guide families through the process.",
-        "Airport & Train Transfers",
-        "Supervised pick-up and drop-off services are available from:",
-      ],
-      nestedList: [
-        {
-          title: "Airport Transfer Locations",
-          items: [
-            "Heathrow Airport (LHR)",
-            "Gatwick Airport (LGW)",
-            "Stansted Airport (STN)",
-            "London St Pancras International Station (Eurostar arrivals)",
-          ],
-        },
-        {
-          title: "Transfer Process",
-          items: [
-            "A Next Gems staff member, easily identifiable in camp uniform, will greet students upon arrival.",
-            "All transfers are pre-booked and fully supervised to ensure safety and comfort.",
-          ],
-        },
-      ],
-      lowerDesc: "",
+    section1: {
+      leftData: {
+        title: "Travel & Visa Support",
+        upperDesc: ``,
+        lists: [
+          {
+            item: "International students may require a Standard Visitor Visa for short study stays in the UK.",
+          },
+          {
+            item: "Upon enrolment, we provide all supporting documents to assist with your child's visa application.",
+          },
+          {
+            item: "Our admissions team is available to guide families through the process.",
+          },
+          { item: "Airport & Train Transfers" },
+        ],
+      },
+      rightData: {
+        imageUrl:
+          "https://plus.unsplash.com/premium_photo-1726761735842-107b37bd6473?q=80&w=934&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "Airport pickup and transfer services",
+      },
     },
-    rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1600702968297-f1cc57f4c9a0",
-      alt: "Airport pickup and transfer services",
+    section2: {
+      leftData: {
+        title: "Airport Transfer Locations",
+        upperDesc: ``,
+        lists: [
+          {
+            item: "Supervised pick-up and drop-off services are available from:",
+            nestedList: [
+              "Heathrow Airport (LHR)",
+              "Gatwick Airport (LGW)",
+              "Stansted Airport (STN)",
+              "London St Pancras International Station (Eurostar arrivals)",
+            ],
+          },
+          {
+            item: "A Next Gems staff member, easily identifiable in camp uniform, will greet students upon arrival.",
+          },
+          {
+            item: "All transfers are pre-booked and fully supervised to ensure safety and comfort.",
+          },
+        ],
+        lowerDesc: "",
+      },
+      rightData: {
+        imageUrl:
+          "https://images.unsplash.com/photo-1464038008305-ee8def75f234?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "Airport pickup and transfer services",
+      },
     },
   },
 
@@ -68,15 +93,22 @@ export const parentInfoData = {
         Premium student residences or boarding campuses with 24/7 supervision.
       `,
       lists: [
-        "Separate accommodation for boys and girls, with secure access.",
-        "Nutritious meals catering to international and dietary preferences.",
-        "On-site medical and pastoral care staff available at all times.",
+        {
+          item: "Separate accommodation for boys and girls, with secure access.",
+        },
+        {
+          item: "Nutritious meals catering to international and dietary preferences.",
+        },
+        {
+          item: "On-site medical and pastoral care staff available at all times.",
+        },
       ],
       nestedList: [],
       lowerDesc: "",
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1519393076361-4f44f3e457fb",
+      imageUrl:
+        "https://plus.unsplash.com/premium_photo-1664302088394-15181999f92e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Student accommodation with 24/7 supervision",
     },
   },
@@ -85,13 +117,15 @@ export const parentInfoData = {
     leftData: {
       title: "🧒 Safeguarding & Child Protection",
       upperDesc: `
-        Your child’s safety is our highest priority. Next Gems Summer Camp operates in full compliance with UK safeguarding standards and Ofsted guidelines.
+        Your child's safety is our highest priority. Next Gems Summer Camp operates in full compliance with UK safeguarding standards and Ofsted guidelines.
       `,
       lists: [
-        "All staff are DBS-checked (UK background verified).",
-        "Staff receive ongoing child protection and first-aid training.",
-        "Clear policies on supervision, conduct, and welfare.",
-        "Dedicated Safeguarding Lead on-site at all times.",
+        { item: "All staff are DBS-checked (UK background verified)." },
+        {
+          item: "Staff receive ongoing child protection and first-aid training.",
+        },
+        { item: "Clear policies on supervision, conduct, and welfare." },
+        { item: "Dedicated Safeguarding Lead on-site at all times." },
       ],
       nestedList: [],
       lowerDesc: `
@@ -99,7 +133,8 @@ export const parentInfoData = {
       `,
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1518709268802-9f5a27c5c8e9",
+      imageUrl:
+        "https://plus.unsplash.com/premium_photo-1750767152981-b9a7f1333169?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Staff ensuring child safety and supervision",
     },
   },
@@ -114,9 +149,15 @@ export const agentsInfoData = {
         Attractive Commission: Competitive rates for individual and group bookings.
       `,
       lists: [
-        "Simple Enrolment: Fast, digital registration and clear communication channels.",
-        "Proven Satisfaction: Exceptional parent and student feedback year after year.",
-        "Visa & Logistics Support: Comprehensive documentation to assist clients with UK visa applications and travel.",
+        {
+          item: "Simple Enrolment: Fast, digital registration and clear communication channels.",
+        },
+        {
+          item: "Proven Satisfaction: Exceptional parent and student feedback year after year.",
+        },
+        {
+          item: "Visa & Logistics Support: Comprehensive documentation to assist clients with UK visa applications and travel.",
+        },
       ],
       nestedList: [
         {
@@ -133,7 +174,8 @@ export const agentsInfoData = {
       `,
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+      imageUrl:
+        "https://plus.unsplash.com/premium_photo-1726740031437-16794db1030c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Business partnership handshake between global agents",
     },
   },
@@ -146,9 +188,13 @@ export const agentsInfoData = {
         Duration: 6th July – 16th August 2026 (Weekly intakes).
       `,
       lists: [
-        "Age Range: 9–17 years.",
-        "Academic Focus: 30 hours of accredited English tuition with certified teachers.",
-        "Specialisms: Technology & Innovation | Business & Enterprise | Sports | Arts",
+        { item: "Age Range: 9–17 years." },
+        {
+          item: "Academic Focus: 30 hours of accredited English tuition with certified teachers.",
+        },
+        {
+          item: "Specialisms: Technology & Innovation | Business & Enterprise | Sports | Arts",
+        },
       ],
       nestedList: [
         {
@@ -164,7 +210,8 @@ export const agentsInfoData = {
       `,
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1",
+      imageUrl:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=60",
       alt: "UK boarding school campus with students",
     },
   },
@@ -176,10 +223,10 @@ export const agentsInfoData = {
         We offer airport and train station transfers from several locations:
       `,
       lists: [
-        "Heathrow (LHR)",
-        "Gatwick (LGW)",
-        "Stansted (STN)",
-        "London St Pancras International (Eurostar)",
+        { item: "Heathrow (LHR)" },
+        { item: "Gatwick (LGW)" },
+        { item: "Stansted (STN)" },
+        { item: "London St Pancras International (Eurostar)" },
       ],
       nestedList: [
         {
@@ -195,7 +242,8 @@ export const agentsInfoData = {
       `,
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828",
+      imageUrl:
+        "https://plus.unsplash.com/premium_photo-1675217788817-8e37b6eba223?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Airport pickup and student transport service",
     },
   },
@@ -207,9 +255,11 @@ export const agentsInfoData = {
         Next Gems operates under UK safeguarding standards and Ofsted-aligned policies.
       `,
       lists: [
-        "All staff are DBS-checked and trained in child protection.",
-        "Dedicated Safeguarding Lead on campus.",
-        "Transparent welfare and reporting procedures for all agents and families.",
+        { item: "All staff are DBS-checked and trained in child protection." },
+        { item: "Dedicated Safeguarding Lead on campus." },
+        {
+          item: "Transparent welfare and reporting procedures for all agents and families.",
+        },
       ],
       nestedList: [
         {
@@ -225,7 +275,8 @@ export const agentsInfoData = {
       `,
     },
     rightData: {
-      imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
+      imageUrl:
+        "https://plus.unsplash.com/premium_photo-1750767153640-35737ee7a7a9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Staff supervising and ensuring child safety on campus",
     },
   },
@@ -237,9 +288,11 @@ export const agentsInfoData = {
         We value strong, transparent partnerships. Registered agents receive all the necessary support:
       `,
       lists: [
-        "Digital marketing resources and program brochures.",
-        "Quick-response admissions support.",
-        "Visa assistance templates and enrolment confirmation letters.",
+        { item: "Digital marketing resources and program brochures." },
+        { item: "Quick-response admissions support." },
+        {
+          item: "Visa assistance templates and enrolment confirmation letters.",
+        },
       ],
       nestedList: [
         {
