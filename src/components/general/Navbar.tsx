@@ -59,8 +59,10 @@ const Navbar = () => {
           Register Now to secure your place for 2026
         </Link>
       </div>
-      <div className="container px-4 bg-blue-primary border-b border-border font-medium">
-        <div className="flex items-center justify-between py-3 sm:px-[4.8rem]">
+
+      {/* Main navbar */}
+      <div className="bg-blue-primary font-medium">
+        <div className="flex items-center justify-between py-3 px-5 sm:px-8 md:px-[4.8rem]">
           <Logo />
 
           {/* Desktop Navigation */}
@@ -164,7 +166,7 @@ const Navbar = () => {
           {/* Register Now Button - Hidden on mobile */}
           <Button
             label="Register Now"
-            classNames="!max-w-[120px]"
+            classNames="!max-w-[120px] hidden md:inline-block"
             link="/apply"
           />
 

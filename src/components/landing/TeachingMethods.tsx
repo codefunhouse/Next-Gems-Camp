@@ -16,7 +16,7 @@ function TeachingMethods() {
     idx: string | number;
   }) => {
     return (
-      <Card>
+      <Card key={idx}>
         <CardContent className="p-6">
           {typeof icon === "string" ? (
             <div className="h-12 w-12 text-primary mb-4 text-2xl flex items-center justify-center">
