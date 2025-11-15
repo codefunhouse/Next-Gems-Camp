@@ -17,8 +17,7 @@ export const landingPageDummyData = {
         description:
           "Our daughter came home more confident, independent, and inspired. The English lessons were excellent, but it was the friendships and cultural activities that truly made it special. Next Gems delivered everything they promised — luxury, learning, and care.",
         reviewer: "Emma T., Parent (Italy)",
-        image:
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+        image: "https://tinyurl.com/4875uffb",
       },
       {
         title: "Safe, structured, and truly international",
@@ -26,7 +25,7 @@ export const landingPageDummyData = {
           "As a parent, I was impressed by how well-organised and personal the experience was. Small group sizes meant our son was always supported, and he loved meeting students from all over the world. Worth every penny.",
         reviewer: "David L., Parent (United Arab Emirates)",
         image:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+          "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a6/05/35/4f/0a/v1_E10/E109PUOG.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=af102d0868170a863e5d0d3f123ee9183780cf958559210f44532a220eed79ed",
       },
       {
         title: "Our top recommendation for premium families",
@@ -70,29 +69,25 @@ export const landingPageDummyData = {
         title: "💻 Tech & Innovation",
         description:
           "Step into the future with hands-on digital skills. From coding and app design to robotics and AI, students explore real-world technology challenges and unleash their creativity through interactive projects guided by expert mentors.",
-        imgUrl:
-          "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop",
+        imgUrl: "https://tinyurl.com/8wbum67n",
       },
       {
         title: "💼 Business & Enterprise",
         description:
           "Learn to think like an entrepreneur. Students develop leadership, teamwork, and creative problem-solving skills through exciting business simulations and real-world case studies—building confidence to lead in tomorrow's global economy.",
-        imgUrl:
-          "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=250&fit=crop",
+        imgUrl: "https://tinyurl.com/2ubbcnr4",
       },
       {
         title: "⚽ Sports Leadership",
         description:
           "Train, compete, and grow. Combining professional coaching with English communication and teamwork, this pathway helps students build discipline, confidence, and leadership both on and off the field.",
-        imgUrl:
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=250&fit=crop",
+        imgUrl: "https://tinyurl.com/3wdn5jy4",
       },
       {
         title: "🎨 Creative Arts & Media",
         description:
           "Ignite your imagination through film, design, performance, and visual arts. Students express their ideas, collaborate across cultures, and create portfolio-worthy projects that showcase their unique talent and voice.",
-        imgUrl:
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=250&fit=crop",
+        imgUrl: "https://tinyurl.com/2rdvc5zr",
       },
     ],
   },
