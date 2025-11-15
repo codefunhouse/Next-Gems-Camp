@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
+import ReviewsSection from "./ReviewsSection";
 
 function HeroSection({
   title,
@@ -7,17 +8,19 @@ function HeroSection({
   desc,
   className,
   bgImage,
+  showReviews = false,
 }: {
   title: string;
   subtitle: string;
   desc?: string;
   className?: string;
   bgImage: string;
+  showReviews?: boolean;
 }) {
   return (
     <section
       className={twMerge(
-        "relative py-40 flex items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white",
+        "relative py-40 flex flex-col gap-6 items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white",
         className
       )}
     >
@@ -55,6 +58,13 @@ function HeroSection({
           </motion.p>
         )}
       </div>
+
+      {/* FAQs */}
+      {showReviews && (
+        <div className="w-full max-w-8xl">
+          <ReviewsSection forHeroSection />
+        </div>
+      )}
     </section>
   );
 }

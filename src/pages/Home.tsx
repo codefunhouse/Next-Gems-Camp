@@ -15,6 +15,7 @@ const Home = () => {
         title={landingPageDummyData.heroSection.title}
         subtitle={landingPageDummyData.heroSection.subtitle}
         bgImage={landingPageDummyData.heroSection.image}
+        showReviews
       />
 
       <CoursesSection />

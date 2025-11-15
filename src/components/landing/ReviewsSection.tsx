@@ -43,7 +43,11 @@ const testimonials = [
   },
 ];
 
-function ReviewsSection() {
+function ReviewsSection({
+  forHeroSection = false,
+}: {
+  forHeroSection?: boolean;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -104,23 +108,29 @@ function ReviewsSection() {
   return (
     <section
       className={twMerge(
-        "py-20 bg-muted/50 relative overflow-hidden",
-        commonSectionStyles
+        "relative overflow-hidden",
+        !forHeroSection ? `py-20 bg-muted/50  ${commonSectionStyles}` : "px-4"
       )}
     >
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
+      {!forHeroSection && (
+        <>
+          <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
+        </>
+      )}
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="font-bold mb-4 ">
-            {landingPageDummyData.reviews.title}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {landingPageDummyData.reviews.description}
-          </p>
-        </div>
+        {!forHeroSection && (
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <h2 className="font-bold mb-4 ">
+              {landingPageDummyData.reviews.title}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              {landingPageDummyData.reviews.description}
+            </p>
+          </div>
+        )}
 
         <div className="relative">
           {/* Navigation Arrows */}
@@ -205,25 +215,29 @@ function ReviewsSection() {
           </div>
 
           {/* Progress Indicators */}
-          <div className="flex justify-center items-center gap-2 mt-8">
-            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-blue-primary w-8"
-                    : "bg-blue-primary/30 hover:bg-blue-primary/50"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+          {!forHeroSection && (
+            <div className="flex justify-center items-center gap-2 mt-8">
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-blue-primary w-8"
+                      : "bg-blue-primary/30 hover:bg-blue-primary/50"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Slide counter */}
-          <div className="text-center mt-4 text-sm text-muted-foreground">
-            {currentIndex + 1} of {maxIndex + 1}
-          </div>
+          {!forHeroSection && (
+            <div className="text-center mt-4 text-sm text-muted-foreground">
+              {currentIndex + 1} of {maxIndex + 1}
+            </div>
+          )}
         </div>
       </div>
     </section>
