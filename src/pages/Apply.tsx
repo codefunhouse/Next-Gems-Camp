@@ -118,7 +118,7 @@ const Apply = () => {
       {/* Hero Section */}
 
       <HeroSection
-        bgImage="https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a3/ca/98/e0/be/v1_E10/E10ALOYS.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=e6c573dff18585b338b01b908949b00288ef797f4b4debeef6ff7057c15f17d8"
+        bgImage="https://tinyurl.com/2yb9pjbk"
         title="Register Now!"
         subtitle=" Take the first step towards an unforgettable summer of academic
             excellence"
