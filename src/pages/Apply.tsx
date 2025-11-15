@@ -27,32 +27,37 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const formSchema = z.object({
-  firstName: z
+  parentFirstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
-    .max(50),
-  lastName: z
+    .max(50, "First name must be less than 50 characters"),
+  parentLastName: z
     .string()
     .min(2, "Last name must be at least 2 characters")
-    .max(50),
-  email: z.string().email("Invalid email address").max(255),
-  phone: z
+    .max(50, "Last name must be less than 50 characters"),
+  parentEmail: z
+    .string()
+    .email("Invalid email address")
+    .max(255, "Email must be less than 255 characters"),
+  parentPhone: z
     .string()
     .min(10, "Phone number must be at least 10 characters")
-    .max(20),
-  age: z.string().min(1, "Please select an age"),
-  location: z.string().min(1, "Please select a location"),
-  subject: z.string().min(1, "Please select a subject"),
-  parentName: z
+    .max(15, "Phone number must be less than 15 characters"),
+
+  studentAge: z.string().min(1, "Please select an age group"),
+
+  programmeLocation: z.string().min(1, "Please select a location"),
+  subjectInterest: z.string().min(1, "Please select a subject"),
+
+  whereHearAboutUs: z
     .string()
-    .min(2, "Parent name must be at least 2 characters")
-    .max(100),
-  parentEmail: z.string().email("Invalid email address").max(255),
-  medicalInfo: z.string().max(500).optional(),
-  motivation: z
+    .min(10, "Please provide more details (at least 10 characters)")
+    .max(500, "Response must be less than 500 characters"),
+  whyOurProgramme: z
     .string()
-    .min(50, "Please tell us more (at least 50 characters)")
-    .max(1000),
+    .max(500, "Response must be less than 500 characters")
+    .optional()
+    .or(z.literal("")),
 });
 
 const Apply = () => {
@@ -62,21 +67,21 @@ const Apply = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      age: "",
-      location: "",
-      subject: "",
-      parentName: "",
+      parentFirstName: "",
+      parentLastName: "",
       parentEmail: "",
-      medicalInfo: "",
-      motivation: "",
+      parentPhone: "",
+      studentAge: "",
+      programmeLocation: "",
+      subjectInterest: "",
+      whereHearAboutUs: "",
+      whyOurProgramme: "",
     },
+    mode: "onChange",
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log("Submitted!");
     console.log("Application submitted:", values);
     setSubmitted(true);
     toast({
@@ -85,6 +90,10 @@ const Apply = () => {
         "We'll review your application and contact you within 3 business days.",
     });
   };
+
+  console.log("Watched values", form.watch());
+  console.log("is valid: ", form.formState.isValid);
+  console.log("Form errors:", form.formState.errors);
 
   if (submitted) {
     return (
@@ -125,11 +134,11 @@ const Apply = () => {
       />
 
       {/* Form Section */}
-      <section className="py-12 bg-background">
+      <section className="py-12 sm:py-16 bg-background">
         <div className="container mx-auto px-5 sm:px-8">
-          <Card className="max-w-3xl mx-auto px-5 sm:px-8 py-4">
+          <Card className="max-w-3xl mx-auto px-0 sm:px-8 py-4">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl">Application Form</CardTitle>
+              <CardTitle className="text-3xl">Register Here</CardTitle>
               <p className="text-muted-foreground">
                 Please complete all fields. Applications are reviewed on a
                 rolling basis.
@@ -141,32 +150,31 @@ const Apply = () => {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-6"
                 >
-                  {/* Student Information */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">
-                      Student Information
+                  {/* Parent/Guardian Information */}
+                  <div className="flex flex-col gap-4">
+                    <h3 className="text-xl font-semibold">
+                      Parent/Guardian Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="firstName"
+                        name="parentFirstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>First Name *</FormLabel>
+                            <FormLabel>Parent/Guardian First Name *</FormLabel>
                             <FormControl>
-                              <Input placeholder="John" {...field} />
+                              <Input placeholder="Jane" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-
                       <FormField
                         control={form.control}
-                        name="lastName"
+                        name="parentLastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Last Name *</FormLabel>
+                            <FormLabel>Parent/Guardian Last Name *</FormLabel>
                             <FormControl>
                               <Input placeholder="Smith" {...field} />
                             </FormControl>
@@ -175,18 +183,17 @@ const Apply = () => {
                         )}
                       />
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="email"
+                        name="parentEmail"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Student Email *</FormLabel>
+                            <FormLabel>Parent/Guardian Email *</FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="john@example.com"
+                                placeholder="jane@example.com"
                                 {...field}
                               />
                             </FormControl>
@@ -197,10 +204,12 @@ const Apply = () => {
 
                       <FormField
                         control={form.control}
-                        name="phone"
+                        name="parentPhone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Phone Number *</FormLabel>
+                            <FormLabel>
+                              Parent/Guardian Phone Number *
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="+44 20 1234 5678"
@@ -212,16 +221,26 @@ const Apply = () => {
                         )}
                       />
                     </div>
+                  </div>
+
+                  {/* Student Information */}
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">
+                      Student Information
+                    </h3>
 
                     <div className="mt-4">
                       <FormField
                         control={form.control}
-                        name="age"
+                        name="studentAge"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Age Group *</FormLabel>
                             <Select
-                              onValueChange={field.onChange}
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                form.trigger(); // Force validation after select change
+                              }}
                               defaultValue={field.value}
                             >
                               <FormControl>
@@ -231,14 +250,8 @@ const Apply = () => {
                               </FormControl>
                               <SelectContent>
                                 <SelectItem value="9-12">9-12 years</SelectItem>
-                                <SelectItem value="13-15">
-                                  13-15 years
-                                </SelectItem>
-                                <SelectItem value="16-18">
-                                  16-18 years
-                                </SelectItem>
-                                <SelectItem value="18-24">
-                                  18-24 years
+                                <SelectItem value="13-17">
+                                  13-17 years
                                 </SelectItem>
                               </SelectContent>
                             </Select>
@@ -257,12 +270,15 @@ const Apply = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="location"
+                        name="programmeLocation"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Preferred Location *</FormLabel>
                             <Select
-                              onValueChange={field.onChange}
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                form.trigger(); // Force validation after select change
+                              }}
                               defaultValue={field.value}
                             >
                               <FormControl>
@@ -271,9 +287,9 @@ const Apply = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="oxford">Oxford</SelectItem>
-                                <SelectItem value="cambridge">
-                                  Cambridge
+                                <SelectItem value="norfolk">Norfolk</SelectItem>
+                                <SelectItem value="canterbury">
+                                  Canterbury
                                 </SelectItem>
                               </SelectContent>
                             </Select>
@@ -284,12 +300,15 @@ const Apply = () => {
 
                       <FormField
                         control={form.control}
-                        name="subject"
+                        name="subjectInterest"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Subject Interest *</FormLabel>
                             <Select
-                              onValueChange={field.onChange}
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                form.trigger(); // Force validation after select change
+                              }}
                               defaultValue={field.value}
                             >
                               <FormControl>
@@ -298,68 +317,16 @@ const Apply = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="medicine">
-                                  Medicine
+                                <SelectItem value="sports">Sports</SelectItem>
+                                <SelectItem value="enterprise">
+                                  Enterprise
                                 </SelectItem>
-                                <SelectItem value="law">Law</SelectItem>
-                                <SelectItem value="business">
-                                  Business & Economics
+                                <SelectItem value="media">Media</SelectItem>
+                                <SelectItem value="technology">
+                                  Technology
                                 </SelectItem>
-                                <SelectItem value="engineering">
-                                  Engineering
-                                </SelectItem>
-                                <SelectItem value="literature">
-                                  English Literature
-                                </SelectItem>
-                                <SelectItem value="mathematics">
-                                  Mathematics
-                                </SelectItem>
-                                <SelectItem value="sciences">
-                                  Natural Sciences
-                                </SelectItem>
-                                <SelectItem value="history">History</SelectItem>
                               </SelectContent>
                             </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Parent/Guardian Information */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">
-                      Parent/Guardian Information
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="parentName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Parent/Guardian Name *</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Jane Smith" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="parentEmail"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Parent/Guardian Email *</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="email"
-                                placeholder="jane@example.com"
-                                {...field}
-                              />
-                            </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -374,16 +341,13 @@ const Apply = () => {
                     </h3>
                     <FormField
                       control={form.control}
-                      name="medicalInfo"
+                      name="whereHearAboutUs"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            Medical Information or Dietary Requirements
-                          </FormLabel>
+                          <FormLabel>Where did you hear about us? *</FormLabel>
                           <FormControl>
-                            <Textarea
-                              placeholder="Any allergies, medical conditions, or dietary requirements we should be aware of..."
-                              className="min-h-[80px]"
+                            <Input
+                              placeholder="Where did you hear about us"
                               {...field}
                             />
                           </FormControl>
@@ -394,15 +358,15 @@ const Apply = () => {
 
                     <FormField
                       control={form.control}
-                      name="motivation"
+                      name="whyOurProgramme"
                       render={({ field }) => (
                         <FormItem className="mt-4">
                           <FormLabel>
-                            Why do you want to attend this program? *
+                            Why do you want to attend our programme (optional)?
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell us about your academic interests and what you hope to gain from this program..."
+                              placeholder="Tell us why you want to attend our program"
                               className="min-h-[120px]"
                               {...field}
                             />
@@ -417,6 +381,7 @@ const Apply = () => {
                     <Button
                       label=" Submit Application"
                       classNames="max-w-[300px] mx-auto"
+                      isDisabled={!form.formState.isValid}
                     />
                   </div>
                 </form>

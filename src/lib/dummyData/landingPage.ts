@@ -176,7 +176,7 @@ export const landingPageDummyData = {
       {
         question: "When is the camp?",
         answer:
-          "Next Gems Summer Camp runs from July 6th – August 16th, 2025, in 2-week cycles.",
+          "Next Gems Summer Camp runs from July 6th – August 16th, 2026, in 2-week cycles.",
       },
       {
         question: "Is the camp safe?",
@@ -245,6 +245,6 @@ export const landingPageDummyData = {
         location: "London, UK",
       },
     },
-    copyrightText: "© 2025 Next Gems Camps. All rights reserved.",
+    copyrightText: "© 2026 Next Gems Camps. All rights reserved.",
   },
 };

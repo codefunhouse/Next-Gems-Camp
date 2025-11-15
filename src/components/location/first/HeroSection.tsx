@@ -40,8 +40,8 @@ function HeroSection() {
         <>
           {renderDetailcard({
             data: [
-              { text: "Start Dates", subtext: "6th July 2025" },
-              { text: "End Date", subtext: "16th August 2025" },
+              { text: "Start Dates", subtext: "6th July 2026" },
+              { text: "End Date", subtext: "16th August 2026" },
               { text: "Pricing per two week cycle", subtext: "£4000" },
               { text: "Age", subtext: "13-17" },
             ],

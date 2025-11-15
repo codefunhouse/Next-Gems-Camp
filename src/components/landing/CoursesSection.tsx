@@ -61,7 +61,7 @@ function CoursesSection() {
   }) => {
     return (
       <Card
-        className="hover:shadow-lg transition-shadow flex-shrink-0 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 px-2"
+        className="hover:shadow-lg transition-shadow flex-shrink-0 w-full sm:w-1/2 md:w-1/2 lg:w-1/3"
         key={idx}
       >
         <CardContent className="p-3 sm:p-4 lg:p-6">

@@ -200,7 +200,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
-                className="text-gray-800 hover:text-white transition-colors py-2 border-b border-gray-100 font-medium"
+                className="text-gray-800 hover:text-blue-sec transition-colors py-2 border-b border-gray-100 font-medium"
                 onClick={closeMobileMenu}
               >
                 HOME
@@ -209,7 +209,7 @@ const Navbar = () => {
               {/* Mobile Locations Dropdown */}
               <div className="border-b border-gray-100 pb-2">
                 <button
-                  className="flex items-center justify-between w-full text-gray-800 hover:text-white transition-colors py-2 focus:outline-none font-medium"
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsLocationsOpen(!isLocationsOpen)}
                 >
                   <span>LOCATIONS</span>
@@ -252,7 +252,7 @@ const Navbar = () => {
               {/* Mobile Info Dropdown */}
               <div className="border-b border-gray-100 pb-2">
                 <button
-                  className="flex items-center justify-between w-full text-gray-800 hover:text-primary transition-colors py-2 focus:outline-none font-medium"
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsInfoOpen(!isInfoOpen)}
                 >
                   <span>INFO</span>
@@ -276,14 +276,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/info/parents"
-                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white hover:bg-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Parents
                     </Link>
                     <Link
                       to="/info/agents"
-                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white hover:bg-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Agents
@@ -295,7 +295,7 @@ const Navbar = () => {
               {/* Mobile Register Now Button */}
               <Button
                 label="Register Now"
-                classNames="max-w-[120px]"
+                classNames="max-w-[300px] mx-auto"
                 onClick={closeMobileMenu}
                 link="/apply"
               />
