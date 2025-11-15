@@ -66,7 +66,7 @@ const Navbar = () => {
           <Logo />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-16">
             <Link to="/" className=" hover:text-white transition-colors">
               HOME
             </Link>
