@@ -126,9 +126,9 @@ const Apply = () => {
 
       {/* Form Section */}
       <section className="py-12 bg-background">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-3xl mx-auto">
-            <CardHeader>
+        <div className="container mx-auto px-5 sm:px-8">
+          <Card className="max-w-3xl mx-auto px-5 sm:px-8 py-4">
+            <CardHeader className="text-center">
               <CardTitle className="text-3xl">Application Form</CardTitle>
               <p className="text-muted-foreground">
                 Please complete all fields. Applications are reviewed on a
