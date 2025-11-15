@@ -20,7 +20,7 @@ function HeroSection({
   return (
     <section
       className={twMerge(
-        "relative py-40 flex flex-col gap-6 items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white",
+        "relative py-36 flex flex-col gap-6 items-center justify-center bg-gradient-to-br from-hero-start to-hero-end text-white",
         className
       )}
     >
@@ -31,14 +31,14 @@ function HeroSection({
         }}
       />
       <div className="relative z-10 container mx-auto px-4 text-center max-w-5xl">
-        <motion.h2
+        <motion.h1
           className="font-semibold mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {title}
-        </motion.h2>
+        </motion.h1>
         <motion.p
           className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-90"
           initial={{ opacity: 0, y: 30 }}

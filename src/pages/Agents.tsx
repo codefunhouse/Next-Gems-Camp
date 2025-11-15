@@ -118,7 +118,7 @@ function Agents() {
       <QuestionsAndAnswers className="bg-white" />
 
       {/* Contact CTA */}
-      <ContactCTA className="bg-grey-primary" />
+      <ContactCTA className="!bg-grey-primary" />
     </PublicPagesLayout>
   );
 }

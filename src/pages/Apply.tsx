@@ -1,5 +1,6 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import { Button } from "@/components/ui/button";
+import HeroSection from "@/components/landing/HeroSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -101,9 +102,10 @@ const Apply = () => {
                 You'll receive a confirmation email shortly, and our admissions
                 team will contact you within 3 business days with next steps.
               </p>
-              <Button onClick={() => (window.location.href = "/")}>
-                Return to Home
-              </Button>
+              <Button
+                label="Return to Home"
+                onClick={() => (window.location.href = "/")}
+              />
             </CardContent>
           </Card>
         </div>
@@ -114,22 +116,13 @@ const Apply = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-48 pb-16 sm:pb-48 bg-gradient-to-br from-hero-start to-hero-end text-white">
-        <div
-          className="absolute inset-0 opacity-30 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://elements.envato.com/people-travel-tourism-and-friendship-concept-happy-2QLGDM2')",
-          }}
-        />
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="font-bold mb-4">Register Now</h1>
-          <p className="text-xl max-w-2xl mx-auto opacity-90">
-            Take the first step towards an unforgettable summer of academic
-            excellence
-          </p>
-        </div>
-      </section>
+
+      <HeroSection
+        bgImage="https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a3/ca/98/e0/be/v1_E10/E10ALOYS.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=e6c573dff18585b338b01b908949b00288ef797f4b4debeef6ff7057c15f17d8"
+        title="Register Now!"
+        subtitle=" Take the first step towards an unforgettable summer of academic
+            excellence"
+      />
 
       {/* Form Section */}
       <section className="py-12 bg-background">
@@ -421,9 +414,10 @@ const Apply = () => {
                   </div>
 
                   <div className="flex gap-4">
-                    <Button type="submit" size="lg" className="flex-1">
-                      Submit Application
-                    </Button>
+                    <Button
+                      label=" Submit Application"
+                      classNames="max-w-[300px] mx-auto"
+                    />
                   </div>
                 </form>
               </Form>
