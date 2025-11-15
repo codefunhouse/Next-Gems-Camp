@@ -231,10 +231,7 @@ export const landingPageDummyData = {
           text: "Home",
           link: "/",
         },
-        {
-          text: "About",
-          link: "/about",
-        },
+
         {
           text: "Locations",
           link: "/canterbury",

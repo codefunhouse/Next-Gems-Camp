@@ -14,7 +14,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">
               {landingPageDummyData.footerData.quickLinks.title}
             </h4>
-            <ul className="space-y-2 text-sm sm:pl-4 font-medium">
+            <ul className="space-y-2 sm:pl-4 font-medium">
               {landingPageDummyData.footerData.quickLinks.links.map(
                 (item, idx) => (
                   <li key={idx}>
@@ -32,7 +32,7 @@ const Footer = () => {
 
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm font-medium">
+            <ul className="space-y-2 font-medium">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
                 <span>hello@nextgemscamp.com</span>

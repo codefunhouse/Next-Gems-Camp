@@ -1,98 +1,89 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ContactCTA from "@/components/info/parents/ContactCTA";
-import HeroSection from "@/components/info/parents/HeroSection";
 import WhatsIncludedSection from "@/components/info/parents/WhatsIncluded";
-import WhatToExpect from "@/components/info/parents/WhatToExpect";
+import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
-import { FileText, Heart, Home, Phone, Shield, Users } from "lucide-react";
-
-const safetyFeatures = [
-  {
-    icon: Shield,
-    title: "24/7 Supervision",
-    description:
-      "Experienced staff provide round-the-clock care and supervision",
-  },
-  {
-    icon: Heart,
-    title: "Welfare Support",
-    description: "Dedicated welfare team available for any concerns or issues",
-  },
-  {
-    icon: Phone,
-    title: "Regular Communication",
-    description:
-      "Daily updates and easy contact with your child throughout the program",
-  },
-  {
-    icon: Users,
-    title: "Background Checks",
-    description:
-      "All staff undergo comprehensive DBS checks and safeguarding training",
-  },
-  {
-    icon: Home,
-    title: "Safe Accommodation",
-    description: "Secure, comfortable rooms in prestigious college settings",
-  },
-  {
-    icon: FileText,
-    title: "Insurance Coverage",
-    description: "Comprehensive insurance included for all participants",
-  },
-];
-
-const faqs = [
-  {
-    question: "What is included in the program fee?",
-    answer:
-      "The program fee includes tuition, accommodation, meals, activities, course materials, excursions, and insurance. Airport transfers can be arranged for an additional fee.",
-  },
-  {
-    question: "How do you ensure student safety?",
-    answer:
-      "We have comprehensive safeguarding policies, 24/7 supervision, vetted staff, secure accommodation, and regular welfare checks. Parents receive daily updates and can contact us anytime.",
-  },
-  {
-    question: "What is the typical class size?",
-    answer:
-      "We maintain small class sizes, typically 8-12 students, to ensure personalized attention and meaningful interaction with tutors.",
-  },
-  {
-    question: "Can students with dietary restrictions be accommodated?",
-    answer:
-      "Yes, we can accommodate most dietary requirements including vegetarian, vegan, halal, kosher, and allergy-specific needs. Please inform us during the application process.",
-  },
-  {
-    question: "What happens if my child becomes homesick or unwell?",
-    answer:
-      "Our welfare team is experienced in supporting homesick students. Medical facilities are available on-site, and we maintain contact with parents if any concerns arise.",
-  },
-  {
-    question: "What qualifications do the tutors have?",
-    answer:
-      "Our tutors are from leading universities worldwide, holding advanced degrees in their subjects. Many are current academics or doctoral candidates at Oxford, Cambridge, and other prestigious institutions.",
-  },
-  {
-    question: "Is there free time for students to socialize?",
-    answer:
-      "Yes, the program balances academic study with social activities, excursions, and free time. Students participate in evening activities and weekend trips.",
-  },
-  {
-    question: "What is your cancellation policy?",
-    answer:
-      "We offer flexible cancellation policies with full refunds up to 60 days before the program start. Please refer to our terms and conditions for complete details.",
-  },
-];
+import ImageContentCard from "@/components/landing/subComps/ImageCard";
+import SplitSection from "@/components/landing/subComps/SplitSection";
+import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
+import { parentInfoData } from "@/lib/dummyData/infoData";
 
 const Parents = () => {
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        title=" Next Gems Summer Camp — Parent Information Guide"
+        subtitle=" A premium UK summer experience where language, culture, and adventure
+          come together."
+        bgImage="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=1600&h=600&fit=crop"
+      />
 
-      {/* What to Expect Section */}
-      <WhatToExpect />
+      <SplitSection
+        leftContent={
+          <WhatToExpectCard
+            title={parentInfoData.learningAndEnrichment.leftData.title}
+            description={
+              parentInfoData.learningAndEnrichment.leftData.upperDesc
+            }
+            list={parentInfoData.learningAndEnrichment.leftData.lists}
+            lowerDescription={
+              parentInfoData.learningAndEnrichment.leftData.lowerDesc
+            }
+          />
+        }
+        rightContent={
+          <ImageContentCard
+            imageUrl={parentInfoData.learningAndEnrichment.rightData.imageUrl}
+            alt={parentInfoData.learningAndEnrichment.rightData.alt}
+          />
+        }
+        background="gray"
+      />
+      <SplitSection
+        leftContent={
+          <WhatToExpectCard
+            title={parentInfoData.accommodationAndWelfare.leftData.title}
+            description={
+              parentInfoData.accommodationAndWelfare.leftData.upperDesc
+            }
+            list={parentInfoData.accommodationAndWelfare.leftData.lists}
+            lowerDescription={
+              parentInfoData.accommodationAndWelfare.leftData.lowerDesc
+            }
+          />
+        }
+        rightContent={
+          <ImageContentCard
+            imageUrl={parentInfoData.accommodationAndWelfare.rightData.imageUrl}
+            alt={parentInfoData.accommodationAndWelfare.rightData.alt}
+          />
+        }
+        // background="gray"
+      />
+      <SplitSection
+        leftContent={
+          <WhatToExpectCard
+            title={parentInfoData.safeguardingAndChildProtection.leftData.title}
+            description={
+              parentInfoData.safeguardingAndChildProtection.leftData.upperDesc
+            }
+            list={parentInfoData.safeguardingAndChildProtection.leftData.lists}
+            lowerDescription={
+              parentInfoData.safeguardingAndChildProtection.leftData.lowerDesc
+            }
+          />
+        }
+        rightContent={
+          <ImageContentCard
+            imageUrl={
+              parentInfoData.safeguardingAndChildProtection.rightData.imageUrl
+            }
+            alt={parentInfoData.safeguardingAndChildProtection.rightData.alt}
+          />
+        }
+        background="gray"
+      />
 
       <WhatsIncludedSection />
       {/* FAQ Section */}

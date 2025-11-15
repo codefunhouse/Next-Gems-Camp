@@ -65,16 +65,16 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className=" hover:text-blue-sec transition-colors">
+            <Link to="/" className=" hover:text-white transition-colors">
               HOME
             </Link>
 
             {/* Custom Locations Dropdown */}
             <div ref={locationsRef} className="relative">
               <button
-                className="flex items-center gap-1  hover:text-blue-sec transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-white transition-colors focus:outline-none"
                 onClick={toggleLocationsDropdown}
-                onMouseEnter={() => setIsLocationsOpen(true)}
+                // onMouseEnter={() => setIsLocationsOpen(true)}
               >
                 LOCATIONS
                 <ChevronDown
@@ -117,9 +117,9 @@ const Navbar = () => {
             {/* Info Dropdown */}
             <div ref={infoRef} className="relative">
               <button
-                className="flex items-center gap-1  hover:text-blue-sec transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-white transition-colors focus:outline-none"
                 onClick={toggleInfoDropdown}
-                onMouseEnter={() => setIsInfoOpen(true)}
+                // onMouseEnter={() => setIsInfoOpen(true)}
               >
                 INFO
                 <ChevronDown
@@ -170,7 +170,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2  hover:text-blue-sec transition-colors"
+            className="md:hidden p-2  hover:text-white transition-colors"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -198,7 +198,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
-                className="text-gray-800 hover:text-blue-sec transition-colors py-2 border-b border-gray-100 font-medium"
+                className="text-gray-800 hover:text-white transition-colors py-2 border-b border-gray-100 font-medium"
                 onClick={closeMobileMenu}
               >
                 HOME
@@ -207,7 +207,7 @@ const Navbar = () => {
               {/* Mobile Locations Dropdown */}
               <div className="border-b border-gray-100 pb-2">
                 <button
-                  className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-white transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsLocationsOpen(!isLocationsOpen)}
                 >
                   <span>LOCATIONS</span>
@@ -231,14 +231,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/locations/canterbury"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Canterbury
                     </Link>
                     <Link
                       to="/locations/norfolk"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Norfolk
@@ -274,14 +274,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/info/parents"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Parents
                     </Link>
                     <Link
                       to="/info/agents"
-                      className="block py-2 text-sm text-gray-600 hover:text-blue-sec transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Agents
