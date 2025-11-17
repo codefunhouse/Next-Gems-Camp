@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
-function Logo() {
+function Logo({ className }: { className?: string }) {
   return (
     <Link
       to="/"
-      className="flex items-center gap-2 text-secondary-foreground hover:text-blue-primary transition-colors"
+      className={twMerge(
+        "flex items-center gap-2 text-secondary-foreground hover:text-blue-primary transition-colors",
+        className
+      )}
     >
       <div className="rounded-md">
         <img

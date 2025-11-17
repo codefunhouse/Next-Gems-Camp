@@ -69,25 +69,25 @@ export const landingPageDummyData = {
         title: "💻 Tech & Innovation",
         description:
           "Step into the future with hands-on digital skills. From coding and app design to robotics and AI, students explore real-world technology challenges and unleash their creativity through interactive projects guided by expert mentors.",
-        imgUrl: "https://tinyurl.com/8wbum67n",
+        imgUrl: "https://tinyurl.com/3rmvh5ts",
       },
       {
         title: "💼 Business & Enterprise",
         description:
           "Learn to think like an entrepreneur. Students develop leadership, teamwork, and creative problem-solving skills through exciting business simulations and real-world case studies—building confidence to lead in tomorrow's global economy.",
-        imgUrl: "https://tinyurl.com/2ubbcnr4",
+        imgUrl: "https://tinyurl.com/4cbar7hs",
       },
       {
         title: "⚽ Sports Leadership",
         description:
           "Train, compete, and grow. Combining professional coaching with English communication and teamwork, this pathway helps students build discipline, confidence, and leadership both on and off the field.",
-        imgUrl: "https://tinyurl.com/3wdn5jy4",
+        imgUrl: "https://tinyurl.com/ynzpxvsc",
       },
       {
         title: "🎨 Creative Arts & Media",
         description:
           "Ignite your imagination through film, design, performance, and visual arts. Students express their ideas, collaborate across cultures, and create portfolio-worthy projects that showcase their unique talent and voice.",
-        imgUrl: "https://tinyurl.com/2rdvc5zr",
+        imgUrl: "https://tinyurl.com/mr434a3m",
       },
     ],
   },

@@ -7,8 +7,8 @@ const Footer = () => {
   return (
     <footer className="bg-blue-primary">
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col items-center md:items-start md:grid md:grid-cols-3 gap-8 px-6 sm:px-16">
-          <Logo />
+        <div className="flex flex-col md:items-start md:grid md:grid-cols-3 gap-8 px-6 sm:px-16">
+          <Logo className="self-center md:self-auto" />
 
           <div className="flex flex-col">
             <h4 className="font-semibold mb-4">
