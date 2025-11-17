@@ -19,19 +19,19 @@ export const canterburyImageData = [
   },
   {
     image:
-      "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/72/ff/54/b1/2a/v1_E10/E104FUY7.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=bc45f5d42127ef6df6c2fb4550368ce38308bfe6aeae333cf33a48177278e452",
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763366415/canter_img_4_er7zpr.webp",
     description:
       "Boutique shops or artisan cafes—lifestyle, culture, and sophistication",
   },
   {
     image:
-      "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/24/89/43/3d/76/v1_E10/E10408L1.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=63642e2825de20a030276e7c628d2485a1fa9ddb9eb89422e3319791ba8a4310",
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763366415/canter_img_5_mnlf7c.webp",
     description:
       "Historic city walls or Roman ruins—to emphasize heritage and prestige",
   },
   {
     image:
-      "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/80/c1/a6/43/0c/v1_E10/E10AKQ2F.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=16271128b272485db1bebaf9b974857d6715e8065c9e8ede7a1d86120fe3ada1",
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763366417/canter_img_6_r6xsgq.webp",
     description:
       "Children/students exploring the city—showing engagement and immersive experiences (diverse international students if possible)",
   },
