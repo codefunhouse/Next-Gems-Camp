@@ -1,4 +1,7 @@
-function LocationIcon() {
+import { CustomSVGProps } from "@/types/types1";
+import { twMerge } from "tailwind-merge";
+
+function LocationIcon({ className }: CustomSVGProps) {
   return (
     <svg
       width="18"
@@ -6,6 +9,7 @@ function LocationIcon() {
       viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={twMerge("", className)}
     >
       <g clip-path="url(#clip0_116_1612)">
         <path

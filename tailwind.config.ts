@@ -94,8 +94,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        frank: ['"Frank Ruhl Libre"', "serif"],
-        jost: ["Jost", "sans-serif"],
+        matter: ["Matter", "sans-serif"],
       },
     },
   },

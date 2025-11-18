@@ -1,10 +1,11 @@
 export const landingPageDummyData = {
   heroSection: {
     title:
-      "Discover England's premier luxury summer camp—where language, culture, and adventure inspire global confidence.",
+      "Discover England's premier luxury summer camp where language, culture, and adventure inspire global confidence.",
     subtitle:
-      "Give your child the gift of world-class English tuition, exclusive excursions, and lifelong international friendships—all in the heart of England.",
-    image: "https://tinyurl.com/mr2fdtuy",
+      "Give your child the gift of world-class English tuition, exclusive excursions, and lifelong international friendships, all in the heart of England.",
+    image:
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/home_hero_bg_1_yrxif7.webp",
   },
 
   reviews: {

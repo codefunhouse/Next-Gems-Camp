@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
     : `transition ease-in-out duration-300 hover:opacity-60 `;
 
   const baseStyles = [
-    `flex justify-center items-center !text-sm gap-1.5 cursor-pointer shrink-0! px-2 sm:px-2 py-3 font-medium rounded-full w-full shrink-0`,
+    `flex justify-center items-center !text-sm gap-1.5 cursor-pointer shrink-0! px-2 sm:px-2 py-3 font-medium rounded-full w-full`,
     link ? "text-center" : "",
     isDisabled ? "opacity-50" : "",
     hoverStyles,

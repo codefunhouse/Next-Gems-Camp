@@ -65,7 +65,7 @@ const Navbar = () => {
       >
         <p
           // to="/apply"
-          className="no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg- before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
+          className="no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-grey-base before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
         >
           Register Now to secure your place for 2026
         </p>

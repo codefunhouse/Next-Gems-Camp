@@ -1,3 +1,4 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import CoursesSection from "@/components/landing/CoursesSection";
 import CTASection from "@/components/landing/CTASection";
@@ -6,6 +7,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ReviewsSection from "@/components/landing/ReviewsSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
+import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 
 const Home = () => {
@@ -15,7 +17,14 @@ const Home = () => {
         title={landingPageDummyData.heroSection.title}
         subtitle={landingPageDummyData.heroSection.subtitle}
         bgImage={landingPageDummyData.heroSection.image}
-        showReviews
+        buttons={
+          <Button
+            label="Register Now"
+            endIcon={<ShortArrowRight />}
+            classNames="!w-full !max-w-[158px]"
+            buttonType="sec"
+          />
+        }
       />
 
       <CoursesSection />
