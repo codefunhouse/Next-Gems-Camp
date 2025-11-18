@@ -190,4 +190,13 @@ h6 {
     line-height: 1.6; /* 32px */
     font-weight: 500;
   }
+  body {
+  
+ 
+  font-size: 0.875rem;
+  color: #161616; 
+  text-align: left;
+  line-height: 100%;
+  overflow-x: hidden;
+}
 }

@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-8 px-6 sm:px-16">
           <Logo className="self-center md:self-auto" type="sec" />
 
-          <div className="w-full max-w-[506px] flex flex-col md:flex-row items-center gap-8 justify-between">
+          <div className="w-full pl-10 mx-auto md:mx-0 md:pl-0 max-w-[506px] flex flex-col sm:flex-row sm:items-center gap-8 justify-between">
             <div className="flex flex-col gap-4">
               <h5 className="!font-medium">
                 {landingPageDummyData.footerData.quickLinks.title}

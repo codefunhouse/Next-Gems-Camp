@@ -235,6 +235,7 @@ const Navbar = () => {
                     className={`transition-transform duration-200 ${
                       isLocationsOpen ? "rotate-180" : ""
                     }`}
+                    fill="#161616"
                   />
                 </button>
 
@@ -278,6 +279,7 @@ const Navbar = () => {
                     className={`transition-transform duration-200 ${
                       isInfoOpen ? "rotate-180" : ""
                     }`}
+                    fill="#161616"
                   />
                 </button>
 
