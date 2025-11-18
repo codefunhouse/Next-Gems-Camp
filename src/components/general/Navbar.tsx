@@ -1,6 +1,9 @@
-import { ChevronDown, Menu, X } from "lucide-react";
+import useScrollEffect from "@/hooks/useScrollEffect";
+import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
+import ShortArrowDown from "../svgs/ShortArrowDown";
 import Button from "./Button";
 import Logo from "./Logo";
 
@@ -28,6 +31,7 @@ const Navbar = () => {
   const toggleInfoDropdown = () => {
     setIsInfoOpen(!isInfoOpen);
   };
+  const hasScrolled = useScrollEffect(100);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -51,36 +55,51 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
-      <div className="bg-blue-sec flex justify-center items-center w-full py-4 sm:py-4 px-2">
-        <Link
-          to="/apply"
-          className="text-white no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-white before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
+      <div
+        className={twMerge(
+          "bg-gradient-to-r from-[#15B1FB]/50 to-[#FFA70F]/25 flex justify-center items-center w-full py-3 sm:pt-[0.95rem] sm:pb-3 px-2",
+          hasScrolled
+            ? "from-[#44bdf5] to-[#f3ca8c]"
+            : "from-[#15B1FB]/50 to-[#FFA70F]/25 "
+        )}
+      >
+        <p
+          // to="/apply"
+          className="no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg- before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
         >
           Register Now to secure your place for 2026
-        </Link>
+        </p>
       </div>
 
       {/* Main navbar */}
-      <div className="bg-blue-primary font-medium">
-        <div className="flex items-center justify-between py-3 px-5 sm:px-8 md:px-[4.8rem]">
+      <div
+        className={twMerge(
+          "font-medium text-white transition-all duration-300",
+          hasScrolled ? "bg-blue-sec" : "bg-transparent"
+        )}
+      >
+        <div
+          className={twMerge(
+            "flex items-center justify-between py-[1.4rem] px-5 sm:px-8 md:px-[4.8rem]"
+          )}
+        >
           <Logo />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-16">
-            <Link to="/" className=" hover:text-white transition-colors">
-              HOME
+          <div className="hidden md:flex items-center gap-14">
+            <Link to="/" className=" hover:text-blue-primary transition-colors">
+              Home
             </Link>
 
             {/* Custom Locations Dropdown */}
             <div ref={locationsRef} className="relative">
               <button
-                className="flex items-center gap-1  hover:text-white transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-blue-primary transition-colors focus:outline-none"
                 onClick={toggleLocationsDropdown}
-                // onMouseEnter={() => setIsLocationsOpen(true)}
               >
-                LOCATIONS
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
+                Locations
+                <ShortArrowDown
+                  className={`transition-transform duration-200 mt-1 ${
                     isLocationsOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -89,7 +108,7 @@ const Navbar = () => {
               {/* Animated Dropdown */}
               <div
                 className={`
-                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[180px] py-2 z-50
+                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${
                   isLocationsOpen
@@ -101,14 +120,14 @@ const Navbar = () => {
                 <div className="px-2">
                   <Link
                     to="/locations/canterbury"
-                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary hover:text-accent-foreground transition-colors rounded-md"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary/5  transition-colors rounded-md"
                     onClick={() => setIsLocationsOpen(false)}
                   >
                     Canterbury
                   </Link>
                   <Link
                     to="/locations/norfolk"
-                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary hover:text-accent-foreground transition-colors rounded-md"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary/5  transition-colors rounded-md"
                     onClick={() => setIsLocationsOpen(false)}
                   >
                     Norfolk
@@ -119,13 +138,12 @@ const Navbar = () => {
             {/* Info Dropdown */}
             <div ref={infoRef} className="relative">
               <button
-                className="flex items-center gap-1  hover:text-white transition-colors focus:outline-none"
+                className="flex items-center gap-1  hover:text-blue-primary transition-colors focus:outline-none"
                 onClick={toggleInfoDropdown}
-                // onMouseEnter={() => setIsInfoOpen(true)}
               >
-                INFO
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
+                Info
+                <ShortArrowDown
+                  className={`transition-transform duration-200 mt-1 ${
                     isInfoOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -134,7 +152,7 @@ const Navbar = () => {
               {/* Animated Dropdown */}
               <div
                 className={`
-                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[180px] py-2 z-50
+                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${
                   isInfoOpen
@@ -146,14 +164,14 @@ const Navbar = () => {
                 <div className="px-2">
                   <Link
                     to="/info/parents"
-                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary hover:text-accent-foreground transition-colors rounded-md"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary/5 transition-colors rounded-md"
                     onClick={() => setIsInfoOpen(false)}
                   >
                     Parents
                   </Link>
                   <Link
                     to="/info/agents"
-                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary hover:text-accent-foreground transition-colors rounded-md"
+                    className="block px-2 py-2 text-sm text-foreground hover:bg-blue-primary/5 transition-colors rounded-md"
                     onClick={() => setIsInfoOpen(false)}
                   >
                     Agents
@@ -172,7 +190,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2  hover:text-white transition-colors"
+            className="md:hidden p-2  hover:text-blue-primary transition-colors"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -203,7 +221,7 @@ const Navbar = () => {
                 className="text-gray-800 hover:text-blue-sec transition-colors py-2 border-b border-gray-100 font-medium"
                 onClick={closeMobileMenu}
               >
-                HOME
+                Home
               </Link>
 
               {/* Mobile Locations Dropdown */}
@@ -212,9 +230,9 @@ const Navbar = () => {
                   className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsLocationsOpen(!isLocationsOpen)}
                 >
-                  <span>LOCATIONS</span>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${
+                  <span>Locations</span>
+                  <ShortArrowDown
+                    className={`transition-transform duration-200 ${
                       isLocationsOpen ? "rotate-180" : ""
                     }`}
                   />
@@ -233,14 +251,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/locations/canterbury"
-                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Canterbury
                     </Link>
                     <Link
                       to="/locations/norfolk"
-                      className="block py-2 text-sm text-gray-600 hover:text-white transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Norfolk
@@ -255,9 +273,9 @@ const Navbar = () => {
                   className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
                   onClick={() => setIsInfoOpen(!isInfoOpen)}
                 >
-                  <span>INFO</span>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${
+                  <span>Info</span>
+                  <ShortArrowDown
+                    className={`transition-transform duration-200 ${
                       isInfoOpen ? "rotate-180" : ""
                     }`}
                   />
@@ -276,14 +294,14 @@ const Navbar = () => {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       to="/info/parents"
-                      className="block py-2 text-sm text-gray-600 hover:text-white hover:bg-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary hover:bg-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Parents
                     </Link>
                     <Link
                       to="/info/agents"
-                      className="block py-2 text-sm text-gray-600 hover:text-white hover:bg-blue-primary transition-colors font-normal"
+                      className="block py-2 text-sm text-gray-600 hover:text-blue-primary hover:bg-blue-primary transition-colors font-normal"
                       onClick={closeMobileMenu}
                     >
                       Agents

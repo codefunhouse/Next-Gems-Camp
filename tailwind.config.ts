@@ -63,6 +63,7 @@ export default {
         },
         grey: {
           primary: "#F1F5F9",
+          base: "#161616",
         },
       },
       borderRadius: {

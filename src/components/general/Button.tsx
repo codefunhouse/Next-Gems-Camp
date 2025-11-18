@@ -57,8 +57,8 @@ const Button: React.FC<ButtonProps> = ({
   ];
 
   const buttonTypeStyles: Record<string, string> = {
-    pry: "bg-blue-sec text-white",
-    sec: "text-base-text",
+    pry: "bg-blue-primary text-white",
+    sec: "text-grey-base bg-white",
     tert: "bg-[#F4C1421A] text-base-text border border-[#F4C142]",
     outline: "bg-white/10 text-white border border-white",
     google:
