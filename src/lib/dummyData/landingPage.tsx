@@ -1,3 +1,8 @@
+import BagIcon from "@/components/svgs/BagIcon";
+import BallIcon from "@/components/svgs/BallIcon";
+import LaptopIcon from "@/components/svgs/LaptopIcon";
+import PaletteIcon from "@/components/svgs/PaletteIcon";
+
 export const landingPageDummyData = {
   heroSection: {
     title:
@@ -67,28 +72,36 @@ export const landingPageDummyData = {
     title: "Our Pathway Programmes",
     programmes: [
       {
-        title: "💻 Tech & Innovation",
+        title: "Tech & Innovation",
+        icon: <LaptopIcon />,
         description:
           "Step into the future with hands-on digital skills. From coding and app design to robotics and AI, students explore real-world technology challenges and unleash their creativity through interactive projects guided by expert mentors.",
-        imgUrl: "https://tinyurl.com/3rmvh5ts",
+        imgUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476385/pathway_img_1_qc50ug.webp",
       },
       {
-        title: "💼 Business & Enterprise",
+        title: "Business & Enterprise",
+        icon: <BagIcon />,
         description:
           "Learn to think like an entrepreneur. Students develop leadership, teamwork, and creative problem-solving skills through exciting business simulations and real-world case studies—building confidence to lead in tomorrow's global economy.",
-        imgUrl: "https://tinyurl.com/4cbar7hs",
+        imgUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476385/pathway_img_2_izfx8m.webp",
       },
       {
-        title: "⚽ Sports Leadership",
+        title: "Sports Leadership",
+        icon: <BallIcon />,
         description:
           "Train, compete, and grow. Combining professional coaching with English communication and teamwork, this pathway helps students build discipline, confidence, and leadership both on and off the field.",
-        imgUrl: "https://tinyurl.com/ynzpxvsc",
+        imgUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476385/pathway_img_3_hjythu.webp",
       },
       {
-        title: "🎨 Creative Arts & Media",
+        title: "Creative Arts & Media",
+        icon: <PaletteIcon />,
         description:
           "Ignite your imagination through film, design, performance, and visual arts. Students express their ideas, collaborate across cultures, and create portfolio-worthy projects that showcase their unique talent and voice.",
-        imgUrl: "https://tinyurl.com/mr434a3m",
+        imgUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476385/pathway_4_xtihrh.webp",
       },
     ],
   },

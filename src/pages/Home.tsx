@@ -1,9 +1,10 @@
 import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import CoursesSection from "@/components/landing/CoursesSection";
 import CTASection from "@/components/landing/CTASection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
+import OurPathwayProgrammes from "@/components/landing/OurPathwayProgrammes";
+
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ReviewsSection from "@/components/landing/ReviewsSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
@@ -27,7 +28,7 @@ const Home = () => {
         }
       />
 
-      <CoursesSection />
+      <OurPathwayProgrammes />
 
       <FeaturesSection />
 

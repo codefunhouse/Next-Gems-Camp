@@ -57,7 +57,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div
         className={twMerge(
-          "bg-gradient-to-r from-[#15B1FB]/50 to-[#FFA70F]/25 flex justify-center items-center w-full py-3 sm:pt-[0.95rem] sm:pb-3 px-2",
+          "bg-gradient-to-r from-[#15B1FB]/50 to-[#FFA70F]/25 flex justify-center items-center w-full py-3 sm:pt-[0.95rem] sm:pb-3 px-2 text-center font-medium",
           hasScrolled
             ? "from-[#44bdf5] to-[#f3ca8c]"
             : "from-[#15B1FB]/50 to-[#FFA70F]/25 "
@@ -67,7 +67,7 @@ const Navbar = () => {
           // to="/apply"
           className="no-underline relative inline-block pb-1 transition-all duration-500 hover:before:scale-x-100 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:transform before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-grey-base before:transition-all before:duration-500 before:scale-x-0 hover:before:w-full"
         >
-          Register Now to secure your place for 2026
+          Register Now to secure your place for 2026!
         </p>
       </div>
 
@@ -75,7 +75,7 @@ const Navbar = () => {
       <div
         className={twMerge(
           "font-medium text-white transition-all duration-300",
-          hasScrolled ? "bg-blue-sec" : "bg-transparent"
+          hasScrolled ? "bg-blue-sec/70" : "bg-transparent"
         )}
       >
         <div
