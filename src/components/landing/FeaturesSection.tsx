@@ -4,6 +4,7 @@ import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { Award, BookOpen, Globe, Users } from "lucide-react";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import StarTickIcon from "../svgs/StarTickIcon";
 
 const features = [
   {
@@ -33,37 +34,40 @@ const features = [
 
 function FeaturesSection() {
   const renderCard = ({
-    icon,
     title,
     description,
     idx,
   }: {
-    icon: ReactNode | string;
+    icon?: ReactNode | string;
     title: string;
     description: string;
     idx: string | number;
   }) => {
     return (
-      <Card className="hover:shadow-lg transition-shadow" key={idx}>
-        <CardContent className="p-6 text-center flex flex-col gap-1">
-          {typeof icon === "string" ? (
-            <span className="text-4xl">{icon}</span>
-          ) : (
-            icon
-          )}
-          <h3 className="text-xl font-semibold mt-1">{title}</h3>
-          <p className="text-muted-foreground">{description}</p>
+      <Card
+        className="transition-shadow bg-white border-[0.6px] border-[#E2E2E2] rounded-[2rem] hover:border-[1.5px] hover:border-[#15B1FB]"
+        key={idx}
+        style={{
+          filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.06))",
+        }}
+      >
+        <CardContent className="px-6 py-8 flex flex-col gap-2">
+          <div className="flex items-center gap-[0.54rem]">
+            <StarTickIcon className="mt-2.5" />
+            <h5 className="">{title}</h5>
+          </div>
+          <p className="text-[#959595] text-lg">{description}</p>
         </CardContent>
       </Card>
     );
   };
   return (
-    <section className={twMerge("py-20 bg-muted", commonSectionStyles)}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">
+    <section className={twMerge(" bg-grey-muted py-16", commonSectionStyles)}>
+      <div className="container mx-auto px-4 space-y-11">
+        <h1 className="text-center">
           {landingPageDummyData.whyChooseUs.title}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {landingPageDummyData.whyChooseUs.features.map((feature, index) =>
             renderCard({
               icon: feature.icon,
