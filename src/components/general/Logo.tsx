@@ -1,23 +1,40 @@
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-function Logo({ className }: { className?: string }) {
+export type LogoType = "pry" | "sec";
+function Logo({
+  className,
+  type = "pry",
+}: {
+  className?: string;
+  type?: LogoType;
+}) {
   return (
-    <Link
-      to="/"
-      className={twMerge(
-        "flex items-center gap-2 text-secondary-foreground hover:text-blue-primary transition-colors",
-        className
-      )}
-    >
-      <div className="rounded-md">
-        <img
-          src="/images/logo.png"
-          alt="Next Gems Camp Logo"
-          className="h-12 w-12 aspect-square object-contain sm:h-16 sm:w-16 rounded-md border-[0.1px] border-blue-sec/20"
-        />
+    <Link to="/" className={twMerge("", className)}>
+      <div
+        className={twMerge(
+          "w-full",
+          type === "pry" ? "max-w-[94px]" : "max-w-[131pxF]"
+        )}
+      >
+        {type === "pry" ? (
+          <img
+            src={"/images/logo_1.png"}
+            width={94}
+            height={44.68}
+            alt="Next Gems Camp Logo"
+            className="h-full w-full aspect-[94/44.68] object-contain"
+          />
+        ) : (
+          <img
+            src={"/images/logo_2F.png"}
+            width={131}
+            height={61.96}
+            alt="Next Gems Camp Logo"
+            className="h-full w-full aspect-[131/61.96] object-contain"
+          />
+        )}
       </div>
-      {/* <span className="text-xs sm:text-sm">Next Gems Camp</span> */}
     </Link>
   );
 }
