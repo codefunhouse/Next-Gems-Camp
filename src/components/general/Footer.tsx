@@ -1,56 +1,70 @@
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import CallIcon from "../svgs/CallIcon";
+import CaretRightIcon from "../svgs/CaretRightIcon";
+import EmailIcon from "../svgs/EmailIcon";
+import LocationIcon from "../svgs/LocationIcon";
 import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-primary">
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col md:items-start md:grid md:grid-cols-3 gap-8 px-6 sm:px-16">
-          <Logo className="self-center md:self-auto" />
+    <footer className="bg-white">
+      <div className="container mx-auto px-4 pt-[3.3rem] pb-[1.9rem]">
+        <div className="flex flex-col md:flex-row justify-between gap-8 px-6 sm:px-16">
+          <Logo className="self-center md:self-auto" type="sec" />
 
-          <div className="flex flex-col">
-            <h4 className="font-semibold mb-4">
-              {landingPageDummyData.footerData.quickLinks.title}
-            </h4>
-            <ul className="space-y-2 sm:pl-4 font-medium">
-              {landingPageDummyData.footerData.quickLinks.links.map(
-                (item, idx) => (
-                  <li key={idx}>
-                    <Link
-                      to={item.link}
-                      className="hover:text-secondary-foreground transition-colors"
-                    >
-                      {item.text}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
+          <div className="w-full max-w-[506px] flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="flex flex-col gap-4">
+              <h5 className="!font-medium">
+                {landingPageDummyData.footerData.quickLinks.title}
+              </h5>
+              <ul className="space-y-2 sm:pl-2">
+                {landingPageDummyData.footerData.quickLinks.links.map(
+                  (item, idx) => (
+                    <li key={idx}>
+                      <Link
+                        to={item.link}
+                        className="hover:text-blue-primary transition-colors flex items-center gap-1.5"
+                      >
+                        <CaretRightIcon />
+                        <span>{item.text}</span>
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 font-medium">
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <span>hello@nextgemscamp.com</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>+44 20 1234 5678</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span>London, UK</span>
-              </li>
-            </ul>
+            <div className="flex flex-col gap-4">
+              <h5 className="font-semibold">
+                {landingPageDummyData.footerData.contact.title}
+              </h5>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <EmailIcon />
+                  <span>
+                    {landingPageDummyData.footerData.contact.contacts.email}
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CallIcon />
+                  <span>
+                    {landingPageDummyData.footerData.contact.contacts.phone}
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <LocationIcon />
+                  <span>
+                    {landingPageDummyData.footerData.contact.contacts.location}
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-black/20 mt-8 pt-8 text-center">
-          <p className="font-semibold">
+        <div className="border-t border-[#1616161A] mt-14 pt-[2.15rem] text-center">
+          <p className="text-sm text-[#16161680]">
             {landingPageDummyData.footerData.copyrightText}
           </p>
         </div>

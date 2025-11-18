@@ -14,7 +14,7 @@ function Logo({
       <div
         className={twMerge(
           "w-full",
-          type === "pry" ? "max-w-[94px]" : "max-w-[131pxF]"
+          type === "pry" ? "max-w-[94px]" : "max-w-[131px]"
         )}
       >
         {type === "pry" ? (
@@ -27,7 +27,7 @@ function Logo({
           />
         ) : (
           <img
-            src={"/images/logo_2F.png"}
+            src={"/images/logo_2.png"}
             width={131}
             height={61.96}
             alt="Next Gems Camp Logo"
