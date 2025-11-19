@@ -5,6 +5,7 @@ import ContentCard from "@/components/landing/subComps/ContentCard";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
 import SplitSection from "@/components/landing/subComps/SplitSection";
+import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { canterburyData } from "@/lib/dummyData/locationData";
 
@@ -52,6 +53,12 @@ const LocationCambridge = () => {
         content={canterburyData.accommodation.description}
         bgImage={canterburyData.accommodation.bgImageUrl}
         bgImageAlt={canterburyData.accommodation.bgImageAlt}
+      />
+      {/* Our Excursion Cities */}
+      <OurExcursion
+        mainTitle={canterburyData.excursionCities.title}
+        images={canterburyData.excursionCities.cities}
+        location={canterburyData.excursionCities.location}
       />
     </PublicPagesLayout>
   );

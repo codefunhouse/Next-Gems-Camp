@@ -194,21 +194,22 @@ export const canterburyData = {
   },
   excursionCities: {
     title: "Our Excursion Cities",
+    location: "Cambridge",
     cities: [
       {
-        name: "London",
-        description: "Iconic landmarks",
-        imageUrl: "path_to_image",
+        title: "Iconic landmarks",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/lon_exc_img_1_sens8v.webp",
       },
       {
-        name: "London",
-        description: "Cultural experiences",
-        imageUrl: "path_to_image",
+        title: "Cultural experiences",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_2_ou6ar4.webp",
       },
       {
-        name: "London",
-        description: "River Thames excursions",
-        imageUrl: "path_to_image",
+        title: "River Thames excursions",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_3_ttyefs.webp",
       },
     ],
   },
@@ -284,21 +285,22 @@ export const norfolkData = {
   },
   excursionCities: {
     title: "Our Excursion Cities",
+    location: "Cambridge",
     cities: [
       {
-        name: "Cambridge",
-        description: "Historic colleges & courtyards",
-        imageUrl: "path_to_image",
+        title: "Historic colleges & courtyards",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/cam_exc_img_1_zqcoyg.webp",
       },
       {
-        name: "Cambridge",
-        description: "Punting on the River Cam",
-        imageUrl: "path_to_image", // Add the actual image URL
+        title: "Punting on the River Cam",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/cam_exc_img_2_yx3b7n.webp",
       },
       {
-        name: "Cambridge",
-        description: "Museums and cultural landmarks",
-        imageUrl: "path_to_image", // Add the actual image URL
+        title: "Museums and cultural landmarks",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/cam_exc_img_3_infcs7.webp",
       },
     ],
   },

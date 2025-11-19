@@ -5,8 +5,9 @@ import ContentCard from "@/components/landing/subComps/ContentCard";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
 import SplitSection from "@/components/landing/subComps/SplitSection";
+import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
-import { norfolkData, norfolkImages } from "@/lib/dummyData/locationData";
+import { norfolkData } from "@/lib/dummyData/locationData";
 import { Book, Building2, Coffee, Users } from "lucide-react";
 
 const highlights = [
@@ -88,26 +89,10 @@ const Canterbury = () => {
         bgImageAlt={norfolkData.accommodation.bgImageAlt}
       />
 
-      <ImageDisplayer
-        title="Sandringham & Norfolk Coast"
-        data={norfolkImages["Sandringham & Norfolk Coast"]}
-        autoSlide={true}
-        autoSlideInterval={3000}
-        className="my-8"
-      />
-      <ImageDisplayer
-        title="London"
-        data={norfolkImages.London}
-        autoSlide={true}
-        autoSlideInterval={3000}
-        className="my-8"
-      />
-      <ImageDisplayer
-        title="Cambridge"
-        data={norfolkImages.Cambridge}
-        autoSlide={true}
-        autoSlideInterval={3000}
-        className="my-8"
+      <OurExcursion
+        mainTitle={norfolkData.excursionCities.title}
+        images={norfolkData.excursionCities.cities}
+        location={norfolkData.excursionCities.location}
       />
     </PublicPagesLayout>
   );
