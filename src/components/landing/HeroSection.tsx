@@ -7,6 +7,7 @@ import BgImage from "./subComps/BgImage";
 type LocationDetails = {
   label: string;
   value: string;
+  suffix?: string;
 };
 
 function HeroSection({
@@ -37,24 +38,29 @@ function HeroSection({
     value,
     showLeftBorder,
     idx,
+    suffix,
   }: {
     className?: string;
     label: string;
     value: string;
+    suffix?: string;
     showLeftBorder?: boolean;
     idx: string | number;
   }) => (
     <div
       key={idx}
       className={twMerge(
-        "w-full min-w-[115px] max-w-[172px] px-7 py-[1.2rem] border border-r-white/70 text-center text-wrap",
-        showLeftBorder && "border-l-white/70",
+        "w-full min-w-[115px] max-w-[300px] px-7 py-[1.2rem] border-r border-r-white/70 text-center text-wrap",
+        showLeftBorder && "border-l border-l-white/70",
         className
       )}
     >
       <p className="flex flex-col gap-0.5 items-center text-white">
         <span>{label}</span>
-        <span className="text-3xl text-[2rem] font-medium">{value}</span>
+        <div>
+          <span className="text-3xl sm:text-[2rem] font-medium">{value} </span>
+          {suffix && <span className="text-3xl sm:text-[2rem]">{suffix}</span>}
+        </div>
       </p>
     </div>
   );
@@ -72,7 +78,7 @@ function HeroSection({
       <div className="relative z-10 container mx-auto flex flex-col items-center gap-2 px-4 py-48 text-center max-w-[902px]">
         {locationDesc && (
           <motion.p
-            className="max-w-[466px]"
+            className="max-w-[466px] flex items-center gap-1.5"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -98,13 +104,14 @@ function HeroSection({
           {subtitle}
         </motion.p>
         {locationDetails && (
-          <div className="w-full mt-8 max-w-full flex sm:max-w-[688px]">
+          <div className="w-full mt-8 max-w-full flex sm:max-w-[750px]">
             {locationDetails.map((detail, idx) =>
               renderLocationDetail({
                 idx,
                 label: detail.label,
-                value: detail.label,
+                value: detail.value,
                 showLeftBorder: idx === 0,
+                suffix: detail.suffix,
               })
             )}
           </div>

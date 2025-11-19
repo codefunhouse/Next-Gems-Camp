@@ -1,15 +1,33 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import CTASection from "@/components/landing/CTASection";
+import HeroSection from "@/components/landing/HeroSection";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
-import HeroSection from "@/components/location/first/HeroSection";
-import { canterburyImageData } from "@/lib/dummyData/locationData";
+import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import {
+  canterburyData,
+  canterburyImageData,
+} from "@/lib/dummyData/locationData";
 
 const LocationCambridge = () => {
   return (
     <PublicPagesLayout>
-      {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        title={canterburyData.heroSection.title}
+        subtitle={canterburyData.heroSection.subtitle}
+        bgImage={canterburyData.heroSection.bgImageUrl}
+        locationDesc={canterburyData.heroSection.location}
+        locationDetails={canterburyData.heroSection.locationDetails}
+        buttons={
+          <Button
+            label={canterburyData.heroSection.buttonText}
+            endIcon={<ShortArrowRight />}
+            classNames="!w-full !max-w-[194px]"
+            buttonType="sec"
+          />
+        }
+      />
+
       {/* Overview Section */}
       <OverviewComp
         title="Discover Canterbury: A Historic Gem in the Heart of England"
@@ -23,8 +41,6 @@ const LocationCambridge = () => {
         autoSlideInterval={3000}
         className="my-8"
       />
-
-      <CTASection />
     </PublicPagesLayout>
   );
 };

@@ -1,4 +1,12 @@
 export const parentInfoData = {
+  heroSection: {
+    title: "Parent Information Guide",
+    subtitle:
+      "A premium UK summer experience where language, culture, and adventure come together.",
+    buttonText: "Register Now",
+    infoDetails:
+      "Next Gems Summer Camp combines 30 hours of accredited English tuition with global cultural immersion and exciting specialist programs in Technology, Business, Sport, Arts, and Leadership.\n\nOur safe, small-group environment ensures every child learns, grows, and enjoys a truly international experience.",
+  },
   learningAndEnrichment: {
     leftData: {
       title: "🏫 Learning & Enrichment",
@@ -141,6 +149,14 @@ export const parentInfoData = {
 };
 
 export const agentsInfoData = {
+  heroSection: {
+    title: "Partner with Next Gems Summer Camp",
+    subtitle:
+      "A premium UK summer experience designed for young global learners.",
+    buttonText: "Register Now",
+    infoDetails:
+      "Next Gems Summer Camp offers an exclusive opportunity for international education agents to represent a high-quality, accredited summer program that combines English language learning, cultural immersion, and specialist pathways in a safe, luxury environment.",
+  },
   whyPartnerWithUs: {
     leftData: {
       title: "Why Partner with Us",

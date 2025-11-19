@@ -1,9 +1,10 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import CTASection from "@/components/landing/CTASection";
+import HeroSection from "@/components/landing/HeroSection";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
-import HeroSection from "@/components/location/second/HeroSection";
-import { norfolkImages } from "@/lib/dummyData/locationData";
+import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { norfolkData, norfolkImages } from "@/lib/dummyData/locationData";
 import { Book, Building2, Coffee, Users } from "lucide-react";
 
 const highlights = [
@@ -43,8 +44,21 @@ const courses = [
 const Canterbury = () => {
   return (
     <PublicPagesLayout>
-      {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        title={norfolkData.heroSection.title}
+        subtitle={norfolkData.heroSection.subtitle}
+        bgImage={norfolkData.heroSection.bgImageUrl}
+        locationDesc={norfolkData.heroSection.location}
+        locationDetails={norfolkData.heroSection.locationDetails}
+        buttons={
+          <Button
+            label={norfolkData.heroSection.buttonText}
+            endIcon={<ShortArrowRight />}
+            classNames="!w-full !max-w-[194px]"
+            buttonType="sec"
+          />
+        }
+      />
 
       {/* Overview Section */}
       <OverviewComp
@@ -75,8 +89,6 @@ const Canterbury = () => {
         autoSlideInterval={3000}
         className="my-8"
       />
-
-      <CTASection />
     </PublicPagesLayout>
   );
 };

@@ -1,5 +1,4 @@
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import ContactCTA from "@/components/info/agents/ContactCTA";
 import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ImageContentCard from "@/components/landing/subComps/ImageCard";
@@ -116,9 +115,6 @@ function Agents() {
       />
       {/* FAQ Section */}
       <QuestionsAndAnswers className="bg-white" />
-
-      {/* Contact CTA */}
-      <ContactCTA className="!bg-grey-primary" />
     </PublicPagesLayout>
   );
 }

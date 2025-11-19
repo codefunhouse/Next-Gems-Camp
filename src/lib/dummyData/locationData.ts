@@ -119,3 +119,137 @@ export const norfolkImages = {
     },
   ],
 };
+
+export const canterburyData = {
+  heroSection: {
+    location: "Canterbury, England",
+    title: "Canterbury",
+    subtitle: "A Historic Gem in the Heart of England",
+    locationDetails: [
+      {
+        label: "Start Date",
+        value: "6th Jul 2026",
+      },
+      {
+        label: "End Date",
+        value: "16th Aug 2026",
+      },
+      {
+        label: "Pricing",
+        value: "£4,000",
+        suffix: "per cycle",
+      },
+      {
+        label: "Age Group",
+        value: "13 - 17",
+        suffix: "years",
+      },
+    ],
+    buttonText: "Reserve your place",
+    bgImageUrl:
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/canter_hero_bg_s4vx8n.webp",
+  },
+  discoverCanterbury: {
+    title: "Discover Canterbury",
+    description: `Nestled in the picturesque county of Kent, Canterbury is a city where history, culture, and elegance come together. Famous for its magnificent Canterbury Cathedral, a UNESCO World Heritage Site, the city blends medieval charm with modern sophistication. Stroll along cobbled streets and explore boutique shops, artisan cafes, and gourmet restaurants.
+
+    Enjoy a leisurely punt along the River Stour or relax in the city’s quaint squares and gardens. With its Roman walls, historic churches, and museums, Canterbury offers rich cultural experiences for all ages. Just a short train ride from London, the city combines accessibility with an exclusive, boutique atmosphere—perfect for families seeking a luxury cultural immersion in England.`,
+    imageUrl: "path_to_image",
+  },
+  accommodation: {
+    title: "Our Accommodation",
+    description: `Set within walking distance of the city centre and modern academic buildings, our residences offer a premium standard of living. Students enjoy private ensuite bedrooms, each featuring small double beds, 24-hour security, and access to bright, relaxed social spaces where friendships naturally form.
+
+    Parents can rest assured knowing that every detail is thoughtfully considered. From full-board catering crafted to suit varied tastes, to dedicated spaces for study, creativity, and relaxation, your child will experience a seamless blend of comfort and structure. Fresh, healthy meals are served daily—including light breakfasts, hot lunches, varied dinners, and weekend packed options—ensuring students stay energized throughout their activities.
+
+    Whether they’re engaging in classroom-based learning, enjoying the outdoors, or bonding in communal lounges designed for connection, campers are surrounded by an environment crafted for both safety and enjoyment. All sites include convenient on-site laundry facilities and are supported by attentive staff committed to creating a memorable, worry-free experience.`,
+    imageUrl: "path_to_image",
+  },
+  excursionCities: {
+    title: "Our Excursion Cities",
+    cities: [
+      {
+        name: "London",
+        description: "Iconic landmarks",
+        imageUrl: "path_to_image",
+      },
+      {
+        name: "London",
+        description: "Cultural experiences",
+        imageUrl: "path_to_image",
+      },
+      {
+        name: "London",
+        description: "River Thames excursions",
+        imageUrl: "path_to_image",
+      },
+    ],
+  },
+};
+
+export const norfolkData = {
+  heroSection: {
+    location: "Norfolk, England",
+    title: "Norfolk",
+    subtitle: "Coastal Elegance and Historic Charm",
+    locationDetails: [
+      {
+        label: "Start Date",
+        value: "6th Jul 2026",
+      },
+      {
+        label: "End Date",
+        value: "16th Aug 2026",
+      },
+      {
+        label: "Pricing",
+        value: "£3,000 per cycle",
+      },
+      {
+        label: "Age Group",
+        value: "9 - 12 years",
+      },
+    ],
+    buttonText: "Reserve your place",
+    bgImageUrl:
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/canter_hero_bg_s4vx8n.webp",
+  },
+  discoverSandringham: {
+    title: "Discover Sandringham",
+    description: `Located on England’s stunning Norfolk coast, Sandringham and its surrounding area offer a rare combination of history, natural beauty, and refined charm. Famous for the Royal Sandringham Estate, this region blends stately elegance with scenic landscapes, from rolling countryside to pristine beaches along the North Sea.
+
+    Students can enjoy coastal walks, nature trails, and wildlife spotting while discovering charming nearby villages and historic landmarks. The area also offers opportunities for cultural excursions, sailing, and leisure activities in a safe and tranquil environment, providing a luxurious and immersive English experience where students can explore England’s heritage and coastline in style.`,
+    imageUrl: "path_to_image", // Add the actual image URL
+  },
+  accommodation: {
+    title: "Our Accommodation",
+    description: `From the moment they arrive, your child will feel right at home in spacious, well-appointed rooms featuring ensuite facilities. Each room is designed for comfort and privacy, allowing students to unwind after an exciting day of activities. Our dedicated staff is always on hand to provide a supportive and nurturing environment, ensuring every camper feels safe and cared for.
+
+    Parents can relax knowing that every aspect of the camp is managed with precision. Glebe House offers first-rate catering options, with freshly prepared meals that cater to all tastes and dietary needs. Whether it’s a wholesome breakfast, a hearty lunch, or an evening of themed dinners, our food service ensures that campers enjoy a variety of delicious, nutritious options throughout their stay.
+
+    With its picturesque surroundings and excellent facilities, Glebe House offers the ideal balance of structured learning, outdoor activities, and fun. Campers can explore the countryside, take part in team-building challenges, and enjoy a variety of recreational activities designed to foster both creativity and personal growth.
+
+    Your child will leave Glebe House not only with cherished memories but also with new skills, lasting friendships, and a deeper sense of independence. Spaces are limited, so don’t miss out on this incredible opportunity for your child to experience one of Norfolk’s most distinguished summer camps.`,
+    imageUrl: "path_to_image", // Add the actual image URL
+  },
+  excursionCities: {
+    title: "Our Excursion Cities",
+    cities: [
+      {
+        name: "Cambridge",
+        description: "Historic colleges & courtyards",
+        imageUrl: "path_to_image", // Add the actual image URL
+      },
+      {
+        name: "Cambridge",
+        description: "Punting on the River Cam",
+        imageUrl: "path_to_image", // Add the actual image URL
+      },
+      {
+        name: "Cambridge",
+        description: "Museums and cultural landmarks",
+        imageUrl: "path_to_image", // Add the actual image URL
+      },
+    ],
+  },
+};
