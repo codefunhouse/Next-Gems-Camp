@@ -17,9 +17,9 @@ function OverviewComp({
   bgImageAlt,
 }: OverviewCompProps) {
   return (
-    <section className={`py-[3.7rem] bg-background relative ${className}`}>
+    <section className={`py-[3.7rem] relative ${className}`}>
       <BgImage
-        src={bgImage || ""}
+        src={bgImage}
         alt={bgImageAlt || "title"}
         overlayStyles="bg-[#000000CC]"
       />

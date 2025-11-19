@@ -16,7 +16,7 @@ function BgImage({ className, src, alt, overlayStyles }: BgImageProps) {
           height={2364}
           src={src}
           alt={alt}
-          className="w-full h-full object-cover aspect-[2.5]"
+          className="w-full h-full object-cover aspect-[2.5] text-white"
         />
       </div>
       <div

@@ -84,7 +84,7 @@ const Canterbury = () => {
       <OverviewComp
         title={norfolkData.accommodation.title}
         content={norfolkData.accommodation.description}
-        bgImage={norfolkData.accommodation.bgImageAlt}
+        bgImage={norfolkData.accommodation.bgImageUrl}
         bgImageAlt={norfolkData.accommodation.bgImageAlt}
       />
 

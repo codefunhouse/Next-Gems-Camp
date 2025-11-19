@@ -50,7 +50,7 @@ const LocationCambridge = () => {
       <OverviewComp
         title={canterburyData.accommodation.title}
         content={canterburyData.accommodation.description}
-        bgImage={canterburyData.accommodation.bgImageAlt}
+        bgImage={canterburyData.accommodation.bgImageUrl}
         bgImageAlt={canterburyData.accommodation.bgImageAlt}
       />
     </PublicPagesLayout>
