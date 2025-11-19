@@ -403,6 +403,7 @@ const ApplyForm = ({ onClick }: { onClick?: () => void }) => {
                   classNames="max-w-[180px] mx-auto"
                   isDisabled={!form.formState.isValid}
                   type="submit"
+                  isLoading={isLoading}
                 />
               </div>
             </form>
