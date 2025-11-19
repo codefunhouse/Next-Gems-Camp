@@ -1,9 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { HighlightedText } from "../general/HighlightedText";
+import LongArrowLeft from "../svgs/LongArrowLeft";
+import LongArrowRight from "../svgs/LongArrowRight";
 
 const testimonials = [
   {
@@ -109,49 +111,52 @@ function ReviewsSection({
     <section
       className={twMerge(
         "relative overflow-hidden",
-        !forHeroSection ? `py-20 bg-muted/50  ${commonSectionStyles}` : "px-4"
+        !forHeroSection ? `pt-16 pb-24  ${commonSectionStyles}` : "px-4"
       )}
     >
-      {/* Background decorative elements */}
-      {!forHeroSection && (
-        <>
-          <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
-        </>
-      )}
+      <div className="container mx-auto px-4 relative z-10 flex flex-col gap-12">
+        <div className="flex items-center gap-4 sm:justify-between flex-col sm:flex-row justify-center">
+          {!forHeroSection && (
+            <div className="flex flex-col gap-3 w-full max-w-[400px]">
+              <HighlightedText
+                wrapperTag="h1"
+                text={landingPageDummyData.reviews.title}
+                highlights={[
+                  {
+                    text: "Families",
+                    color: "#15B1FB",
+                  },
+                ]}
+              />
+              <p className="text-lg">
+                {landingPageDummyData.reviews.description}
+              </p>
+            </div>
+          )}
 
-      <div className="container mx-auto px-4 relative z-10">
-        {!forHeroSection && (
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <h2 className="font-bold mb-4 ">
-              {landingPageDummyData.reviews.title}
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {landingPageDummyData.reviews.description}
-            </p>
+          <div className="flex items-center gap-3">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0 || isAnimating}
+              className="rounded-full p-2 md:p-3 border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
+              aria-label="Previous testimonials"
+            >
+              <LongArrowLeft />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex >= maxIndex || isAnimating}
+              className="rounded-full p-2 md:p-3 border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
+              aria-label="Next testimonials"
+            >
+              <LongArrowRight />
+            </button>
           </div>
-        )}
+        </div>
 
         <div className="relative">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0 || isAnimating}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-20 bg-background/80 backdrop-blur-sm rounded-full p-2 md:p-3 shadow-lg border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
-            aria-label="Previous testimonials"
-          >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= maxIndex || isAnimating}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-20 bg-background/80 backdrop-blur-sm rounded-full p-2 md:p-3 shadow-lg border hover:bg-background transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 active:scale-95"
-            aria-label="Next testimonials"
-          >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-          </button>
-
           {/* Slider Container */}
           <div className="overflow-hidden">
             <div
@@ -171,38 +176,30 @@ function ReviewsSection({
                   return (
                     <div
                       key={index}
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 "
                       style={{ width: `${100 / cardsToShow}%` }}
                     >
-                      <Card className="hover:shadow-xl transition-all duration-300 border-primary/10 h-full group hover:border-primary/20 hover:-translate-y-2">
-                        <CardContent className="p-6 md:p-8 h-full flex flex-col">
-                          {/* Quote icon */}
-                          <div className="text-4xl text-primary/20 mb-4 group-hover:text-primary/30 transition-colors">
-                            "
-                          </div>
-
+                      <Card className="transition-all duration-300 h-full group rounded-[2rem]">
+                        <CardContent className="px-6 md:px-8 py-11 h-full flex flex-col">
                           <div className="flex items-center gap-4 mb-4">
                             <div className="relative">
                               <img
                                 src={testimonial.image}
                                 alt={testimonial.title}
-                                className="w-16 h-16 rounded-full object-cover border-2 border-primary/10 group-hover:border-primary/30 transition-colors"
+                                className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
                               />
                               <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
-                            <div>
-                              <h3 className="font-semibold text-lg">{name}</h3>
-                              <p className="text-sm text-muted-foreground flex items-center gap-1">
-                                <span>🇩🇪</span>
-                                <span className="font-semibold">
-                                  {reviewerType}
-                                </span>
+                            <div className="space-y-2">
+                              <h5 className="">{name}</h5>
+                              <p className="text-base sm:text-lgflex items-center gap-1">
+                                <span className="">{reviewerType}</span>
                                 {`(${country}`}
                               </p>
                             </div>
                           </div>
 
-                          <p className="text-muted-foreground italic flex-grow leading-relaxed">
+                          <p className="text-[#959595] italic flex-grow leading-relaxed">
                             "{testimonial.description}"
                           </p>
                         </CardContent>
@@ -223,7 +220,7 @@ function ReviewsSection({
                   onClick={() => setCurrentIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? "bg-blue-primary w-8"
+                      ? "bg-blue-primary"
                       : "bg-blue-primary/30 hover:bg-blue-primary/50"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}

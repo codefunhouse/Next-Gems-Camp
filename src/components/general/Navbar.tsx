@@ -60,7 +60,7 @@ const Navbar = () => {
           "bg-gradient-to-r from-[#15B1FB]/50 to-[#FFA70F]/25 flex justify-center items-center w-full py-3 sm:pt-[0.95rem] sm:pb-3 px-2 text-center font-medium",
           hasScrolled
             ? "from-[#44bdf5] to-[#f3ca8c]"
-            : "from-[#15B1FB]/50 to-[#FFA70F]/25 "
+            : "from-[#15B1FB] to-[#FFA70F]/25 "
         )}
       >
         <p
@@ -75,7 +75,7 @@ const Navbar = () => {
       <div
         className={twMerge(
           "font-medium text-white transition-all duration-300",
-          hasScrolled ? "bg-blue-sec/70" : "bg-transparent"
+          hasScrolled ? "bg-blue-sec" : "bg-transparent"
         )}
       >
         <div

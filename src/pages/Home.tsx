@@ -1,6 +1,5 @@
 import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import CTASection from "@/components/landing/CTASection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HeroSection from "@/components/landing/HeroSection";
 import OurPathwayProgrammes from "@/components/landing/OurPathwayProgrammes";
@@ -37,8 +36,6 @@ const Home = () => {
       <QuestionsAndAnswers />
 
       <ReviewsSection />
-
-      <CTASection />
     </PublicPagesLayout>
   );
 };

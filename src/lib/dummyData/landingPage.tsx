@@ -1,7 +1,11 @@
 import BagIcon from "@/components/svgs/BagIcon";
 import BallIcon from "@/components/svgs/BallIcon";
+import ExpertEduIcon from "@/components/svgs/ExpertEduIcon";
+import GlobeIcon from "@/components/svgs/GlobeIcon";
+import InteractiveIcon from "@/components/svgs/InteractiveIcon";
 import LaptopIcon from "@/components/svgs/LaptopIcon";
 import PaletteIcon from "@/components/svgs/PaletteIcon";
+import RealWorldCommIcon from "@/components/svgs/RealWorldCommIcon";
 
 export const landingPageDummyData = {
   heroSection: {
@@ -158,25 +162,25 @@ export const landingPageDummyData = {
       "At Next Gems Summer Camp, we believe learning flourishes when it is engaging, personalised, and inspired by real-world experiences. Our expert teachers guide every student to grow in confidence, skill, and curiosity, making every lesson meaningful and memorable.",
     approaches: [
       {
-        icon: "💬",
+        icon: <InteractiveIcon className="group-hover:stroke-blue-primary" />,
         title: "Interactive & Engaging Lessons",
         description:
           "Dynamic, student-centered classes use discussions, role-plays, and projects to make learning practical and fun.",
       },
       {
-        icon: "🎯",
-        title: "Personalised Learning",
-        description:
-          "Small groups ensure each student receives tailored guidance, accelerating progress and building confidence.",
-      },
-      {
-        icon: "🌍",
+        icon: <RealWorldCommIcon />,
         title: "Real-World Communication",
         description:
           "English is practised beyond the classroom through cultural immersion, collaborative projects, and exciting excursions.",
       },
       {
-        icon: "👩‍🏫",
+        icon: <GlobeIcon />,
+        title: "Personalised Learning",
+        description:
+          "Small groups ensure each student receives tailored guidance, accelerating progress and building confidence.",
+      },
+      {
+        icon: <ExpertEduIcon />,
         title: "Expert & Caring Educators",
         description:
           "Qualified, experienced teachers provide professional instruction, mentorship, and support every step of the way.",
@@ -228,7 +232,7 @@ export const landingPageDummyData = {
   ctaSection: {
     title: "Ready to Start Your Journey?",
     subtitle: "Join thousands of students from around the world",
-    buttonText: "Register Now for 2026",
+    buttonText: "Register Now",
     buttonLink: "/apply",
   },
 

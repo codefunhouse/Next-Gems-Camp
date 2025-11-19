@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface FAQItem {
   question: string;
@@ -30,9 +31,17 @@ const FAQComp = ({
 
   return (
     <div className={className}>
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion
+        type="single"
+        collapsible
+        className="w-full border-t-[#CFCFCF]"
+      >
         {visibleFaqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
+          <AccordionItem
+            key={index}
+            value={`item-${index}`}
+            className={twMerge("!border-[#CFCFCF]", index === 0 && "border-t")}
+          >
             <AccordionTrigger className="text-left text-base sm:text-xl">
               {faq.question}
             </AccordionTrigger>
