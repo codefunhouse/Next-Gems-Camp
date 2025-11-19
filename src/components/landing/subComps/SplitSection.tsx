@@ -22,27 +22,23 @@ function SplitSection({
   mainTitle = "",
   mainDesc = "",
 }: SplitSectionProps) {
-  const bgColor = background === "gray" ? "bg-[#F1F5F9]" : "bg-white";
+  const bgColor = background === "gray" ? "bg-grey-muted" : "bg-white";
 
   return (
     <section
-      className={twMerge(
-        `py-16 md:py-20 ${bgColor}`,
-        commonSectionStyles,
-        className
-      )}
+      className={twMerge(`py-16 ${bgColor}`, commonSectionStyles, className)}
     >
-      <div className="mb-8 max-w-3xl mx-auto text-center">
-        {mainTitle && (
-          <h2 className="text-3xl font-bold text-center mb-4">{mainTitle}</h2>
-        )}
-        {mainDesc && (
-          <p className="text-center text-lg sm:text-xl max-w-3xl mx-auto">
-            {mainDesc}
-          </p>
-        )}
-      </div>
-      <div className="container mx-auto px-4">
+      {(mainTitle || mainDesc) && (
+        <div className="mb-8 max-w-3xl mx-auto text-center">
+          {mainTitle && <h1 className="text-center mb-4">{mainTitle}</h1>}
+          {mainDesc && (
+            <p className="text-center text-base sm:text-lg mx-auto">
+              {mainDesc}
+            </p>
+          )}
+        </div>
+      )}
+      <div className="mx-auto px-4">
         <div
           className={twMerge(
             "flex flex-col sm:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto",

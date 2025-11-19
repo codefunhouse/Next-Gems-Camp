@@ -11,11 +11,12 @@ export const parentInfoData = {
   },
   learningAndEnrichment: {
     leftData: {
-      title: "🏫 Learning & Enrichment",
-      upperDesc: `
-        30 hours of accredited English tuition taught by qualified teachers.
-      `,
+      title: "Learning & Enrichment",
+
       lists: [
+        {
+          item: "30 hours of accredited English tuition taught by qualified teachers.",
+        },
         {
           item: "Small, ability-based classes focused on communication and confidence.",
         },
@@ -27,25 +28,23 @@ export const parentInfoData = {
         },
         { item: "End-of-camp certificate and personal progress report." },
       ],
-      nestedList: [],
-      lowerDesc: "",
     },
     rightData: {
       imageUrl:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=60",
+        "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/learn_enrich_img_xk9jb2.webp",
       alt: "Students participating in a group class",
     },
   },
 
   travelVisasAndTransfers: {
-    mainTitle: "✈️ Travel, Visa & Transfers",
+    mainTitle: "Travel, Visas & Airport Transfers",
     mainDesc: `
       We welcome students from all over the world and offer full arrival support.
     `,
     section1: {
       leftData: {
         title: "Travel & Visa Support",
-        upperDesc: ``,
+
         lists: [
           {
             item: "International students may require a Standard Visitor Visa for short study stays in the UK.",
@@ -56,27 +55,28 @@ export const parentInfoData = {
           {
             item: "Our admissions team is available to guide families through the process.",
           },
-          { item: "Airport & Train Transfers" },
         ],
       },
       rightData: {
         imageUrl:
-          "https://plus.unsplash.com/premium_photo-1726761735842-107b37bd6473?q=80&w=934&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476401/travel_visa_support_img_a7pfbl.webp",
         alt: "Airport pickup and transfer services",
       },
     },
     section2: {
       leftData: {
         title: "Airport Transfer Locations",
-        upperDesc: ``,
+
         lists: [
           {
             item: "Supervised pick-up and drop-off services are available from:",
             nestedList: [
-              "Heathrow Airport (LHR)",
-              "Gatwick Airport (LGW)",
-              "Stansted Airport (STN)",
-              "London St Pancras International Station (Eurostar arrivals)",
+              { item: "Heathrow Airport (LHR)" },
+              { item: "Gatwick Airport (LGW)" },
+              { item: "Stansted Airport (STN)" },
+              {
+                item: "London St Pancras International Station (Eurostar arrivals)",
+              },
             ],
           },
           {
@@ -86,11 +86,10 @@ export const parentInfoData = {
             item: "All transfers are pre-booked and fully supervised to ensure safety and comfort.",
           },
         ],
-        lowerDesc: "",
       },
       rightData: {
         imageUrl:
-          "https://images.unsplash.com/photo-1464038008305-ee8def75f234?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/airport_train_img_dygy3z.webp",
         alt: "Airport pickup and transfer services",
       },
     },
@@ -98,11 +97,12 @@ export const parentInfoData = {
 
   accommodationAndWelfare: {
     leftData: {
-      title: "🛏️ Accommodation & Welfare",
-      upperDesc: `
-        Premium student residences or boarding campuses with 24/7 supervision.
-      `,
+      title: "Accommodation & Welfare",
+
       lists: [
+        {
+          item: "Premium student residences or boarding campuses with 24/7 supervision.",
+        },
         {
           item: "Separate accommodation for boys and girls, with secure access.",
         },
@@ -113,40 +113,45 @@ export const parentInfoData = {
           item: "On-site medical and pastoral care staff available at all times.",
         },
       ],
-      nestedList: [],
-      lowerDesc: "",
     },
     rightData: {
       imageUrl:
-        "https://plus.unsplash.com/premium_photo-1664302088394-15181999f92e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476378/accom_welfare_img_ftqrme.webp",
       alt: "Student accommodation with 24/7 supervision",
     },
   },
 
   safeguardingAndChildProtection: {
     leftData: {
-      title: "🧒 Safeguarding & Child Protection",
-      upperDesc: `
-        Your child's safety is our highest priority. Next Gems Summer Camp operates in full compliance with UK safeguarding standards and Ofsted guidelines.
-      `,
-      lists: [
-        { item: "All staff are DBS-checked (UK background verified)." },
+      title: "Safeguarding & Child Protection",
+      list: [
         {
-          item: "Staff receive ongoing child protection and first-aid training.",
+          item: "Your child's safety is our highest priority. Next Gems Summer Camp operates in full compliance with UK safeguarding standards and Ofsted guidelines.",
+          nestedList: [
+            { item: "All staff are DBS-checked (UK background verified)." },
+            {
+              item: "Staff receive ongoing child protection and first-aid training.",
+            },
+            { item: "Clear policies on supervision, conduct, and welfare." },
+            { item: "Dedicated Safeguarding Lead on-site at all times." },
+          ],
         },
-        { item: "Clear policies on supervision, conduct, and welfare." },
-        { item: "Dedicated Safeguarding Lead on-site at all times." },
+        {
+          item: "Parents can be confident their children are supported in a caring, structured, and secure environment.",
+        },
       ],
-      nestedList: [],
-      lowerDesc: `
-        Parents can be confident their children are supported in a caring, structured, and secure environment.
-      `,
     },
     rightData: {
       imageUrl:
-        "https://plus.unsplash.com/premium_photo-1750767152981-b9a7f1333169?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476401/safeguard_child_img_m25cgd.webp",
       alt: "Staff ensuring child safety and supervision",
     },
+  },
+
+  cta: {
+    title: "Give Your Child a Summer 2026 to Remember",
+    description: "Limited places — secure your child's spot today!",
+    buttonText: "Register Now",
   },
 };
 

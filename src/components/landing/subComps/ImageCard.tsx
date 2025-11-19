@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { twMerge } from "tailwind-merge";
 
 interface ImageContentCardProps {
   imageUrl: string;
@@ -12,18 +12,15 @@ function ImageContentCard({
   className = "",
 }: ImageContentCardProps) {
   return (
-    <Card className={`border-0 shadow-md ${className}`}>
-      <CardContent className="p-0 w-full max-w-[300px]">
-        {/* Image with fixed width and height */}
-        <img
-          src={imageUrl}
-          alt={alt}
-          width={500} // Fixed width
-          height={500} // Fixed height
-          className="object-cover rounded-md aspect-square w-full h-full"
-        />
-      </CardContent>
-    </Card>
+    <div className={twMerge("w-full max-w-[529px] rounded-[2rem]")}>
+      <img
+        src={imageUrl}
+        alt={alt}
+        width={539}
+        height={423}
+        className="object-cover rounded-[2rem] aspect-[529/423] w-full h-full"
+      />
+    </div>
   );
 }
 

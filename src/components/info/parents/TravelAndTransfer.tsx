@@ -8,13 +8,13 @@ function TravelAndTransfer() {
   return (
     <section
       className={twMerge(
-        "py-20 flex flex-col gap-16 items-center",
+        "py-20 flex flex-col gap-16 items-center bg-grey-muted",
         commonSectionStyles
       )}
     >
-      <div className="flex flex-col gap-3 w-full max-w-3xl mx-auto text-center">
-        <h2>{parentInfoData.travelVisasAndTransfers.mainTitle}</h2>
-        <p className="text-lg sm:text-xl">
+      <div className="flex flex-col items-center gap-3 w-full max-w-[880px] mx-auto text-center">
+        <h1>{parentInfoData.travelVisasAndTransfers.mainTitle}</h1>
+        <p className="text-base sm:text-lg">
           {parentInfoData.travelVisasAndTransfers.mainDesc}
         </p>
       </div>
@@ -28,13 +28,10 @@ function TravelAndTransfer() {
               title={
                 parentInfoData.travelVisasAndTransfers.section1.leftData.title
               }
-              description={
-                parentInfoData.travelVisasAndTransfers.section1.leftData
-                  .upperDesc
-              }
               list={
                 parentInfoData.travelVisasAndTransfers.section1.leftData.lists
               }
+              headingStyles="!text-[1.875rem] sm:!text-[3rem]"
             />
           </div>
           <div className="flex-1 w-full flex sm:justify-center">
@@ -51,20 +48,6 @@ function TravelAndTransfer() {
         </div>
         {/* Lower section */}
         <div className="flex flex-col sm:flex-row w-full items-center">
-          <div className="flex-1 w-full">
-            <WhatToExpectCard
-              title={
-                parentInfoData.travelVisasAndTransfers.section2.leftData.title
-              }
-              description={
-                parentInfoData.travelVisasAndTransfers.section2.leftData
-                  .upperDesc
-              }
-              list={
-                parentInfoData.travelVisasAndTransfers.section2.leftData.lists
-              }
-            />
-          </div>
           <div className="flex-1 w-full flex sm:justify-center">
             <ImageContentCard
               imageUrl={
@@ -74,6 +57,17 @@ function TravelAndTransfer() {
               alt={
                 parentInfoData.travelVisasAndTransfers.section2.rightData.alt
               }
+            />
+          </div>
+          <div className="flex-1 w-full flex flex-col items-center">
+            <WhatToExpectCard
+              title={
+                parentInfoData.travelVisasAndTransfers.section2.leftData.title
+              }
+              list={
+                parentInfoData.travelVisasAndTransfers.section2.leftData.lists
+              }
+              headingStyles="!text-[1.875rem] sm:!text-[3rem]"
             />
           </div>
         </div>

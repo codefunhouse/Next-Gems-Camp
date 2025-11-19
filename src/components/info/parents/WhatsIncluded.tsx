@@ -12,7 +12,7 @@ function WhatsIncludedSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-[602px] w-full mx-auto flex flex-col gap-8">
         {/* Header */}
         <div className="text-center flex flex-col items-center gap-2">

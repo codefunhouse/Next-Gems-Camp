@@ -30,17 +30,10 @@ const Parents = () => {
       />
 
       <SplitSection
-        mainDesc="Next Gems Summer Camp combines 30 hours of accredited English tuition with global cultural immersion and exciting specialist programs in Technology, Business, Sport, Arts, and Leadership. Our safe, small-group environment ensures every child learns, grows, and enjoys a truly international experience."
         leftContent={
           <WhatToExpectCard
             title={parentInfoData.learningAndEnrichment.leftData.title}
-            description={
-              parentInfoData.learningAndEnrichment.leftData.upperDesc
-            }
             list={parentInfoData.learningAndEnrichment.leftData.lists}
-            lowerDescription={
-              parentInfoData.learningAndEnrichment.leftData.lowerDesc
-            }
           />
         }
         rightContent={
@@ -49,22 +42,16 @@ const Parents = () => {
             alt={parentInfoData.learningAndEnrichment.rightData.alt}
           />
         }
-        background="gray"
       />
 
       <TravelAndTransfer />
 
+      {/* Accomodation and welfare */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={parentInfoData.accommodationAndWelfare.leftData.title}
-            description={
-              parentInfoData.accommodationAndWelfare.leftData.upperDesc
-            }
             list={parentInfoData.accommodationAndWelfare.leftData.lists}
-            lowerDescription={
-              parentInfoData.accommodationAndWelfare.leftData.lowerDesc
-            }
           />
         }
         rightContent={
@@ -73,20 +60,15 @@ const Parents = () => {
             alt={parentInfoData.accommodationAndWelfare.rightData.alt}
           />
         }
-        background="gray"
       />
+
+      {/* safeguarding */}
 
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={parentInfoData.safeguardingAndChildProtection.leftData.title}
-            description={
-              parentInfoData.safeguardingAndChildProtection.leftData.upperDesc
-            }
-            list={parentInfoData.safeguardingAndChildProtection.leftData.lists}
-            lowerDescription={
-              parentInfoData.safeguardingAndChildProtection.leftData.lowerDesc
-            }
+            list={parentInfoData.safeguardingAndChildProtection.leftData.list}
           />
         }
         rightContent={
@@ -97,7 +79,8 @@ const Parents = () => {
             alt={parentInfoData.safeguardingAndChildProtection.rightData.alt}
           />
         }
-        // background="gray"
+        background="gray"
+        position="right-left"
       />
 
       <WhatsIncludedSection />
