@@ -154,7 +154,32 @@ export const canterburyData = {
     description: `Nestled in the picturesque county of Kent, Canterbury is a city where history, culture, and elegance come together. Famous for its magnificent Canterbury Cathedral, a UNESCO World Heritage Site, the city blends medieval charm with modern sophistication. Stroll along cobbled streets and explore boutique shops, artisan cafes, and gourmet restaurants.
 
     Enjoy a leisurely punt along the River Stour or relax in the city’s quaint squares and gardens. With its Roman walls, historic churches, and museums, Canterbury offers rich cultural experiences for all ages. Just a short train ride from London, the city combines accessibility with an exclusive, boutique atmosphere—perfect for families seeking a luxury cultural immersion in England.`,
-    imageUrl: "path_to_image",
+    images: [
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_1_fl21h7.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_2_tzl5t1.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_3_lawysc.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_4_wcqu6n.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_5_f8bxfm.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_canter_img_6_e2wqe4.webp",
+      },
+    ],
   },
   accommodation: {
     title: "Our Accommodation",
@@ -163,7 +188,9 @@ export const canterburyData = {
     Parents can rest assured knowing that every detail is thoughtfully considered. From full-board catering crafted to suit varied tastes, to dedicated spaces for study, creativity, and relaxation, your child will experience a seamless blend of comfort and structure. Fresh, healthy meals are served daily—including light breakfasts, hot lunches, varied dinners, and weekend packed options—ensuring students stay energized throughout their activities.
 
     Whether they’re engaging in classroom-based learning, enjoying the outdoors, or bonding in communal lounges designed for connection, campers are surrounded by an environment crafted for both safety and enjoyment. All sites include convenient on-site laundry facilities and are supported by attentive staff committed to creating a memorable, worry-free experience.`,
-    imageUrl: "path_to_image",
+    bgImageUrl:
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/canter_accom_img_zgxnnn.webp",
+    bgImageAlt: "A one-bedroom apartment",
   },
   excursionCities: {
     title: "Our Excursion Cities",
@@ -219,7 +246,28 @@ export const norfolkData = {
     description: `Located on England’s stunning Norfolk coast, Sandringham and its surrounding area offer a rare combination of history, natural beauty, and refined charm. Famous for the Royal Sandringham Estate, this region blends stately elegance with scenic landscapes, from rolling countryside to pristine beaches along the North Sea.
 
     Students can enjoy coastal walks, nature trails, and wildlife spotting while discovering charming nearby villages and historic landmarks. The area also offers opportunities for cultural excursions, sailing, and leisure activities in a safe and tranquil environment, providing a luxurious and immersive English experience where students can explore England’s heritage and coastline in style.`,
-    imageUrl: "path_to_image", // Add the actual image URL
+    images: [
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_1_zr4yxh.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_sand_img_2_y0j5cy.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_3_gp72be.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_4_aawvrl.webp",
+      },
+      {
+        image:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_5_iyml6b.webp",
+      },
+    ],
   },
   accommodation: {
     title: "Our Accommodation",
@@ -230,7 +278,9 @@ export const norfolkData = {
     With its picturesque surroundings and excellent facilities, Glebe House offers the ideal balance of structured learning, outdoor activities, and fun. Campers can explore the countryside, take part in team-building challenges, and enjoy a variety of recreational activities designed to foster both creativity and personal growth.
 
     Your child will leave Glebe House not only with cherished memories but also with new skills, lasting friendships, and a deeper sense of independence. Spaces are limited, so don’t miss out on this incredible opportunity for your child to experience one of Norfolk’s most distinguished summer camps.`,
-    imageUrl: "path_to_image", // Add the actual image URL
+    bgImageUrl:
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763538236/nor_acc_image_zgo7lg.webp",
+    bgImageAlt: "A bedroom showing side view of the room",
   },
   excursionCities: {
     title: "Our Excursion Cities",
@@ -238,7 +288,7 @@ export const norfolkData = {
       {
         name: "Cambridge",
         description: "Historic colleges & courtyards",
-        imageUrl: "path_to_image", // Add the actual image URL
+        imageUrl: "path_to_image",
       },
       {
         name: "Cambridge",

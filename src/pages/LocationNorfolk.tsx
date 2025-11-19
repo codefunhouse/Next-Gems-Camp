@@ -1,8 +1,10 @@
 import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import HeroSection from "@/components/landing/HeroSection";
+import ContentCard from "@/components/landing/subComps/ContentCard";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
+import SplitSection from "@/components/landing/subComps/SplitSection";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { norfolkData, norfolkImages } from "@/lib/dummyData/locationData";
 import { Book, Building2, Coffee, Users } from "lucide-react";
@@ -60,12 +62,30 @@ const Canterbury = () => {
         }
       />
 
-      {/* Overview Section */}
+      {/* Discover loation */}
+      <SplitSection
+        leftContent={
+          <ContentCard
+            title={norfolkData.discoverSandringham.title}
+            content={norfolkData.discoverSandringham.description}
+          />
+        }
+        rightContent={
+          <ImageDisplayer
+            data={norfolkData.discoverSandringham.images}
+            autoSlide={true}
+            autoSlideInterval={3000}
+            className="my-8"
+          />
+        }
+        background="white"
+      />
+      {/* Our Accomodation */}
       <OverviewComp
-        title="Discover Sandringham: Coastal Elegance and Historic Charm"
-        content={`Located on England's stunning Norfolk coast, Sandringham and its surrounding area offer a rare combination of history, natural beauty, and refined charm. Famous for the Royal Sandringham Estate, this region blends stately elegance with scenic landscapes, from rolling countryside to pristine beaches along the North Sea.
-          
-        Students can enjoy coastal walks, nature trails, and wildlife spotting while discovering charming nearby villages and historic landmarks. The area also offers opportunities for cultural excursions, sailing, and leisure activities in a safe and tranquil environment, providing a luxurious and immersive English experience where students can explore England's heritage and coastline in style.`}
+        title={norfolkData.accommodation.title}
+        content={norfolkData.accommodation.description}
+        bgImage={norfolkData.accommodation.bgImageAlt}
+        bgImageAlt={norfolkData.accommodation.bgImageAlt}
       />
 
       <ImageDisplayer

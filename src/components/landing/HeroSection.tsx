@@ -59,7 +59,11 @@ function HeroSection({
         <span>{label}</span>
         <div>
           <span className="text-3xl sm:text-[2rem] font-medium">{value} </span>
-          {suffix && <span className="text-3xl sm:text-[2rem]">{suffix}</span>}
+          {suffix && (
+            <span className="text-3xl sm:text-[2rem] !font-normal">
+              {suffix}
+            </span>
+          )}
         </div>
       </p>
     </div>
@@ -122,8 +126,8 @@ function HeroSection({
           </div>
         )}
         {infoDetails && (
-          <div className="w-full mt-12 max-w-[687px] px-8 py-8 rounded-[1rem] border border-white/[24] bg-white/[6]">
-            {infoDetails}
+          <div className="w-full mt-12 max-w-[687px] px-8 py-8 rounded-[1rem] border border-[#FFFFFF3D] bg-[#FFFFFF0F]">
+            <p className="whitespace-pre-line text-left">{infoDetails}</p>
           </div>
         )}
       </div>

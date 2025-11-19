@@ -1,33 +1,33 @@
-import { Card, CardContent } from "@/components/ui/card";
+import BgImage from "./BgImage";
 
 interface OverviewCompProps {
   title: string;
   content: string;
   className?: string;
   cardClassName?: string;
+  bgImage: string;
+  bgImageAlt?: string;
 }
 
 function OverviewComp({
   title,
   content,
   className = "",
-  cardClassName = "",
+  bgImage,
+  bgImageAlt,
 }: OverviewCompProps) {
   return (
-    <section className={`py-20 bg-background ${className}`}>
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6 text-center max-w-3xl mx-auto">
-            {title}
-          </h2>
-          <Card className={cardClassName}>
-            <CardContent className="p-8 w-full">
-              <p className="text-lg mb-4 whitespace-pre-line break-words">
-                {content}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+    <section className={`py-[3.7rem] bg-background relative ${className}`}>
+      <BgImage
+        src={bgImage || ""}
+        alt={bgImageAlt || "title"}
+        overlayStyles="bg-[#000000CC]"
+      />
+      <div className="relative z-10 mx-auto px-4 w-full max-w-[721px] flex flex-col gap-1.5 items-center text-white">
+        <h1 className="text-center">{title}</h1>
+        <p className="text-base sm:text-lg whitespace-pre-line break-words">
+          {content}
+        </p>
       </div>
     </section>
   );

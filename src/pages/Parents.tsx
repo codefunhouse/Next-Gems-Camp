@@ -1,3 +1,4 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ContactCTA from "@/components/info/parents/ContactCTA";
 import TravelAndTransfer from "@/components/info/parents/TravelAndTransfer";
@@ -7,6 +8,7 @@ import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ImageContentCard from "@/components/landing/subComps/ImageCard";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
+import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { parentInfoData } from "@/lib/dummyData/infoData";
 
 const Parents = () => {
@@ -14,10 +16,18 @@ const Parents = () => {
     <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection
-        title=" Next Gems Summer Camp — Parent Information Guide"
-        subtitle=" A premium UK summer experience where language, culture, and adventure
-          come together."
-        bgImage="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=1600&h=600&fit=crop"
+        title={parentInfoData.heroSection.title}
+        subtitle={parentInfoData.heroSection.subtitle}
+        bgImage={parentInfoData.heroSection.bgImage}
+        buttons={
+          <Button
+            label={parentInfoData.heroSection.buttonText}
+            endIcon={<ShortArrowRight />}
+            classNames="!w-full !max-w-[194px]"
+            buttonType="sec"
+          />
+        }
+        infoDetails={parentInfoData.heroSection.infoDetails}
       />
 
       <SplitSection

@@ -1,13 +1,12 @@
 import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import HeroSection from "@/components/landing/HeroSection";
+import ContentCard from "@/components/landing/subComps/ContentCard";
 import ImageDisplayer from "@/components/landing/subComps/ImageDisplayer";
 import OverviewComp from "@/components/landing/subComps/OverviewComp";
+import SplitSection from "@/components/landing/subComps/SplitSection";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
-import {
-  canterburyData,
-  canterburyImageData,
-} from "@/lib/dummyData/locationData";
+import { canterburyData } from "@/lib/dummyData/locationData";
 
 const LocationCambridge = () => {
   return (
@@ -22,24 +21,37 @@ const LocationCambridge = () => {
           <Button
             label={canterburyData.heroSection.buttonText}
             endIcon={<ShortArrowRight />}
-            classNames="!w-full !max-w-[194px]"
+            classNames="!max-w-[194px]"
             buttonType="sec"
           />
         }
       />
 
-      {/* Overview Section */}
-      <OverviewComp
-        title="Discover Canterbury: A Historic Gem in the Heart of England"
-        content={
-          "Canterbury, a historic city in Kent, England, is renowned for its stunning medieval architecture, including the iconic Canterbury Cathedral. The city offers a rich cultural experience with its charming streets, historic landmarks, and vibrant arts scene.\n\nStudents can explore the city's heritage, enjoy riverside walks, and participate in various cultural and educational activities. Canterbury provides a unique blend of history and modernity, making it an ideal location for immersive learning and exploration."
+      {/* Discover loation */}
+      <SplitSection
+        leftContent={
+          <ContentCard
+            title={canterburyData.discoverCanterbury.title}
+            content={canterburyData.discoverCanterbury.description}
+          />
         }
+        rightContent={
+          <ImageDisplayer
+            data={canterburyData.discoverCanterbury.images}
+            autoSlide={true}
+            autoSlideInterval={3000}
+            className="my-8"
+          />
+        }
+        background="white"
       />
-      <ImageDisplayer
-        data={canterburyImageData}
-        autoSlide={true}
-        autoSlideInterval={3000}
-        className="my-8"
+
+      {/* Our Accomodation */}
+      <OverviewComp
+        title={canterburyData.accommodation.title}
+        content={canterburyData.accommodation.description}
+        bgImage={canterburyData.accommodation.bgImageAlt}
+        bgImageAlt={canterburyData.accommodation.bgImageAlt}
       />
     </PublicPagesLayout>
   );

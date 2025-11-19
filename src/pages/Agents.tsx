@@ -1,20 +1,29 @@
+import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import HeroSection from "@/components/landing/HeroSection";
 import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ImageContentCard from "@/components/landing/subComps/ImageCard";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
+import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { agentsInfoData } from "@/lib/dummyData/infoData";
 
 function Agents() {
   return (
     <PublicPagesLayout>
       <HeroSection
-        title="Partner with Next Gems Summer Camp
-"
-        subtitle="A premium UK summer experience designed for young global learners.
-"
-        bgImage="https://elements-resized.envatousercontent.com/envato-dam-assets-production/a974488f-31d0-46ba-aff9-57b2c0e50849/9fad783c-02a6-472a-84f8-975a1decf499.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=61d352c43e9bba47d2990ce91ff6f11494b3d330fe7d9fb1e8d91746f7934926"
+        title={agentsInfoData.heroSection.title}
+        subtitle={agentsInfoData.heroSection.subtitle}
+        bgImage={agentsInfoData.heroSection.bgImage}
+        buttons={
+          <Button
+            label={agentsInfoData.heroSection.buttonText}
+            endIcon={<ShortArrowRight />}
+            classNames="!w-full !max-w-[194px]"
+            buttonType="sec"
+          />
+        }
+        infoDetails={agentsInfoData.heroSection.infoDetails}
       />
 
       <SplitSection
