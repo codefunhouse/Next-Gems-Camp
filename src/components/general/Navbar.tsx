@@ -99,7 +99,7 @@ const Navbar = () => {
               >
                 Locations
                 <ShortArrowDown
-                  className={`transition-transform duration-200 mt-1 ${
+                  className={`transition-transform duration-200 mt-0.5 ${
                     isLocationsOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -143,7 +143,7 @@ const Navbar = () => {
               >
                 Info
                 <ShortArrowDown
-                  className={`transition-transform duration-200 mt-1 ${
+                  className={`transition-transform duration-200 mt-0.5 ${
                     isInfoOpen ? "rotate-180" : ""
                   }`}
                 />

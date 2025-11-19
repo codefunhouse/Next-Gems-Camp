@@ -19,7 +19,7 @@ interface WhatToExpectCardProps {
 // Recursive component for rendering nested lists
 function NestedList({ items }: { items: ListItem[] }) {
   return (
-    <ul className="space-y-2 list-none list-inside pl-4 text-base sm:text-lg">
+    <ul className="space-y-2 list-none list-inside text-base sm:text-lg">
       {items.map((listItem, itemIdx) => (
         <li key={itemIdx}>
           <p className="flex items-center gap-1.5">

@@ -27,15 +27,10 @@ function Agents() {
       />
 
       <SplitSection
-        mainDesc="Next Gems Summer Camp offers an exclusive opportunity for international education agents to represent a high-quality, accredited summer program that combines English language learning, cultural immersion, and specialist pathways in a safe, luxury environment."
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.whyPartnerWithUs.leftData.title}
-            description={agentsInfoData.whyPartnerWithUs.leftData.upperDesc}
             list={agentsInfoData.whyPartnerWithUs.leftData.lists}
-            lowerDescription={
-              agentsInfoData.whyPartnerWithUs.leftData.lowerDesc
-            }
           />
         }
         rightContent={
@@ -44,15 +39,12 @@ function Agents() {
             alt={agentsInfoData.whyPartnerWithUs.rightData.alt}
           />
         }
-        background="gray"
       />
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.programOverview.leftData.title}
-            description={agentsInfoData.programOverview.leftData.upperDesc}
             list={agentsInfoData.programOverview.leftData.lists}
-            lowerDescription={agentsInfoData.programOverview.leftData.lowerDesc}
           />
         }
         rightContent={
@@ -62,16 +54,14 @@ function Agents() {
           />
         }
         position="right-left"
+        background="gray"
       />
+      {/* Travel and Transfer */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.travelAndTransfers.leftData.title}
-            description={agentsInfoData.travelAndTransfers.leftData.upperDesc}
             list={agentsInfoData.travelAndTransfers.leftData.lists}
-            lowerDescription={
-              agentsInfoData.travelAndTransfers.leftData.lowerDesc
-            }
           />
         }
         rightContent={
@@ -80,19 +70,14 @@ function Agents() {
             alt={agentsInfoData.travelAndTransfers.rightData.alt}
           />
         }
-        background="gray"
       />
+
+      {/* Safeguard and compliance */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.safeguardingAndCompliance.leftData.title}
-            description={
-              agentsInfoData.safeguardingAndCompliance.leftData.upperDesc
-            }
-            list={agentsInfoData.safeguardingAndCompliance.leftData.lists}
-            lowerDescription={
-              agentsInfoData.safeguardingAndCompliance.leftData.lowerDesc
-            }
+            list={agentsInfoData.safeguardingAndCompliance.leftData.list}
           />
         }
         rightContent={
@@ -104,14 +89,14 @@ function Agents() {
           />
         }
         position="right-left"
+        background="gray"
       />
+      {/* Agent support */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
             title={agentsInfoData.agentSupport.leftData.title}
-            description={agentsInfoData.agentSupport.leftData.upperDesc}
-            list={agentsInfoData.agentSupport.leftData.lists}
-            lowerDescription={agentsInfoData.agentSupport.leftData.lowerDesc}
+            list={agentsInfoData.agentSupport.leftData.list}
           />
         }
         rightContent={
@@ -120,10 +105,9 @@ function Agents() {
             alt={agentsInfoData.agentSupport.rightData.alt}
           />
         }
-        background="gray"
       />
       {/* FAQ Section */}
-      <QuestionsAndAnswers className="bg-white" />
+      <QuestionsAndAnswers className="bg-grey-muted" />
     </PublicPagesLayout>
   );
 }

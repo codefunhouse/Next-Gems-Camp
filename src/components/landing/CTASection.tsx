@@ -23,7 +23,7 @@ function CTASection() {
         overlayStyles="bg-transparent"
         className="bg-blue-primary opacity-40"
       />
-      <div className="relative z-10 mx-auto px-4 text-center flex flex-col items-center w-full max-w-[760px] gap-3">
+      <div className="relative z-10 mx-auto px-4 text-center flex flex-col items-center w-full max-w-[790px] gap-3">
         <h1 className="">
           {isParentRoute
             ? parentInfoData.cta.title
@@ -31,7 +31,7 @@ function CTASection() {
             ? agentsInfoData.cta.title
             : landingPageDummyData.ctaSection.title}
         </h1>
-        <p className="text-base sm:text-lg max-w-[304px]">
+        <p className="text-base sm:text-lg max-w-[598px]">
           {isParentRoute
             ? parentInfoData.cta.description
             : isAgentRoute
