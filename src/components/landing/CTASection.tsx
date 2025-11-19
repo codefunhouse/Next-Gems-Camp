@@ -2,7 +2,7 @@ import { useModal } from "@/hooks/useModal";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { agentsInfoData, parentInfoData } from "@/lib/dummyData/infoData";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import ApplyForm from "@/pages/Apply";
+import ApplyForm from "@/pages/ApplyForm";
 import { useLocation } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import Button from "../general/Button";

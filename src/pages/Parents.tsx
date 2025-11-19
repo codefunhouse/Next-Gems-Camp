@@ -8,9 +8,13 @@ import ImageContentCard from "@/components/landing/subComps/ImageCard";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { useModal } from "@/hooks/useModal";
 import { parentInfoData } from "@/lib/dummyData/infoData";
+import ApplyForm from "./ApplyForm";
 
 const Parents = () => {
+  const { openModal, closeModal } = useModal();
+
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
@@ -24,6 +28,9 @@ const Parents = () => {
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[194px]"
             buttonType="sec"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
         }
         infoDetails={parentInfoData.heroSection.infoDetails}

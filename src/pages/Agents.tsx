@@ -6,9 +6,13 @@ import ImageContentCard from "@/components/landing/subComps/ImageCard";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { useModal } from "@/hooks/useModal";
 import { agentsInfoData } from "@/lib/dummyData/infoData";
+import ApplyForm from "./ApplyForm";
 
 function Agents() {
+  const { openModal, closeModal } = useModal();
+
   return (
     <PublicPagesLayout>
       <HeroSection
@@ -21,6 +25,9 @@ function Agents() {
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[194px]"
             buttonType="sec"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
         }
         infoDetails={agentsInfoData.heroSection.infoDetails}

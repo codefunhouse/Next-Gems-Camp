@@ -8,9 +8,12 @@ import QuestionsAndAnswers from "@/components/landing/QuestionsAndAnswers";
 import ReviewsSection from "@/components/landing/ReviewsSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { useModal } from "@/hooks/useModal";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import ApplyForm from "./ApplyForm";
 
 const Home = () => {
+  const { openModal, closeModal } = useModal();
   return (
     <PublicPagesLayout>
       <HeroSection
@@ -23,6 +26,9 @@ const Home = () => {
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[158px]"
             buttonType="sec"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
         }
       />

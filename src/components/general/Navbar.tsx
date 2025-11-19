@@ -1,6 +1,6 @@
 import { useModal } from "@/hooks/useModal";
 import useScrollEffect from "@/hooks/useScrollEffect";
-import ApplyForm from "@/pages/Apply";
+import ApplyForm from "@/pages/ApplyForm";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";

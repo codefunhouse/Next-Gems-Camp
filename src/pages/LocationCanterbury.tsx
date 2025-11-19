@@ -7,9 +7,12 @@ import OverviewComp from "@/components/landing/subComps/OverviewComp";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { useModal } from "@/hooks/useModal";
 import { canterburyData } from "@/lib/dummyData/locationData";
+import ApplyForm from "./ApplyForm";
 
 const LocationCambridge = () => {
+  const { openModal, closeModal } = useModal();
   return (
     <PublicPagesLayout>
       <HeroSection
@@ -24,6 +27,9 @@ const LocationCambridge = () => {
             endIcon={<ShortArrowRight />}
             classNames="!max-w-[194px]"
             buttonType="sec"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
         }
       />

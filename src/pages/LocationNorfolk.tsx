@@ -7,8 +7,10 @@ import OverviewComp from "@/components/landing/subComps/OverviewComp";
 import SplitSection from "@/components/landing/subComps/SplitSection";
 import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
+import { useModal } from "@/hooks/useModal";
 import { norfolkData } from "@/lib/dummyData/locationData";
 import { Book, Building2, Coffee, Users } from "lucide-react";
+import ApplyForm from "./ApplyForm";
 
 const highlights = [
   {
@@ -45,6 +47,8 @@ const courses = [
   { name: "Mathematics", ages: "13-18", weeks: "2 weeks" },
 ];
 const Canterbury = () => {
+  const { openModal, closeModal } = useModal();
+
   return (
     <PublicPagesLayout>
       <HeroSection
@@ -59,6 +63,9 @@ const Canterbury = () => {
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[194px]"
             buttonType="sec"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
         }
       />
