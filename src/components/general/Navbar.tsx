@@ -1,4 +1,6 @@
+import { useModal } from "@/hooks/useModal";
 import useScrollEffect from "@/hooks/useScrollEffect";
+import ApplyForm from "@/pages/Apply";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,6 +16,8 @@ const Navbar = () => {
   const locationsRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
+  const { openModal, closeModal } = useModal();
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -22,6 +26,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
     setIsLocationsOpen(false);
     setIsInfoOpen(false);
+    openModal(<ApplyForm onClick={() => closeModal()} />);
   };
 
   const toggleLocationsDropdown = () => {
@@ -185,7 +190,9 @@ const Navbar = () => {
           <Button
             label="Register Now"
             classNames="!max-w-[120px] hidden md:inline-block"
-            link="/apply"
+            onClick={() =>
+              openModal(<ApplyForm onClick={() => closeModal()} />)
+            }
           />
 
           {/* Mobile Menu Button */}
@@ -317,7 +324,6 @@ const Navbar = () => {
                 label="Register Now"
                 classNames="max-w-[300px] mx-auto"
                 onClick={closeMobileMenu}
-                link="/apply"
               />
             </div>
           </div>

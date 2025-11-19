@@ -187,3 +187,34 @@ h6 {
   overflow-x: hidden;
 }
 }
+
+
+/* Completely hide scrollbar but keep scrolling */
+.noScrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.noScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom styled scrollbar */
+.customScrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  background: #161616;
+  border-radius: 10px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

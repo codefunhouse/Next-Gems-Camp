@@ -1,6 +1,8 @@
+import { useModal } from "@/hooks/useModal";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { agentsInfoData, parentInfoData } from "@/lib/dummyData/infoData";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import ApplyForm from "@/pages/Apply";
 import { useLocation } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import Button from "../general/Button";
@@ -10,6 +12,7 @@ function CTASection() {
   const location = useLocation();
   const isParentRoute = location.pathname === "/info/parents";
   const isAgentRoute = location.pathname === "/info/agents";
+  const { openModal, closeModal } = useModal();
   return (
     <section
       className={twMerge(
@@ -47,7 +50,7 @@ function CTASection() {
               : landingPageDummyData.ctaSection.buttonText
           }
           classNames="max-w-[200px] w-full mt-3"
-          link="/apply"
+          onClick={() => openModal(<ApplyForm onClick={() => closeModal()} />)}
           buttonType="sec"
         />
       </div>

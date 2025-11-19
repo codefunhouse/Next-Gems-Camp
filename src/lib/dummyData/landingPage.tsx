@@ -6,6 +6,7 @@ import InteractiveIcon from "@/components/svgs/InteractiveIcon";
 import LaptopIcon from "@/components/svgs/LaptopIcon";
 import PaletteIcon from "@/components/svgs/PaletteIcon";
 import RealWorldCommIcon from "@/components/svgs/RealWorldCommIcon";
+import { Instagram, X } from "lucide-react";
 
 export const landingPageDummyData = {
   heroSection: {
@@ -246,12 +247,20 @@ export const landingPageDummyData = {
         },
 
         {
-          text: "Locations",
-          link: "/canterbury",
+          text: "Canterbury",
+          link: "locations/canterbury",
         },
         {
-          text: "Info",
-          link: "/info/parent",
+          text: "Norfolk",
+          link: "locations/norfolk",
+        },
+        {
+          text: "Parent Info",
+          link: "/info/parents",
+        },
+        {
+          text: "Agent Info",
+          link: "/info/agents",
         },
       ],
     },
@@ -262,6 +271,19 @@ export const landingPageDummyData = {
         phone: "+44 20 1234 5678",
         location: "London, UK",
       },
+    },
+    socials: {
+      title: "Socials",
+      socials: [
+        {
+          icon: <Instagram className="text-[#15B1FB] w-6" />,
+          link: "instagram.com/nextgemscamp",
+        },
+        {
+          icon: <X className="text-[#15B1FB] w-6" />,
+          link: "https://www.tiktok.com/@nextgemscamp?_r=1&_t=ZN-91X1uiUJOA2",
+        },
+      ],
     },
     copyrightText: "© 2026 Next Gems Camps. All rights reserved.",
   },

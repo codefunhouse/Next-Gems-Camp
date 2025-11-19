@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ModalProvider } from "./contexts/ModalContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -11,7 +12,6 @@ const Parents = lazy(() => import("./pages/Parents"));
 const Agents = lazy(() => import("./pages/Agents"));
 const LocationNorfolk = lazy(() => import("./pages/LocationNorfolk"));
 const LocationCanterbury = lazy(() => import("./pages/LocationCanterbury"));
-const Apply = lazy(() => import("./pages/Apply"));
 
 const queryClient = new QueryClient();
 
@@ -28,20 +28,22 @@ const App = () => (
             </div>
           }
         >
-          <Routes>
-            <Route path="/" element={<Index />} />
+          <ModalProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
 
-            <Route path="/info/parents" element={<Parents />} />
-            <Route path="/info/agents" element={<Agents />} />
-            <Route
-              path="/locations/canterbury"
-              element={<LocationCanterbury />}
-            />
-            <Route path="/locations/norfolk" element={<LocationNorfolk />} />
-            <Route path="/apply" element={<Apply />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              <Route path="/info/parents" element={<Parents />} />
+              <Route path="/info/agents" element={<Agents />} />
+              <Route
+                path="/locations/canterbury"
+                element={<LocationCanterbury />}
+              />
+              <Route path="/locations/norfolk" element={<LocationNorfolk />} />
+
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ModalProvider>
         </Suspense>
       </BrowserRouter>
     </TooltipProvider>
