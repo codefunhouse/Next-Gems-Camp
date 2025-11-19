@@ -337,4 +337,10 @@ export const agentsInfoData = {
       alt: "Support team providing assistance to partner agents",
     },
   },
+  cta: {
+    title: "Become a Registered Agent",
+    description:
+      "Join our global network of trusted partners. To register as an agent or request partnership details, please contact our international relations",
+    buttonText: "Become a  Partner",
+  },
 };

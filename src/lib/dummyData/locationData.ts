@@ -194,7 +194,7 @@ export const canterburyData = {
   },
   excursionCities: {
     title: "Our Excursion Cities",
-    location: "Cambridge",
+    location: "London",
     cities: [
       {
         title: "Iconic landmarks",
