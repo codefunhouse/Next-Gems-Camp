@@ -1,6 +1,5 @@
 import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
-import ContactCTA from "@/components/info/parents/ContactCTA";
 import TravelAndTransfer from "@/components/info/parents/TravelAndTransfer";
 import WhatsIncludedSection from "@/components/info/parents/WhatsIncluded";
 import HeroSection from "@/components/landing/HeroSection";
@@ -103,10 +102,7 @@ const Parents = () => {
 
       <WhatsIncludedSection />
       {/* FAQ Section */}
-      <QuestionsAndAnswers className="bg-white" />
-
-      {/* Contact CTA */}
-      <ContactCTA className="bg-grey-primary" />
+      <QuestionsAndAnswers className="bg-[#F7F7F7]" />
     </PublicPagesLayout>
   );
 };
