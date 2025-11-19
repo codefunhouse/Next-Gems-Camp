@@ -20,6 +20,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -58,6 +59,8 @@ const formSchema = z.object({
 });
 
 const ApplyForm = ({ onClick }: { onClick?: () => void }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -76,19 +79,57 @@ const ApplyForm = ({ onClick }: { onClick?: () => void }) => {
     mode: "onChange",
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Submitted!");
-    console.log("Application submitted:", values);
-    toast({
-      title: "Application Submitted!",
-      description:
-        "We'll review your application and contact you within 3 business days.",
-    });
+  const contactUsUrl = import.meta.env.VITE_CONTACT_URL || "";
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${contactUsUrl}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`An unknown error occurred!`);
+      }
+
+      const actualData = await response.json();
+
+      if (!actualData?.success) {
+        throw new Error(`Something went wrong`);
+      }
+
+      toast({
+        title: "Application Submitted!",
+        description:
+          "We'll review your application and contact you within 3 business days.",
+      });
+
+      setIsLoading(false);
+      form.reset();
+    } catch (error) {
+      console.error("Error:", error);
+      let errorMessage;
+      if (error instanceof Error) {
+        errorMessage = error?.message;
+      } else {
+        errorMessage = error as string;
+      }
+      toast({
+        title: "Application Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="relative">
-      <Card className="w-full max-w-3xl mx-auto px-0 sm:px-8 py-4 rounded-[2rem] max-h-[90vh]">
+      <Card className="w-full max-w-3xl mx-auto px-0 sm:px-8 py-4 rounded-[2rem] max-h-[95vh] sm:max-h-[90vh]">
         <button
           className="absolute z-10 left-1/2 -translate-x-1/2 -top-5"
           onClick={onClick}

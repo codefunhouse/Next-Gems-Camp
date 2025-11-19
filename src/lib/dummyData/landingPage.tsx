@@ -268,7 +268,7 @@ export const landingPageDummyData = {
       title: "Contact",
       contacts: {
         email: "hello@nextgemscamp.com",
-        phone: "+44 20 1234 5678",
+        phone: "+44 7836 376328, +44 7919 357819",
         location: "London, UK",
       },
     },

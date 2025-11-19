@@ -274,11 +274,11 @@ export const norfolkData = {
     title: "Our Accommodation",
     description: `From the moment they arrive, your child will feel right at home in spacious, well-appointed rooms featuring ensuite facilities. Each room is designed for comfort and privacy, allowing students to unwind after an exciting day of activities. Our dedicated staff is always on hand to provide a supportive and nurturing environment, ensuring every camper feels safe and cared for.
 
-    Parents can relax knowing that every aspect of the camp is managed with precision. Glebe House offers first-rate catering options, with freshly prepared meals that cater to all tastes and dietary needs. Whether it’s a wholesome breakfast, a hearty lunch, or an evening of themed dinners, our food service ensures that campers enjoy a variety of delicious, nutritious options throughout their stay.
+    Parents can relax knowing that every aspect of the camp is managed with precision. our Norfolk offers first-rate catering options, with freshly prepared meals that cater to all tastes and dietary needs. Whether it’s a wholesome breakfast, a hearty lunch, or an evening of themed dinners, our food service ensures that campers enjoy a variety of delicious, nutritious options throughout their stay.
 
-    With its picturesque surroundings and excellent facilities, Glebe House offers the ideal balance of structured learning, outdoor activities, and fun. Campers can explore the countryside, take part in team-building challenges, and enjoy a variety of recreational activities designed to foster both creativity and personal growth.
+    With its picturesque surroundings and excellent facilities, our Norfolk offers the ideal balance of structured learning, outdoor activities, and fun. Campers can explore the countryside, take part in team-building challenges, and enjoy a variety of recreational activities designed to foster both creativity and personal growth.
 
-    Your child will leave Glebe House not only with cherished memories but also with new skills, lasting friendships, and a deeper sense of independence. Spaces are limited, so don’t miss out on this incredible opportunity for your child to experience one of Norfolk’s most distinguished summer camps.`,
+    Your child will leave our Norfolk not only with cherished memories but also with new skills, lasting friendships, and a deeper sense of independence. Spaces are limited, so don’t miss out on this incredible opportunity for your child to experience one of Norfolk’s most distinguished summer camps.`,
     bgImageUrl:
       "https://res.cloudinary.com/dg8uxees3/image/upload/v1763538236/nor_acc_image_zgo7lg.webp",
     bgImageAlt: "A bedroom showing side view of the room",
