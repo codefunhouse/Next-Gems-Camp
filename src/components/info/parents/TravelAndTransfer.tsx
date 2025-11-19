@@ -22,7 +22,7 @@ function TravelAndTransfer() {
       {/* Main body */}
       <div className="flex flex-col gap-12 w-full">
         {/* Upper section */}
-        <div className="flex flex-col sm:flex-row w-full items-center border-b border-b-slate-200 pb-16">
+        <div className="flex flex-col sm:flex-row w-full items-center border-b border-b-slate-200 pb-16 gap-8">
           <div className="flex-1 w-full">
             <WhatToExpectCard
               title={
@@ -47,7 +47,7 @@ function TravelAndTransfer() {
           </div>
         </div>
         {/* Lower section */}
-        <div className="flex flex-col sm:flex-row w-full items-center">
+        <div className="flex flex-col sm:flex-row w-full items-center gap-8">
           <div className="flex-1 w-full flex sm:justify-center">
             <ImageContentCard
               imageUrl={
