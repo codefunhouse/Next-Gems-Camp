@@ -12,6 +12,8 @@ import Logo from "./Logo";
 const Navbar = () => {
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isMobileLocationsOpen, setIsMobileLocationsOpen] = useState(false);
+  const [isMobileInfoOpen, setIsMobileInfoOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const locationsRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
@@ -234,12 +236,16 @@ const Navbar = () => {
               <div className="border-b border-gray-100 pb-2">
                 <button
                   className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
-                  onClick={() => setIsLocationsOpen(!isLocationsOpen)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    setIsMobileLocationsOpen(!isMobileLocationsOpen);
+                  }}
                 >
                   <span>Locations</span>
                   <ShortArrowDown
                     className={`transition-transform duration-200 ${
-                      isLocationsOpen ? "rotate-180" : ""
+                      isMobileLocationsOpen ? "rotate-180" : ""
                     }`}
                     fill="#161616"
                   />
@@ -249,7 +255,7 @@ const Navbar = () => {
                   className={`
                   transition-all duration-300 ease-in-out overflow-hidden
                   ${
-                    isLocationsOpen
+                    isMobileLocationsOpen
                       ? "max-h-32 opacity-100 animate-in fade-in-0 slide-in-from-top-2"
                       : "max-h-0 opacity-0 animate-out fade-out-0 slide-out-to-top-2"
                   }
@@ -278,12 +284,15 @@ const Navbar = () => {
               <div className="border-b border-gray-100 pb-2">
                 <button
                   className="flex items-center justify-between w-full text-gray-800 hover:text-blue-sec transition-colors py-2 focus:outline-none font-medium"
-                  onClick={() => setIsInfoOpen(!isInfoOpen)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsMobileInfoOpen(!isMobileInfoOpen);
+                  }}
                 >
                   <span>Info</span>
                   <ShortArrowDown
                     className={`transition-transform duration-200 ${
-                      isInfoOpen ? "rotate-180" : ""
+                      isMobileInfoOpen ? "rotate-180" : ""
                     }`}
                     fill="#161616"
                   />
@@ -293,7 +302,7 @@ const Navbar = () => {
                   className={`
                   transition-all duration-300 ease-in-out overflow-hidden
                   ${
-                    isInfoOpen
+                    isMobileInfoOpen
                       ? "max-h-32 opacity-100 animate-in fade-in-0 slide-in-from-top-2"
                       : "max-h-0 opacity-0 animate-out fade-out-0 slide-out-to-top-2"
                   }

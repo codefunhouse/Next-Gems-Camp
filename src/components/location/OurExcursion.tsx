@@ -115,14 +115,22 @@ function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
           </div>
         </div>
 
-        {/* Slider container - hidden scrollbar */}
-        <div ref={sliderRef} className="flex gap-6">
+        {/* Simpler approach with percentage widths */}
+        <div
+          ref={sliderRef}
+          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full"
+        >
           {images.map((card, idx) => (
-            <div className="space-y-6" key={idx}>
-              <div className="w-full max-w-[338px] rounded-[2rem]">
+            <div
+              className="space-y-6 flex-shrink-0 snap-always snap-center"
+              key={idx}
+              style={{
+                width: `${100 / cardsPerView}%`,
+                flex: `0 0 ${100 / cardsPerView}%`,
+              }}
+            >
+              <div className="w-full max-w-[345px] rounded-[2rem] mx-auto">
                 <img
-                  width={369}
-                  height={338}
                   src={card.imageUrl}
                   alt={card.title}
                   className="w-full h-full object-cover aspect-[369/338] rounded-[2rem]"
