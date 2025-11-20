@@ -26,7 +26,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
     setIsLocationsOpen(false);
     setIsInfoOpen(false);
-    openModal(<ApplyForm onClick={() => closeModal()} />);
   };
 
   const toggleLocationsDropdown = () => {
@@ -323,7 +322,10 @@ const Navbar = () => {
               <Button
                 label="Register Now"
                 classNames="max-w-[300px] mx-auto"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  closeMobileMenu();
+                  openModal(<ApplyForm onClick={() => closeModal()} />);
+                }}
               />
             </div>
           </div>

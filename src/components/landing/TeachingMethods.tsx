@@ -23,6 +23,7 @@ function TeachingMethods() {
           "flex items-center gap-6 group",
           iconPosition === "left" ? "flex-row" : "flex-row-reverse"
         )}
+        key={idx}
       >
         {typeof icon === "string" ? (
           <div className="h-12 w-12 text-primary mb-4 text-2xl flex items-center justify-center">
@@ -33,10 +34,7 @@ function TeachingMethods() {
             {icon}
           </div>
         )}
-        <Card
-          key={idx}
-          className="flex items-center gap-6 rounded-[2rem] border-[#E2E2E2] transition-all hover:border-[1.5px] hover:border-blue-primary hover:bg-[#15B1FB0F]"
-        >
+        <Card className="flex items-center gap-6 rounded-[2rem] border-[#E2E2E2] transition-all hover:border-[1.5px] hover:border-blue-primary hover:bg-[#15B1FB0F]">
           <CardContent className="py-11 px-8">
             <h3 className="text-xl font-semibold mb-2">{title}</h3>
             <p className="text-muted-foreground">{description}</p>

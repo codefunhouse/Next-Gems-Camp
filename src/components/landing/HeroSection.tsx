@@ -50,22 +50,18 @@ function HeroSection({
     <div
       key={idx}
       className={twMerge(
-        "w-full min-w-[115px] max-w-[300px] px-7 py-[1.2rem] border-r border-r-white/70 text-center text-wrap",
+        "w-full max-w-[180px] shrink-0 px-7 py-[1.2rem] border-r border-r-white/70 text-center text-wrap",
         showLeftBorder && "border-l border-l-white/70",
         className
       )}
     >
-      <p className="flex flex-col gap-0.5 items-center text-white">
+      <div className="flex flex-col gap-0.5 items-center text-white">
         <span>{label}</span>
         <div>
           <span className="text-3xl sm:text-[2rem] font-medium">{value} </span>
-          {suffix && (
-            <span className="text-3xl sm:text-[2rem] !font-normal">
-              {suffix}
-            </span>
-          )}
+          {suffix && <span className="text-3xl sm:text-[2rem]">{suffix}</span>}
         </div>
-      </p>
+      </div>
     </div>
   );
   return (
@@ -108,7 +104,7 @@ function HeroSection({
           {subtitle}
         </motion.p>
         {locationDetails && (
-          <div className="w-full mt-8 max-w-full flex sm:max-w-[750px]">
+          <div className="w-full mt-8 max-w-full flex sm:max-w-[750px] overflow-x-auto">
             {locationDetails.map((detail, idx) =>
               renderLocationDetail({
                 idx,

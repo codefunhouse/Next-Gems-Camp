@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h5 className="">
+              <h5 className="font-medium">
                 {landingPageDummyData.footerData.contact.title}
               </h5>
               <ul className="space-y-2">
@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h5 className="">
+              <h5 className="font-medium">
                 {landingPageDummyData.footerData.socials.title}
               </h5>
               <div className="flex items-center gap-3">

@@ -1,6 +1,7 @@
 // contexts/ModalContext.tsx
 import Modal from "@/components/general/modals/Modal";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 interface ModalContextType {
   openModal: (content: ReactNode) => void;
@@ -17,6 +18,11 @@ interface ModalProviderProps {
 export function ModalProvider({ children }: ModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    closeModal();
+  }, [location.pathname]);
 
   const openModal = (content: ReactNode) => {
     setModalContent(content);
@@ -38,5 +44,4 @@ export function ModalProvider({ children }: ModalProviderProps) {
   );
 }
 
-// Export the context for use in the separate hook file
 export { ModalContext };

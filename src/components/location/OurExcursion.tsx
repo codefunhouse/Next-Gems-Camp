@@ -118,7 +118,7 @@ function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
         {/* Slider container - hidden scrollbar */}
         <div ref={sliderRef} className="flex gap-6">
           {images.map((card, idx) => (
-            <div className="space-y-6">
+            <div className="space-y-6" key={idx}>
               <div className="w-full max-w-[338px] rounded-[2rem]">
                 <img
                   width={369}

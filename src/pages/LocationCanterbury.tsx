@@ -11,7 +11,7 @@ import { useModal } from "@/hooks/useModal";
 import { canterburyData } from "@/lib/dummyData/locationData";
 import ApplyForm from "./ApplyForm";
 
-const LocationCambridge = () => {
+const LocationCaterbury = () => {
   const { openModal, closeModal } = useModal();
   return (
     <PublicPagesLayout>
@@ -70,4 +70,4 @@ const LocationCambridge = () => {
   );
 };
 
-export default LocationCambridge;
+export default LocationCaterbury;
