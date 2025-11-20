@@ -5,16 +5,22 @@ import { twMerge } from "tailwind-merge";
 import LocationIcon from "../svgs/LocationIcon";
 import LongArrowRight from "../svgs/LongArrowRight";
 
+type CityImage = { imageUrl: string; title: string };
+
 type OurExcursionProps = {
-  images: { imageUrl: string; title: string }[];
   mainTitle: string;
-  location: string;
+  location?: string;
+  cities?: {
+    name: string;
+    images: CityImage[];
+  }[];
 };
 
-function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
+function OurExcursion({ mainTitle, cities }: OurExcursionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   // Calculate responsive cards per view
   useEffect(() => {
@@ -31,7 +37,8 @@ function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
     return () => window.removeEventListener("resize", updateCardsPerView);
   }, []);
 
-  const totalProgrammes = images.length;
+  const currentCity = cities?.[activeTab];
+  const totalProgrammes = currentCity.images.length;
   const maxIndex = Math.max(0, totalProgrammes - cardsPerView);
 
   const scrollToSlide = (index: number) => {
@@ -60,20 +67,39 @@ function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
   return (
     <section className={twMerge("py-16 bg-white", commonSectionStyles)}>
       <div className="container mx-auto px-4 space-y-12">
-        {/* Centered Title */}
-        <div className="text-center flex flex-col sm:flex-row w-full gap-6 sm:justify-between items-center">
-          <div className="space-y-2">
-            <p
-              className="flex items-center gap-1.5
-            "
-            >
-              <LocationIcon />
-              <span className="text-base sm:text-lg">{location}</span>
-            </p>
+        <div className="flex flex-col sm:flex-row w-full gap-6 sm:justify-between items-center">
+          <div className="space-y-5 w-full">
+            {/* Centered Title */}
             <h1>{mainTitle}</h1>
+
+            {/* Tabs */}
+            <div className="flex gap-2 items-center w-full max-w-screen sm:max-w-[600px] scroll-smooth noScrollbar overflow-x-auto">
+              {["London", "Hastings", "Dover", "Canterbury", "Cambridge"].map(
+                (tab, idx) => (
+                  <button
+                    key={idx}
+                    className={twMerge(
+                      "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer",
+                      activeTab === idx &&
+                        "border-[#15B1FB] bg-[#15B1FB29] transition-all"
+                    )}
+                    onClick={() => {
+                      setActiveTab(idx);
+                    }}
+                  >
+                    {idx === activeTab && <LocationIcon />}
+                    {tab}
+                  </button>
+                )
+              )}
+            </div>
           </div>
+        </div>
+
+        {/* Main Body */}
+        <div className="w-full space-y-4">
           {/* Navigation buttons and counter */}
-          <div className="flex justify-center items-center gap-6">
+          <div className="flex justify-center items-center gap-6 mx-auto">
             {/* Previous Button */}
             <AnimatePresence>
               {showPrevButton && (
@@ -113,32 +139,32 @@ function OurExcursion({ mainTitle, location, images }: OurExcursionProps) {
               )}
             </AnimatePresence>
           </div>
-        </div>
 
-        {/* Simpler approach with percentage widths */}
-        <div
-          ref={sliderRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full"
-        >
-          {images.map((card, idx) => (
-            <div
-              className="space-y-6 flex-shrink-0 snap-always snap-center"
-              key={idx}
-              style={{
-                width: `${100 / cardsPerView}%`,
-                flex: `0 0 ${100 / cardsPerView}%`,
-              }}
-            >
-              <div className="w-full max-w-[345px] rounded-[2rem] mx-auto">
-                <img
-                  src={card.imageUrl}
-                  alt={card.title}
-                  className="w-full h-full object-cover aspect-[369/338] rounded-[2rem]"
-                />
+          {/* Simpler approach with percentage widths */}
+          <div
+            ref={sliderRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full"
+          >
+            {currentCity.images.map((card, idx) => (
+              <div
+                className="space-y-6 flex-shrink-0 snap-always snap-center"
+                key={idx}
+                style={{
+                  width: `${100 / cardsPerView}%`,
+                  flex: `0 0 ${100 / cardsPerView}%`,
+                }}
+              >
+                <div className="w-full max-w-[345px] rounded-[2rem] mx-auto">
+                  <img
+                    src={card.imageUrl}
+                    alt={card.title}
+                    className="w-full h-full object-cover aspect-[369/338] rounded-[2rem]"
+                  />
+                </div>
+                <h5 className="text-center">{card.title}</h5>
               </div>
-              <h4 className="text-center">{card.title}</h4>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -82,7 +82,7 @@ export const landingPageDummyData = {
         description:
           "Step into the future with hands-on digital skills. From coding and app design to robotics and AI, students explore real-world technology challenges and unleash their creativity through interactive projects guided by expert mentors.",
         imgUrl:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476385/pathway_img_1_qc50ug.webp",
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/pathway_img_1a_sfkif1.webp",
       },
       {
         title: "Business & Enterprise",

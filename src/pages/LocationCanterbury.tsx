@@ -13,6 +13,7 @@ import ApplyForm from "./ApplyForm";
 
 const LocationCaterbury = () => {
   const { openModal, closeModal } = useModal();
+
   return (
     <PublicPagesLayout>
       <HeroSection
@@ -63,8 +64,7 @@ const LocationCaterbury = () => {
       {/* Our Excursion Cities */}
       <OurExcursion
         mainTitle={canterburyData.excursionCities.title}
-        images={canterburyData.excursionCities.cities}
-        location={canterburyData.excursionCities.location}
+        cities={canterburyData.excursionCities.citiesData}
       />
     </PublicPagesLayout>
   );

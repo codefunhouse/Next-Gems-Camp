@@ -197,7 +197,7 @@ export const agentsInfoData = {
     },
     rightData: {
       imageUrl:
-        "https://plus.unsplash.com/premium_photo-1726740031437-16794db1030c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://res.cloudinary.com/dg8uxees3/image/upload/v1763661615/why_partner_img_1_e9xlzq.webp",
       alt: "Business partnership handshake between global agents",
     },
   },

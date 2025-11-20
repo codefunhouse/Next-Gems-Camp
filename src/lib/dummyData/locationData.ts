@@ -163,10 +163,10 @@ export const canterburyData = {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_2_tzl5t1.webp",
       },
-      {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_3_lawysc.webp",
-      },
+      // {
+      //   image:
+      //     "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_3_lawysc.webp",
+      // },
       {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_4_wcqu6n.webp",
@@ -212,6 +212,109 @@ export const canterburyData = {
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_3_ttyefs.webp",
       },
     ],
+
+    citiesData: [
+      {
+        name: "London",
+        images: [
+          {
+            title: "Iconic landmarks",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/lon_exc_img_1_sens8v.webp",
+          },
+          {
+            title: "Cultural experiences",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_2_ou6ar4.webp",
+          },
+          {
+            title: "River Thames excursions",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_3_ttyefs.webp",
+          },
+        ],
+      },
+      {
+        name: "Hastings",
+        images: [
+          {
+            title: "Pier & Beach",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/hastings_exc_img_1_b4nndi.webp",
+          },
+          {
+            title: "Hastings Castle",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/hastings_exc_img_2_dijn0y.webp",
+          },
+          {
+            title: "Old Town & Fishing Quarter",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/hastings_exc_img_3_cxw88c.webp",
+          },
+        ],
+      },
+      {
+        name: "Dover",
+        images: [
+          {
+            title: "White Cliffs of Dover",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/dover_exc_img_1_ztfcwn.webp",
+          },
+          {
+            title: "Dover Castle",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/dover_exc_img_2_yrcz0f.webp",
+          },
+          {
+            title: "Dover Marina",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/dover_exc_img_3_a9kr26.webp",
+          },
+        ],
+      },
+      {
+        name: "Canterbury",
+        images: [
+          {
+            title: "Canterbury Cathedral",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/canter_exc_img_1_cjwntc.webp",
+          },
+          {
+            title: "St. Augustine’s Abbey",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/canter_exc_img_2_vp2rrv.webp",
+          },
+          {
+            title: "Westgate Gardens",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/canter_exc_img_3_c9yig2.webp",
+          },
+        ],
+      },
+      {
+        name: "Cambridge",
+        images: [
+          {
+            title: "Historic colleges & courtyards",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/cam_exc_img_1_zqcoyg.webp",
+          },
+          {
+            title: "Punting on the River Cam",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/cam_exc_img_2_yx3b7n.webp",
+          },
+          {
+            title: "Museums and cultural landmarks",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/cam_exc_img_3_infcs7.webp",
+          },
+        ],
+      },
+    ],
   },
 };
 
@@ -240,7 +343,7 @@ export const norfolkData = {
     ],
     buttonText: "Reserve your place",
     bgImageUrl:
-      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/canter_hero_bg_s4vx8n.webp",
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/nor_hero_img_rx62wl.webp",
   },
   discoverSandringham: {
     title: "Discover Sandringham",
@@ -256,10 +359,10 @@ export const norfolkData = {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_sand_img_2_y0j5cy.webp",
       },
-      {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_3_gp72be.webp",
-      },
+      // {
+      //   image:
+      //     "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_3_gp72be.webp",
+      // },
       {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_4_aawvrl.webp",
@@ -301,6 +404,113 @@ export const norfolkData = {
         title: "Museums and cultural landmarks",
         imageUrl:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/cam_exc_img_3_infcs7.webp",
+      },
+      {
+        title: "Museums and cultural landmarks",
+        imageUrl:
+          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/cam_exc_img_3_infcs7.webp",
+      },
+    ],
+    citiesData: [
+      {
+        name: "London",
+        images: [
+          {
+            title: "Iconic landmarks",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/lon_exc_img_1_sens8v.webp",
+          },
+          {
+            title: "Cultural experiences",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_2_ou6ar4.webp",
+          },
+          {
+            title: "River Thames excursions",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/lon_exc_img_3_ttyefs.webp",
+          },
+        ],
+      },
+      {
+        name: "Hastings",
+        images: [
+          {
+            title: "Pier & Beach",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/hastings_exc_img_1_b4nndi.webp",
+          },
+          {
+            title: "Hastings Castle",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/hastings_exc_img_2_dijn0y.webp",
+          },
+          {
+            title: "Old Town & Fishing Quarter",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/hastings_exc_img_3_cxw88c.webp",
+          },
+        ],
+      },
+      {
+        name: "Dover",
+        images: [
+          {
+            title: "White Cliffs of Dover",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/dover_exc_img_1_ztfcwn.webp",
+          },
+          {
+            title: "Dover Castle",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/dover_exc_img_2_yrcz0f.webp",
+          },
+          {
+            title: "Dover Marina",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/dover_exc_img_3_a9kr26.webp",
+          },
+        ],
+      },
+      {
+        name: "Canterbury",
+        images: [
+          {
+            title: "Canterbury Cathedral",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/canter_exc_img_1_cjwntc.webp",
+          },
+          {
+            title: "St. Augustine’s Abbey",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/canter_exc_img_2_vp2rrv.webp",
+          },
+          {
+            title: "Westgate Gardens",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657631/canter_exc_img_3_c9yig2.webp",
+          },
+        ],
+      },
+      {
+        name: "Cambridge",
+        images: [
+          {
+            title: "Historic colleges & courtyards",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/cam_exc_img_1_zqcoyg.webp",
+          },
+          {
+            title: "Punting on the River Cam",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/cam_exc_img_2_yx3b7n.webp",
+          },
+          {
+            title: "Museums and cultural landmarks",
+            imageUrl:
+              "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/cam_exc_img_3_infcs7.webp",
+          },
+        ],
       },
     ],
   },
