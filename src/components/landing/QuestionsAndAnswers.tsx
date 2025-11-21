@@ -9,7 +9,7 @@ function QuestionsAndAnswers({
   apiFAQs,
 }: {
   className?: string;
-  apiFAQs: FAQs;
+  apiFAQs?: FAQs;
 }) {
   return (
     <section
