@@ -86,7 +86,7 @@ export interface Reviews {
   reviews?: Review[];
 }
 
-export interface CTASection {
+export interface CTASectionProps {
   title?: string;
   subtitle?: string;
   buttonText?: string;
@@ -100,7 +100,7 @@ export interface LandingPage {
   teachingApproaches?: TeachingApproaches;
   faqs?: FAQs;
   reviews?: Reviews;
-  ctaSection?: CTASection;
+  ctaSection?: CTASectionProps;
 }
 
 // Parent Page Interfaces

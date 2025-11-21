@@ -281,6 +281,7 @@ export const landingPageDummyData = {
     },
     socials: {
       title: "Socials",
+      icons: [<InstagramIcon />, <TikTokIcon />, <TwitterIcon />],
       socials: [
         {
           icon: <InstagramIcon />,

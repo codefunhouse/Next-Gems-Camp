@@ -3,12 +3,21 @@ import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { agentsInfoData, parentInfoData } from "@/lib/dummyData/infoData";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import ApplyForm from "@/pages/ApplyForm";
+import { CTASectionProps } from "@/types/sanityTypes";
 import { useLocation } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import Button from "../general/Button";
 import BgImage from "./subComps/BgImage";
 
-function CTASection() {
+function CTASection({
+  landingPageCTA,
+  parentsCTA,
+  agentsCTA,
+}: {
+  landingPageCTA?: CTASectionProps;
+  parentsCTA?: CTASectionProps;
+  agentsCTA?: CTASectionProps;
+}) {
   const location = useLocation();
   const isParentRoute = location.pathname === "/info/parents";
   const isAgentRoute = location.pathname === "/info/agents";
@@ -29,25 +38,27 @@ function CTASection() {
       <div className="relative z-10 mx-auto px-4 text-center flex flex-col items-center w-full max-w-[790px] gap-3">
         <h1 className="">
           {isParentRoute
-            ? parentInfoData.cta.title
+            ? parentsCTA?.title || parentInfoData.cta.title
             : isAgentRoute
-            ? agentsInfoData.cta.title
-            : landingPageDummyData.ctaSection.title}
+            ? agentsCTA?.title || agentsInfoData.cta.title
+            : landingPageCTA?.title || landingPageDummyData.ctaSection.title}
         </h1>
         <p className="text-base sm:text-lg max-w-[598px]">
           {isParentRoute
-            ? parentInfoData.cta.description
+            ? parentsCTA?.subtitle || parentInfoData.cta.description
             : isAgentRoute
-            ? agentsInfoData.cta.description
-            : landingPageDummyData.ctaSection.subtitle}
+            ? agentsCTA?.subtitle || agentsInfoData.cta.description
+            : landingPageCTA?.subtitle ||
+              landingPageDummyData.ctaSection.subtitle}
         </p>
         <Button
           label={
             isParentRoute
-              ? parentInfoData.cta.buttonText
+              ? parentsCTA?.buttonText || parentInfoData.cta.buttonText
               : isAgentRoute
-              ? agentsInfoData.cta.buttonText
-              : landingPageDummyData.ctaSection.buttonText
+              ? parentsCTA?.buttonText || agentsInfoData.cta.buttonText
+              : landingPageCTA?.buttonText ||
+                landingPageDummyData.ctaSection.buttonText
           }
           classNames="max-w-[200px] w-full mt-3"
           onClick={() => openModal(<ApplyForm onClick={() => closeModal()} />)}

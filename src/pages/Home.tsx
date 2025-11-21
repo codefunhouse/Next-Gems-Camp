@@ -16,17 +16,7 @@ import ApplyForm from "./ApplyForm";
 
 const Home = () => {
   const { openModal, closeModal } = useModal();
-  const { data, loading, error } = useLandingPage();
-  console.log("Landing Page Data: ", data);
-  // const {
-  //   heroSection,
-  //   ourProgrammes,
-  //   whyChooseUs,
-  //   teachingApproaches,
-  //   faqs,
-  //   reviews,
-  //   ctaSection,
-  // } = data;
+  const { data } = useLandingPage();
 
   return (
     <PublicPagesLayout>
