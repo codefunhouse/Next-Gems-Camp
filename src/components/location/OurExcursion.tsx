@@ -1,11 +1,13 @@
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import LocationIcon from "../svgs/LocationIcon";
 import LongArrowRight from "../svgs/LongArrowRight";
 
-type CityImage = { imageUrl: string; title: string };
+type CityImage = { imageUrl: string | SanityImageSource; title: string };
 
 type OurExcursionProps = {
   mainTitle: string;
@@ -154,7 +156,11 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
               >
                 <div className="w-full max-w-[345px] rounded-[2rem] mx-auto">
                   <img
-                    src={card.imageUrl}
+                    src={
+                      typeof card.imageUrl === "string"
+                        ? card.imageUrl
+                        : getSanityImageUrl(card.imageUrl)
+                    }
                     alt={card.title}
                     className="w-full h-full object-cover aspect-[369/338] rounded-[2rem]"
                   />

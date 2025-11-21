@@ -20,8 +20,8 @@ export interface ImageWithAlt {
 }
 
 export interface LocationDetail {
-  label?: string;
-  value?: string;
+  label: string;
+  value: string;
   suffix?: string;
 }
 
@@ -204,6 +204,7 @@ export interface AgentPage {
 }
 
 // Location Page Interfaces
+// Canterbury
 export interface LocationHeroSection {
   location?: string;
   title?: string;
@@ -217,7 +218,7 @@ export interface DiscoverSection {
   title?: string;
   description?: string;
   images?: Array<{
-    image?: SanityImageSource;
+    image: SanityImageSource;
   }>;
 }
 
@@ -229,19 +230,19 @@ export interface Accommodation {
 }
 
 export interface CityImage {
-  title?: string;
-  imageUrl?: SanityImageSource;
+  title: string;
+  imageUrl: SanityImageSource;
 }
 
 export interface CityData {
-  name?: string;
-  images?: CityImage[];
+  name: string;
+  images: CityImage[];
 }
 
 export interface ExcursionCities {
-  title?: string;
-  tabs?: string[];
-  citiesData?: CityData[];
+  title: string;
+  tabs: string[];
+  citiesData: CityData[];
 }
 
 export interface CanterburyPage {

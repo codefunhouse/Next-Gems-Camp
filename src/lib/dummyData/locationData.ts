@@ -34,25 +34,20 @@ export const canterburyData = {
     Enjoy a leisurely punt along the River Stour or relax in the city’s quaint squares and gardens. With its Roman walls, historic churches, and museums, Canterbury offers rich cultural experiences for all ages. Just a short train ride from London, the city combines accessibility with an exclusive, boutique atmosphere—perfect for families seeking a luxury cultural immersion in England.`,
     images: [
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_1_fl21h7.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_1_fl21h7.webp",
       },
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_2_tzl5t1.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_2_tzl5t1.webp",
       },
 
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_4_wcqu6n.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_4_wcqu6n.webp",
       },
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_5_f8bxfm.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_5_f8bxfm.webp",
       },
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_canter_img_6_e2wqe4.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_canter_img_6_e2wqe4.webp",
       },
     ],
   },
@@ -210,21 +205,17 @@ export const norfolkData = {
     Students can enjoy coastal walks, nature trails, and wildlife spotting while discovering charming nearby villages and historic landmarks. The area also offers opportunities for cultural excursions, sailing, and leisure activities in a safe and tranquil environment, providing a luxurious and immersive English experience where students can explore England’s heritage and coastline in style.`,
     images: [
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_1_zr4yxh.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_1_zr4yxh.webp",
       },
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_sand_img_2_y0j5cy.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_sand_img_2_y0j5cy.webp",
       },
 
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_4_aawvrl.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_4_aawvrl.webp",
       },
       {
-        image:
-          "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_5_iyml6b.webp",
+        src: "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_5_iyml6b.webp",
       },
     ],
   },

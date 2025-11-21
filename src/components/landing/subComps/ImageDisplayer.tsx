@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface ImageItem {
-  image: string;
+  src: string;
+  alt?: string;
 }
 
 interface ImageDisplayerProps {
@@ -60,7 +61,7 @@ function ImageDisplayer({
       <div className="relative overflow-hidden">
         <div className="max-w-[600px] w-full rounded-[2rem]">
           <img
-            src={currentItem.image}
+            src={currentItem.src}
             alt={`Slide ${currentIndex + 1}`}
             className="w-full h-full object-cover aspect-[600/493] rounded-[2rem]"
             width={600}
