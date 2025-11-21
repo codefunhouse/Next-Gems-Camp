@@ -20,61 +20,6 @@ export const landingPageDummyData = {
       "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/home_hero_bg_1_yrxif7.webp",
   },
 
-  reviews: {
-    title: "What Families Say About Us",
-    description:
-      "Discover what our students have to say about their transformative learning journey",
-    reviews: [
-      {
-        title: "A transformative experience for our daughter",
-        description:
-          "Our daughter came home more confident, independent, and inspired. The English lessons were excellent, but it was the friendships and cultural activities that truly made it special. Next Gems delivered everything they promised — luxury, learning, and care.",
-        reviewer: "Emma T., Parent (Italy)",
-        image: "https://tinyurl.com/4875uffb",
-      },
-      {
-        title: "Safe, structured, and truly international",
-        description:
-          "As a parent, I was impressed by how well-organised and personal the experience was. Small group sizes meant our son was always supported, and he loved meeting students from all over the world. Worth every penny.",
-        reviewer: "David L., Parent (United Arab Emirates)",
-        image:
-          "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a6/05/35/4f/0a/v1_E10/E109PUOG.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=af102d0868170a863e5d0d3f123ee9183780cf958559210f44532a220eed79ed",
-      },
-      {
-        title: "Our top recommendation for premium families",
-        description:
-          "Next Gems has become our go-to summer camp partner in England. The team's attention to detail, communication, and high academic standards make it a standout choice for families seeking quality and safety.",
-        reviewer: "Sophie R., Education Agent (France)",
-        image:
-          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-      },
-      {
-        title: "A benchmark for luxury summer programs",
-        description:
-          "Everything about Next Gems speaks of quality — from accommodation and teaching to the cultural excursions. Our students return with glowing feedback year after year.",
-        reviewer: "Luis M., Study Abroad Consultant (Spain)",
-        image:
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
-      },
-      {
-        title: "The best summer of my life!",
-        description:
-          "I improved my English so much and made friends from Japan, Brazil, and Saudi Arabia! The teachers were amazing, and the trips around England were unforgettable.",
-        reviewer: "Mia K., Student (Germany, Age 15)",
-        image:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
-      },
-      {
-        title: "Fun, learning, and adventure all in one",
-        description:
-          "I chose the Tech specialism and got to build my own app while exploring London on weekends. It was both exciting and challenging — I can't wait to come back next summer!",
-        reviewer: "Omar A., Student (Kuwait, Age 16)",
-        image:
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
-      },
-    ],
-  },
-
   ourProgrammes: {
     title: "Our Pathway Programmes",
     programmes: [
@@ -228,6 +173,61 @@ export const landingPageDummyData = {
         question: "How do I enrol and what are the deadlines?",
         answer:
           "Register online via our website. Spaces are limited, so early booking is recommended. Visa guidance is provided for international students.",
+      },
+    ],
+  },
+
+  reviews: {
+    title: "What Families Say About Us",
+    description:
+      "Discover what our students have to say about their transformative learning journey",
+    reviews: [
+      {
+        title: "A transformative experience for our daughter",
+        description:
+          "Our daughter came home more confident, independent, and inspired. The English lessons were excellent, but it was the friendships and cultural activities that truly made it special. Next Gems delivered everything they promised — luxury, learning, and care.",
+        reviewer: "Emma T., Parent (Italy)",
+        image: "https://tinyurl.com/4875uffb",
+      },
+      {
+        title: "Safe, structured, and truly international",
+        description:
+          "As a parent, I was impressed by how well-organised and personal the experience was. Small group sizes meant our son was always supported, and he loved meeting students from all over the world. Worth every penny.",
+        reviewer: "David L., Parent (United Arab Emirates)",
+        image:
+          "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/a6/05/35/4f/0a/v1_E10/E109PUOG.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=af102d0868170a863e5d0d3f123ee9183780cf958559210f44532a220eed79ed",
+      },
+      {
+        title: "Our top recommendation for premium families",
+        description:
+          "Next Gems has become our go-to summer camp partner in England. The team's attention to detail, communication, and high academic standards make it a standout choice for families seeking quality and safety.",
+        reviewer: "Sophie R., Education Agent (France)",
+        image:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+      },
+      {
+        title: "A benchmark for luxury summer programs",
+        description:
+          "Everything about Next Gems speaks of quality — from accommodation and teaching to the cultural excursions. Our students return with glowing feedback year after year.",
+        reviewer: "Luis M., Study Abroad Consultant (Spain)",
+        image:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+      },
+      {
+        title: "The best summer of my life!",
+        description:
+          "I improved my English so much and made friends from Japan, Brazil, and Saudi Arabia! The teachers were amazing, and the trips around England were unforgettable.",
+        reviewer: "Mia K., Student (Germany, Age 15)",
+        image:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
+      },
+      {
+        title: "Fun, learning, and adventure all in one",
+        description:
+          "I chose the Tech specialism and got to build my own app while exploring London on weekends. It was both exciting and challenging — I can't wait to come back next summer!",
+        reviewer: "Omar A., Student (Kuwait, Age 16)",
+        image:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
       },
     ],
   },

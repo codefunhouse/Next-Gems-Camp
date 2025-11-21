@@ -66,7 +66,6 @@ export const parentInfoData = {
     section2: {
       leftData: {
         title: "Airport Transfer Locations",
-
         lists: [
           {
             item: "Supervised pick-up and drop-off services are available from:",
@@ -147,7 +146,20 @@ export const parentInfoData = {
       alt: "Staff ensuring child safety and supervision",
     },
   },
-
+  whatsIncluded: {
+    title: "What's Included",
+    description:
+      " Parents can be confident their children are supported in a caring,structured, and secure environment.",
+    includedItems: [
+      "30 hours of accredited English tuition",
+      "Specialism program of choice",
+      "Cultural excursions and social activities",
+      "Full-board accommodation and meals",
+      "Airport/station transfers (on arrival & departure days)",
+      "24/7 supervision and medical support",
+      "End-of-camp certificate and report",
+    ],
+  },
   cta: {
     title: "Give Your Child a Summer 2026 to Remember",
     description: "Limited places — secure your child's spot today!",

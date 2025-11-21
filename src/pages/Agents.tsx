@@ -33,6 +33,7 @@ function Agents() {
         infoDetails={agentsInfoData.heroSection.infoDetails}
       />
 
+      {/* Why Partner with us */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
@@ -47,6 +48,8 @@ function Agents() {
           />
         }
       />
+
+      {/* Program overview */}
       <SplitSection
         leftContent={
           <WhatToExpectCard

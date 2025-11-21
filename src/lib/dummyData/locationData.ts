@@ -41,10 +41,7 @@ export const canterburyData = {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_2_tzl5t1.webp",
       },
-      // {
-      //   image:
-      //     "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476379/discover_canter_img_3_lawysc.webp",
-      // },
+
       {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476380/discover_canter_img_4_wcqu6n.webp",
@@ -220,10 +217,7 @@ export const norfolkData = {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476381/discover_sand_img_2_y0j5cy.webp",
       },
-      // {
-      //   image:
-      //     "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476383/discover_sand_img_3_gp72be.webp",
-      // },
+
       {
         image:
           "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476382/discover_sand_img_4_aawvrl.webp",
