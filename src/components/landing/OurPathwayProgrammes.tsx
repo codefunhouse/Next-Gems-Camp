@@ -207,7 +207,6 @@ function OurPathwayProgrammes({
                 typeof card?.imgUrl === "string"
                   ? card?.imgUrl
                   : getSanityImageUrl(card?.imgUrl);
-              console.log("Our programme images: ", idx, image);
 
               return (
                 <ProgramCards
