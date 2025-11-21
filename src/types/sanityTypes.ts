@@ -136,7 +136,7 @@ export interface SafeguardingSection {
 export interface WhatsIncludedProps {
   title?: string;
   description?: string;
-  includedItems?: ListItem[];
+  includedItems: ListItem[];
 }
 
 export interface ParentCTA {

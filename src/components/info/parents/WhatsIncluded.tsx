@@ -7,6 +7,8 @@ function WhatsIncludedSection({
   description,
   includedItems,
 }: WhatsIncludedProps) {
+  console.log("Inluded items: ", includedItems);
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[602px] w-full mx-auto flex flex-col gap-8">
@@ -29,7 +31,7 @@ function WhatsIncludedSection({
               >
                 <StarTickIcon className="mt-1.5" />
 
-                <p className="text-base sm:text-lg">{item}</p>
+                <p className="text-base sm:text-lg">{item?.item || item}</p>
               </div>
             )
           )}

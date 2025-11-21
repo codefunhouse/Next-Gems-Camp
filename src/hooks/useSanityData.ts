@@ -1,4 +1,5 @@
 import {
+  getAgentPage,
   getCanterburyPage,
   getFooter,
   getLandingPage,
@@ -97,7 +98,7 @@ export function useAgentPage() {
     async function fetchData() {
       try {
         setLoading(true);
-        const agentPage = await getParentPage();
+        const agentPage = await getAgentPage();
         setData(agentPage);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");

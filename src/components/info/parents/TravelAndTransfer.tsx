@@ -33,12 +33,12 @@ function TravelAndTransfer({
           <div className="flex-1 w-full">
             <WhatToExpectCard
               title={
-                section1.leftData.title ||
-                parentInfoData.travelVisasAndTransfers.section1.leftData.title
+                section1?.leftData?.title ||
+                parentInfoData.travelVisasAndTransfers.section1?.leftData?.title
               }
               list={
-                section1.leftData.lists ||
-                parentInfoData.travelVisasAndTransfers.section1.leftData.lists
+                section1?.leftData?.lists ||
+                parentInfoData.travelVisasAndTransfers.section1?.leftData?.lists
               }
               headingStyles="!text-[1.875rem] sm:!text-[3rem]"
             />
@@ -46,13 +46,13 @@ function TravelAndTransfer({
           <div className="flex-1 w-full flex sm:justify-center">
             <ImageContentCard
               imageUrl={
-                getSanityImageUrl(section1.rightData?.imageUrl) ||
-                parentInfoData.travelVisasAndTransfers.section1.rightData
+                getSanityImageUrl(section1?.rightData?.imageUrl) ||
+                parentInfoData.travelVisasAndTransfers.section1?.rightData
                   .imageUrl
               }
               alt={
-                section1.rightData?.alt ||
-                parentInfoData.travelVisasAndTransfers.section1.rightData.alt
+                section1?.rightData?.alt ||
+                parentInfoData.travelVisasAndTransfers.section1?.rightData.alt
               }
             />
           </div>
@@ -75,12 +75,12 @@ function TravelAndTransfer({
           <div className="flex-1 w-full flex flex-col items-center">
             <WhatToExpectCard
               title={
-                section2?.leftData.title ||
-                parentInfoData.travelVisasAndTransfers.section2.leftData.title
+                section2?.leftData?.title ||
+                parentInfoData.travelVisasAndTransfers.section2.leftData?.title
               }
               list={
                 section2?.leftData?.lists ||
-                parentInfoData.travelVisasAndTransfers.section2.leftData.lists
+                parentInfoData.travelVisasAndTransfers.section2.leftData?.lists
               }
               headingStyles="!text-[1.875rem] sm:!text-[3rem]"
             />
