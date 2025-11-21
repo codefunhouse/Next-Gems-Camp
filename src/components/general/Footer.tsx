@@ -65,7 +65,7 @@ const Footer = () => {
               <h5 className="font-medium">
                 {landingPageDummyData.footerData.socials.title}
               </h5>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 {landingPageDummyData.footerData.socials.socials.map(
                   (item, idx) => (
                     <Link key={idx} to={item.link}>

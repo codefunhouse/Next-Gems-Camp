@@ -2,11 +2,13 @@ import BagIcon from "@/components/svgs/BagIcon";
 import BallIcon from "@/components/svgs/BallIcon";
 import ExpertEduIcon from "@/components/svgs/ExpertEduIcon";
 import GlobeIcon from "@/components/svgs/GlobeIcon";
+import InstagramIcon from "@/components/svgs/InstagramIcon";
 import InteractiveIcon from "@/components/svgs/InteractiveIcon";
 import LaptopIcon from "@/components/svgs/LaptopIcon";
 import PaletteIcon from "@/components/svgs/PaletteIcon";
 import RealWorldCommIcon from "@/components/svgs/RealWorldCommIcon";
-import { Instagram, X } from "lucide-react";
+import TikTokIcon from "@/components/svgs/TikTokIcon";
+import TwitterIcon from "@/components/svgs/TwitterIcon";
 
 export const landingPageDummyData = {
   heroSection: {
@@ -276,12 +278,16 @@ export const landingPageDummyData = {
       title: "Socials",
       socials: [
         {
-          icon: <Instagram className="text-[#15B1FB] w-6" />,
+          icon: <InstagramIcon />,
           link: "instagram.com/nextgemscamp",
         },
         {
-          icon: <X className="text-[#15B1FB] w-6" />,
+          icon: <TikTokIcon />,
           link: "https://www.tiktok.com/@nextgemscamp?_r=1&_t=ZN-91X1uiUJOA2",
+        },
+        {
+          icon: <TwitterIcon />,
+          link: "",
         },
       ],
     },
