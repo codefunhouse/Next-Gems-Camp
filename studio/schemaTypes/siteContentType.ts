@@ -58,7 +58,7 @@ export const siteContentType = defineType({
             }),
             defineField({
               name: 'textColors',
-              title: 'Text Colors',
+              title: 'Title Colors',
               type: 'array',
               of: [
                 {
@@ -242,6 +242,28 @@ export const siteContentType = defineType({
               name: 'title',
               title: 'Section Title',
               type: 'string',
+            }),
+            defineField({
+              name: 'textColors',
+              title: 'Title Colors',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'text',
+                      title: 'Text',
+                      type: 'string',
+                    }),
+                    defineField({
+                      name: 'color',
+                      title: 'Color',
+                      type: 'string',
+                    }),
+                  ],
+                },
+              ],
             }),
             defineField({
               name: 'description',

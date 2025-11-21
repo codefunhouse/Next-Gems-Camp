@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
+import { Reviews } from "@/types/sanityTypes";
 import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { HighlightedText } from "../general/HighlightedText";
@@ -45,11 +47,7 @@ const testimonials = [
   },
 ];
 
-function ReviewsSection({
-  forHeroSection = false,
-}: {
-  forHeroSection?: boolean;
-}) {
+function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -111,28 +109,30 @@ function ReviewsSection({
     <section
       className={twMerge(
         "relative overflow-hidden",
-        !forHeroSection ? `pt-16 pb-24  ${commonSectionStyles}` : "px-4"
+        `pt-16 pb-24  ${commonSectionStyles}`
       )}
     >
       <div className="container mx-auto px-4 relative z-10 flex flex-col gap-12">
         <div className="flex items-center gap-4 sm:justify-between flex-col sm:flex-row justify-center">
-          {!forHeroSection && (
+          {
             <div className="flex flex-col gap-3 w-full max-w-[400px]">
               <HighlightedText
                 wrapperTag="h1"
-                text={landingPageDummyData.reviews.title}
-                highlights={[
-                  {
-                    text: "Families",
-                    color: "#15B1FB",
-                  },
-                ]}
+                text={title || landingPageDummyData.reviews.title}
+                highlights={
+                  textColor || [
+                    {
+                      text: "Families",
+                      color: "#15B1FB",
+                    },
+                  ]
+                }
               />
               <p className="text-lg">
-                {landingPageDummyData.reviews.description}
+                {description || landingPageDummyData.reviews.description}
               </p>
             </div>
-          )}
+          }
 
           <div className="flex items-center gap-3">
             {/* Navigation Arrows */}
@@ -169,7 +169,7 @@ function ReviewsSection({
                 }%)`,
               }}
             >
-              {landingPageDummyData.reviews.reviews.map(
+              {(reviews || landingPageDummyData.reviews.reviews).map(
                 (testimonial, index) => {
                   const [name, reviewerGroup] = testimonial.reviewer.split(",");
                   const [reviewerType, country] = reviewerGroup.split("(");
@@ -184,7 +184,11 @@ function ReviewsSection({
                           <div className="flex items-center gap-4 mb-4">
                             <div className="relative">
                               <img
-                                src={testimonial.image}
+                                src={
+                                  typeof testimonial.image === "string"
+                                    ? testimonial.image
+                                    : getSanityImageUrl(testimonial.image)
+                                }
                                 alt={testimonial.title}
                                 className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
                               />
@@ -212,7 +216,7 @@ function ReviewsSection({
           </div>
 
           {/* Progress Indicators */}
-          {!forHeroSection && (
+          {
             <div className="flex justify-center items-center gap-2 mt-8">
               {Array.from({ length: maxIndex + 1 }).map((_, index) => (
                 <button
@@ -227,14 +231,14 @@ function ReviewsSection({
                 />
               ))}
             </div>
-          )}
+          }
 
           {/* Slide counter */}
-          {!forHeroSection && (
+          {
             <div className="text-center mt-4 text-sm text-muted-foreground">
               {currentIndex + 1} of {maxIndex + 1}
             </div>
-          )}
+          }
         </div>
       </div>
     </section>

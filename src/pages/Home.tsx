@@ -62,11 +62,11 @@ const Home = () => {
 
       <FeaturesSection {...data?.whyChooseUs} />
 
-      <TeachingMethods />
+      <TeachingMethods {...data?.teachingApproaches} />
 
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers apiFAQs={data?.faqs} />
 
-      <ReviewsSection />
+      <ReviewsSection {...data?.reviews} />
     </PublicPagesLayout>
   );
 };

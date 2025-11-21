@@ -57,19 +57,19 @@ export interface TeachingApproach {
 }
 
 export interface TeachingApproaches {
-  title?: string;
-  description?: string;
-  approaches?: TeachingApproach[];
+  title: string;
+  description: string;
+  approaches: TeachingApproach[];
 }
 
 export interface FAQ {
-  question?: string;
-  answer?: string;
+  question: string;
+  answer: string;
 }
 
 export interface FAQs {
-  title?: string;
-  questions?: FAQ[];
+  title: string;
+  questions: FAQ[];
 }
 
 export interface Review {
@@ -81,6 +81,7 @@ export interface Review {
 
 export interface Reviews {
   title?: string;
+  textColor: HighlightItem[];
   description?: string;
   reviews?: Review[];
 }
