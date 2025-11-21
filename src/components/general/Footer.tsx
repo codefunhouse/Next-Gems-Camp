@@ -81,7 +81,7 @@ const Footer = () => {
                   landingPageDummyData.footerData.socials.socials
                 ).map((item, idx) => (
                   <Link key={idx} to={item.link}>
-                    {item.icon}
+                    {landingPageDummyData.footerData.socials.icons[idx]}
                   </Link>
                 ))}
               </div>
