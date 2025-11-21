@@ -8,11 +8,15 @@ import SplitSection from "@/components/landing/subComps/SplitSection";
 import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { useCanterburyPage } from "@/hooks/useSanityData";
 import { canterburyData } from "@/lib/dummyData/locationData";
 import ApplyForm from "./ApplyForm";
 
 const LocationCaterbury = () => {
   const { openModal, closeModal } = useModal();
+  const { data } = useCanterburyPage();
+
+  console.log("Canterbury: ", data);
 
   return (
     <PublicPagesLayout>

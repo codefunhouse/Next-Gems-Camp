@@ -9,11 +9,15 @@ import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { useParentPage } from "@/hooks/useSanityData";
 import { parentInfoData } from "@/lib/dummyData/infoData";
 import ApplyForm from "./ApplyForm";
 
 const Parents = () => {
   const { openModal, closeModal } = useModal();
+  const { data } = useParentPage();
+
+  console.log("Parent: ", data);
 
   return (
     <PublicPagesLayout>

@@ -11,7 +11,6 @@ function PublicPagesLayout({ children }: { children: React.ReactNode }) {
   const { data } = useLandingPage();
   const { data: parentsData } = useParentPage();
   const { data: agentsData } = useAgentPage();
-  console.log("Landing Page Data: ", data);
   return (
     <>
       <div className="pt-[3.1rem] sm:pt-[3.25rem] max-w-[90rem] mx-auto">

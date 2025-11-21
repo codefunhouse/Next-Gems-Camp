@@ -7,21 +7,33 @@ import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { useAgentPage, useLandingPage } from "@/hooks/useSanityData";
 import { agentsInfoData } from "@/lib/dummyData/infoData";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
 import ApplyForm from "./ApplyForm";
 
 function Agents() {
   const { openModal, closeModal } = useModal();
+  const { data } = useAgentPage();
+  const { data: landingPageData } = useLandingPage();
 
   return (
     <PublicPagesLayout>
       <HeroSection
-        title={agentsInfoData.heroSection.title}
-        subtitle={agentsInfoData.heroSection.subtitle}
-        bgImage={agentsInfoData.heroSection.bgImage}
+        title={data?.heroSection?.title || agentsInfoData.heroSection.title}
+        subtitle={
+          data?.heroSection?.subtitle || agentsInfoData.heroSection.subtitle
+        }
+        bgImage={
+          getSanityImageUrl(data?.heroSection?.bgImage) ||
+          agentsInfoData.heroSection.bgImage
+        }
         buttons={
           <Button
-            label={agentsInfoData.heroSection.buttonText}
+            label={
+              data?.heroSection?.buttonText ||
+              agentsInfoData.heroSection.buttonText
+            }
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[194px]"
             buttonType="sec"
@@ -30,21 +42,36 @@ function Agents() {
             }
           />
         }
-        infoDetails={agentsInfoData.heroSection.infoDetails}
+        infoDetails={
+          data?.heroSection?.infoDetails ||
+          agentsInfoData.heroSection.infoDetails
+        }
       />
 
       {/* Why Partner with us */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={agentsInfoData.whyPartnerWithUs.leftData.title}
-            list={agentsInfoData.whyPartnerWithUs.leftData.lists}
+            title={
+              data?.whyPartnerWithUs?.leftData?.title ||
+              agentsInfoData.whyPartnerWithUs.leftData.title
+            }
+            list={
+              data?.whyPartnerWithUs?.leftData?.lists ||
+              agentsInfoData.whyPartnerWithUs.leftData.lists
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={agentsInfoData.whyPartnerWithUs.rightData.imageUrl}
-            alt={agentsInfoData.whyPartnerWithUs.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(data?.whyPartnerWithUs?.rightData?.imageUrl) ||
+              agentsInfoData.whyPartnerWithUs.rightData.imageUrl
+            }
+            alt={
+              data?.whyPartnerWithUs?.rightData?.alt ||
+              agentsInfoData.whyPartnerWithUs.rightData.alt
+            }
           />
         }
       />
@@ -53,14 +80,26 @@ function Agents() {
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={agentsInfoData.programOverview.leftData.title}
-            list={agentsInfoData.programOverview.leftData.lists}
+            title={
+              data?.programOverview?.leftData?.title ||
+              agentsInfoData.programOverview.leftData.title
+            }
+            list={
+              data?.programOverview?.leftData?.lists ||
+              agentsInfoData.programOverview.leftData.lists
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={agentsInfoData.programOverview.rightData.imageUrl}
-            alt={agentsInfoData.programOverview.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(data?.programOverview?.rightData?.imageUrl) ||
+              agentsInfoData.programOverview.rightData.imageUrl
+            }
+            alt={
+              data?.programOverview?.rightData?.alt ||
+              agentsInfoData.programOverview.rightData.alt
+            }
           />
         }
         position="right-left"
@@ -70,14 +109,26 @@ function Agents() {
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={agentsInfoData.travelAndTransfers.leftData.title}
-            list={agentsInfoData.travelAndTransfers.leftData.lists}
+            title={
+              data?.travelAndTransfers?.leftData?.title ||
+              agentsInfoData.travelAndTransfers.leftData.title
+            }
+            list={
+              data?.travelAndTransfers?.leftData?.lists ||
+              agentsInfoData.travelAndTransfers.leftData.lists
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={agentsInfoData.travelAndTransfers.rightData.imageUrl}
-            alt={agentsInfoData.travelAndTransfers.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(
+                data?.travelAndTransfers?.rightData?.imageUrl
+              ) || agentsInfoData.travelAndTransfers.rightData.imageUrl
+            }
+            alt={getSanityImageUrl(
+              agentsInfoData.travelAndTransfers.rightData.alt
+            )}
           />
         }
       />
@@ -86,16 +137,27 @@ function Agents() {
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={agentsInfoData.safeguardingAndCompliance.leftData.title}
-            list={agentsInfoData.safeguardingAndCompliance.leftData.list}
+            title={
+              data?.safeguardingAndCompliance?.leftData?.title ||
+              agentsInfoData.safeguardingAndCompliance.leftData.title
+            }
+            list={
+              data?.safeguardingAndCompliance?.leftData?.list ||
+              agentsInfoData.safeguardingAndCompliance.leftData.list
+            }
           />
         }
         rightContent={
           <ImageContentCard
             imageUrl={
-              agentsInfoData.safeguardingAndCompliance.rightData.imageUrl
+              getSanityImageUrl(
+                data?.safeguardingAndCompliance?.rightData?.imageUrl
+              ) || agentsInfoData.safeguardingAndCompliance.rightData.imageUrl
             }
-            alt={agentsInfoData.safeguardingAndCompliance.rightData.alt}
+            alt={
+              data?.safeguardingAndCompliance?.rightData?.alt ||
+              agentsInfoData.safeguardingAndCompliance.rightData.alt
+            }
           />
         }
         position="right-left"
@@ -105,19 +167,34 @@ function Agents() {
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={agentsInfoData.agentSupport.leftData.title}
-            list={agentsInfoData.agentSupport.leftData.list}
+            title={
+              data?.agentSupport?.leftData?.title ||
+              agentsInfoData.agentSupport.leftData.title
+            }
+            list={
+              data?.agentSupport?.leftData?.list ||
+              agentsInfoData.agentSupport.leftData.list
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={agentsInfoData.agentSupport.rightData.imageUrl}
-            alt={agentsInfoData.agentSupport.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(data?.agentSupport?.rightData?.imageUrl) ||
+              agentsInfoData.agentSupport.rightData.imageUrl
+            }
+            alt={
+              data?.agentSupport?.rightData?.alt ||
+              agentsInfoData.agentSupport.rightData.alt
+            }
           />
         }
       />
       {/* FAQ Section */}
-      <QuestionsAndAnswers className="bg-grey-muted" />
+      <QuestionsAndAnswers
+        className="bg-grey-muted"
+        apiFAQs={landingPageData?.faqs}
+      />
     </PublicPagesLayout>
   );
 }

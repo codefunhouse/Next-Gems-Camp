@@ -10,7 +10,7 @@ export interface HeroSection {
 }
 
 export interface ListItem {
-  item?: string;
+  item: string;
   nestedList?: ListItem[];
 }
 

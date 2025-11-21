@@ -8,11 +8,15 @@ import SplitSection from "@/components/landing/subComps/SplitSection";
 import OurExcursion from "@/components/location/OurExcursion";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { useNorfolkPage } from "@/hooks/useSanityData";
 import { norfolkData } from "@/lib/dummyData/locationData";
 import ApplyForm from "./ApplyForm";
 
 const Canterbury = () => {
   const { openModal, closeModal } = useModal();
+  const { data } = useNorfolkPage();
+
+  console.log("Norfolk data: ", data);
 
   return (
     <PublicPagesLayout>
