@@ -18,10 +18,17 @@ export const landingPageDummyData = {
       "Give your child the gift of world-class English tuition, exclusive excursions, and lifelong international friendships, all in the heart of England.",
     image:
       "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/home_hero_bg_1_yrxif7.webp",
+    buttonText: "Register Now",
   },
 
   ourProgrammes: {
     title: "Our Pathway Programmes",
+    programmesIcons: [
+      <LaptopIcon />,
+      <BagIcon />,
+      <BallIcon />,
+      <PaletteIcon />,
+    ],
     programmes: [
       {
         title: "Tech & Innovation",
@@ -100,6 +107,12 @@ export const landingPageDummyData = {
     title: "Our Teaching Approaches",
     description:
       "At Next Gems Summer Camp, we believe learning flourishes when it is engaging, personalised, and inspired by real-world experiences. Our expert teachers guide every student to grow in confidence, skill, and curiosity, making every lesson meaningful and memorable.",
+    approachesIcons: [
+      <InteractiveIcon />,
+      <RealWorldCommIcon />,
+      <GlobeIcon />,
+      <ExpertEduIcon />,
+    ],
     approaches: [
       {
         icon: <InteractiveIcon className="group-hover:stroke-blue-primary" />,
@@ -242,11 +255,11 @@ export const landingPageDummyData = {
 
         {
           text: "Canterbury",
-          link: "locations/canterbury",
+          link: "/locations/canterbury",
         },
         {
           text: "Norfolk",
-          link: "locations/norfolk",
+          link: "/locations/norfolk",
         },
         {
           text: "Parent Info",

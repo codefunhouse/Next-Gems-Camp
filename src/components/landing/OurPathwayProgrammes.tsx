@@ -1,5 +1,7 @@
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
+import { OurProgrammes } from "@/types/sanityTypes";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -74,7 +76,11 @@ function ProgramCards({
   );
 }
 
-function OurPathwayProgrammes() {
+function OurPathwayProgrammes({
+  title,
+  textColors,
+  programmes,
+}: OurProgrammes) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -94,7 +100,9 @@ function OurPathwayProgrammes() {
     return () => window.removeEventListener("resize", updateCardsPerView);
   }, []);
 
-  const totalProgrammes = landingPageDummyData.ourProgrammes.programmes.length;
+  const totalProgrammes = (
+    programmes || landingPageDummyData.ourProgrammes.programmes
+  ).length;
   const maxIndex = Math.max(0, totalProgrammes - cardsPerView);
 
   const scrollToSlide = (index: number) => {
@@ -132,13 +140,15 @@ function OurPathwayProgrammes() {
         <div className="text-center flex flex-col sm:flex-row w-full gap-6 sm:justify-between items-center">
           <HighlightedText
             wrapperTag="h1"
-            text={landingPageDummyData.ourProgrammes.title}
-            highlights={[
-              {
-                text: "Programmes",
-                color: "#15B1FB",
-              },
-            ]}
+            text={title || landingPageDummyData.ourProgrammes.title}
+            highlights={
+              textColors || [
+                {
+                  text: "Programmes",
+                  color: "#15B1FB",
+                },
+              ]
+            }
             className="!max-w-full sm:!max-w-[359px]"
           />
 
@@ -190,15 +200,30 @@ function OurPathwayProgrammes() {
           ref={sliderRef}
           className="flex gap-6 overflow-x-hidden scroll-smooth"
         >
-          {landingPageDummyData.ourProgrammes.programmes.map((card, idx) => (
-            <ProgramCards
-              icon={card.icon}
-              key={idx}
-              title={card.title}
-              description={card.description}
-              imageUrl={card.imgUrl}
-            />
-          ))}
+          {(programmes || landingPageDummyData.ourProgrammes.programmes).map(
+            (card, idx) => {
+              const first = card?.imgUrl;
+              const image =
+                typeof card?.imgUrl === "string"
+                  ? card?.imgUrl
+                  : getSanityImageUrl(card?.imgUrl);
+              console.log("Our programme images: ", idx, image);
+
+              return (
+                <ProgramCards
+                  icon={
+                    landingPageDummyData.ourProgrammes.programmesIcons[
+                      idx > 4 ? 0 : idx
+                    ]
+                  }
+                  key={idx}
+                  title={card.title}
+                  description={card.description}
+                  imageUrl={image}
+                />
+              );
+            }
+          )}
         </div>
       </div>
     </section>

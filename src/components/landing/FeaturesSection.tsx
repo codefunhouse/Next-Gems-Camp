@@ -1,38 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import { Award, BookOpen, Globe, Users } from "lucide-react";
+import { WhyChooseUs } from "@/types/sanityTypes";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import StarTickIcon from "../svgs/StarTickIcon";
 
-const features = [
-  {
-    icon: BookOpen,
-    title: "40+ Subjects",
-    description:
-      "Choose from a wide range of academic subjects tailored to your interests",
-  },
-  {
-    icon: Users,
-    title: "Expert Tutors",
-    description:
-      "Learn from experienced academics from top universities worldwide",
-  },
-  {
-    icon: Award,
-    title: "Prestigious Locations",
-    description:
-      "Study at world-renowned university colleges and boarding schools",
-  },
-  {
-    icon: Globe,
-    title: "Global Community",
-    description: "Connect with like-minded students from over 100 countries",
-  },
-];
-
-function FeaturesSection() {
+function FeaturesSection({ title, features }: WhyChooseUs) {
   const renderCard = ({
     title,
     description,
@@ -65,16 +39,16 @@ function FeaturesSection() {
     <section className={twMerge(" bg-grey-muted py-16", commonSectionStyles)}>
       <div className="container mx-auto px-4 space-y-11">
         <h1 className="text-center">
-          {landingPageDummyData.whyChooseUs.title}
+          {title || landingPageDummyData.whyChooseUs.title}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {landingPageDummyData.whyChooseUs.features.map((feature, index) =>
-            renderCard({
-              icon: feature.icon,
-              title: feature.title,
-              description: feature.desc,
-              idx: index,
-            })
+          {(features || landingPageDummyData.whyChooseUs.features).map(
+            (feature, index) =>
+              renderCard({
+                title: feature.title,
+                description: feature.desc,
+                idx: index,
+              })
           )}
         </div>
       </div>

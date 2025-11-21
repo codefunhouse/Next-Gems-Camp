@@ -15,7 +15,7 @@ type ValidWrapperTags =
   | "strong"
   | "em";
 
-interface HighlightItem {
+export interface HighlightItem {
   text: string;
   color?: string;
   className?: string;

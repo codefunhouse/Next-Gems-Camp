@@ -9,20 +9,45 @@ import ReviewsSection from "@/components/landing/ReviewsSection";
 import TeachingMethods from "@/components/landing/TeachingMethods";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { useLandingPage } from "@/hooks/useSanityData";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
 import ApplyForm from "./ApplyForm";
 
 const Home = () => {
   const { openModal, closeModal } = useModal();
+  const { data, loading, error } = useLandingPage();
+  console.log("Landing Page Data: ", data);
+  // const {
+  //   heroSection,
+  //   ourProgrammes,
+  //   whyChooseUs,
+  //   teachingApproaches,
+  //   faqs,
+  //   reviews,
+  //   ctaSection,
+  // } = data;
+
   return (
     <PublicPagesLayout>
       <HeroSection
-        title={landingPageDummyData.heroSection.title}
-        subtitle={landingPageDummyData.heroSection.subtitle}
-        bgImage={landingPageDummyData.heroSection.image}
+        title={
+          data?.heroSection?.title || landingPageDummyData.heroSection.title
+        }
+        subtitle={
+          data?.heroSection?.subtitle ||
+          landingPageDummyData.heroSection.subtitle
+        }
+        bgImage={
+          getSanityImageUrl(data?.heroSection?.image) ||
+          landingPageDummyData.heroSection.image
+        }
         buttons={
           <Button
-            label="Register Now"
+            label={
+              data?.heroSection.buttonText ||
+              landingPageDummyData.heroSection.buttonText
+            }
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[158px]"
             buttonType="sec"
@@ -33,9 +58,9 @@ const Home = () => {
         }
       />
 
-      <OurPathwayProgrammes />
+      <OurPathwayProgrammes {...data?.ourProgrammes} />
 
-      <FeaturesSection />
+      <FeaturesSection {...data?.whyChooseUs} />
 
       <TeachingMethods />
 

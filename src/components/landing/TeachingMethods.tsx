@@ -1,9 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { TeachingApproaches } from "@/types/sanityTypes";
 import { twMerge } from "tailwind-merge";
 
-function TeachingMethods() {
+function TeachingMethods({
+  title,
+  description,
+  approaches,
+}: TeachingApproaches) {
   const renderCard = ({
     icon,
     title,
@@ -52,21 +57,29 @@ function TeachingMethods() {
     >
       <div className="container mx-auto px-4 flex flex-col items-center gap-12">
         <div className="text-center flex flex-col gap-1.5 max-w-3xl">
-          <h1 className="">{landingPageDummyData.teachingApproaches.title}</h1>
+          <h1 className="">
+            {title || landingPageDummyData.teachingApproaches.title}
+          </h1>
           <p className="text-base sm:text-lg">
-            {landingPageDummyData.teachingApproaches.description}
+            {description || landingPageDummyData.teachingApproaches.description}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {landingPageDummyData.teachingApproaches.approaches.map(
-            (approach, idx) =>
-              renderCard({
-                icon: approach.icon,
-                title: approach.title,
-                description: approach.description,
-                idx,
-                iconPosition: idx % 2 !== 0 ? "right" : "left",
-              })
+          {(
+            approaches || landingPageDummyData.teachingApproaches.approaches
+          ).map((approach, idx) =>
+            renderCard({
+              icon:
+                idx > 4
+                  ? landingPageDummyData.teachingApproaches.approachesIcons[0]
+                  : landingPageDummyData.teachingApproaches.approachesIcons[
+                      idx
+                    ],
+              title: approach.title,
+              description: approach.description,
+              idx,
+              iconPosition: idx % 2 !== 0 ? "right" : "left",
+            })
           )}
         </div>
       </div>

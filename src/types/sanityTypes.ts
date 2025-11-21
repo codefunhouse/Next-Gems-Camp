@@ -1,3 +1,4 @@
+import { HighlightItem } from "@/components/general/HighlightedText";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 // Base interfaces
@@ -5,6 +6,7 @@ export interface HeroSection {
   title?: string;
   subtitle?: string;
   image?: SanityImageSource;
+  buttonText?: string;
 }
 
 export interface ListItem {
@@ -33,6 +35,7 @@ export interface Programme {
 
 export interface OurProgrammes {
   title?: string;
+  textColors?: HighlightItem[];
   programmes?: Programme[];
 }
 

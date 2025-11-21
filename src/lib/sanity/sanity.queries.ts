@@ -3,145 +3,47 @@ import { client } from "./sanity";
 
 // Fetch all site content
 export async function getSiteContent(): Promise<SiteContent> {
-  const query = `*[_type == "siteContent"][0] {
-    landingPage {
-      heroSection {
-        title,
-        subtitle,
-        image
-      },
-      ourProgrammes {
-        title,
-        programmes[] {
-          title,
-          icon,
-          description,
-          imgUrl
-        }
-      },
-      whyChooseUs {
-        title,
-        features[] {
-          icon,
-          title,
-          desc
-        }
-      },
-      teachingApproaches {
-        title,
-        description,
-        approaches[] {
-          icon,
-          title,
-          description
-        }
-      },
-      faqs {
-        title,
-        questions[] {
-          question,
-          answer
-        }
-      },
-      reviews {
-        title,
-        description,
-        reviews[] {
-          title,
-          description,
-          reviewer,
-          image
-        }
-      },
-      ctaSection {
-        title,
-        subtitle,
-        buttonText,
-        buttonLink
-      }
-    },
-    parentPage {
-      heroSection {
-        title,
-        subtitle,
-        buttonText,
-        infoDetails,
-        bgImage
-      },
-      learningAndEnrichment {
-        leftData {
-          title,
-          lists[] {
-            item
-          }
-        },
-        rightData {
-          imageUrl,
-          alt
-        }
-      }
-      // Add other parent page sections...
-    },
-    agentPage {
-      // Add agent page fields...
-    },
-    canterburyPage {
-      // Add canterbury page fields...
-    },
-    norfolkPage {
-      // Add norfolk page fields...
-    },
-    footer {
-      about,
-      quickLinks {
-        title,
-        links[] {
-          text,
-          link
-        }
-      },
-      contact {
-        title,
-        contacts {
-          email,
-          phone,
-          location
-        }
-      },
-      socials {
-        title,
-        socials[] {
-          icon,
-          link
-        }
-      },
-      copyrightText
-    }
-  }`;
+  const query = `*[_type == "siteContent"]`;
 
   const data = await client.fetch(query);
   return data;
 }
 
-// Fetch specific page content
 export async function getLandingPage() {
-  const query = `*[_type == "siteContent"][0] {
-    landingPage {
-      // Include all landing page fields
-    }
-  }`;
+  const query = `*[_type == "siteContent"]`;
 
   const data = await client.fetch(query);
-  return data.landingPage;
+  return data[0]?.landingPage;
 }
 
 export async function getParentPage() {
-  const query = `*[_type == "siteContent"][0] {
-    parentPage {
-      // Include all parent page fields
-    }
-  }`;
+  const query = `*[_type == "siteContent"]`;
 
   const data = await client.fetch(query);
-  return data.parentPage;
+  return data[0]?.parentPage;
+}
+
+export async function getAgentPage() {
+  const query = `*[_type == "siteContent"]`;
+
+  const data = await client.fetch(query);
+  return data[0]?.agentPage;
+}
+export async function getCanterburyPage() {
+  const query = `*[_type == "siteContent"]`;
+
+  const data = await client.fetch(query);
+  return data[0]?.canterburyPage;
+}
+export async function getNorfolkPage() {
+  const query = `*[_type == "siteContent"]`;
+
+  const data = await client.fetch(query);
+  return data[0]?.norfolkPage;
+}
+export async function getFooter() {
+  const query = `*[_type == "siteContent"]`;
+
+  const data = await client.fetch(query);
+  return data[0]?.footer;
 }

@@ -36,6 +36,7 @@ const Parents = () => {
         infoDetails={parentInfoData.heroSection.infoDetails}
       />
 
+      {/* Learning and Enrichment */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
