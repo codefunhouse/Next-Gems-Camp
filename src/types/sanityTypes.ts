@@ -133,7 +133,7 @@ export interface SafeguardingSection {
   rightData?: ImageWithAlt;
 }
 
-export interface WhatsIncluded {
+export interface WhatsIncludedProps {
   title?: string;
   description?: string;
   includedItems?: ListItem[];
@@ -151,7 +151,7 @@ export interface ParentPage {
   travelVisasAndTransfers?: TravelVisasSection;
   accommodationAndWelfare?: LeftRightData;
   safeguardingAndChildProtection?: SafeguardingSection;
-  whatsIncluded?: WhatsIncluded;
+  whatsIncluded?: WhatsIncludedProps;
   cta?: ParentCTA;
 }
 

@@ -2,9 +2,16 @@ import ImageContentCard from "@/components/landing/subComps/ImageCard";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { parentInfoData } from "@/lib/dummyData/infoData";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
+import { TravelVisasSection } from "@/types/sanityTypes";
 import { twMerge } from "tailwind-merge";
 
-function TravelAndTransfer() {
+function TravelAndTransfer({
+  mainDesc,
+  mainTitle,
+  section1,
+  section2,
+}: TravelVisasSection) {
   return (
     <section
       className={twMerge(
@@ -13,9 +20,9 @@ function TravelAndTransfer() {
       )}
     >
       <div className="flex flex-col items-center gap-3 w-full max-w-[880px] mx-auto text-center">
-        <h1>{parentInfoData.travelVisasAndTransfers.mainTitle}</h1>
+        <h1>{mainTitle || parentInfoData.travelVisasAndTransfers.mainTitle}</h1>
         <p className="text-base sm:text-lg">
-          {parentInfoData.travelVisasAndTransfers.mainDesc}
+          {mainDesc || parentInfoData.travelVisasAndTransfers.mainDesc}
         </p>
       </div>
 
@@ -26,9 +33,11 @@ function TravelAndTransfer() {
           <div className="flex-1 w-full">
             <WhatToExpectCard
               title={
+                section1.leftData.title ||
                 parentInfoData.travelVisasAndTransfers.section1.leftData.title
               }
               list={
+                section1.leftData.lists ||
                 parentInfoData.travelVisasAndTransfers.section1.leftData.lists
               }
               headingStyles="!text-[1.875rem] sm:!text-[3rem]"
@@ -37,10 +46,12 @@ function TravelAndTransfer() {
           <div className="flex-1 w-full flex sm:justify-center">
             <ImageContentCard
               imageUrl={
+                getSanityImageUrl(section1.rightData?.imageUrl) ||
                 parentInfoData.travelVisasAndTransfers.section1.rightData
                   .imageUrl
               }
               alt={
+                section1.rightData?.alt ||
                 parentInfoData.travelVisasAndTransfers.section1.rightData.alt
               }
             />
@@ -51,10 +62,12 @@ function TravelAndTransfer() {
           <div className="flex-1 w-full flex sm:justify-center">
             <ImageContentCard
               imageUrl={
+                getSanityImageUrl(section2?.rightData?.imageUrl) ||
                 parentInfoData.travelVisasAndTransfers.section2.rightData
                   .imageUrl
               }
               alt={
+                section2?.rightData?.alt ||
                 parentInfoData.travelVisasAndTransfers.section2.rightData.alt
               }
             />
@@ -62,9 +75,11 @@ function TravelAndTransfer() {
           <div className="flex-1 w-full flex flex-col items-center">
             <WhatToExpectCard
               title={
+                section2?.leftData.title ||
                 parentInfoData.travelVisasAndTransfers.section2.leftData.title
               }
               list={
+                section2?.leftData?.lists ||
                 parentInfoData.travelVisasAndTransfers.section2.leftData.lists
               }
               headingStyles="!text-[1.875rem] sm:!text-[3rem]"

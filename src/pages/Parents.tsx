@@ -9,26 +9,34 @@ import SplitSection from "@/components/landing/subComps/SplitSection";
 import WhatToExpectCard from "@/components/landing/subComps/WhatToExpectCard";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useParentPage } from "@/hooks/useSanityData";
+import { useLandingPage, useParentPage } from "@/hooks/useSanityData";
 import { parentInfoData } from "@/lib/dummyData/infoData";
+import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
 import ApplyForm from "./ApplyForm";
 
 const Parents = () => {
   const { openModal, closeModal } = useModal();
   const { data } = useParentPage();
-
-  console.log("Parent: ", data);
+  const { data: landingPageData } = useLandingPage();
 
   return (
     <PublicPagesLayout>
       {/* Hero Section */}
       <HeroSection
-        title={parentInfoData.heroSection.title}
-        subtitle={parentInfoData.heroSection.subtitle}
-        bgImage={parentInfoData.heroSection.bgImage}
+        title={data?.heroSection?.title || parentInfoData.heroSection.title}
+        subtitle={
+          data?.heroSection?.subtitle || parentInfoData.heroSection.subtitle
+        }
+        bgImage={
+          getSanityImageUrl(data?.heroSection?.bgImage) ||
+          parentInfoData.heroSection.bgImage
+        }
         buttons={
           <Button
-            label={parentInfoData.heroSection.buttonText}
+            label={
+              data?.heroSection?.buttonText ||
+              parentInfoData.heroSection.buttonText
+            }
             endIcon={<ShortArrowRight />}
             classNames="!w-full !max-w-[194px]"
             buttonType="sec"
@@ -37,39 +45,68 @@ const Parents = () => {
             }
           />
         }
-        infoDetails={parentInfoData.heroSection.infoDetails}
+        infoDetails={
+          data?.heroSection?.infoDetails ||
+          parentInfoData.heroSection.infoDetails
+        }
       />
 
       {/* Learning and Enrichment */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={parentInfoData.learningAndEnrichment.leftData.title}
-            list={parentInfoData.learningAndEnrichment.leftData.lists}
+            title={
+              data?.learningAndEnrichment?.leftData?.title ||
+              parentInfoData.learningAndEnrichment.leftData.title
+            }
+            list={
+              data?.learningAndEnrichment?.leftData?.lists ||
+              parentInfoData.learningAndEnrichment.leftData.lists
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={parentInfoData.learningAndEnrichment.rightData.imageUrl}
-            alt={parentInfoData.learningAndEnrichment.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(
+                data?.learningAndEnrichment?.rightData?.imageUrl
+              ) || parentInfoData.learningAndEnrichment.rightData.imageUrl
+            }
+            alt={
+              data?.learningAndEnrichment?.rightData?.alt ||
+              parentInfoData.learningAndEnrichment.rightData.alt
+            }
           />
         }
       />
 
-      <TravelAndTransfer />
+      <TravelAndTransfer {...data?.travelVisasAndTransfers} />
 
       {/* Accomodation and welfare */}
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={parentInfoData.accommodationAndWelfare.leftData.title}
-            list={parentInfoData.accommodationAndWelfare.leftData.lists}
+            title={
+              data?.accommodationAndWelfare?.leftData?.title ||
+              parentInfoData.accommodationAndWelfare.leftData.title
+            }
+            list={
+              data?.accommodationAndWelfare?.leftData?.lists ||
+              parentInfoData.accommodationAndWelfare.leftData.lists
+            }
           />
         }
         rightContent={
           <ImageContentCard
-            imageUrl={parentInfoData.accommodationAndWelfare.rightData.imageUrl}
-            alt={parentInfoData.accommodationAndWelfare.rightData.alt}
+            imageUrl={
+              getSanityImageUrl(
+                data?.accommodationAndWelfare?.rightData?.imageUrl
+              ) || parentInfoData.accommodationAndWelfare.rightData.imageUrl
+            }
+            alt={
+              data?.accommodationAndWelfare?.rightData?.alt ||
+              parentInfoData.accommodationAndWelfare.rightData.alt
+            }
           />
         }
       />
@@ -79,25 +116,40 @@ const Parents = () => {
       <SplitSection
         leftContent={
           <WhatToExpectCard
-            title={parentInfoData.safeguardingAndChildProtection.leftData.title}
-            list={parentInfoData.safeguardingAndChildProtection.leftData.list}
+            title={
+              data?.safeguardingAndChildProtection?.leftData?.title ||
+              parentInfoData.safeguardingAndChildProtection.leftData.title
+            }
+            list={
+              data?.safeguardingAndChildProtection?.leftData?.list ||
+              parentInfoData.safeguardingAndChildProtection.leftData.list
+            }
           />
         }
         rightContent={
           <ImageContentCard
             imageUrl={
+              getSanityImageUrl(
+                data?.safeguardingAndChildProtection?.rightData?.imageUrl
+              ) ||
               parentInfoData.safeguardingAndChildProtection.rightData.imageUrl
             }
-            alt={parentInfoData.safeguardingAndChildProtection.rightData.alt}
+            alt={
+              data?.safeguardingAndChildProtection?.rightData?.alt ||
+              parentInfoData.safeguardingAndChildProtection.rightData.alt
+            }
           />
         }
         background="gray"
         position="right-left"
       />
 
-      <WhatsIncludedSection />
+      <WhatsIncludedSection {...data?.whatsIncluded} />
       {/* FAQ Section */}
-      <QuestionsAndAnswers className="bg-[#F7F7F7]" />
+      <QuestionsAndAnswers
+        className="bg-[#F7F7F7]"
+        apiFAQs={landingPageData?.faqs}
+      />
     </PublicPagesLayout>
   );
 };
