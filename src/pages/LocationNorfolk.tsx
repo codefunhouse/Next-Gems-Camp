@@ -63,6 +63,7 @@ const Canterbury = () => {
 
       <OurExcursion
         mainTitle={norfolkData.excursionCities.title}
+        tabs={norfolkData.excursionCities.tabs}
         cities={norfolkData.excursionCities.citiesData}
       />
     </PublicPagesLayout>

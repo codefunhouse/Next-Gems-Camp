@@ -9,14 +9,14 @@ type CityImage = { imageUrl: string; title: string };
 
 type OurExcursionProps = {
   mainTitle: string;
-  location?: string;
+  tabs: string[];
   cities?: {
     name: string;
     images: CityImage[];
   }[];
 };
 
-function OurExcursion({ mainTitle, cities }: OurExcursionProps) {
+function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -74,24 +74,22 @@ function OurExcursion({ mainTitle, cities }: OurExcursionProps) {
 
             {/* Tabs */}
             <div className="flex gap-2 items-center w-full max-w-screen sm:max-w-[600px] scroll-smooth noScrollbar overflow-x-auto">
-              {["London", "Hastings", "Dover", "Canterbury", "Cambridge"].map(
-                (tab, idx) => (
-                  <button
-                    key={idx}
-                    className={twMerge(
-                      "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer",
-                      activeTab === idx &&
-                        "border-[#15B1FB] bg-[#15B1FB29] transition-all"
-                    )}
-                    onClick={() => {
-                      setActiveTab(idx);
-                    }}
-                  >
-                    {idx === activeTab && <LocationIcon />}
-                    {tab}
-                  </button>
-                )
-              )}
+              {tabs?.map((tab, idx) => (
+                <button
+                  key={idx}
+                  className={twMerge(
+                    "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer",
+                    activeTab === idx &&
+                      "border-[#15B1FB] bg-[#15B1FB29] transition-all"
+                  )}
+                  onClick={() => {
+                    setActiveTab(idx);
+                  }}
+                >
+                  {idx === activeTab && <LocationIcon />}
+                  {tab}
+                </button>
+              ))}
             </div>
           </div>
         </div>

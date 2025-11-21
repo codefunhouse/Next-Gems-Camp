@@ -7,7 +7,7 @@ export const parentInfoData = {
     infoDetails:
       "Next Gems Summer Camp combines 30 hours of accredited English tuition with global cultural immersion and exciting specialist programs in Technology, Business, Sport, Arts, and Leadership.\n\nOur safe, small-group environment ensures every child learns, grows, and enjoys a truly international experience.",
     bgImage:
-      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763476384/parents_hero_img_kpjtzz.webp",
+      "https://res.cloudinary.com/dg8uxees3/image/upload/v1763657630/parents_hero_img_1_bjvwie.webp",
   },
   learningAndEnrichment: {
     leftData: {

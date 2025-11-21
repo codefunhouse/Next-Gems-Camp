@@ -64,6 +64,7 @@ const LocationCaterbury = () => {
       {/* Our Excursion Cities */}
       <OurExcursion
         mainTitle={canterburyData.excursionCities.title}
+        tabs={canterburyData.excursionCities.tabs}
         cities={canterburyData.excursionCities.citiesData}
       />
     </PublicPagesLayout>
