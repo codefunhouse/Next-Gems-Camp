@@ -39,6 +39,11 @@ export const siteContentType = defineType({
               type: 'image',
               options: {hotspot: true},
             }),
+            defineField({
+              name: 'buttonText',
+              title: 'Button Text',
+              type: 'string',
+            }),
           ],
         }),
         defineField({
@@ -51,6 +56,29 @@ export const siteContentType = defineType({
               title: 'Section Title',
               type: 'string',
             }),
+            defineField({
+              name: 'textColors',
+              title: 'Text Colors',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'text',
+                      title: 'Text',
+                      type: 'string',
+                    }),
+                    defineField({
+                      name: 'color',
+                      title: 'Color',
+                      type: 'string',
+                    }),
+                  ],
+                },
+              ],
+            }),
+
             defineField({
               name: 'programmes',
               title: 'Programmes',
@@ -105,11 +133,11 @@ export const siteContentType = defineType({
                 {
                   type: 'object',
                   fields: [
-                    defineField({
-                      name: 'icon',
-                      title: 'Icon',
-                      type: 'string',
-                    }),
+                    // defineField({
+                    //   name: 'icon',
+                    //   title: 'Icon',
+                    //   type: 'string',
+                    // }),
                     defineField({
                       name: 'title',
                       title: 'Feature Title',
