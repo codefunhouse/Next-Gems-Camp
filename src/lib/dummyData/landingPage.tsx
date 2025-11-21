@@ -62,42 +62,34 @@ export const landingPageDummyData = {
     title: "Why Choose Next Gems?",
     features: [
       {
-        icon: "🎓",
         title: "Accredited English Tuition",
         desc: "Qualified teachers delivering 30 hours of certified language learning.",
       },
       {
-        icon: "🏨",
         title: "Luxury & Safety Assured",
         desc: "Premium accommodation, nutritious meals, and 24/7 care.",
       },
       {
-        icon: "👥",
         title: "Small Groups, Big Progress",
         desc: "Personalised learning that builds confidence and results.",
       },
       {
-        icon: "🌍",
         title: "Global Friendships",
         desc: "An international mix of students sharing cultures and experiences.",
       },
       {
-        icon: "🛣️",
         title: "Four Inspiring Pathways",
         desc: "Choose from Tech, Business, Sport, or Arts.",
       },
       {
-        icon: "🏰",
         title: "Explore Iconic England",
         desc: "Unforgettable excursions to London, Oxford, and beyond.",
       },
       {
-        icon: "👩‍🏫",
         title: "Exceptional Staff Team",
         desc: "Expert teachers and caring mentors supporting every step.",
       },
       {
-        icon: "✅",
         title: "Trusted Worldwide",
         desc: "The premium choice for families and agents seeking excellence.",
       },
