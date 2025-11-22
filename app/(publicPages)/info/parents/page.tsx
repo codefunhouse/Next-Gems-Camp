@@ -1,9 +1,15 @@
 import Parents from "@/components/publicPages/info/Parents";
+import {
+  getLandingPage,
+  getParentPage,
+} from "@/utils/sanityFns/sanity.queries";
 
-function ParentsPage() {
+async function ParentsPage() {
+  const data = await getParentPage();
+  const landingPageData = await getLandingPage();
   return (
     <>
-      <Parents />
+      <Parents data={data} landingPageData={landingPageData} />
     </>
   );
 }

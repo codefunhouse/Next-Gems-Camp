@@ -1,9 +1,12 @@
 import Agents from "@/components/publicPages/info/Agents";
+import { getAgentPage, getLandingPage } from "@/utils/sanityFns/sanity.queries";
 
-function AgentsPage() {
+async function AgentsPage() {
+  const data = await getAgentPage();
+  const landingPageData = await getLandingPage();
   return (
     <>
-      <Agents />
+      <Agents data={data} landingPageData={landingPageData} />
     </>
   );
 }

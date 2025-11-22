@@ -2,7 +2,7 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useAgentPage, useLandingPage } from "@/hooks/useSanityData";
+import { InfoProps } from "@/types/types1";
 import { agentsInfoData } from "@/utils/dummyData/infoData";
 import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import QuestionsAndAnswers from "../landing/subComps/QuestionsAndAnswers";
@@ -12,10 +12,8 @@ import ImageContentCard from "../shared/ImageCard";
 import SplitSection from "../shared/SplitSection";
 import WhatToExpectCard from "../shared/WhatToExpectCard";
 
-function Agents() {
+function Agents({ data, landingPageData }: InfoProps) {
   const { openModal, closeModal } = useModal();
-  const { data } = useAgentPage();
-  const { data: landingPageData } = useLandingPage();
 
   return (
     <>

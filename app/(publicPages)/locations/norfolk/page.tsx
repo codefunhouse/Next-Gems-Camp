@@ -1,9 +1,11 @@
 import Norkfolk from "@/components/publicPages/location/Norfolk";
+import { getNorfolkPage } from "@/utils/sanityFns/sanity.queries";
 
-function NorfolkPage() {
+async function NorfolkPage() {
+  const data = await getNorfolkPage();
   return (
     <>
-      <Norkfolk />
+      <Norkfolk data={data} />
     </>
   );
 }

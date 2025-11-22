@@ -1,7 +1,7 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useNorfolkPage } from "@/hooks/useSanityData";
+import { NorfolkPage } from "@/types/sanityTypes";
 import { norfolkData } from "@/utils/dummyData/locationData";
 import {
   getSanityImagesArray,
@@ -15,9 +15,8 @@ import OverviewComp from "../shared/OverviewComp";
 import SplitSection from "../shared/SplitSection";
 import OurExcursion from "./subComps/OurExcursion";
 
-const Norkfolk = () => {
+const Norkfolk = ({ data }: { data: NorfolkPage }) => {
   const { openModal, closeModal } = useModal();
-  const { data } = useNorfolkPage();
 
   return (
     <>

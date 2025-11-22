@@ -1,12 +1,11 @@
 import Home from "@/components/publicPages/landing/Home";
-import { useLandingPage } from "@/hooks/useSanityData";
-import { LandingPage } from "@/types/sanityTypes";
+import { getLandingPage } from "@/utils/sanityFns/sanity.queries";
 
-function LandingPageMain() {
-  const { data } = useLandingPage();
+async function LandingPageMain() {
+  const data = await getLandingPage();
   return (
     <>
-      <Home data={data as LandingPage} />
+      <Home data={data} />
     </>
   );
 }

@@ -4,7 +4,7 @@ import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useLandingPage, useParentPage } from "@/hooks/useSanityData";
+import { InfoParentsProps } from "@/types/types1";
 import { parentInfoData } from "@/utils/dummyData/infoData";
 import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import QuestionsAndAnswers from "../landing/subComps/QuestionsAndAnswers";
@@ -16,10 +16,8 @@ import WhatToExpectCard from "../shared/WhatToExpectCard";
 import TravelAndTransfer from "./subComps/TravelAndTransfer";
 import WhatsIncludedSection from "./subComps/WhatsIncluded";
 
-const Parents = () => {
+const Parents = ({ data, landingPageData }: InfoParentsProps) => {
   const { openModal, closeModal } = useModal();
-  const { data } = useParentPage();
-  const { data: landingPageData } = useLandingPage();
 
   return (
     <PublicPagesLayout>

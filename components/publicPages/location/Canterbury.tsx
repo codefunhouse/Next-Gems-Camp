@@ -3,7 +3,7 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useCanterburyPage } from "@/hooks/useSanityData";
+import { CanterburyPage } from "@/types/sanityTypes";
 import { canterburyData } from "@/utils/dummyData/locationData";
 import {
   getSanityImagesArray,
@@ -17,9 +17,8 @@ import OverviewComp from "../shared/OverviewComp";
 import SplitSection from "../shared/SplitSection";
 import OurExcursion from "./subComps/OurExcursion";
 
-const Caterbury = () => {
+const Caterbury = ({ data }: { data: CanterburyPage }) => {
   const { openModal, closeModal } = useModal();
-  const { data } = useCanterburyPage();
 
   return (
     <>
