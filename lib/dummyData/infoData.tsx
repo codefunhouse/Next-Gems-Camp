@@ -151,13 +151,27 @@ export const parentInfoData = {
     description:
       " Parents can be confident their children are supported in a caring,structured, and secure environment.",
     includedItems: [
-      "30 hours of accredited English tuition",
-      "Specialism program of choice",
-      "Cultural excursions and social activities",
-      "Full-board accommodation and meals",
-      "Airport/station transfers (on arrival & departure days)",
-      "24/7 supervision and medical support",
-      "End-of-camp certificate and report",
+      {
+        item: "30 hours of accredited English tuition",
+      },
+      {
+        item: "Specialism program of choice",
+      },
+      {
+        item: "Cultural excursions and social activities",
+      },
+      {
+        item: "Full-board accommodation and meals",
+      },
+      {
+        item: "Airport/station transfers (on arrival & departure days)",
+      },
+      {
+        item: "24/7 supervision and medical support",
+      },
+      {
+        item: "End-of-camp certificate and report",
+      },
     ],
   },
   cta: {
