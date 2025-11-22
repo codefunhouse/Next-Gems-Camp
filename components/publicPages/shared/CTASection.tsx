@@ -1,10 +1,10 @@
 "use client";
 import Button from "@/components/general/Button";
 import { useModal } from "@/hooks/useModal";
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
-import { agentsInfoData, parentInfoData } from "@/lib/dummyData/infoData";
-import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { CTASectionProps } from "@/types/sanityTypes";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
+import { agentsInfoData, parentInfoData } from "@/utils/dummyData/infoData";
+import { landingPageDummyData } from "@/utils/dummyData/landingPage";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import ApplyForm from "./ApplyForm";

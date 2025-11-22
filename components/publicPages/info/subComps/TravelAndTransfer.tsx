@@ -1,7 +1,7 @@
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
-import { parentInfoData } from "@/lib/dummyData/infoData";
-import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
 import { TravelVisasSection } from "@/types/sanityTypes";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
+import { parentInfoData } from "@/utils/dummyData/infoData";
+import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import { twMerge } from "tailwind-merge";
 import ImageContentCard from "../../shared/ImageCard";
 import WhatToExpectCard from "../../shared/WhatToExpectCard";

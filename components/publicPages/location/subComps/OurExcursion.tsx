@@ -1,8 +1,8 @@
 "use client";
 import LocationIcon from "@/components/svgs/LocationIcon";
 import LongArrowRight from "@/components/svgs/LongArrowRight";
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
-import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
+import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";

@@ -1,7 +1,8 @@
+import PublicPagesLayoutContainer from "@/components/general/PublicPagesLayout";
 import React from "react";
 
 function PublicPagesLayout({ children }: { children: React.ReactNode }) {
-  return <PublicPagesLayout>{children}</PublicPagesLayout>;
+  return <PublicPagesLayoutContainer>{children}</PublicPagesLayoutContainer>;
 }
 
 export default PublicPagesLayout;

@@ -24,10 +24,10 @@ export const landingPageDummyData = {
   ourProgrammes: {
     title: "Our Pathway Programmes",
     programmesIcons: [
-      <LaptopIcon />,
-      <BagIcon />,
-      <BallIcon />,
-      <PaletteIcon />,
+      <LaptopIcon key={0} />,
+      <BagIcon key={1} />,
+      <BallIcon key={2} />,
+      <PaletteIcon key={3} />,
     ],
     programmes: [
       {
@@ -108,10 +108,10 @@ export const landingPageDummyData = {
     description:
       "At Next Gems Summer Camp, we believe learning flourishes when it is engaging, personalised, and inspired by real-world experiences. Our expert teachers guide every student to grow in confidence, skill, and curiosity, making every lesson meaningful and memorable.",
     approachesIcons: [
-      <InteractiveIcon />,
-      <RealWorldCommIcon />,
-      <GlobeIcon />,
-      <ExpertEduIcon />,
+      <InteractiveIcon key={0} />,
+      <RealWorldCommIcon key={1} />,
+      <GlobeIcon key={2} />,
+      <ExpertEduIcon key={3} />,
     ],
     approaches: [
       {
@@ -281,7 +281,11 @@ export const landingPageDummyData = {
     },
     socials: {
       title: "Socials",
-      icons: [<InstagramIcon />, <TikTokIcon />, <TwitterIcon />],
+      icons: [
+        <InstagramIcon key={0} />,
+        <TikTokIcon key={1} />,
+        <TwitterIcon key={2} />,
+      ],
       socials: [
         {
           icon: <InstagramIcon />,

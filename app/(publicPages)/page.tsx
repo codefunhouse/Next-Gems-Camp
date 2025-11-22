@@ -1,11 +1,14 @@
-import MainLandingPage from "@/components/publicPages/landing/MainLandingPage";
+import Home from "@/components/publicPages/landing/Home";
+import { useLandingPage } from "@/hooks/useSanityData";
+import { LandingPage } from "@/types/sanityTypes";
 
-function LandingPage() {
+function LandingPageMain() {
+  const { data } = useLandingPage();
   return (
     <>
-      <MainLandingPage />
+      <Home data={data as LandingPage} />
     </>
   );
 }
 
-export default LandingPage;
+export default LandingPageMain;

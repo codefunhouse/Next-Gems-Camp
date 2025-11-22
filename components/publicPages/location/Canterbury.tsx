@@ -1,12 +1,14 @@
+"use client";
+
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { useNorfolkPage } from "@/hooks/useSanityData";
-import { norfolkData } from "@/lib/dummyData/locationData";
+import { useCanterburyPage } from "@/hooks/useSanityData";
+import { canterburyData } from "@/utils/dummyData/locationData";
 import {
   getSanityImagesArray,
   getSanityImageUrl,
-} from "@/lib/sanity/getSanityImageUrl";
+} from "@/utils/sanityFns/getSanityImageUrl";
 import ApplyForm from "../shared/ApplyForm";
 import ContentCard from "../shared/ContentCard";
 import HeroSection from "../shared/HeroSection";
@@ -15,36 +17,36 @@ import OverviewComp from "../shared/OverviewComp";
 import SplitSection from "../shared/SplitSection";
 import OurExcursion from "./subComps/OurExcursion";
 
-const Canterbury = () => {
+const Caterbury = () => {
   const { openModal, closeModal } = useModal();
-  const { data } = useNorfolkPage();
+  const { data } = useCanterburyPage();
 
   return (
     <>
       <HeroSection
-        title={data?.heroSection?.title || norfolkData.heroSection.title}
+        title={data?.heroSection?.title || canterburyData.heroSection.title}
         subtitle={
-          data?.heroSection?.subtitle || norfolkData.heroSection.subtitle
+          data?.heroSection?.subtitle || canterburyData.heroSection.subtitle
         }
         bgImage={
           getSanityImageUrl(data?.heroSection?.bgImageUrl) ||
-          norfolkData.heroSection.bgImageUrl
+          canterburyData.heroSection.bgImageUrl
         }
         locationDesc={
-          data?.heroSection?.location || norfolkData.heroSection.location
+          data?.heroSection?.location || canterburyData.heroSection.location
         }
         locationDetails={
           data?.heroSection?.locationDetails ||
-          norfolkData.heroSection.locationDetails
+          canterburyData.heroSection.locationDetails
         }
         buttons={
           <Button
             label={
               data?.heroSection?.buttonText ||
-              norfolkData.heroSection.buttonText
+              canterburyData.heroSection.buttonText
             }
             endIcon={<ShortArrowRight />}
-            classNames="!w-full !max-w-[194px]"
+            classNames="!max-w-[194px]"
             buttonType="sec"
             onClick={() =>
               openModal(<ApplyForm onClick={() => closeModal()} />)
@@ -58,12 +60,12 @@ const Canterbury = () => {
         leftContent={
           <ContentCard
             title={
-              data?.discoverSandringham?.title ||
-              norfolkData.discoverSandringham.title
+              data?.discoverCanterbury?.title ||
+              canterburyData.discoverCanterbury.title
             }
             content={
-              data?.discoverSandringham?.description ||
-              norfolkData.discoverSandringham.description
+              data?.discoverCanterbury?.description ||
+              canterburyData.discoverCanterbury.description
             }
           />
         }
@@ -71,10 +73,11 @@ const Canterbury = () => {
           <ImageDisplayer
             data={
               getSanityImagesArray(
-                data?.discoverSandringham?.images?.map((item) => ({
+                data?.discoverCanterbury?.images?.map((item, idx) => ({
                   src: item?.image,
+                  alt: `image-${idx}`,
                 }))
-              ) || norfolkData.discoverSandringham.images
+              ) || canterburyData.discoverCanterbury.images
             }
             autoSlide={true}
             autoSlideInterval={3000}
@@ -83,35 +86,38 @@ const Canterbury = () => {
         }
         background="white"
       />
+
       {/* Our Accomodation */}
       <OverviewComp
-        title={data?.accommodation?.title || norfolkData.accommodation.title}
+        title={data?.accommodation?.title || canterburyData.accommodation.title}
         content={
           data?.accommodation?.description ||
-          norfolkData.accommodation.description
+          canterburyData.accommodation.description
         }
         bgImage={
           getSanityImageUrl(data?.accommodation?.bgImageUrl) ||
-          norfolkData.accommodation.bgImageUrl
+          canterburyData.accommodation.bgImageUrl
         }
         bgImageAlt={
           data?.accommodation?.bgImageAlt ||
-          norfolkData.accommodation.bgImageAlt
+          canterburyData.accommodation.bgImageAlt
         }
       />
-
+      {/* Our Excursion Cities */}
       <OurExcursion
         mainTitle={
-          data?.excursionCities?.title || norfolkData.excursionCities.title
+          data?.excursionCities?.title || canterburyData.excursionCities.title
         }
-        tabs={data?.excursionCities?.tabs || norfolkData.excursionCities.tabs}
+        tabs={
+          data?.excursionCities?.tabs || canterburyData.excursionCities.tabs
+        }
         cities={
           data?.excursionCities?.citiesData ||
-          norfolkData.excursionCities.citiesData
+          canterburyData.excursionCities.citiesData
         }
       />
     </>
   );
 };
 
-export default Canterbury;
+export default Caterbury;

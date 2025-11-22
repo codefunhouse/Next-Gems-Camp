@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
-import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { WhyChooseUs } from "@/types/sanityTypes";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
+import { landingPageDummyData } from "@/utils/dummyData/landingPage";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import StarTickIcon from "../svgs/StarTickIcon";

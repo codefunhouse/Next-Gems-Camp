@@ -8,7 +8,11 @@ import CTASection from "../publicPages/shared/CTASection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-function PublicPagesLayout({ children }: { children: React.ReactNode }) {
+function PublicPagesLayoutContainer({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data } = useLandingPage();
   const { data: parentsData } = useParentPage();
   const { data: agentsData } = useAgentPage();
@@ -29,4 +33,4 @@ function PublicPagesLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default PublicPagesLayout;
+export default PublicPagesLayoutContainer;

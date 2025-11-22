@@ -1,5 +1,5 @@
 import { useFooter } from "@/hooks/useSanityData";
-import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { landingPageDummyData } from "@/utils/dummyData/landingPage";
 import { Link } from "react-router-dom";
 import CallIcon from "../svgs/CallIcon";
 import CaretRightIcon from "../svgs/CaretRightIcon";

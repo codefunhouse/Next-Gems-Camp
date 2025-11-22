@@ -1,6 +1,6 @@
 import StarTickIcon from "@/components/svgs/StarTickIcon";
-import { parentInfoData } from "@/lib/dummyData/infoData";
 import { WhatsIncludedProps } from "@/types/sanityTypes";
+import { parentInfoData } from "@/utils/dummyData/infoData";
 
 function WhatsIncludedSection({
   title,

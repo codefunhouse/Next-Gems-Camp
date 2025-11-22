@@ -1,46 +1,20 @@
 import {
-  getAgentPage,
-  getCanterburyPage,
-  getFooter,
-  getLandingPage,
-  getNorfolkPage,
-  getParentPage,
-  getSiteContent,
-} from "@/lib/sanity/sanity.queries";
-import {
   AgentPage,
   CanterburyPage,
   Footer,
   LandingPage,
   NorfolkPage,
   ParentPage,
-  SiteContent,
 } from "@/types/sanityTypes";
+import {
+  getAgentPage,
+  getCanterburyPage,
+  getFooter,
+  getLandingPage,
+  getNorfolkPage,
+  getParentPage,
+} from "@/utils/sanityFns/sanity.queries";
 import { useEffect, useState } from "react";
-
-export function useSiteContent() {
-  const [data, setData] = useState<SiteContent | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const content = await getSiteContent();
-        setData(content);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  return { data, loading, error };
-}
 
 export function useLandingPage() {
   const [data, setData] = useState<LandingPage | null>(null);

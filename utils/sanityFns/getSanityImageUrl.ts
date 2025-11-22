@@ -1,5 +1,5 @@
+import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { urlFor } from "./sanity";
 
 /**
  * Convert Sanity image to optimized URL string

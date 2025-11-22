@@ -1,4 +1,4 @@
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
 import { twMerge } from "tailwind-merge";
 
 interface SplitSectionProps {

@@ -1,7 +1,7 @@
-import { commonSectionStyles } from "@/lib/constants/commonStyles";
-import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import { getSanityImageUrl } from "@/lib/sanity/getSanityImageUrl";
 import { OurProgrammes } from "@/types/sanityTypes";
+import { commonSectionStyles } from "@/utils/constants/commonStyles";
+import { landingPageDummyData } from "@/utils/dummyData/landingPage";
+import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -89,9 +89,12 @@ function OurPathwayProgrammes({
   useEffect(() => {
     const updateCardsPerView = () => {
       const width = window.innerWidth;
-      if (width >= 1024) setCardsPerView(3); // lg screens - 3 cards
-      else if (width >= 768) setCardsPerView(2); // md screens - 2 cards
-      else if (width >= 640) setCardsPerView(2); // sm screens - 2 cards
+      if (width >= 1024)
+        setCardsPerView(3); // lg screens - 3 cards
+      else if (width >= 768)
+        setCardsPerView(2); // md screens - 2 cards
+      else if (width >= 640)
+        setCardsPerView(2); // sm screens - 2 cards
       else setCardsPerView(1); // mobile - 1 card
     };
 
