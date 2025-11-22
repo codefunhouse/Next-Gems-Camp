@@ -1,5 +1,11 @@
+import Centralizer from "@/components/general/Centralizer";
+import Spinner from "@/components/general/Spinner";
+import { ModalProvider } from "@/contexts/ModalContext";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
+
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +33,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Toaster />
+        <Suspense
+          fallback={
+            <Centralizer>
+              <Spinner />
+            </Centralizer>
+          }
+        >
+          <ModalProvider>{children}</ModalProvider>
+        </Suspense>
       </body>
     </html>
   );
