@@ -1,3 +1,4 @@
+"use client";
 import {
   Accordion,
   AccordionContent,
@@ -40,7 +41,7 @@ const FAQComp = ({
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className={twMerge("!border-[#CFCFCF]", index === 0 && "border-t")}
+            className={twMerge("border-[#CFCFCF]!", index === 0 && "border-t")}
           >
             <AccordionTrigger className="text-left text-base sm:text-xl">
               {faq.question}

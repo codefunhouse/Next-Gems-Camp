@@ -15,7 +15,7 @@ function ContentCard({ title, content, className }: ContentCardProps) {
       )}
     >
       <h2 className="max-w-[340px]">{title}</h2>
-      <p className="text-base sm:text-lg whitespace-pre-line break-words">
+      <p className="text-base sm:text-lg whitespace-pre-line wrap-break-word">
         {content}
       </p>
     </div>

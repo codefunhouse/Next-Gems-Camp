@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 interface ButtonProps {
@@ -86,7 +86,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (link) {
     return (
-      <Link to={link} className={finalClassNames} onClick={onClick}>
+      <Link href={link} className={finalClassNames} onClick={onClick}>
         {buttonContent}
       </Link>
     );

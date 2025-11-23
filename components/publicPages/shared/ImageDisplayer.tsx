@@ -1,4 +1,6 @@
+"use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -17,10 +19,8 @@ interface ImageDisplayerProps {
 
 function ImageDisplayer({
   data,
-  className,
   autoSlide = true,
   autoSlideInterval = 5000,
-  title,
 }: ImageDisplayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -59,11 +59,11 @@ function ImageDisplayer({
     <div className="flex flex-col gap-6 max-h-[537px]">
       {/* Image Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-[600px] w-full rounded-[2rem]">
-          <img
+        <div className="max-w-[600px] w-full rounded-4xl">
+          <Image
             src={currentItem.src}
             alt={`Slide ${currentIndex + 1}`}
-            className="w-full h-full object-cover aspect-[600/493] rounded-[2rem]"
+            className="w-full h-full object-cover aspect-600/493 rounded-4xl"
             width={600}
             height={493}
           />

@@ -3,12 +3,12 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { CanterburyPage } from "@/types/sanityTypes";
-import { canterburyData } from "@/utils/dummyData/locationData";
+import { canterburyData } from "@/lib/dummyData/locationData";
 import {
   getSanityImagesArray,
   getSanityImageUrl,
-} from "@/utils/sanityFns/getSanityImageUrl";
+} from "@/lib/sanityFns/getSanityImageUrl";
+import { CanterburyPage } from "@/types/sanityTypes";
 import ApplyForm from "../shared/ApplyForm";
 import ContentCard from "../shared/ContentCard";
 import HeroSection from "../shared/HeroSection";

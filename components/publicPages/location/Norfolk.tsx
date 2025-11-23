@@ -1,12 +1,13 @@
+"use client";
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
-import { NorfolkPage } from "@/types/sanityTypes";
-import { norfolkData } from "@/utils/dummyData/locationData";
+import { norfolkData } from "@/lib/dummyData/locationData";
 import {
   getSanityImagesArray,
   getSanityImageUrl,
-} from "@/utils/sanityFns/getSanityImageUrl";
+} from "@/lib/sanityFns/getSanityImageUrl";
+import { NorfolkPage } from "@/types/sanityTypes";
 import ApplyForm from "../shared/ApplyForm";
 import ContentCard from "../shared/ContentCard";
 import HeroSection from "../shared/HeroSection";

@@ -1,14 +1,12 @@
 import StarTickIcon from "@/components/svgs/StarTickIcon";
+import { parentInfoData } from "@/lib/dummyData/infoData";
 import { WhatsIncludedProps } from "@/types/sanityTypes";
-import { parentInfoData } from "@/utils/dummyData/infoData";
 
 function WhatsIncludedSection({
   title,
   description,
   includedItems,
 }: WhatsIncludedProps) {
-  console.log("Inluded items: ", includedItems);
-
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[602px] w-full mx-auto flex flex-col gap-8">

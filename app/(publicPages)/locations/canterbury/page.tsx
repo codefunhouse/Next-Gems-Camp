@@ -1,5 +1,5 @@
 import Canterbury from "@/components/publicPages/location/Canterbury";
-import { getCanterburyPage } from "@/utils/sanityFns/sanity.queries";
+import { getCanterburyPage } from "@/lib/sanityFns/sanity.queries";
 
 async function CanterburyPage() {
   const data = await getCanterburyPage();

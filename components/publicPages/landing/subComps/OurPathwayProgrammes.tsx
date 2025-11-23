@@ -1,13 +1,13 @@
+import { HighlightedText } from "@/components/general/HighlightedText";
+import LongArrowRight from "@/components/svgs/LongArrowRight";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { OurProgrammes } from "@/types/sanityTypes";
-import { commonSectionStyles } from "@/utils/constants/commonStyles";
-import { landingPageDummyData } from "@/utils/dummyData/landingPage";
-import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { HighlightedText } from "../general/HighlightedText";
-import LongArrowRight from "../svgs/LongArrowRight";
-import BgImage from "./subComps/BgImage";
+import BgImage from "../../shared/BgImage";
 
 type ProgramCardProps = {
   imageUrl: string;
@@ -28,7 +28,7 @@ function ProgramCards({
 
   return (
     <motion.div
-      className="rounded-[2rem] relative  overflow-hidden cursor-pointer w-full max-w-[369px] shrink-0"
+      className="rounded-4xl relative  overflow-hidden cursor-pointer w-full max-w-[369px] shrink-0"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       whileHover={{ y: -5 }} // Optional: slight lift on hover
@@ -43,14 +43,14 @@ function ProgramCards({
       {/* Main content */}
       <div
         className={twMerge(
-          "relative z-10 flex flex-col gap-[2.08rem] text-white p-5 sm:p-8 min-h-[21rem] h-full",
+          "relative z-10 flex flex-col gap-[2.08rem] text-white p-5 sm:p-8 min-h-84 h-full",
           isHovering ? "" : "justify-between"
         )}
       >
         <span className="self-end">{icon}</span>
 
         <div className="w-full text-center space-y-2">
-          <h4 className="!font-medium">{title}</h4>
+          <h4 className="font-medium!">{title}</h4>
 
           <AnimatePresence>
             {isHovering && (
@@ -152,7 +152,7 @@ function OurPathwayProgrammes({
                 },
               ]
             }
-            className="!max-w-full sm:!max-w-[359px]"
+            className="max-w-full! sm:max-w-[359px]!"
           />
 
           {/* Navigation buttons and counter */}
@@ -175,7 +175,7 @@ function OurPathwayProgrammes({
             </AnimatePresence>
 
             {/* Slider counter */}
-            <div className="text-lg font-medium text-gray-600 min-w-[80px]">
+            <div className="text-lg font-medium text-gray-600 min-w-20">
               {currentIndex + 1} / {maxIndex + 1}
             </div>
 
@@ -205,7 +205,7 @@ function OurPathwayProgrammes({
         >
           {(programmes || landingPageDummyData.ourProgrammes.programmes).map(
             (card, idx) => {
-              const first = card?.imgUrl;
+              // const first = card?.imgUrl;
               const image =
                 typeof card?.imgUrl === "string"
                   ? card?.imgUrl
@@ -219,8 +219,8 @@ function OurPathwayProgrammes({
                     ]
                   }
                   key={idx}
-                  title={card.title}
-                  description={card.description}
+                  title={card.title as string}
+                  description={card.description as string}
                   imageUrl={image}
                 />
               );

@@ -1,8 +1,8 @@
 "use client";
 import LocationIcon from "@/components/svgs/LocationIcon";
 import LongArrowRight from "@/components/svgs/LongArrowRight";
-import { commonSectionStyles } from "@/utils/constants/commonStyles";
-import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -88,7 +88,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                   className={twMerge(
                     "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer",
                     activeTab === idx &&
-                      "border-[#15B1FB] bg-[#15B1FB29] transition-all"
+                      "border-blue-primary bg-[#15B1FB29] transition-all"
                   )}
                   onClick={() => {
                     setActiveTab(idx);

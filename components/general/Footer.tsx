@@ -1,14 +1,14 @@
-import { useFooter } from "@/hooks/useSanityData";
-import { landingPageDummyData } from "@/utils/dummyData/landingPage";
-import { Link } from "react-router-dom";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getFooter } from "@/lib/sanityFns/sanity.queries";
+import Link from "next/link";
 import CallIcon from "../svgs/CallIcon";
 import CaretRightIcon from "../svgs/CaretRightIcon";
 import EmailIcon from "../svgs/EmailIcon";
 import LocationIcon from "../svgs/LocationIcon";
 import Logo from "./Logo";
 
-const Footer = () => {
-  const { data } = useFooter();
+const Footer = async () => {
+  const data = await getFooter();
 
   return (
     <footer className="bg-white">
@@ -18,8 +18,8 @@ const Footer = () => {
 
           <div className="w-full pl-10 mx-auto md:mx-0 md:pl-0 max-w-[800px] flex flex-col sm:flex-row  gap-8 justify-between">
             <div className="flex flex-col gap-4">
-              <h5 className="!font-medium">
-                {data?.quickLinks.title ||
+              <h5 className="font-medium!">
+                {data?.quickLinks?.title ||
                   landingPageDummyData.footerData.quickLinks.title}
               </h5>
               <ul className="space-y-2 sm:pl-2">
@@ -29,7 +29,7 @@ const Footer = () => {
                 ).map((item, idx) => (
                   <li key={idx}>
                     <Link
-                      to={item.link}
+                      href={item.link as string}
                       className="hover:text-blue-primary transition-colors flex items-center gap-1.5"
                     >
                       <CaretRightIcon />
@@ -80,7 +80,7 @@ const Footer = () => {
                   data?.socials?.socials ||
                   landingPageDummyData.footerData.socials.socials
                 ).map((item, idx) => (
-                  <Link key={idx} to={item.link}>
+                  <Link key={idx} href={item.link as string}>
                     {landingPageDummyData.footerData.socials.icons[idx]}
                   </Link>
                 ))}

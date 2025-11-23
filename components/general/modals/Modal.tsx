@@ -1,3 +1,4 @@
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";

@@ -1,3 +1,12 @@
+"use client";
+import {
+  getAgentPage,
+  getCanterburyPage,
+  getFooter,
+  getLandingPage,
+  getNorfolkPage,
+  getParentPage,
+} from "@/lib/sanityFns/sanity.queries";
 import {
   AgentPage,
   CanterburyPage,
@@ -6,14 +15,6 @@ import {
   NorfolkPage,
   ParentPage,
 } from "@/types/sanityTypes";
-import {
-  getAgentPage,
-  getCanterburyPage,
-  getFooter,
-  getLandingPage,
-  getNorfolkPage,
-  getParentPage,
-} from "@/utils/sanityFns/sanity.queries";
 import { useEffect, useState } from "react";
 
 export function useLandingPage() {

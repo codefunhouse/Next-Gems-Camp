@@ -1,3 +1,4 @@
+"use client";
 import LocationIcon from "@/components/svgs/LocationIcon";
 import { motion } from "motion/react";
 import { ReactNode } from "react";

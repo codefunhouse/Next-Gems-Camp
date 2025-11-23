@@ -2,9 +2,9 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { agentsInfoData } from "@/lib/dummyData/infoData";
+import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { InfoProps } from "@/types/types1";
-import { agentsInfoData } from "@/utils/dummyData/infoData";
-import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import QuestionsAndAnswers from "../landing/subComps/QuestionsAndAnswers";
 import ApplyForm from "../shared/ApplyForm";
 import HeroSection from "../shared/HeroSection";

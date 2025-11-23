@@ -1,8 +1,8 @@
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { FAQs } from "@/types/sanityTypes";
-import { commonSectionStyles } from "@/utils/constants/commonStyles";
-import { landingPageDummyData } from "@/utils/dummyData/landingPage";
 import { twMerge } from "tailwind-merge";
-import FAQComp from "./subComps/FAQComp";
+import FAQComp from "../../shared/FAQComp";
 
 function QuestionsAndAnswers({
   className = "",

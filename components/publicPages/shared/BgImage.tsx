@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 interface BgImageProps {
@@ -11,7 +12,7 @@ function BgImage({ className, src, alt, overlayStyles }: BgImageProps) {
   return (
     <>
       <div className={twMerge("absolute inset-0 bg-black/70", className)}>
-        <img
+        <Image
           width={3840}
           height={2364}
           src={src}

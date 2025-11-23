@@ -1,3 +1,4 @@
+"use client";
 // contexts/useModal.ts
 import { ModalContext } from "@/contexts/ModalContext";
 import { useContext } from "react";

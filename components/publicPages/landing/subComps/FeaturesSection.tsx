@@ -1,10 +1,10 @@
+import StarTickIcon from "@/components/svgs/StarTickIcon";
 import { Card, CardContent } from "@/components/ui/card";
+import { commonSectionStyles } from "@/lib/constants/commonStyles";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { WhyChooseUs } from "@/types/sanityTypes";
-import { commonSectionStyles } from "@/utils/constants/commonStyles";
-import { landingPageDummyData } from "@/utils/dummyData/landingPage";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import StarTickIcon from "../svgs/StarTickIcon";
 
 function FeaturesSection({ title, features }: WhyChooseUs) {
   const renderCard = ({
@@ -19,7 +19,7 @@ function FeaturesSection({ title, features }: WhyChooseUs) {
   }) => {
     return (
       <Card
-        className="transition-shadow bg-white border-[0.6px] border-[#E2E2E2] rounded-[2rem] hover:border-[1.5px] hover:border-[#15B1FB]"
+        className="transition-shadow bg-white border-[0.6px] border-[#E2E2E2] rounded-4xl hover:border-[1.5px] hover:border-blue-primary"
         key={idx}
         style={{
           filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.06))",
@@ -45,8 +45,8 @@ function FeaturesSection({ title, features }: WhyChooseUs) {
           {(features || landingPageDummyData.whyChooseUs.features).map(
             (feature, index) =>
               renderCard({
-                title: feature.title,
-                description: feature.desc,
+                title: feature.title as string,
+                description: feature.desc as string,
                 idx: index,
               })
           )}

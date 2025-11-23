@@ -1,21 +1,20 @@
 import {
-  useAgentPage,
-  useLandingPage,
-  useParentPage,
-} from "@/hooks/useSanityData";
-
+  getAgentPage,
+  getLandingPage,
+  getParentPage,
+} from "@/lib/sanityFns/sanity.queries";
 import CTASection from "../publicPages/shared/CTASection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-function PublicPagesLayoutContainer({
+async function PublicPagesLayoutContainer({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { data } = useLandingPage();
-  const { data: parentsData } = useParentPage();
-  const { data: agentsData } = useAgentPage();
+  const data = await getLandingPage();
+  const parentsData = await getParentPage();
+  const agentsData = await getAgentPage();
   return (
     <>
       <div className="pt-[3.1rem] sm:pt-13 max-w-360 mx-auto">

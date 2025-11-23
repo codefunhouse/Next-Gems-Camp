@@ -25,7 +25,7 @@ function OverviewComp({
       />
       <div className="relative z-10 mx-auto px-4 w-full max-w-[721px] flex flex-col gap-1.5 items-center text-white">
         <h1 className="text-center">{title}</h1>
-        <p className="text-base sm:text-lg whitespace-pre-line break-words">
+        <p className="text-base sm:text-lg whitespace-pre-line wrap-break-word">
           {content}
         </p>
       </div>

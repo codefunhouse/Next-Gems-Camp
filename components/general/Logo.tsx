@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import Image from "next/image";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
 export type LogoType = "pry" | "sec";
@@ -10,7 +11,7 @@ function Logo({
   type?: LogoType;
 }) {
   return (
-    <Link to="/" className={twMerge("", className)}>
+    <Link href="/" className={twMerge("", className)}>
       <div
         className={twMerge(
           "w-full",
@@ -18,7 +19,7 @@ function Logo({
         )}
       >
         {type === "pry" ? (
-          <img
+          <Image
             src={"/images/logo_1.png"}
             width={94}
             height={44.68}
@@ -26,7 +27,7 @@ function Logo({
             className="h-full w-full aspect-[94/44.68] object-contain"
           />
         ) : (
-          <img
+          <Image
             src={"/images/logo_2.png"}
             width={131}
             height={61.96}

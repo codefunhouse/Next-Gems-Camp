@@ -4,9 +4,9 @@ import Button from "@/components/general/Button";
 import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { parentInfoData } from "@/lib/dummyData/infoData";
+import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { InfoParentsProps } from "@/types/types1";
-import { parentInfoData } from "@/utils/dummyData/infoData";
-import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import QuestionsAndAnswers from "../landing/subComps/QuestionsAndAnswers";
 import ApplyForm from "../shared/ApplyForm";
 import HeroSection from "../shared/HeroSection";
@@ -147,7 +147,7 @@ const Parents = ({ data, landingPageData }: InfoParentsProps) => {
       <WhatsIncludedSection {...data?.whatsIncluded} />
       {/* FAQ Section */}
       <QuestionsAndAnswers
-        className="bg-[#F7F7F7]"
+        className="bg-grey-muted"
         apiFAQs={landingPageData?.faqs}
       />
     </PublicPagesLayout>

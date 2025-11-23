@@ -1,5 +1,5 @@
 import Home from "@/components/publicPages/landing/Home";
-import { getLandingPage } from "@/utils/sanityFns/sanity.queries";
+import { getLandingPage } from "@/lib/sanityFns/sanity.queries";
 
 async function LandingPageMain() {
   const data = await getLandingPage();

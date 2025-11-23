@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/general/Button";
 import CircularCancel from "@/components/svgs/CircularCancel";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";

@@ -1,5 +1,5 @@
 import Agents from "@/components/publicPages/info/Agents";
-import { getAgentPage, getLandingPage } from "@/utils/sanityFns/sanity.queries";
+import { getAgentPage, getLandingPage } from "@/lib/sanityFns/sanity.queries";
 
 async function AgentsPage() {
   const data = await getAgentPage();

@@ -1,3 +1,4 @@
+"use client";
 // hooks/useScrollEffect.ts
 import { useEffect, useRef, useState } from "react";
 

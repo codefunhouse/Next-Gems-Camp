@@ -3,9 +3,9 @@
 import Button from "@/components/general/Button";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
+import { landingPageDummyData } from "@/lib/dummyData/landingPage";
+import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { LandingPage } from "@/types/sanityTypes";
-import { landingPageDummyData } from "@/utils/dummyData/landingPage";
-import { getSanityImageUrl } from "@/utils/sanityFns/getSanityImageUrl";
 import ApplyForm from "../shared/ApplyForm";
 import HeroSection from "../shared/HeroSection";
 import FeaturesSection from "./subComps/FeaturesSection";
