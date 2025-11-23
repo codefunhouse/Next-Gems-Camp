@@ -37,11 +37,15 @@ const FAQComp = ({
         collapsible
         className="w-full border-t-[#CFCFCF]"
       >
-        {visibleFaqs.map((faq, index) => (
+        {visibleFaqs.map((faq, index, arr) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className={twMerge("border-[#CFCFCF]!", index === 0 && "border-t")}
+            className={twMerge(
+              "border-[#CFCFCF]!",
+              index === 0 && "border-t",
+              index === arr.length - 1 && "border-b!"
+            )}
           >
             <AccordionTrigger className="text-left text-base sm:text-xl">
               {faq.question}

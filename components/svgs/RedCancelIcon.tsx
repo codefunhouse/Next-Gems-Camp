@@ -1,4 +1,7 @@
-function RedCancelIcon() {
+import { CustomSVGProps } from "@/types/types1";
+import { twMerge } from "tailwind-merge";
+
+function RedCancelIcon({ className }: CustomSVGProps) {
   return (
     <svg
       width={26}
@@ -6,6 +9,7 @@ function RedCancelIcon() {
       viewBox="0 0 26 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={twMerge("", className)}
     >
       <g clipPath="url(#clip0_116_1625)">
         <path

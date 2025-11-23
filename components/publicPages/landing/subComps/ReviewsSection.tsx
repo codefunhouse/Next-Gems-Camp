@@ -170,7 +170,7 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
                 }%)`,
               }}
             >
-              {(reviews || landingPageDummyData.reviews.reviews).map(
+              {(reviews || landingPageDummyData.reviews.reviews)?.map(
                 (testimonial, index) => {
                   const reviewerStr = (testimonial?.reviewer ?? "").toString();
                   const [name = "", reviewerGroup = ""] =
