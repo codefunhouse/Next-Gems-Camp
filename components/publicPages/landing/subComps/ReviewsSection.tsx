@@ -195,6 +195,8 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
                                     : getSanityImageUrl(testimonial.image)
                                 }
                                 alt={testimonial.title as string}
+                                width={64}
+                                height={64}
                                 className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
                               />
                               <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>

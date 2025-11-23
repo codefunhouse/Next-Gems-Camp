@@ -2,7 +2,7 @@ import {
   getAgentPage,
   getLandingPage,
   getParentPage,
-} from "@/lib/sanityFns/sanity.queries";
+} from "@/lib/sanityFns/sanityQueries";
 import CTASection from "../publicPages/shared/CTASection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";

@@ -1,5 +1,5 @@
 import Parents from "@/components/publicPages/info/Parents";
-import { getLandingPage, getParentPage } from "@/lib/sanityFns/sanity.queries";
+import { getLandingPage, getParentPage } from "@/lib/sanityFns/sanityQueries";
 
 async function ParentsPage() {
   const data = await getParentPage();

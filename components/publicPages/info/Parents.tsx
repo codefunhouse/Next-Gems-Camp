@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/general/Button";
-import PublicPagesLayout from "@/components/general/PublicPagesLayout";
 import ShortArrowRight from "@/components/svgs/ShortArrowRight";
 import { useModal } from "@/hooks/useModal";
 import { parentInfoData } from "@/lib/dummyData/infoData";
@@ -20,7 +19,7 @@ const Parents = ({ data, landingPageData }: InfoParentsProps) => {
   const { openModal, closeModal } = useModal();
 
   return (
-    <PublicPagesLayout>
+    <>
       {/* Hero Section */}
       <HeroSection
         title={data?.heroSection?.title || parentInfoData.heroSection.title}
@@ -150,7 +149,7 @@ const Parents = ({ data, landingPageData }: InfoParentsProps) => {
         className="bg-grey-muted"
         apiFAQs={landingPageData?.faqs}
       />
-    </PublicPagesLayout>
+    </>
   );
 };
 

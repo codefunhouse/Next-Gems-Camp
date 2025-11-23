@@ -1,5 +1,5 @@
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
-import { getFooter } from "@/lib/sanityFns/sanity.queries";
+import { getFooter } from "@/lib/sanityFns/sanityQueries";
 import Link from "next/link";
 import CallIcon from "../svgs/CallIcon";
 import CaretRightIcon from "../svgs/CaretRightIcon";

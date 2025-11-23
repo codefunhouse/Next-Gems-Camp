@@ -6,7 +6,7 @@ import {
   getLandingPage,
   getNorfolkPage,
   getParentPage,
-} from "@/lib/sanityFns/sanity.queries";
+} from "@/lib/sanityFns/sanityQueries";
 import {
   AgentPage,
   CanterburyPage,
