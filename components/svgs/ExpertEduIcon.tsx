@@ -1,7 +1,11 @@
 import { CustomSVGProps } from "@/types/types1";
 import { twMerge } from "tailwind-merge";
 
-function ExpertEduIcon({ className, stroke = "#161616" }: CustomSVGProps) {
+function ExpertEduIcon({
+  className,
+  stroke = "#161616",
+  innerClassStyles,
+}: CustomSVGProps) {
   return (
     <svg
       width={40}
@@ -18,6 +22,7 @@ function ExpertEduIcon({ className, stroke = "#161616" }: CustomSVGProps) {
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={innerClassStyles}
       />
     </svg>
   );

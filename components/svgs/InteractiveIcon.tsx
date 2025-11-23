@@ -1,7 +1,11 @@
 import { CustomSVGProps } from "@/types/types1";
 import { twMerge } from "tailwind-merge";
 
-function InteractiveIcon({ className, stroke = "#161616" }: CustomSVGProps) {
+function InteractiveIcon({
+  className,
+  stroke = "#161616",
+  innerClassStyles,
+}: CustomSVGProps) {
   return (
     <svg
       width={35}
@@ -17,6 +21,7 @@ function InteractiveIcon({ className, stroke = "#161616" }: CustomSVGProps) {
         strokeWidth="1.66667"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={innerClassStyles}
       />
     </svg>
   );

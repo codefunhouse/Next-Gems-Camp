@@ -108,10 +108,22 @@ export const landingPageDummyData = {
     description:
       "At Next Gems Summer Camp, we believe learning flourishes when it is engaging, personalised, and inspired by real-world experiences. Our expert teachers guide every student to grow in confidence, skill, and curiosity, making every lesson meaningful and memorable.",
     approachesIcons: [
-      <InteractiveIcon key={0} />,
-      <RealWorldCommIcon key={1} />,
-      <GlobeIcon key={2} />,
-      <ExpertEduIcon key={3} />,
+      <InteractiveIcon
+        key={0}
+        innerClassStyles="stroke-grey-base! group-hover:stroke-blue-primary!"
+      />,
+      <RealWorldCommIcon
+        key={1}
+        innerClassStyles="group-hover:stroke-blue-primary!"
+      />,
+      <GlobeIcon
+        key={2}
+        innerClassStyles="group-hover:stroke-blue-primary! group-hover:fill-blue-primary"
+      />,
+      <ExpertEduIcon
+        key={3}
+        innerClassStyles="group-hover:stroke-blue-primary!"
+      />,
     ],
     approaches: [
       {

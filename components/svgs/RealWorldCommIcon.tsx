@@ -1,7 +1,11 @@
 import { CustomSVGProps } from "@/types/types1";
 import { twMerge } from "tailwind-merge";
 
-function RealWorldCommIcon({ className, stroke = "#161616" }: CustomSVGProps) {
+function RealWorldCommIcon({
+  className,
+  stroke = "#161616",
+  innerClassStyles,
+}: CustomSVGProps) {
   return (
     <svg
       width={40}
@@ -16,12 +20,14 @@ function RealWorldCommIcon({ className, stroke = "#161616" }: CustomSVGProps) {
         stroke={stroke}
         strokeWidth="1.66667"
         strokeLinecap="round"
+        className={innerClassStyles}
       />
       <path
         d="M23.3334 3.66659C22.2556 3.44659 21.1445 3.33547 20 3.33325C10.795 3.33325 3.33337 10.7949 3.33337 19.9999C3.33337 29.2049 10.795 36.6666 20 36.6666C29.205 36.6666 36.6667 29.2049 36.6667 19.9999C36.6645 18.8555 36.5534 17.7444 36.3334 16.6666"
         stroke={stroke}
         strokeWidth="1.66667"
         strokeLinecap="round"
+        className={innerClassStyles}
       />
       <path
         d="M20.05 19.9367L27.6384 12.3483M32.9 7.24168L31.9784 3.92835C31.9415 3.80213 31.8741 3.68693 31.7822 3.59296C31.6902 3.49898 31.5765 3.42913 31.4511 3.38958C31.3256 3.35003 31.1924 3.342 31.0632 3.36621C30.9339 3.39041 30.8126 3.4461 30.7101 3.52835C28.3167 5.48335 25.71 8.11835 27.8384 12.2733C32.1284 14.2733 34.5784 11.5767 36.455 9.30835C36.5399 9.20387 36.5975 9.07989 36.6224 8.9476C36.6473 8.81531 36.6389 8.67889 36.5979 8.55068C36.5569 8.42246 36.4845 8.3065 36.3874 8.21326C36.2903 8.12003 36.1715 8.05247 36.0417 8.01668L32.9 7.24168Z"
@@ -29,6 +35,7 @@ function RealWorldCommIcon({ className, stroke = "#161616" }: CustomSVGProps) {
         strokeWidth="1.66667"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={innerClassStyles}
       />
     </svg>
   );

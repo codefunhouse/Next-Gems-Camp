@@ -1,7 +1,11 @@
 import { CustomSVGProps } from "@/types/types1";
 import { twMerge } from "tailwind-merge";
 
-function GlobeIcon({ className, stroke = "#161616" }: CustomSVGProps) {
+function GlobeIcon({
+  className,
+  stroke = "#161616",
+  innerClassStyles,
+}: CustomSVGProps) {
   return (
     <svg
       width={40}
@@ -17,6 +21,7 @@ function GlobeIcon({ className, stroke = "#161616" }: CustomSVGProps) {
           fill="#161616"
           stroke={stroke}
           strokeWidth="0.078125"
+          className={innerClassStyles}
         />
       </g>
       <defs>

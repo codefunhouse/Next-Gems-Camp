@@ -4,6 +4,7 @@ export interface CustomSVGProps {
   className?: string;
   fill?: string;
   stroke?: string;
+  innerClassStyles?: string;
 }
 
 export interface InfoProps {

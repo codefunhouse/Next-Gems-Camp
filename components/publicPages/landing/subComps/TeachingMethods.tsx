@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { commonSectionStyles } from "@/lib/constants/commonStyles";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { TeachingApproaches } from "@/types/sanityTypes";
@@ -39,12 +38,10 @@ function TeachingMethods({
             {icon}
           </div>
         )}
-        <Card className="flex items-center gap-6 rounded-4xl border-[#E2E2E2] transition-all hover:border-[1.5px] hover:border-blue-primary hover:bg-[#15B1FB0F]">
-          <CardContent className="py-11 px-8">
-            <h3 className="text-xl font-semibold mb-2">{title}</h3>
-            <p className="text-muted-foreground">{description}</p>
-          </CardContent>
-        </Card>
+        <div className="flex flex-col gap-2 rounded-4xl border transition-all border-[#E2E2E2] group-hover:border-[1.5px] group-hover:border-blue-primary group-hover:bg-[#15B1FB0F] py-11 px-8 h-full">
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-muted-foreground">{description}</p>
+        </div>
       </div>
     );
   };
@@ -64,7 +61,7 @@ function TeachingMethods({
             {description || landingPageDummyData.teachingApproaches.description}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-">
           {(
             approaches || landingPageDummyData.teachingApproaches.approaches
           ).map((approach, idx) =>
