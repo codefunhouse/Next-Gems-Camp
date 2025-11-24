@@ -62,7 +62,7 @@ function AgentForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, type: "agent" }),
       });
 
       if (!response.ok) {

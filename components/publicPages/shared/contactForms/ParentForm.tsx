@@ -58,13 +58,14 @@ function ParentForm() {
 
   const onSubmit = async (values: ParentType) => {
     setIsLoading(true);
+
     try {
       const response = await fetch(`${contactUsUrl}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, type: "parent" }),
       });
 
       if (!response.ok) {
