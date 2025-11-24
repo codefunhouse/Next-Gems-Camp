@@ -48,7 +48,7 @@ That’s everything you listed mapped to practical input types.
 
 
 type ParentFormValues = {
-  parentName: string;
+  parentName: string; *
   email: string;
   phone: string;
   homeCountryAddress: string;
@@ -59,15 +59,15 @@ type ParentFormValues = {
 
   referralSource: string; //optional
 
-  childAgeGroups: string[];
-  childrenNames: string;
-  childCount: string (digits);
+  childAgeGroups: string[]; *
+  childrenNames: string; *
+  childCount: string (digits); *
 
 };
 
 
 type AgentFormValues = {
-  agentName: string;
+  agentName: string; *
   email: string;
   phone: string;
   homeCountryAddress: string;
@@ -78,7 +78,7 @@ type AgentFormValues = {
 
   referralSource: string;  //optional
 
-  studentAgeGroups: string[];
-  companyName: string;
-  studentCount: string ("digits");
+  studentAgeGroups: string[]; *
+  companyName: string; *
+  studentCount: string ("digits"); *
 };
