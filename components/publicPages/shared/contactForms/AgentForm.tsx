@@ -24,37 +24,25 @@ import {
   programmeOptions,
 } from "./formData";
 import { commonGroupStyle, commonSectionStyles } from "./ParentForm";
-import { agentFormSchema, AgentType } from "./schemas";
+import {
+  agentDefaultValues,
+  agentFormSchema,
+  AgentFormValues,
+} from "./schemas";
 
 function AgentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { toast } = useToast();
 
-  const form = useForm<AgentType>({
+  const form = useForm<AgentFormValues>({
     resolver: zodResolver(agentFormSchema),
-    defaultValues: {
-      agentName: "",
-      email: "",
-      phone: "",
-      homeCountryAddress: "",
-
-      location: "",
-      programme: "",
-      datesInterested: [],
-
-      referralSource: "",
-
-      studentAgeGroups: [],
-      companyName: "",
-      studentCount: "1",
-    },
-    mode: "onChange",
+    defaultValues: agentDefaultValues,
   });
 
   const contactUsUrl = process.env.NEXT_PUBLIC_CONTACT_URL || "";
 
-  const onSubmit = async (values: AgentType) => {
+  const onSubmit = async (values: AgentFormValues) => {
     setIsLoading(true);
     try {
       const response = await fetch(`${contactUsUrl}`, {

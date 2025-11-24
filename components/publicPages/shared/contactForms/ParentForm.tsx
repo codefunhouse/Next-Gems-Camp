@@ -23,7 +23,11 @@ import {
   locationOptions,
   programmeOptions,
 } from "./formData";
-import { parentFormSchema, ParentType } from "./schemas";
+import {
+  parentDefaultValues,
+  parentFormSchema,
+  ParentFormValues,
+} from "./schemas";
 
 export const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
 export const commonSectionStyles = "flex flex-col gap-4";
@@ -33,30 +37,15 @@ function ParentForm() {
 
   const { toast } = useToast();
 
-  const form = useForm<ParentType>({
+  const form = useForm<ParentFormValues>({
     resolver: zodResolver(parentFormSchema),
-    defaultValues: {
-      parentName: "",
-      email: "",
-      phone: "",
-      homeCountryAddress: "",
-
-      location: "",
-      programme: "",
-      datesInterested: [],
-
-      referralSource: "",
-
-      childAgeGroups: [],
-      childrenNames: "",
-      childCount: "1",
-    },
+    defaultValues: parentDefaultValues,
     mode: "onChange",
   });
 
   const contactUsUrl = process.env.NEXT_PUBLIC_CONTACT_URL || "";
 
-  const onSubmit = async (values: ParentType) => {
+  const onSubmit = async (values: ParentFormValues) => {
     setIsLoading(true);
 
     try {

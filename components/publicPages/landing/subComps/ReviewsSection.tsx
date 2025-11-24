@@ -10,44 +10,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const testimonials = [
-  {
-    name: "Oscar",
-    country: "Germany",
-    text: "The tutorials were the best, with individual feedback and valuable suggestions. This personalized approach was helpful.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Alexis",
-    country: "United Kingdom",
-    text: "The course was adapted to our interests and taught by an expert. Discussions with eager students were well-facilitated.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Valerie",
-    country: "Canada",
-    text: "My course was in-depth and engaging. The smaller class size helped me participate more and get one-on-one time with my tutor.",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Marcus",
-    country: "Australia",
-    text: "An incredible learning experience that pushed me beyond my comfort zone. The tutors were exceptional mentors.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Sophie",
-    country: "France",
-    text: "The blend of academic rigor and practical application made this program stand out. Truly transformative!",
-    image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
-  },
-];
-
 function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -74,7 +36,10 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const maxIndex = Math.max(0, testimonials.length - cardsToShow);
+  const maxIndex = Math.max(
+    0,
+    (reviews || landingPageDummyData.reviews.reviews).length - cardsToShow
+  );
 
   // Use useCallback to memoize the nextSlide function
   const nextSlide = useCallback(() => {

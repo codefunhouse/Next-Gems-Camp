@@ -17,7 +17,7 @@ async function PublicPagesLayoutContainer({
   const agentsData = await getAgentPage();
   return (
     <>
-      <div className="pt-[3.1rem] sm:pt-13 max-w-360 mx-auto">
+      <div className="pt-[3.1rem] sm:pt-13">
         <Navbar />
         <main className="min-h-screen flex flex-col">{children}</main>
 
