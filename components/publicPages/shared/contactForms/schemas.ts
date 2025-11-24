@@ -16,7 +16,7 @@ const commonFields = {
 
   phone: z
     .string()
-    .min(1, "Phone number is required")
+    .min(7, "Phone number is required and must be at least 7 characters")
     .max(20, "Phone number must be less than 20 characters")
     .refine((val) => {
       const cleaned = val.trim().replace(/[\s\-\(\)]/g, "");

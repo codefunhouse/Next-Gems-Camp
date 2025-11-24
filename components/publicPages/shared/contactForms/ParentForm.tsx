@@ -35,6 +35,7 @@ export const commonSectionStyles = "flex flex-col gap-4";
 
 function ParentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showDiscountPopup, setShowDiscountPopup] = useState<boolean>(false);
 
   const { toast } = useToast();
 
@@ -114,18 +115,33 @@ function ParentForm() {
   const renderGroupLabel = ({
     label,
     className,
+    showInfo,
   }: {
     label: string;
     className?: string;
+    showInfo?: boolean;
   }) => (
-    <p
+    <div
       className={twMerge(
-        "text-base sm:text-lg pb-[0.4rem] border-b border-b-[#EDEDED] font-medium mb-2",
+        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4 flex items-center gap-2",
         className
       )}
     >
-      {label}
-    </p>
+      <p>{label}</p>
+      {showInfo && (
+        <div className="relative shrink-0">
+          <span className="bg-blue-100 text-blue-600 w-6 h-6 rounded-full text-sm flex items-center justify-center hover:bg-blue-200 transition-colors font-bold italic">
+            i
+          </span>
+
+          {showDiscountPopup && (
+            <p className="absolute left-full bottom-full w-52 px-2 py-2 bg-black/90 text-white rounded-lg text-xs">
+              We offer a discount for 10 or more children.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -214,9 +230,18 @@ function ParentForm() {
           </div>
 
           {/* Child Information */}
-          <div className={twMerge(commonSectionStyles)}>
+          <div
+            className={twMerge(commonSectionStyles)}
+            onMouseEnter={() => {
+              setShowDiscountPopup(true);
+            }}
+            onMouseLeave={() => {
+              setShowDiscountPopup(false);
+            }}
+          >
             {renderGroupLabel({
               label: "Child Information",
+              showInfo: true,
             })}
 
             <div className={twMerge("", commonGroupStyle)}>

@@ -33,6 +33,7 @@ import {
 
 function AgentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showDiscountPopup, setShowDiscountPopup] = useState<boolean>(false);
 
   const { toast } = useToast();
 
@@ -110,18 +111,33 @@ function AgentForm() {
   const renderGroupLabel = ({
     label,
     className,
+    showInfo,
   }: {
     label: string;
     className?: string;
+    showInfo?: boolean;
   }) => (
-    <p
+    <div
       className={twMerge(
-        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4",
+        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4 flex items-center gap-2",
         className
       )}
     >
-      {label}
-    </p>
+      <p>{label}</p>
+      {showInfo && (
+        <div className="relative shrink-0">
+          <span className="bg-blue-100 text-blue-600 w-6 h-6 rounded-full text-sm flex items-center justify-center hover:bg-blue-200 transition-colors font-bold italic">
+            i
+          </span>
+
+          {showDiscountPopup && (
+            <p className="absolute left-full bottom-full w-52 px-2 py-2 bg-black/90 text-white rounded-lg text-xs">
+              We offer a discount for 10 or more students.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -152,7 +168,7 @@ function AgentForm() {
                 render={({ field }) => (
                   <FormItem>
                     {renderLabel({
-                      label: " Parent/Guardian Email",
+                      label: " Agent Email",
                     })}
                     <FormControl>
                       <Input
@@ -207,12 +223,37 @@ function AgentForm() {
                 )}
               />
             </div>
+            <div className={commonSectionStyles}>
+              <FormField
+                control={form.control}
+                name="companyName"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Company/School Name",
+                    })}
+
+                    <Input className="" placeholder="Mark Edu Inc" {...field} />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
 
           {/* Student Information */}
-          <div className={twMerge(commonSectionStyles)}>
+          <div
+            className={twMerge(commonSectionStyles)}
+            onMouseEnter={() => {
+              setShowDiscountPopup(true);
+            }}
+            onMouseLeave={() => {
+              setShowDiscountPopup(false);
+            }}
+          >
             {renderGroupLabel({
               label: "Student Information",
+              showInfo: true,
             })}
 
             <div className={twMerge("", commonGroupStyle)}>
@@ -236,23 +277,6 @@ function AgentForm() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="companyName"
-                render={({ field }) => (
-                  <FormItem>
-                    {renderLabel({
-                      label: "Company/School Name",
-                    })}
-
-                    <Input className="" placeholder="Mark Edu Inc" {...field} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className={twMerge("col-span-2", commonGroupStyle)}>
               <FormField
                 control={form.control}
                 name="studentCount"
