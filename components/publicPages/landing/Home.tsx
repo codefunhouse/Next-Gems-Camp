@@ -6,7 +6,7 @@ import { useModal } from "@/hooks/useModal";
 import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { LandingPage } from "@/types/sanityTypes";
-import ApplyForm from "../shared/ApplyForm";
+import ApplyForm from "../shared/contactForms/ApplyForm";
 import HeroSection from "../shared/HeroSection";
 import FeaturesSection from "./subComps/FeaturesSection";
 import OurPathwayProgrammes from "./subComps/OurPathwayProgrammes";

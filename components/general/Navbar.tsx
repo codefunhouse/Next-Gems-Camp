@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import ApplyForm from "../publicPages/shared/ApplyForm";
+import ApplyForm from "../publicPages/shared/contactForms/ApplyForm";
 import ShortArrowDown from "../svgs/ShortArrowDown";
 import Button from "./Button";
 import Logo from "./Logo";

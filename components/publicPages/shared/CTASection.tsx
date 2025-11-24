@@ -7,8 +7,8 @@ import { landingPageDummyData } from "@/lib/dummyData/landingPage";
 import { CTASectionProps } from "@/types/sanityTypes";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
-import ApplyForm from "./ApplyForm";
 import BgImage from "./BgImage";
+import ApplyForm from "./contactForms/ApplyForm";
 
 function CTASection({
   landingPageCTA,

@@ -9,7 +9,7 @@ import {
   getSanityImageUrl,
 } from "@/lib/sanityFns/getSanityImageUrl";
 import { CanterburyPage } from "@/types/sanityTypes";
-import ApplyForm from "../shared/ApplyForm";
+import ApplyForm from "../shared/contactForms/ApplyForm";
 import ContentCard from "../shared/ContentCard";
 import HeroSection from "../shared/HeroSection";
 import ImageDisplayer from "../shared/ImageDisplayer";

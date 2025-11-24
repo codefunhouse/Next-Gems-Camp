@@ -7,7 +7,7 @@ import { parentInfoData } from "@/lib/dummyData/infoData";
 import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { InfoParentsProps } from "@/types/types1";
 import QuestionsAndAnswers from "../landing/subComps/QuestionsAndAnswers";
-import ApplyForm from "../shared/ApplyForm";
+import ApplyForm from "../shared/contactForms/ApplyForm";
 import HeroSection from "../shared/HeroSection";
 import ImageContentCard from "../shared/ImageCard";
 import SplitSection from "../shared/SplitSection";
