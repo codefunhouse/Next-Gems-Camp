@@ -1,18 +1,19 @@
 "use client";
 import CircularCancel from "@/components/svgs/CircularCancel";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { formData, formTabs } from "./formData";
 
 const ApplyForm = ({
   onClick,
-  formType,
+  activeTab = 0,
+  setActiveTab,
 }: {
   onClick?: () => void;
-  formType?: number;
+  activeTab?: number;
+  setActiveTab?: (val: number) => void;
 }) => {
-  const [activeTab, setActiveTab] = useState<number | undefined>(formType || 0);
+  // const [activeTab, setActiveTab] = useState<number | undefined>(formType || 0);
 
   const currentForm = formData[activeTab as number];
 
@@ -41,7 +42,7 @@ const ApplyForm = ({
                   "border-blue-primary bg-[#15B1FB29] transition-all"
               )}
               onClick={() => {
-                setActiveTab(idx);
+                setActiveTab?.(idx);
               }}
             >
               {tab.name}

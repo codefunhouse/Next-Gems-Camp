@@ -1,0 +1,84 @@
+Here’s a simple mapping from each field to sensible HTML input types / controls.
+
+### Common fields (in both forms)
+
+* **Name of Parent / Name of Agent** → `input type="text"`
+* **Email Address** → `input type="email"`
+* **Phone Number** → `input type="tel"`
+* **Home Country Address** → `textarea` (or `input type="text"` if you prefer single line)
+* **Location Selection** → `<select>` (dropdown) or a group of `input type="radio"` if only a few locations
+* **Programme Selection** → `<select>` (dropdown) or a group of `input type="checkbox"` if multiple programmes can be chosen
+* **Dates Interested (with tick box options of potential dates)** → group of `input type="checkbox"` (one per date option)
+* **Where did you hear about us?**
+
+  * Primary control: `<select>` or group of `input type="radio"` (Social media, Friend, School, etc.)
+  * Optional: `input type="text"` for an “Other (please specify)” field
+* **Age(s) / Age of Students: 9–11 / 12–14 / 15–17 (tick all applicable)** → group of `input type="checkbox"` (one per age band)
+
+### Parent-only fields
+
+* **Name of Child(ren)** → `input type="text"`
+  (or multiple `input type="text"` fields if you want one per child)
+
+### Agent-only fields
+
+* **Company/School Name** → `input type="text"`
+* **Number of Students Interested** → `input type="number" min="1"`
+
+That’s everything you listed mapped to practical input types.
+
+{
+  agentName: "",
+  email: "",
+  phone: "",
+  homeCountryAddress: "",
+
+  location: "",
+  programme: "",
+  datesInterested: [],
+
+  referralSource: "",
+
+  studentAgeGroups: [],
+  companyName: "",
+  studentCount: 1,
+}
+
+
+
+
+type ParentFormValues = {
+  parentName: string;
+  email: string;
+  phone: string;
+  homeCountryAddress: string;
+
+  location: string;
+  programme: string;
+  datesInterested: string[];
+
+  referralSource: string; //optional
+
+  childAgeGroups: string[];
+  childrenNames: string;
+  childCount: number;
+
+};
+
+
+type AgentFormValues = {
+  agentName: string;
+  email: string;
+  phone: string;
+  homeCountryAddress: string;
+
+  location: string;
+  programme: string;
+  datesInterested: string[];
+
+  referralSource: string;  //optional
+
+  studentAgeGroups: string[];
+  companyName: string;
+  studentCount: number;
+};

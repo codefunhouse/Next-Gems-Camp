@@ -1,5 +1,8 @@
 "use client";
 import Button from "@/components/general/Button";
+import CustomSelect, {
+  SelectOption,
+} from "@/components/general/formInputs/Select";
 import {
   Form,
   FormControl,
@@ -9,44 +12,43 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { parentFormSchema, ParentType } from "./schemas";
+import { twMerge } from "tailwind-merge";
+import { ageOptions, locationOptions, programmeOptions } from "./formData";
+import { agentFormSchema, AgentType } from "./schemas";
 
 function AgentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { toast } = useToast();
 
-  const form = useForm<ParentType>({
-    resolver: zodResolver(parentFormSchema),
+  const form = useForm<AgentType>({
+    resolver: zodResolver(agentFormSchema),
     defaultValues: {
-      parentFirstName: "",
-      parentLastName: "",
-      parentEmail: "",
-      parentPhone: "",
-      studentAge: "",
-      programmeLocation: "",
-      subjectInterest: "",
-      whereHearAboutUs: "",
-      whyOurProgramme: "",
+      agentName: "",
+      email: "",
+      phone: "",
+      homeCountryAddress: "",
+
+      location: "",
+      programme: "",
+      datesInterested: [],
+
+      referralSource: "",
+
+      studentAgeGroups: [],
+      companyName: "",
+      studentCount: "1",
     },
     mode: "onChange",
   });
 
   const contactUsUrl = process.env.NEXT_PUBLIC_CONTACT_URL || "";
 
-  const onSubmit = async (values: ParentType) => {
+  const onSubmit = async (values: AgentType) => {
     setIsLoading(true);
     try {
       const response = await fetch(`${contactUsUrl}`, {
@@ -91,47 +93,76 @@ function AgentForm() {
       setIsLoading(false);
     }
   };
+
+  const renderLabel = ({
+    label,
+    required = true,
+    className,
+  }: {
+    label: string;
+    required?: boolean;
+    className?: string;
+  }) => (
+    <FormLabel className={twMerge("text-sm", className)}>
+      {label}
+      {required && <span className="text-red-500">*</span>}
+    </FormLabel>
+  );
+
+  const renderGroupLabel = ({
+    label,
+    className,
+  }: {
+    label: string;
+    className?: string;
+  }) => (
+    <p
+      className={twMerge(
+        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4",
+        className
+      )}
+    >
+      {label}
+    </p>
+  );
+
+  const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="space-y-8 max-h-[50vh] overflow-y-auto customScrollbar py-3 px-1">
           {/* Parent/Guardian Information */}
           <div className="flex flex-col gap-5">
-            <p className="text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium">
-              Parent/Guardian Information
-            </p>
+            {renderGroupLabel({ label: "Parent Information" })}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <FormField
                 control={form.control}
-                name="parentFirstName"
+                name="agentName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">
-                      Parent/Guardian First Name *
-                    </FormLabel>
+                    {renderLabel({ label: "Name of Agent" })}
                     <FormControl>
-                      <Input
-                        className="rounded-xl py-3 px-4"
-                        placeholder="Jane"
-                        {...field}
-                      />
+                      <Input className="" placeholder="Jane Smith" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
-                name="parentLastName"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">
-                      Parent/Guardian Last Name *
-                    </FormLabel>
+                    {renderLabel({
+                      label: " Parent/Guardian Email",
+                    })}
                     <FormControl>
                       <Input
-                        className="rounded-xl py-3 px-4"
-                        placeholder="Smith"
+                        className=""
+                        type="email"
+                        placeholder="jane@example.com"
                         {...field}
                       />
                     </FormControl>
@@ -143,33 +174,10 @@ function AgentForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <FormField
                 control={form.control}
-                name="parentEmail"
+                name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">
-                      Parent/Guardian Email *
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        className="rounded-xl py-3 px-4"
-                        type="email"
-                        placeholder="jane@example.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="parentPhone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm">
-                      Parent/Guardian Phone Number *
-                    </FormLabel>
+                    {renderLabel({ label: "Parent/Guardian Phone Number" })}
                     <FormControl>
                       <Input
                         className="rounded-xl py-3 px-4"
@@ -181,39 +189,78 @@ function AgentForm() {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="homeCountryAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Home Country Address",
+                    })}
+                    <FormControl>
+                      <Input placeholder="jane@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
           </div>
 
           {/* Student Information */}
           <div>
-            <p className="text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4">
-              Student Information
-            </p>
+            {renderGroupLabel({
+              label: "Student Information",
+            })}
 
-            <div className="mt-5">
+            <div className={twMerge("", commonGroupStyle)}>
               <FormField
                 control={form.control}
-                name="studentAge"
+                name="studentAgeGroups"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">Age Group *</FormLabel>
-                    <Select
-                      onValueChange={(value) => {
-                        field.onChange(value);
-                        form.trigger(); // Force validation after select change
-                      }}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select age group" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="9-12">9-12 years</SelectItem>
-                        <SelectItem value="13-17">13-17 years</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {renderLabel({
+                      label: "Age(s) of Student(s) (select all that apply)",
+                    })}
+
+                    <CustomSelect
+                      {...field}
+                      options={ageOptions}
+                      placeholder="Select Ages"
+                      mode="multiple"
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="companyName"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Company/School Name",
+                    })}
+
+                    <Input className="" placeholder="Mark Edu Inc" {...field} />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className={twMerge("col-span-2", commonGroupStyle)}>
+              <FormField
+                control={form.control}
+                name="studentCount"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Number of students interested",
+                    })}
+
+                    <Input className="" placeholder="0" {...field} />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -221,69 +268,65 @@ function AgentForm() {
             </div>
           </div>
 
-          {/* Program Selection */}
+          {/* Program Infomation */}
           <div>
-            <p className="text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4">
-              Program Selection
-            </p>
+            {renderGroupLabel({
+              label: "Programme Infomation",
+            })}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <FormField
                 control={form.control}
-                name="programmeLocation"
+                name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">
-                      Preferred Location *
-                    </FormLabel>
-                    <Select
-                      onValueChange={(value) => {
-                        field.onChange(value);
-                        form.trigger(); // Force validation after select change
-                      }}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select location" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="norfolk">Norfolk</SelectItem>
-                        <SelectItem value="canterbury">Canterbury</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {renderLabel({
+                      label: "Programme Location",
+                    })}
+
+                    <CustomSelect
+                      {...field}
+                      options={locationOptions as SelectOption[]}
+                      placeholder="Select Location"
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
-                name="subjectInterest"
+                name="programme"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm">
-                      Subject Interest *
-                    </FormLabel>
-                    <Select
-                      onValueChange={(value) => {
-                        field.onChange(value);
-                        form.trigger(); // Force validation after select change
-                      }}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select subject" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="sports">Sports</SelectItem>
-                        <SelectItem value="enterprise">Enterprise</SelectItem>
-                        <SelectItem value="media">Media</SelectItem>
-                        <SelectItem value="technology">Technology</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {renderLabel({
+                      label: "Programme Type",
+                    })}
+
+                    <CustomSelect
+                      {...field}
+                      options={programmeOptions}
+                      placeholder="Select Programme"
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className={twMerge("col-span-2", commonGroupStyle)}>
+              <FormField
+                control={form.control}
+                name="datesInterested"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Interested Dates",
+                    })}
+
+                    <CustomSelect
+                      {...field}
+                      options={programmeOptions}
+                      placeholder="Select Dates"
+                      mode="multiple"
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -293,48 +336,31 @@ function AgentForm() {
 
           {/* Additional Information */}
           <div>
-            <p className="text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4">
-              Additional Information
-            </p>
-            <FormField
-              control={form.control}
-              name="whereHearAboutUs"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-sm">
-                    Where did you hear about us? *
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      className="rounded-xl py-3 px-4"
-                      placeholder="Where did you hear about us"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="whyOurProgramme"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel className="text-sm">
-                    Why do you want to attend our programme (optional)?
-                  </FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Tell us why you want to attend our program"
-                      className="min-h-[120px]"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {renderGroupLabel({
+              label: "Additional Information",
+            })}
+            <div className={twMerge("col-span-2", commonGroupStyle)}>
+              <FormField
+                control={form.control}
+                name="referralSource"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Where did you hear about us?",
+                      required: false,
+                    })}
+                    <FormControl>
+                      <Input
+                        className="rounded-xl py-3 px-4"
+                        placeholder="Where did you hear about us"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
         </div>
 
