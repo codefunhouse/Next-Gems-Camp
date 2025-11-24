@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/general/Button";
+import { CustomPhoneInput } from "@/components/general/formInputs/CustomPhoneInput";
 import CustomSelect, {
   SelectOption,
 } from "@/components/general/formInputs/Select";
@@ -24,37 +25,26 @@ import {
   programmeOptions,
 } from "./formData";
 import { commonGroupStyle, commonSectionStyles } from "./ParentForm";
-import { agentFormSchema, AgentType } from "./schemas";
+import {
+  agentDefaultValues,
+  agentFormSchema,
+  AgentFormValues,
+} from "./schemas";
 
 function AgentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showDiscountPopup, setShowDiscountPopup] = useState<boolean>(false);
 
   const { toast } = useToast();
 
-  const form = useForm<AgentType>({
+  const form = useForm<AgentFormValues>({
     resolver: zodResolver(agentFormSchema),
-    defaultValues: {
-      agentName: "",
-      email: "",
-      phone: "",
-      homeCountryAddress: "",
-
-      location: "",
-      programme: "",
-      datesInterested: [],
-
-      referralSource: "",
-
-      studentAgeGroups: [],
-      companyName: "",
-      studentCount: "1",
-    },
-    mode: "onChange",
+    defaultValues: agentDefaultValues,
   });
 
   const contactUsUrl = process.env.NEXT_PUBLIC_CONTACT_URL || "";
 
-  const onSubmit = async (values: AgentType) => {
+  const onSubmit = async (values: AgentFormValues) => {
     setIsLoading(true);
     try {
       const response = await fetch(`${contactUsUrl}`, {
@@ -104,13 +94,16 @@ function AgentForm() {
     label,
     required = true,
     className,
+    subLabel,
   }: {
     label: string;
+    subLabel?: string;
     required?: boolean;
     className?: string;
   }) => (
     <FormLabel className={twMerge("text-sm", className)}>
       {label}
+      {subLabel && <span className="text-xs italic">{subLabel}</span>}
       {required && <span className="text-red-500">*</span>}
     </FormLabel>
   );
@@ -118,18 +111,33 @@ function AgentForm() {
   const renderGroupLabel = ({
     label,
     className,
+    showInfo,
   }: {
     label: string;
     className?: string;
+    showInfo?: boolean;
   }) => (
-    <p
+    <div
       className={twMerge(
-        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4",
+        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4 flex items-center gap-2",
         className
       )}
     >
-      {label}
-    </p>
+      <p>{label}</p>
+      {showInfo && (
+        <div className="relative shrink-0">
+          <span className="bg-blue-100 text-blue-600 w-6 h-6 rounded-full text-sm flex items-center justify-center hover:bg-blue-200 transition-colors font-bold italic">
+            i
+          </span>
+
+          {showDiscountPopup && (
+            <p className="absolute left-full bottom-full w-52 px-2 py-2 bg-black/90 text-white rounded-lg text-xs">
+              We offer a discount for 10 or more students.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -160,7 +168,7 @@ function AgentForm() {
                 render={({ field }) => (
                   <FormItem>
                     {renderLabel({
-                      label: " Parent/Guardian Email",
+                      label: " Agent Email",
                     })}
                     <FormControl>
                       <Input
@@ -181,13 +189,18 @@ function AgentForm() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    {renderLabel({ label: "Parent/Guardian Phone Number" })}
+                    {renderLabel({ label: "Agent Phone Number" })}
                     <FormControl>
-                      <Input
+                      <CustomPhoneInput
+                        {...field}
+                        onChange={(val) => field.onChange(val)}
+                        placeholder="Enter Phone Number"
+                      />
+                      {/* <Input
                         className="rounded-xl py-3 px-4"
                         placeholder="+44 20 1234 5678"
                         {...field}
-                      />
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -203,41 +216,14 @@ function AgentForm() {
                       label: "Home Country Address",
                     })}
                     <FormControl>
-                      <Input placeholder="jane@example.com" {...field} />
+                      <Input placeholder="5, London Street" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-          </div>
-
-          {/* Student Information */}
-          <div className={twMerge(commonSectionStyles)}>
-            {renderGroupLabel({
-              label: "Student Information",
-            })}
-
-            <div className={twMerge("", commonGroupStyle)}>
-              <FormField
-                control={form.control}
-                name="studentAgeGroups"
-                render={({ field }) => (
-                  <FormItem>
-                    {renderLabel({
-                      label: "Age(s) of Student(s) (select all that apply)",
-                    })}
-
-                    <CustomSelect
-                      {...field}
-                      options={ageOptions}
-                      placeholder="Select Ages"
-                      mode="multiple"
-                    />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className={commonSectionStyles}>
               <FormField
                 control={form.control}
                 name="companyName"
@@ -253,8 +239,44 @@ function AgentForm() {
                 )}
               />
             </div>
+          </div>
 
-            <div className={twMerge("col-span-2", commonGroupStyle)}>
+          {/* Student Information */}
+          <div
+            className={twMerge(commonSectionStyles)}
+            onMouseEnter={() => {
+              setShowDiscountPopup(true);
+            }}
+            onMouseLeave={() => {
+              setShowDiscountPopup(false);
+            }}
+          >
+            {renderGroupLabel({
+              label: "Student Information",
+              showInfo: true,
+            })}
+
+            <div className={twMerge("", commonGroupStyle)}>
+              <FormField
+                control={form.control}
+                name="studentAgeGroups"
+                render={({ field }) => (
+                  <FormItem>
+                    {renderLabel({
+                      label: "Age(s) of Student(s)",
+                      subLabel: "(select all that apply)",
+                    })}
+
+                    <CustomSelect
+                      {...field}
+                      options={ageOptions}
+                      placeholder="Select Ages"
+                      mode="multiple"
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="studentCount"

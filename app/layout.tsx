@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`antialiased`} suppressHydrationWarning>
         <Toaster />
         <Suspense
           fallback={
@@ -29,7 +29,9 @@ export default function RootLayout({
             </Centralizer>
           }
         >
-          <ModalProvider>{children}</ModalProvider>
+          <div className="max-w-480 mx-auto w-full">
+            <ModalProvider>{children}</ModalProvider>
+          </div>
         </Suspense>
         <SanityLive />
       </body>

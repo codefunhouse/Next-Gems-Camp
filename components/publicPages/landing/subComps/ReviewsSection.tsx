@@ -10,44 +10,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const testimonials = [
-  {
-    name: "Oscar",
-    country: "Germany",
-    text: "The tutorials were the best, with individual feedback and valuable suggestions. This personalized approach was helpful.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Alexis",
-    country: "United Kingdom",
-    text: "The course was adapted to our interests and taught by an expert. Discussions with eager students were well-facilitated.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Valerie",
-    country: "Canada",
-    text: "My course was in-depth and engaging. The smaller class size helped me participate more and get one-on-one time with my tutor.",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Marcus",
-    country: "Australia",
-    text: "An incredible learning experience that pushed me beyond my comfort zone. The tutors were exceptional mentors.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Sophie",
-    country: "France",
-    text: "The blend of academic rigor and practical application made this program stand out. Truly transformative!",
-    image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
-  },
-];
-
 function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -74,7 +36,10 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const maxIndex = Math.max(0, testimonials.length - cardsToShow);
+  const maxIndex = Math.max(
+    0,
+    (reviews || landingPageDummyData.reviews.reviews).length - cardsToShow
+  );
 
   // Use useCallback to memoize the nextSlide function
   const nextSlide = useCallback(() => {
@@ -188,17 +153,26 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
                         <CardContent className="px-6 md:px-8 py-11 h-full flex flex-col">
                           <div className="flex items-center gap-4 mb-4">
                             <div className="relative">
-                              <Image
-                                src={
-                                  typeof testimonial.image === "string"
-                                    ? testimonial.image
-                                    : getSanityImageUrl(testimonial.image)
-                                }
-                                alt={testimonial.title as string}
-                                width={64}
-                                height={64}
-                                className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
-                              />
+                              {testimonial.image ? (
+                                <Image
+                                  src={
+                                    typeof testimonial.image === "string"
+                                      ? testimonial.image
+                                      : getSanityImageUrl(testimonial.image)
+                                  }
+                                  alt={testimonial.title as string}
+                                  width={64}
+                                  height={64}
+                                  className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
+                                />
+                              ) : (
+                                <div className="w-16 h-16 rounded-full border border-[#E2E2E2] group-hover:border-primary/30 transition-colors text-center flex items-center justify-center ">
+                                  <span className="text-3xl font-medium shrink-0">
+                                    {name[0].toUpperCase()}
+                                    {name[1].toUpperCase()}
+                                  </span>
+                                </div>
+                              )}
                               <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
                             <div className="space-y-2">

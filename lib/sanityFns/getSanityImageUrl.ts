@@ -10,14 +10,14 @@ export const getSanityImageUrl = (
   width: number = 1200,
   quality: number = 80
 ): string => {
-  if (!image) return "";
+  if (!image) return encodeURIComponent(" ");
   if (typeof image === "string") return image;
 
   try {
     return urlFor(image).width(width).quality(quality).url();
   } catch (error) {
     console.warn("Failed to convert Sanity image to URL:", error);
-    return "";
+    return encodeURIComponent("");
   }
 };
 

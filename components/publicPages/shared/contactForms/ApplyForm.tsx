@@ -12,7 +12,7 @@ const ApplyForm = ({ onClick }: { onClick?: () => void }) => {
 
   return (
     <div className="relative mt-5 w-full">
-      <Card className="w-[90vw] sm:w-[80vw] md:w-[50vw] mx-auto px-0 md:px-8 py-6 gap-3 rounded-4xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden">
+      <Card className="w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-[50vw] mx-auto px-0 md:px-8 py-6 gap-3 rounded-4xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden">
         <button
           className="absolute z-10 left-1/2 -translate-x-1/2 -top-5"
           onClick={onClick}

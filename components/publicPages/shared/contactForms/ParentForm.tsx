@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/general/Button";
+import { CustomPhoneInput } from "@/components/general/formInputs/CustomPhoneInput";
 import CustomSelect, {
   SelectOption,
 } from "@/components/general/formInputs/Select";
@@ -23,40 +24,30 @@ import {
   locationOptions,
   programmeOptions,
 } from "./formData";
-import { parentFormSchema, ParentType } from "./schemas";
+import {
+  parentDefaultValues,
+  parentFormSchema,
+  ParentFormValues,
+} from "./schemas";
 
 export const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
 export const commonSectionStyles = "flex flex-col gap-4";
 
 function ParentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showDiscountPopup, setShowDiscountPopup] = useState<boolean>(false);
 
   const { toast } = useToast();
 
-  const form = useForm<ParentType>({
+  const form = useForm<ParentFormValues>({
     resolver: zodResolver(parentFormSchema),
-    defaultValues: {
-      parentName: "",
-      email: "",
-      phone: "",
-      homeCountryAddress: "",
-
-      location: "",
-      programme: "",
-      datesInterested: [],
-
-      referralSource: "",
-
-      childAgeGroups: [],
-      childrenNames: "",
-      childCount: "1",
-    },
+    defaultValues: parentDefaultValues,
     mode: "onChange",
   });
 
   const contactUsUrl = process.env.NEXT_PUBLIC_CONTACT_URL || "";
 
-  const onSubmit = async (values: ParentType) => {
+  const onSubmit = async (values: ParentFormValues) => {
     setIsLoading(true);
 
     try {
@@ -107,13 +98,16 @@ function ParentForm() {
     label,
     required = true,
     className,
+    subLabel,
   }: {
     label: string;
+    subLabel?: string;
     required?: boolean;
     className?: string;
   }) => (
     <FormLabel className={twMerge("text-sm", className)}>
       {label}
+      {subLabel && <span className="text-xs italic">{subLabel}</span>}
       {required && <span className="text-red-500">*</span>}
     </FormLabel>
   );
@@ -121,18 +115,33 @@ function ParentForm() {
   const renderGroupLabel = ({
     label,
     className,
+    showInfo,
   }: {
     label: string;
     className?: string;
+    showInfo?: boolean;
   }) => (
-    <p
+    <div
       className={twMerge(
-        "text-base sm:text-lg pb-[0.4rem] border-b border-b-[#EDEDED] font-medium mb-2",
+        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4 flex items-center gap-2",
         className
       )}
     >
-      {label}
-    </p>
+      <p>{label}</p>
+      {showInfo && (
+        <div className="relative shrink-0">
+          <span className="bg-blue-100 text-blue-600 w-6 h-6 rounded-full text-sm flex items-center justify-center hover:bg-blue-200 transition-colors font-bold italic">
+            i
+          </span>
+
+          {showDiscountPopup && (
+            <p className="absolute left-full bottom-full w-52 px-2 py-2 bg-black/90 text-white rounded-lg text-xs">
+              We offer a discount for 10 or more children.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -178,7 +187,7 @@ function ParentForm() {
                 )}
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
               <FormField
                 control={form.control}
                 name="phone"
@@ -186,11 +195,16 @@ function ParentForm() {
                   <FormItem>
                     {renderLabel({ label: "Parent/Guardian Phone Number" })}
                     <FormControl>
-                      <Input
-                        className="rounded-xl py-3 px-4"
-                        placeholder="+44 20 1234 5678"
+                      <CustomPhoneInput
                         {...field}
+                        onChange={(val) => field.onChange(val)}
+                        placeholder="Enter Phone Number"
                       />
+                      {/* <Input
+                        className="rounded-xl py-3 px-4"
+                        placeholder=""
+                        {...field}
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -206,7 +220,7 @@ function ParentForm() {
                       label: "Home Country Address",
                     })}
                     <FormControl>
-                      <Input placeholder="jane@example.com" {...field} />
+                      <Input placeholder="Address" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -216,9 +230,18 @@ function ParentForm() {
           </div>
 
           {/* Child Information */}
-          <div className={twMerge(commonSectionStyles)}>
+          <div
+            className={twMerge(commonSectionStyles)}
+            onMouseEnter={() => {
+              setShowDiscountPopup(true);
+            }}
+            onMouseLeave={() => {
+              setShowDiscountPopup(false);
+            }}
+          >
             {renderGroupLabel({
-              label: "Child      Information",
+              label: "Child Information",
+              showInfo: true,
             })}
 
             <div className={twMerge("", commonGroupStyle)}>
@@ -228,7 +251,8 @@ function ParentForm() {
                 render={({ field }) => (
                   <FormItem>
                     {renderLabel({
-                      label: "Age(s) of Child(ren) (select all that apply)",
+                      label: "Age(s) of Child(ren)",
+                      subLabel: "(select all that apply)",
                     })}
 
                     <CustomSelect
