@@ -172,7 +172,7 @@ const Select: React.FC<SelectProps> = ({
       )}
 
       <div
-        className={`w-full px-4 py-3 rounded-xl border text-black focus:ring-1 cursor-pointer focus:ring-blue-sec focus:outline-none bg-[#F9F9F9F9] ${
+        className={`w-full px-4 py-2.5 rounded-xl border text-black focus:ring-1 cursor-pointer focus:ring-blue-sec focus:outline-none bg-[#F9F9F9F9] ${
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
         } ${classNames} relative`}
         onClick={toggleDropdown}
@@ -187,13 +187,13 @@ const Select: React.FC<SelectProps> = ({
           className="w-full text-sm bg-transparent border-none focus:outline-none cursor-pointer truncate pr-8"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer">
-          <ChevronDown />
+          <ChevronDown size={16} />
         </div>
       </div>
 
       {isOpen && (
         <div
-          className={`absolute left-0 w-full rounded-md shadow-lg bg-white border border-gray-300 max-h-48 overflow-y-auto transition-all duration-500`}
+          className={`absolute left-0 w-full rounded-md shadow-lg bg-white border border-gray-300 max-h-48 overflow-y-auto transition-all duration-500 customScrollbar`}
           style={{ zIndex: 10 }}
         >
           {searchable && (
@@ -203,7 +203,7 @@ const Select: React.FC<SelectProps> = ({
                 placeholder={searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-sec"
                 onClick={(e) => e.stopPropagation()}
               />
             </div>
@@ -232,7 +232,7 @@ const Select: React.FC<SelectProps> = ({
                     <div
                       className={`w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center ${
                         isOptionSelected(option.value)
-                          ? "bg-blue-primary border-blue-primary"
+                          ? "bg-blue-sec border-blue-sec"
                           : "bg-white"
                       }`}
                     >

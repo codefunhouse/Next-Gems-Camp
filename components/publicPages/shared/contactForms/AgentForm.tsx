@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import { ageOptions, locationOptions, programmeOptions } from "./formData";
+import { commonGroupStyle, commonSectionStyles } from "./ParentForm";
 import { agentFormSchema, AgentType } from "./schemas";
 
 function AgentForm() {
@@ -126,15 +127,13 @@ function AgentForm() {
     </p>
   );
 
-  const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="space-y-8 max-h-[50vh] overflow-y-auto customScrollbar py-3 px-1">
-          {/* Parent/Guardian Information */}
-          <div className="flex flex-col gap-5">
-            {renderGroupLabel({ label: "Parent Information" })}
+        <div className="space-y-8 max-h-[60vh] overflow-y-auto customScrollbar py-3 px-3">
+          {/* Agent Information */}
+          <div className={twMerge(commonSectionStyles)}>
+            {renderGroupLabel({ label: "Agent Information" })}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <FormField
                 control={form.control}
@@ -209,7 +208,7 @@ function AgentForm() {
           </div>
 
           {/* Student Information */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
               label: "Student Information",
             })}
@@ -269,7 +268,7 @@ function AgentForm() {
           </div>
 
           {/* Program Infomation */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
               label: "Programme Infomation",
             })}
@@ -335,16 +334,16 @@ function AgentForm() {
           </div>
 
           {/* Additional Information */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
               label: "Additional Information",
             })}
-            <div className={twMerge("col-span-2", commonGroupStyle)}>
+            <div className={twMerge("", commonGroupStyle)}>
               <FormField
                 control={form.control}
                 name="referralSource"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-2">
                     {renderLabel({
                       label: "Where did you hear about us?",
                       required: false,
@@ -362,16 +361,17 @@ function AgentForm() {
               />
             </div>
           </div>
-        </div>
 
-        <div className="flex gap-5 mt-8">
-          <Button
-            label=" Submit Application"
-            classNames="max-w-[180px] mx-auto"
-            isDisabled={!form.formState.isValid}
-            type="submit"
-            isLoading={isLoading}
-          />
+          {/* Button */}
+          <div className="flex gap-5 mt-8">
+            <Button
+              label=" Submit Application"
+              classNames="max-w-[180px] mx-auto"
+              isDisabled={!form.formState.isValid}
+              type="submit"
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </form>
     </Form>

@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 const Modal = ({
@@ -14,6 +14,31 @@ const Modal = ({
   children: ReactNode;
   childrenStyles?: string;
 }) => {
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Store the current scroll position
+      const scrollY = window.scrollY;
+
+      // Add styles to prevent scrolling
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        // Restore scrolling when modal closes
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        document.body.style.overflow = "";
+
+        // Restore scroll position
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -47,10 +72,7 @@ const Modal = ({
                   ease: "easeInOut",
                 },
               }}
-              className={twMerge(
-                "max-w-fit mx-4 pointer-events-auto",
-                childrenStyles
-              )}
+              className={twMerge("pointer-events-auto", childrenStyles)}
             >
               {children}
             </motion.div>

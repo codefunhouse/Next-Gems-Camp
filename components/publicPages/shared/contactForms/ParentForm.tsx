@@ -20,6 +20,9 @@ import { twMerge } from "tailwind-merge";
 import { ageOptions, locationOptions, programmeOptions } from "./formData";
 import { parentFormSchema, ParentType } from "./schemas";
 
+export const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
+export const commonSectionStyles = "flex flex-col gap-4";
+
 function ParentForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -118,7 +121,7 @@ function ParentForm() {
   }) => (
     <p
       className={twMerge(
-        "text-base sm:text-lg pb-[0.9rem] border-b border-b-[#EDEDED] font-medium mb-4",
+        "text-base sm:text-lg pb-[0.4rem] border-b border-b-[#EDEDED] font-medium mb-2",
         className
       )}
     >
@@ -126,14 +129,12 @@ function ParentForm() {
     </p>
   );
 
-  const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="space-y-8 max-h-[50vh] overflow-y-auto customScrollbar py-3 px-1">
+        <div className="space-y-8 max-h-[60vh] overflow-y-auto customScrollbar py-3 px-3 pb-5">
           {/* Parent/Guardian Information */}
-          <div className="flex flex-col gap-5">
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({ label: "Parent Information" })}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <FormField
@@ -209,9 +210,9 @@ function ParentForm() {
           </div>
 
           {/* Child Information */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
-              label: "Child Information",
+              label: "Child      Information",
             })}
 
             <div className={twMerge("", commonGroupStyle)}>
@@ -273,7 +274,7 @@ function ParentForm() {
           </div>
 
           {/* Program Infomation */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
               label: "Programme Infomation",
             })}
@@ -339,23 +340,23 @@ function ParentForm() {
           </div>
 
           {/* Additional Information */}
-          <div>
+          <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
               label: "Additional Information",
             })}
-            <div className={twMerge("col-span-2", commonGroupStyle)}>
+            <div className={twMerge("w-full", commonGroupStyle)}>
               <FormField
                 control={form.control}
                 name="referralSource"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-2">
                     {renderLabel({
                       label: "Where did you hear about us?",
                       required: false,
                     })}
                     <FormControl>
                       <Input
-                        className="rounded-xl py-3 px-4"
+                        className="w-full"
                         placeholder="Where did you hear about us"
                         {...field}
                       />
@@ -366,16 +367,17 @@ function ParentForm() {
               />
             </div>
           </div>
-        </div>
 
-        <div className="flex gap-5 mt-8">
-          <Button
-            label=" Submit Application"
-            classNames="max-w-[180px] mx-auto"
-            isDisabled={!form.formState.isValid}
-            type="submit"
-            isLoading={isLoading}
-          />
+          {/* Button */}
+          <div className="flex gap-5 mt-8">
+            <Button
+              label=" Submit Application"
+              classNames="max-w-[180px] mx-auto"
+              isDisabled={!form.formState.isValid}
+              type="submit"
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </form>
     </Form>
