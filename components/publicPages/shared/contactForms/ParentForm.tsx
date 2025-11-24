@@ -17,7 +17,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import { ageOptions, locationOptions, programmeOptions } from "./formData";
+import {
+  ageOptions,
+  dateOptions,
+  locationOptions,
+  programmeOptions,
+} from "./formData";
 import { parentFormSchema, ParentType } from "./schemas";
 
 export const commonGroupStyle = `w-full grid grid-cols-1 md:grid-cols-2 gap-5`;
@@ -328,7 +333,7 @@ function ParentForm() {
 
                     <CustomSelect
                       {...field}
-                      options={programmeOptions}
+                      options={dateOptions}
                       placeholder="Select Dates"
                       mode="multiple"
                     />

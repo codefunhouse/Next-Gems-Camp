@@ -61,7 +61,7 @@ type ParentFormValues = {
 
   childAgeGroups: string[];
   childrenNames: string;
-  childCount: number;
+  childCount: string (digits);
 
 };
 
@@ -80,5 +80,5 @@ type AgentFormValues = {
 
   studentAgeGroups: string[];
   companyName: string;
-  studentCount: number;
+  studentCount: string ("digits");
 };

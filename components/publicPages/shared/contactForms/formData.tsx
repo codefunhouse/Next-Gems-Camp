@@ -19,6 +19,21 @@ export const ageOptions = [
   { label: "15–17", value: "15-17" },
 ];
 
+export const dateOptions = [
+  {
+    label: "6th Jul 2026 - 20th Jul 2026, Cycle 1",
+    value: "6th Jul 2026 - 20th Jul 2026, Cycle 1",
+  },
+  {
+    label: "20th Jul 2026 - 3rd Aug 2026, Cycle 2",
+    value: "20th Jul 2026 - 3rd Aug 2026, Cycle 2",
+  },
+  {
+    label: "3rd Aug 2026 - 17th Aug 2026, Cycle 3",
+    value: "3rd Aug 2026 - 17th Aug 2026, Cycle 3",
+  },
+];
+
 // optional type if you want
 export type SelectOption = {
   label: string;

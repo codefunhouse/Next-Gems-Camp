@@ -17,7 +17,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import { ageOptions, locationOptions, programmeOptions } from "./formData";
+import {
+  ageOptions,
+  dateOptions,
+  locationOptions,
+  programmeOptions,
+} from "./formData";
 import { commonGroupStyle, commonSectionStyles } from "./ParentForm";
 import { agentFormSchema, AgentType } from "./schemas";
 
@@ -322,7 +327,7 @@ function AgentForm() {
 
                     <CustomSelect
                       {...field}
-                      options={programmeOptions}
+                      options={dateOptions}
                       placeholder="Select Dates"
                       mode="multiple"
                     />
