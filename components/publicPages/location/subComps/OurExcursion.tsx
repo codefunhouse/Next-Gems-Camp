@@ -74,7 +74,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
 
   return (
     <section className={twMerge("py-16 bg-white", commonSectionStyles)}>
-      <div className="container mx-auto px-4 space-y-12">
+      <div className="mx-auto space-y-12">
         <div className="flex flex-col sm:flex-row w-full gap-6 sm:justify-between items-center">
           <div className="space-y-5 w-full">
             {/* Centered Title */}
@@ -147,9 +147,10 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
           </div>
 
           {/* Simpler approach with percentage widths */}
+
           <div
             ref={sliderRef}
-            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full"
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full gap-2 sm:gap-6 justify-center"
           >
             {currentCity?.images?.map((card, idx) => (
               <div
@@ -158,9 +159,11 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                 style={{
                   width: `${100 / cardsPerView}%`,
                   flex: `0 0 ${100 / cardsPerView}%`,
+                  maxWidth: 345,
                 }}
               >
-                <div className="w-full max-w-[345px] rounded-4xl mx-auto">
+                {/* max-w-[345px] */}
+                <div className="w-full rounded-4xl mx-auto">
                   <Image
                     src={
                       typeof card.imageUrl === "string"

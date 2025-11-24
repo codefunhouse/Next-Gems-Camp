@@ -19,6 +19,7 @@ import OurExcursion from "./subComps/OurExcursion";
 
 const Caterbury = ({ data }: { data: CanterburyPage }) => {
   const { openModal, closeModal } = useModal();
+  console.log("Canterbury Data: ", data);
 
   return (
     <>
