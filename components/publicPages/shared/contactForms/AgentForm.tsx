@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/general/Button";
+import { CustomPhoneInput } from "@/components/general/formInputs/CustomPhoneInput";
 import CustomSelect, {
   SelectOption,
 } from "@/components/general/formInputs/Select";
@@ -92,13 +93,16 @@ function AgentForm() {
     label,
     required = true,
     className,
+    subLabel,
   }: {
     label: string;
+    subLabel?: string;
     required?: boolean;
     className?: string;
   }) => (
     <FormLabel className={twMerge("text-sm", className)}>
       {label}
+      {subLabel && <span className="text-xs italic">{subLabel}</span>}
       {required && <span className="text-red-500">*</span>}
     </FormLabel>
   );
@@ -169,13 +173,18 @@ function AgentForm() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    {renderLabel({ label: "Parent/Guardian Phone Number" })}
+                    {renderLabel({ label: "Agent Phone Number" })}
                     <FormControl>
-                      <Input
+                      <CustomPhoneInput
+                        {...field}
+                        onChange={(val) => field.onChange(val)}
+                        placeholder="Enter Phone Number"
+                      />
+                      {/* <Input
                         className="rounded-xl py-3 px-4"
                         placeholder="+44 20 1234 5678"
                         {...field}
-                      />
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -191,7 +200,7 @@ function AgentForm() {
                       label: "Home Country Address",
                     })}
                     <FormControl>
-                      <Input placeholder="jane@example.com" {...field} />
+                      <Input placeholder="5, London Street" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -213,7 +222,8 @@ function AgentForm() {
                 render={({ field }) => (
                   <FormItem>
                     {renderLabel({
-                      label: "Age(s) of Student(s) (select all that apply)",
+                      label: "Age(s) of Student(s)",
+                      subLabel: "(select all that apply)",
                     })}
 
                     <CustomSelect

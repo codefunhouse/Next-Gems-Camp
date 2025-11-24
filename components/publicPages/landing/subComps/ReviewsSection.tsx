@@ -153,17 +153,26 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
                         <CardContent className="px-6 md:px-8 py-11 h-full flex flex-col">
                           <div className="flex items-center gap-4 mb-4">
                             <div className="relative">
-                              <Image
-                                src={
-                                  typeof testimonial.image === "string"
-                                    ? testimonial.image
-                                    : getSanityImageUrl(testimonial.image)
-                                }
-                                alt={testimonial.title as string}
-                                width={64}
-                                height={64}
-                                className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
-                              />
+                              {testimonial.image ? (
+                                <Image
+                                  src={
+                                    typeof testimonial.image === "string"
+                                      ? testimonial.image
+                                      : getSanityImageUrl(testimonial.image)
+                                  }
+                                  alt={testimonial.title as string}
+                                  width={64}
+                                  height={64}
+                                  className="w-16 h-16 rounded-full object-cover border border-[#E2E2E2] group-hover:border-primary/30 transition-colors"
+                                />
+                              ) : (
+                                <div className="w-16 h-16 rounded-full border border-[#E2E2E2] group-hover:border-primary/30 transition-colors text-center flex items-center justify-center ">
+                                  <span className="text-3xl font-medium shrink-0">
+                                    {name[0].toUpperCase()}
+                                    {name[1].toUpperCase()}
+                                  </span>
+                                </div>
+                              )}
                               <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-primary/50 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
                             <div className="space-y-2">

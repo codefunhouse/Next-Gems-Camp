@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/general/Button";
+import { CustomPhoneInput } from "@/components/general/formInputs/CustomPhoneInput";
 import CustomSelect, {
   SelectOption,
 } from "@/components/general/formInputs/Select";
@@ -96,13 +97,16 @@ function ParentForm() {
     label,
     required = true,
     className,
+    subLabel,
   }: {
     label: string;
+    subLabel?: string;
     required?: boolean;
     className?: string;
   }) => (
     <FormLabel className={twMerge("text-sm", className)}>
       {label}
+      {subLabel && <span className="text-xs italic">{subLabel}</span>}
       {required && <span className="text-red-500">*</span>}
     </FormLabel>
   );
@@ -167,7 +171,7 @@ function ParentForm() {
                 )}
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
               <FormField
                 control={form.control}
                 name="phone"
@@ -175,11 +179,16 @@ function ParentForm() {
                   <FormItem>
                     {renderLabel({ label: "Parent/Guardian Phone Number" })}
                     <FormControl>
-                      <Input
-                        className="rounded-xl py-3 px-4"
-                        placeholder="+44 20 1234 5678"
+                      <CustomPhoneInput
                         {...field}
+                        onChange={(val) => field.onChange(val)}
+                        placeholder="Enter Phone Number"
                       />
+                      {/* <Input
+                        className="rounded-xl py-3 px-4"
+                        placeholder=""
+                        {...field}
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -195,7 +204,7 @@ function ParentForm() {
                       label: "Home Country Address",
                     })}
                     <FormControl>
-                      <Input placeholder="jane@example.com" {...field} />
+                      <Input placeholder="Address" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -207,7 +216,7 @@ function ParentForm() {
           {/* Child Information */}
           <div className={twMerge(commonSectionStyles)}>
             {renderGroupLabel({
-              label: "Child      Information",
+              label: "Child Information",
             })}
 
             <div className={twMerge("", commonGroupStyle)}>
@@ -217,7 +226,8 @@ function ParentForm() {
                 render={({ field }) => (
                   <FormItem>
                     {renderLabel({
-                      label: "Age(s) of Child(ren) (select all that apply)",
+                      label: "Age(s) of Child(ren)",
+                      subLabel: "(select all that apply)",
                     })}
 
                     <CustomSelect
