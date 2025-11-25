@@ -6,7 +6,7 @@ import { getSanityImageUrl } from "@/lib/sanityFns/getSanityImageUrl";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 type CityImage = { imageUrl: string | SanityImageSource; title: string };
@@ -23,7 +23,6 @@ type OurExcursionProps = {
 function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
-  const sliderRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState(0);
 
   // Calculate responsive cards per view
@@ -33,7 +32,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
       if (width >= 1024)
         setCardsPerView(3); // lg screens - 3 cards
       else if (width >= 768)
-        setCardsPerView(2); // md screens - 2 cards
+        setCardsPerView(3); // md screens - 3 cards
       else if (width >= 640)
         setCardsPerView(2); // sm screens - 2 cards
       else setCardsPerView(1); // mobile - 1 card
@@ -45,32 +44,31 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
   }, []);
 
   const currentCity = cities?.[activeTab];
-  const totalProgrammes = currentCity?.images?.length;
-  const maxIndex =
-    totalProgrammes && Math.max(0, totalProgrammes - cardsPerView);
+  const gap = 24;
 
-  const scrollToSlide = (index: number) => {
-    if (!sliderRef.current) return;
+  const maxIndex = Math.max(
+    0,
+    (currentCity?.images?.length || 0) - cardsPerView
+  );
+  const cardBaseWidth = `calc((100% - ${(cardsPerView - 1) * gap}px) / ${cardsPerView})`;
 
-    const newIndex = Math.max(0, Math.min(index, maxIndex || 0));
-    setCurrentIndex(newIndex);
-
-    const cardElement = sliderRef.current.children[0] as HTMLElement;
-    if (cardElement) {
-      const cardWidth = cardElement.offsetWidth + 32; // card width + gap
-      sliderRef.current.scrollTo({
-        left: newIndex * cardWidth,
-        behavior: "smooth",
-      });
-    }
+  const nextSlide = () => {
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   };
 
-  const nextSlide = () => scrollToSlide(currentIndex + 1);
-  const prevSlide = () => scrollToSlide(currentIndex - 1);
+  const prevSlide = () => {
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  // Handle tab change - reset to first slide
+  const handleTabChange = (idx: number) => {
+    setActiveTab(idx);
+    setCurrentIndex(0); // Reset slide index when tab changes
+  };
 
   // Check if buttons should be visible
   const showPrevButton = currentIndex > 0;
-  const showNextButton = currentIndex < (maxIndex || 0);
+  const showNextButton = currentIndex < maxIndex;
 
   return (
     <section className={twMerge("py-16 bg-white", commonSectionStyles)}>
@@ -90,9 +88,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                     activeTab === idx &&
                       "border-blue-primary bg-[#15B1FB29] transition-all"
                   )}
-                  onClick={() => {
-                    setActiveTab(idx);
-                  }}
+                  onClick={() => handleTabChange(idx)}
                 >
                   {idx === activeTab && <LocationIcon />}
                   {tab}
@@ -146,39 +142,40 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
             </AnimatePresence>
           </div>
 
-          {/* Simpler approach with percentage widths */}
-
-          <div
-            ref={sliderRef}
-            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth noScrollbar w-full gap-2 sm:gap-6 justify-center"
-          >
-            {currentCity?.images?.map((card, idx) => (
-              <div
-                className="space-y-6 shrink-0 snap-always snap-center"
-                key={idx}
-                style={{
-                  width: `${100 / cardsPerView}%`,
-                  flex: `0 0 ${100 / cardsPerView}%`,
-                  maxWidth: 345,
-                }}
-              >
-                {/* max-w-[345px] */}
-                <div className="w-full rounded-4xl mx-auto">
-                  <Image
-                    src={
-                      typeof card.imageUrl === "string"
-                        ? card.imageUrl
-                        : getSanityImageUrl(card.imageUrl)
-                    }
-                    alt={card.title}
-                    width={369}
-                    height={338}
-                    className="w-full h-full object-cover aspect-369/338 rounded-4xl"
-                  />
+          {/* Carousel with CSS Transforms */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(calc(-${currentIndex} * (100% / ${cardsPerView} + ${gap / cardsPerView}px)))`,
+              }}
+            >
+              {currentCity?.images?.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="space-y-6 shrink-0"
+                  style={{
+                    width: cardBaseWidth,
+                  }}
+                >
+                  <div className="w-full rounded-4xl mx-auto">
+                    <Image
+                      src={
+                        typeof card.imageUrl === "string"
+                          ? card.imageUrl
+                          : getSanityImageUrl(card.imageUrl)
+                      }
+                      alt={card.title}
+                      width={369}
+                      height={338}
+                      className="w-full h-full object-cover aspect-369/338 rounded-4xl"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h5 className="text-center">{card.title}</h5>
                 </div>
-                <h5 className="text-center">{card.title}</h5>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
