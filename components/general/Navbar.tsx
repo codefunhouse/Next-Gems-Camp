@@ -118,7 +118,7 @@ const Navbar = () => {
               {/* Animated Dropdown */}
               <div
                 className={`
-                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
+                absolute top-full -left-9 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${
                   isLocationsOpen
@@ -162,7 +162,7 @@ const Navbar = () => {
               {/* Animated Dropdown */}
               <div
                 className={`
-                absolute top-full left-0 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
+                absolute top-full -left-9 mt-2 bg-white border border-border rounded-md shadow-lg min-w-[140px] py-2 z-50
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${
                   isInfoOpen

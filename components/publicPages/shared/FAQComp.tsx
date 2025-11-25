@@ -47,10 +47,10 @@ const FAQComp = ({
               index === arr.length - 1 && "border-b!"
             )}
           >
-            <AccordionTrigger className="text-left text-base sm:text-xl">
+            <AccordionTrigger className="text-left text-lg! sm:text-xl! font-medium!">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-base">
+            <AccordionContent className="text-base! sm:text-lg!">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

@@ -43,6 +43,7 @@
   --color-grey-primary: #F1F5F9;
   --color-grey-base: #161616;
   --color-grey-muted: #F7F7F7;
+  --color-grey-sec: #959595
   
   /* Border radius */
   --radius-lg: var(--radius);
@@ -51,6 +52,8 @@
   
   /* Container */
   --container-2xl: 1400px;
+  --breakpoint-xs: 30rem; /* 480px */
+
   
   /* Font family */
   --font-matter: "Matter", "sans-serif";
@@ -93,39 +96,6 @@
     --hero-gradient-start: 220 20% 30%;
     --hero-gradient-end: 220 25% 15%;
   }
-
-  .dark {
-    --background: 220 20% 10%;
-    --foreground: 210 40% 98%;
-
-    --card: 220 20% 12%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 25 75% 47%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 15% 25%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 220 15% 20%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 25 75% 47%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 15% 25%;
-    --input: 220 15% 25%;
-    --ring: 25 75% 47%;
-    
-    --hero-gradient-start: 220 20% 15%;
-    --hero-gradient-end: 220 25% 8%;
-  }
 }
 
 @layer base {
@@ -153,6 +123,7 @@ body {
   color: #161616; 
   text-align: left;
   line-height: 1.5; /* 24px */
+  letter-spacing: 0%;
   overflow-x: hidden;
 }
 
@@ -163,6 +134,7 @@ h4,
 h5,
 h6 {
   line-height: 100%;
+  letter-spacing: -4%;
 }
 
 /* Mobile First Approach (16px = 1rem) */
@@ -183,16 +155,18 @@ h3 {
 
 h4 {
   font-size: 1.25rem; /* 20px */
-  font-weight: 400;
+  font-weight: 500;
 }
 
 h5 {
   font-size: 1.125rem; /* 18px */
-
+  font-weight: 500;
+  
 }
 
 h6 {
   font-size: 1rem; /* 16px */
+  font-weight: 500;
 }
 
 /* Desktop Styles */
@@ -201,7 +175,6 @@ h6 {
     font-size: 3.75rem; /* 60px */
     
   }
-
   h2 {
     font-size: 3rem; /* 48px */
     

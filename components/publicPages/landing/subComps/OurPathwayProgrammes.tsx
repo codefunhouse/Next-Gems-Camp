@@ -28,10 +28,10 @@ function ProgramCards({
 
   return (
     <motion.div
-      className="rounded-4xl relative  overflow-hidden cursor-pointer w-full max-w-[369px] shrink-0"
+      className="rounded-4xl max-w-[380px] shrink-0 relative  overflow-hidden cursor-pointer w-full "
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      whileHover={{ y: -5 }} // Optional: slight lift on hover
+      whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <BgImage
@@ -43,7 +43,7 @@ function ProgramCards({
       {/* Main content */}
       <div
         className={twMerge(
-          "relative z-10 flex flex-col gap-[2.08rem] text-white p-5 sm:p-8 min-h-84 h-full",
+          "relative z-10 flex flex-col gap-[2.08rem] text-white p-5 py-6 sm:px-[1.6rem] sm:py-8 min-h-84 h-full",
           isHovering ? "" : "justify-between"
         )}
       >
@@ -138,7 +138,7 @@ function OurPathwayProgrammes({
         commonSectionStyles
       )}
     >
-      <div className="container mx-auto px-4 space-y-12">
+      <div className="container mx-auto space-y-12">
         {/* Centered Title */}
         <div className="text-center flex flex-col sm:flex-row w-full gap-6 sm:justify-between items-center">
           <HighlightedText
@@ -166,7 +166,7 @@ function OurPathwayProgrammes({
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
                   onClick={prevSlide}
-                  className="p-3 rounded-full border border-black hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-3 rounded-full border border-black hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   aria-label="Previous cards"
                 >
                   <LongArrowRight className="rotate-180 transform" />
@@ -188,7 +188,7 @@ function OurPathwayProgrammes({
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
                   onClick={nextSlide}
-                  className="p-3 rounded-full border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-3 rounded-full border border-black hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   aria-label="Next cards"
                 >
                   <LongArrowRight />

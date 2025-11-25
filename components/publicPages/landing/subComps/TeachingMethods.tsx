@@ -39,8 +39,10 @@ function TeachingMethods({
           </div>
         )}
         <div className="flex flex-col gap-2 rounded-4xl border transition-all border-[#E2E2E2] group-hover:border-[1.5px] group-hover:border-blue-primary group-hover:bg-[#15B1FB0F] py-11 px-8 h-full">
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-muted-foreground">{description}</p>
+          <h5 className="text-xl font-semibold">{title}</h5>
+          <p className="text-muted-foreground text-base sm:text-lg">
+            {description}
+          </p>
         </div>
       </div>
     );
@@ -53,11 +55,11 @@ function TeachingMethods({
       )}
     >
       <div className="container mx-auto px-4 flex flex-col items-center gap-12">
-        <div className="text-center flex flex-col gap-1.5 max-w-3xl">
+        <div className="text-center flex flex-col gap-1.5 max-w-3xl items-center">
           <h1 className="">
             {title || landingPageDummyData.teachingApproaches.title}
           </h1>
-          <p className="text-base sm:text-lg">
+          <p className="text-base sm:text-lg max-w-[609px]">
             {description || landingPageDummyData.teachingApproaches.description}
           </p>
         </div>
