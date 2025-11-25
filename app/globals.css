@@ -43,6 +43,7 @@
   --color-grey-primary: #F1F5F9;
   --color-grey-base: #161616;
   --color-grey-muted: #F7F7F7;
+  --color-grey-sec: #959595
   
   /* Border radius */
   --radius-lg: var(--radius);
