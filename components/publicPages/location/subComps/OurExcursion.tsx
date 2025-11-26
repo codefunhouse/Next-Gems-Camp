@@ -84,13 +84,22 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                 <button
                   key={idx}
                   className={twMerge(
-                    "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer",
-                    activeTab === idx &&
-                      "border-blue-primary bg-[#15B1FB29] transition-all"
+                    "border border-[#E2E2E2] rounded-full gap-1.5 py-1.5 px-4 text-base sm:text-lg flex items-center shrink-0 cursor-pointer transition-colors duration-[800] ease-in-out",
+                    activeTab === idx && "border-blue-primary bg-[#15B1FB29] "
                   )}
                   onClick={() => handleTabChange(idx)}
                 >
-                  {idx === activeTab && <LocationIcon />}
+                  {idx === activeTab && (
+                    <motion.div
+                      key="icon"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <LocationIcon />
+                    </motion.div>
+                  )}
                   {tab}
                 </button>
               ))}
@@ -145,7 +154,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
           {/* Carousel with CSS Transforms */}
           <div className="overflow-hidden">
             <div
-              className="flex gap-6 transition-transform duration-500 ease-out"
+              className="flex gap-6 transition-all duration-500 ease-out"
               style={{
                 transform: `translateX(calc(-${currentIndex} * (100% / ${cardsPerView} + ${gap / cardsPerView}px)))`,
               }}
@@ -158,7 +167,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                     width: cardBaseWidth,
                   }}
                 >
-                  <div className="w-full rounded-4xl mx-auto">
+                  <div className="w-full rounded-4xl mx-auto transition-all duration-700 ease-in">
                     <Image
                       src={
                         typeof card.imageUrl === "string"
@@ -172,7 +181,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
                       loading="lazy"
                     />
                   </div>
-                  <h5 className="text-center">{card.title}</h5>
+                  <h4 className="text-center">{card.title}</h4>
                 </div>
               ))}
             </div>
