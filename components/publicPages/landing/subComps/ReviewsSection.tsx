@@ -13,6 +13,7 @@ import { twMerge } from "tailwind-merge";
 function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [cardsToShow, setCardsToShow] = useState(3);
 
   // Responsive card display - show different number of cards based on screen size
   const getCardsToShow = () => {
@@ -21,8 +22,6 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
     if (window.innerWidth < 1024) return 2;
     return 3;
   };
-
-  const [cardsToShow, setCardsToShow] = useState(3);
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,6 +40,10 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
     (reviews || landingPageDummyData.reviews.reviews).length - cardsToShow
   );
 
+  const gap = 24;
+  const totalGapsBetweenCards = (cardsToShow - 1) * gap;
+  const cardBaseWidth = `calc((100% - ${totalGapsBetweenCards}px) / ${cardsToShow})`;
+  const movement = `calc(-${currentIndex} * (${cardBaseWidth} + ${gap}px))`;
   // Use useCallback to memoize the nextSlide function
   const nextSlide = useCallback(() => {
     if (isAnimating || currentIndex >= maxIndex) return;
@@ -58,7 +61,7 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
     setTimeout(() => setIsAnimating(false), 500);
   }, [isAnimating, currentIndex]);
 
-  // Auto-slide every 5 seconds - fixed useEffect dependency
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       if (currentIndex >= maxIndex) {
@@ -78,27 +81,25 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
         `pt-16 pb-24  ${commonSectionStyles}`
       )}
     >
-      <div className="container mx-auto px-4 relative z-10 flex flex-col gap-12">
+      <div className="container mx-auto relative z-10 flex flex-col gap-12">
         <div className="flex items-center gap-4 sm:justify-between flex-col sm:flex-row justify-center">
-          {
-            <div className="flex flex-col gap-3 w-full max-w-[400px]">
-              <HighlightedText
-                wrapperTag="h1"
-                text={title || landingPageDummyData.reviews.title}
-                highlights={
-                  textColor || [
-                    {
-                      text: "Families",
-                      color: "#15B1FB",
-                    },
-                  ]
-                }
-              />
-              <p className="text-lg">
-                {description || landingPageDummyData.reviews.description}
-              </p>
-            </div>
-          }
+          <div className="flex flex-col gap-3 w-full max-w-[400px]">
+            <HighlightedText
+              wrapperTag="h1"
+              text={title || landingPageDummyData.reviews.title}
+              highlights={
+                textColor || [
+                  {
+                    text: "Families",
+                    color: "#15B1FB",
+                  },
+                ]
+              }
+            />
+            <p className="text-lg">
+              {description || landingPageDummyData.reviews.description}
+            </p>
+          </div>
 
           <div className="flex items-center gap-3">
             {/* Navigation Arrows */}
@@ -129,11 +130,7 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
               className={`flex gap-6 transition-transform duration-500 ease-out ${
                 isAnimating ? "ease-out" : "ease-in-out"
               }`}
-              style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / cardsToShow)
-                }%)`,
-              }}
+              style={{ transform: `translateX(${movement})` }}
             >
               {(reviews || landingPageDummyData.reviews.reviews)?.map(
                 (testimonial, index) => {
@@ -147,10 +144,12 @@ function ReviewsSection({ title, description, reviews, textColor }: Reviews) {
                     <div
                       key={index}
                       className="shrink-0 "
-                      style={{ width: `${100 / cardsToShow}%` }}
+                      style={{
+                        width: cardBaseWidth,
+                      }}
                     >
-                      <Card className="transition-all duration-300 h-full group rounded-4xl">
-                        <CardContent className="px-6 md:px-8 py-11 h-full flex flex-col">
+                      <Card className="transition-all duration-300 h-full px-6! md:px-8! py-11! group rounded-4xl">
+                        <CardContent className="h-full flex flex-col p-0!">
                           <div className="flex items-center gap-4 mb-4">
                             <div className="relative">
                               {testimonial.image ? (
