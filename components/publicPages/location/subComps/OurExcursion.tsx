@@ -129,7 +129,7 @@ function OurExcursion({ mainTitle, cities, tabs }: OurExcursionProps) {
             </AnimatePresence>
 
             {/* Slider counter */}
-            <div className="text-lg font-medium text-gray-600 min-w-20">
+            <div className="text-lg font-medium text-gray-600 min-w-20!">
               {currentIndex + 1} / {(maxIndex || 0) + 1}
             </div>
 
