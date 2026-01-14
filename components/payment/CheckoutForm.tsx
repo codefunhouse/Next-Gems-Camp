@@ -82,8 +82,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
     setIsProcessing(true);
     setMessage(null);
 
-    console.log("Before Processing");
-
     console.log("FormData: ", formData);
 
     try {
@@ -96,8 +94,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
         setIsProcessing(false);
         return;
       }
-      console.log("After processing");
-
       //   // Save the form data to your backend (optional - for database storage)
       //   const saveResponse = await fetch("/api/save-booking", {
       //     method: "POST",
@@ -119,14 +115,14 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/payment/success?agentCode=${encodeURIComponent(agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
+          return_url: `${window.location.origin}/agent-payments-by-parent/success?agentCode=${encodeURIComponent(agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
         },
       });
-      console.log("After Afternoon processing");
 
       if (stripeError) {
         setMessage(stripeError.message || "Payment failed. Please try again.");
         console.error("Payment error:", stripeError);
+        window.location.href = "/agent-payments-by-parents";
       }
       // If no error, Stripe will redirect to return_url
     } catch (err) {

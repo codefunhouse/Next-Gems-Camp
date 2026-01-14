@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CancelPage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <section className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -20,9 +20,9 @@ export default function CancelPage() {
               />
             </svg>
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+          <h4 className="text-2xl font-bold text-gray-800 mb-2">
             Booking Cancelled
-          </h3>
+          </h4>
           <p className="text-gray-600">
             Your payment was not completed. No charges have been made.
           </p>
@@ -30,7 +30,7 @@ export default function CancelPage() {
 
         <div className="space-y-4">
           <Link
-            href="/"
+            href="/agent-payments-by-parent"
             className="block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
           >
             Try Again
@@ -43,6 +43,6 @@ export default function CancelPage() {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -89,9 +89,9 @@ export default function SuccessPage() {
                 />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
+            <h4 className="text-2xl font-bold text-gray-800 mb-2">
               Payment Processing
-            </h1>
+            </h4>
             <p className="text-gray-600">
               Your payment is being processed. We&apos;ll email you confirmation
               shortly.
@@ -132,9 +132,7 @@ export default function SuccessPage() {
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            Payment Successful!
-          </h1>
+          <h4 className="mb-2">Payment Successful!</h4>
           <p className="text-gray-600">
             Thank you for your booking. Your payment has been confirmed.
           </p>
@@ -146,7 +144,7 @@ export default function SuccessPage() {
         {agentCode && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
             <p className="text-sm text-blue-800 mb-1">Your Agent Reference:</p>
-            <p className="text-xl font-bold text-blue-900">{agentCode}</p>
+            <p className="text-lg font-bold text-blue-900">{agentCode}</p>
             <p className="text-xs text-blue-700 mt-2">
               Please save this code for future communication.
             </p>

@@ -18,6 +18,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const locationsRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+  const paymentLink = "/agent-payments-by-parent";
 
   const { openModal, closeModal } = useModal();
 
@@ -204,7 +205,7 @@ const Navbar = () => {
               label="Book Now"
               classNames="max-w-[100px] hidden md:inline-block text-white"
               buttonType="tert"
-              link="/pay"
+              link={`${paymentLink}`}
             />
           </div>
 
@@ -352,17 +353,9 @@ const Navbar = () => {
                   label="Book Now!"
                   classNames="max-w-[100px]"
                   buttonType="tert"
-                  link="/pay"
+                  link={`${paymentLink}`}
                 />
               </div>
-              {/* <Button
-                label="Register Now"
-                classNames="max-w-[300px] mx-auto"
-                onClick={() => {
-                  closeMobileMenu();
-                  openModal(<ApplyForm onClick={() => closeModal()} />);
-                }}
-              /> */}
             </div>
           </div>
         </div>
