@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const renderSpinner = () => {
     return (
-      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>
     );
   };
   const content = isLoading ? renderSpinner() : label;
@@ -59,7 +59,7 @@ const Button: React.FC<ButtonProps> = ({
   const buttonTypeStyles: Record<string, string> = {
     pry: "bg-blue-primary text-white",
     sec: "text-grey-base bg-white",
-    tert: "bg-[#F4C1421A] text-base-text border border-[#F4C142]",
+    tert: "bg-[#F4C1421A] text-black border border-[#F4C142]",
     outline: "bg-white/10 text-white border border-white",
     google:
       "bg-transparent border border-[#E9EAEC] text-base-text px-4 rounded-full gap-3",

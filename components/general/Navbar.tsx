@@ -192,13 +192,21 @@ const Navbar = () => {
           </div>
 
           {/* Register Now Button - Hidden on mobile */}
-          <Button
-            label="Register Now"
-            classNames="!max-w-[120px] hidden md:inline-block"
-            onClick={() =>
-              openModal(<ApplyForm onClick={() => closeModal()} />)
-            }
-          />
+          <div className="flex items-center gap-3 shrink-0 w-[250px] justify-center">
+            <Button
+              label="Register Now"
+              classNames="max-w-[120px] hidden md:inline-block"
+              onClick={() =>
+                openModal(<ApplyForm onClick={() => closeModal()} />)
+              }
+            />
+            <Button
+              label="Book Now"
+              classNames="max-w-[100px] hidden md:inline-block text-white"
+              buttonType="tert"
+              link="/pay"
+            />
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -332,14 +340,29 @@ const Navbar = () => {
               </div>
 
               {/* Mobile Register Now Button */}
-              <Button
+              <div className="flex items-center gap-2 w-full justify-center">
+                <Button
+                  label="Register Now"
+                  classNames="max-w-[120px]"
+                  onClick={() =>
+                    openModal(<ApplyForm onClick={() => closeModal()} />)
+                  }
+                />
+                <Button
+                  label="Book Now!"
+                  classNames="max-w-[100px]"
+                  buttonType="tert"
+                  link="/pay"
+                />
+              </div>
+              {/* <Button
                 label="Register Now"
                 classNames="max-w-[300px] mx-auto"
                 onClick={() => {
                   closeMobileMenu();
                   openModal(<ApplyForm onClick={() => closeModal()} />);
                 }}
-              />
+              /> */}
             </div>
           </div>
         </div>
