@@ -145,7 +145,7 @@ export async function POST(
     // Prepare metadata with truncation for long values
     const metadata: Record<string, string> = isInitialRequest
       ? {
-          agent_code: body.agentCode || `INIT-${Date.now()}`,
+          agent_code: body.agentCode || `UKD-${Date.now()}-SC26`,
           request_type: "initial",
           timestamp: new Date().toISOString(),
         }

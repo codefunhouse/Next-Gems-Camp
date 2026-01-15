@@ -8,10 +8,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   const signature = request.headers.get("stripe-signature");
 
-  console.log("📝 Body length:", body.length);
-  console.log("🔑 Signature exists:", !!signature);
-  console.log("🔐 Webhook secret exists:", !!process.env.STRIPE_WEBHOOK_SECRET);
-
   // 1. Verify the webhook came from Stripe
   let event: Stripe.Event;
   try {
@@ -69,23 +65,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         preferredCycle: metadata.preferred_cycle,
         agentCode: metadata.agent_code,
       });
-
-      // Example: Save booking to database
-      // await saveBookingToDatabase({
-      //   parentName: metadata.parent_name,
-      //   parentEmail: metadata.parent_email,
-      //   parentAddress: metadata.parent_address,
-      //   parentPhone: metadata.parent_phone,
-      //   childName: metadata.child_name,
-      //   childDOB: metadata.child_dob,
-      //   childAge: metadata.child_age,
-      //   childPassport: metadata.child_passport,
-      //   preferredCycle: metadata.preferred_cycle,
-      //   agentCode: metadata.agent_code,
-      //   stripePaymentIntentId: paymentIntent.id,
-      //   amountPaid: paymentIntent.amount,
-      //   currency: paymentIntent.currency,
-      // });
     }
 
     // 4. Send confirmation email if receipt_email exists
