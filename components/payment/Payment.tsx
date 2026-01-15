@@ -30,7 +30,6 @@ function Payment() {
           body: JSON.stringify({
             amount: 360000, // £3,600 in pence
             currency: "gbp",
-            agentCode: `INIT-${Date.now()}`,
           }),
         });
 
