@@ -152,11 +152,11 @@ export default function SuccessPage() {
         )}
 
         <div className="space-y-4 text-left bg-gray-50 rounded-lg p-4 mb-6">
-          <h3 className="font-semibold text-gray-700">What Happens Next:</h3>
+          <h4 className="font-semibold text-gray-700">What Happens Next:</h4>
           <ul className="space-y-2 text-sm text-gray-600">
             <li>• Payment confirmation email sent within 5 minutes</li>
             <li>• Our team will contact you within 24 hours</li>
-            <li>• Booking details will be available in your account</li>
+            <li>• Your agent will contact you</li>
             <li>
               • Please check your spam folder if you don&apos;t see the email
             </li>

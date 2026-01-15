@@ -3,6 +3,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
+import Logo from "../general/Logo";
 import CheckoutForm from "./CheckoutForm";
 
 // Initialize Stripe ONCE outside the component
@@ -185,6 +186,11 @@ function Payment() {
   return (
     <div className="container mx-auto p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
+        {/* Logo and Title */}
+        <div className="w-full flex flex-col gap-4 items-center mb-4">
+          <Logo type="sec" />
+          <h2 className="font-bold!">Complete your Payment Process</h2>
+        </div>
         <div className="mb-8 text-center">
           <div className="mt-6 inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
             <svg
