@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
 
     // Update the PaymentIntent with metadata
     const paymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
+      receipt_email: parentEmail || "",
       metadata: {
         agentCode: agentCode || "",
         parentName: parentName || "",
