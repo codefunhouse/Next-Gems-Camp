@@ -5,12 +5,12 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 // Define form data types
 type FormData = {
-  agentCode: string;
   parentName: string;
   parentEmail: string;
   parentAddress: string;
@@ -26,9 +26,13 @@ type FormStep = 1 | 2 | 3;
 function CheckoutForm({ clientSecret }: { clientSecret: string }) {
   const stripe = useStripe();
   const elements = useElements();
+  const searchParams = useSearchParams();
+
   const [currentStep, setCurrentStep] = useState<FormStep>(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [agentCode, setAgentCode] = useState<string>("");
+  const [agentCodeError, setAgentCodeError] = useState<string | null>(null);
 
   // Initialize React Hook Form
   const {
@@ -40,7 +44,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
     setValue,
   } = useForm<FormData>({
     defaultValues: {
-      agentCode: "",
       parentName: "",
       parentEmail: "",
       parentAddress: "",
@@ -51,6 +54,30 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
       preferredCycle: "cycle_1",
     },
   });
+
+  // Validate agent code from URL on mount
+  useEffect(() => {
+    const codeFromUrl = searchParams.get("agentCode");
+
+    if (!codeFromUrl) {
+      setAgentCodeError("No agent code provided");
+      return;
+    }
+
+    // Convert to uppercase for validation
+    const upperCaseCode = codeFromUrl.toUpperCase();
+
+    // Validate format: XXX-AGENTNAME-SC26
+    const agentCodeRegex = /^[A-Z]{3}-[A-Z]+-SC26$/;
+    if (!agentCodeRegex.test(upperCaseCode)) {
+      setAgentCodeError("Invalid agent code format");
+      return;
+    }
+
+    // Code is valid, store the uppercase version
+    setAgentCode(upperCaseCode);
+    setAgentCodeError(null);
+  }, [searchParams]);
 
   // Calculate age from DOB
   const childDOB = watch("childDOB");
@@ -83,7 +110,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
     switch (currentStep) {
       case 1:
         isValid = await trigger([
-          "agentCode",
           "parentName",
           "parentEmail",
           "parentAddress",
@@ -144,7 +170,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
         },
         body: JSON.stringify({
           paymentIntentId,
-          agentCode: formData.agentCode,
+          agentCode: agentCode,
           parentName: formData.parentName,
           parentEmail: formData.parentEmail,
           parentAddress: formData.parentAddress,
@@ -172,7 +198,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/agent-payments-by-parent/success?agentCode=${encodeURIComponent(formData.agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
+          return_url: `${window.location.origin}/agent-payments-by-parent/success?agentCode=${encodeURIComponent(agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
         },
       });
 
@@ -189,6 +215,47 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
       setIsProcessing(false);
     }
   };
+
+  // Show error screen if agent code is invalid
+  if (agentCodeError) {
+    return (
+      <div className="max-w-2xl mx-auto mt-12">
+        <div className="bg-red-50 border-2 border-red-200 rounded-lg p-8 text-center">
+          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg
+              className="w-8 h-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-red-900 mb-3">
+            Agent Code Required
+          </h2>
+          <p className="text-red-700 mb-6">
+            You need a valid agent code to access this payment page. Please
+            contact your agent to receive the correct booking link.
+          </p>
+          <div className="bg-white border border-red-200 rounded p-4 text-left">
+            <p className="text-sm font-medium text-red-900 mb-2">
+              Valid agent code format:
+            </p>
+            <p className="text-sm text-red-700 font-mono">XXX-AGENTNAME-SC26</p>
+            <p className="text-xs text-red-600 mt-2">
+              Example: GBR-JANEDOE-SC26 or USA-JOHNSMITH-SC26
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Safety check
   if (!stripe || !elements) {
@@ -212,8 +279,54 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
     { number: 3, title: "Payment & Finalize" },
   ];
 
+  const cycles = [
+    {
+      value: "cycle_1",
+      label: "Cycle 1",
+      dates: "6th - 20th July 2026",
+    },
+    {
+      value: "cycle_2",
+      label: "Cycle 2",
+      dates: "20th July - 3rd August 2026",
+    },
+    {
+      value: "cycle_3",
+      label: "Cycle 3",
+      dates: "3rd - 17th August 2026",
+    },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Info Banner */}
+      <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
+        <div className="flex items-start">
+          <svg
+            className="w-6 h-6 text-blue-600 mr-3 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <div>
+            <p className="text-sm font-medium text-blue-900">
+              This booking is for Canterbury Christ Church University
+            </p>
+            <p className="text-xs text-blue-700 mt-1">
+              Agent Code:{" "}
+              <span className="font-mono font-semibold">{agentCode}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
@@ -274,53 +387,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
               Parent/Guardian Information
             </h4>
 
-            {/* Agent Code Input - Full width */}
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
-              <label className="block text-sm font-medium text-blue-900 mb-2">
-                Agent Code *
-              </label>
-              <input
-                type="text"
-                {...register("agentCode", {
-                  required: "Agent code is required",
-                  setValueAs: (value) => value.toUpperCase(),
-                  pattern: {
-                    value: /^[A-Z]{3}-[A-Z]+-SC26$/,
-                    message:
-                      "Format must be: XXX-AGENTNAME-SC26 (e.g., USA-JOHNSMITH-SC26)",
-                  },
-                  validate: (value) => {
-                    const parts = value.split("-");
-                    if (parts.length !== 3) {
-                      return "Agent code must have exactly 3 parts separated by hyphens";
-                    }
-                    if (parts[0].length !== 3) {
-                      return "Country code must be exactly 3 letters";
-                    }
-                    if (parts[1].length === 0) {
-                      return "Agent name cannot be empty";
-                    }
-                    if (parts[2] !== "SC26") {
-                      return "Last part must be SC26";
-                    }
-                    return true;
-                  },
-                })}
-                className={`w-full p-3 border rounded-lg uppercase font-mono text-lg ${errors.agentCode ? "border-red-500" : "border-blue-300"}`}
-                placeholder="USA-JOHNSMITH-SC26"
-              />
-              {errors.agentCode && (
-                <p className="text-red-600 text-sm mt-2 font-medium">
-                  {errors.agentCode.message}
-                </p>
-              )}
-              <p className="text-xs text-blue-700 mt-2">
-                Format: [3-letter country code]-[agent name without spaces]-SC26
-                <br />
-                Example: GBR-JANEDOE-SC26 or NGA-ADEKUNLE-SC26
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Parent Full Name */}
               <div>
@@ -366,7 +432,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                 )}
               </div>
 
-              {/* Parent Phone - Full width on mobile, half on desktop */}
+              {/* Parent Phone */}
               <div className="md:col-span-1">
                 <label className="block text-sm font-medium mb-2">
                   Contact Number *
@@ -390,7 +456,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                 )}
               </div>
 
-              {/* Parent Address - Full width */}
+              {/* Parent Address */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium mb-2">
                   Home Address *
@@ -488,29 +554,53 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
               Finalize Booking
             </h4>
 
-            {/* Preferred Cycle */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <label className="block text-sm font-medium mb-2">
-                Preferred Cycle *
+            {/* Preferred Cycle - Radio Buttons */}
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <label className="block text-sm font-medium mb-4">
+                Select Your Preferred Cycle *
               </label>
-              <select
-                {...register("preferredCycle", {
-                  required: "Please select a cycle",
-                })}
-                className={`w-full p-3 border rounded-lg ${errors.preferredCycle ? "border-red-500" : "border-gray-300"}`}
-              >
-                <option value="cycle_1">
-                  Canterbury 6th July 2026 - 20th July 2026
-                </option>
-                <option value="cycle_2">
-                  Canterbury 20th July 2026 - 3rd August 2026
-                </option>
-                <option value="cycle_3">
-                  Canterbury 3rd August 2026 - 17th August 2026
-                </option>
-              </select>
+              <div className="space-y-3">
+                {cycles.map((cycle) => (
+                  <label
+                    key={cycle.value}
+                    className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                      watch("preferredCycle") === cycle.value
+                        ? "border-blue-600 bg-blue-50"
+                        : "border-gray-300 hover:border-blue-300 bg-white"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      {...register("preferredCycle", {
+                        required: "Please select a cycle",
+                      })}
+                      value={cycle.value}
+                      className="w-5 h-5 text-blue-600 focus:ring-blue-500"
+                    />
+                    <div className="ml-4 flex-1">
+                      <p className="font-semibold text-gray-900">
+                        {cycle.label}
+                      </p>
+                      <p className="text-sm text-gray-600">{cycle.dates}</p>
+                    </div>
+                    {watch("preferredCycle") === cycle.value && (
+                      <svg
+                        className="w-6 h-6 text-blue-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </label>
+                ))}
+              </div>
               {errors.preferredCycle && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-red-500 text-sm mt-2">
                   {errors.preferredCycle.message}
                 </p>
               )}
@@ -522,26 +612,23 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
               <PaymentElement
                 options={{
                   layout: "tabs",
-                  // wallets: {
-                  //   applePay: "never",
-                  //   googlePay: "never",
-                  // },
                 }}
               />
             </div>
 
             {/* Order Summary */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h4 className="font-bold text-lg mb-3">Order Summary</h4>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h4 className="font-bold text-lg mb-4">Order Summary</h4>
+
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span>Program Fee</span>
-                  <span>£3,500.00</span>
+                  <span>Summer Camp Program Fee</span>
+                  <span>£3,600.00</span>
                 </div>
                 <div className="border-t border-blue-200 pt-2 mt-2">
                   <div className="flex justify-between font-bold text-lg">
-                    <span>Total</span>
-                    <span>£3,500.00</span>
+                    <span>Total Amount</span>
+                    <span>£3,600.00</span>
                   </div>
                 </div>
               </div>
@@ -575,7 +662,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
               disabled={!stripe || isProcessing}
               className="ml-auto px-8 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isProcessing ? "Processing..." : "Pay Now"}
+              {isProcessing ? "Processing..." : "Pay £3,600.00 Now"}
             </button>
           )}
         </div>
