@@ -1,8 +1,38 @@
 "use client";
 
+import { PaymentOption } from "@/types/payment";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
+interface PaymentDetails {
+  status: string;
+  amount: number;
+  currency: string;
+  agentCode?: string;
+  customerEmail?: string;
+  paymentType: PaymentOption;
+  productName?: string;
+  balanceAmount?: number;
+  balanceDueDate?: string;
+}
+
+function formatPrice(amount: number, currency: string = "gbp"): string {
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: currency.toUpperCase(),
+    minimumFractionDigits: 0,
+  }).format(amount / 100);
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
 export default function SuccessPage() {
   const [agentCode, setAgentCode] = useState<string | null>(null);
@@ -10,6 +40,7 @@ export default function SuccessPage() {
   const [paymentStatus, setPaymentStatus] = useState<
     "processing" | "succeeded" | "failed"
   >("processing");
+  const [paymentDetails, setPaymentDetails] = useState<PaymentDetails | null>(null);
   const searchParams = useSearchParams();
 
   const paymentIntentId = searchParams.get("payment_intent");
@@ -24,7 +55,6 @@ export default function SuccessPage() {
       }
 
       try {
-        // Option 1: Fetch from your backend (recommended for security)
         const response = await fetch(
           `/api/verify-payment?payment_intent_id=${paymentIntentId}`
         );
@@ -37,8 +67,18 @@ export default function SuccessPage() {
 
         if (data.status === "succeeded") {
           setPaymentStatus("succeeded");
-          // Get agent code from metadata (more reliable than URL)
           setAgentCode(data.agentCode || agentCodeFromUrl);
+          setPaymentDetails({
+            status: data.status,
+            amount: data.amount,
+            currency: data.currency,
+            agentCode: data.agentCode,
+            customerEmail: data.customerEmail,
+            paymentType: data.paymentType || "full",
+            productName: data.productName,
+            balanceAmount: data.balanceAmount,
+            balanceDueDate: data.balanceDueDate,
+          });
         } else {
           setPaymentStatus("failed");
         }
@@ -89,7 +129,7 @@ export default function SuccessPage() {
                 />
               </svg>
             </div>
-            <h4 className="text-2xl font-bold text-gray-800 mb-2">
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">
               Payment Processing
             </h4>
             <p className="text-gray-600">
@@ -112,14 +152,16 @@ export default function SuccessPage() {
     );
   }
 
+  const isDeposit = paymentDetails?.paymentType === "deposit";
+
   // Success page
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
         <div className="mb-6">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${isDeposit ? "bg-blue-100" : "bg-green-100"}`}>
             <svg
-              className="w-8 h-8 text-green-600"
+              className={`w-8 h-8 ${isDeposit ? "text-blue-600" : "text-green-600"}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -132,14 +174,60 @@ export default function SuccessPage() {
               />
             </svg>
           </div>
-          <h4 className="mb-2">Payment Successful!</h4>
-          <p className="text-gray-600">
-            Thank you for your booking. Your payment has been confirmed.
-          </p>
+
+          {isDeposit ? (
+            <>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">Deposit Received!</h4>
+              <p className="text-sm text-gray-600">
+                Your 25% deposit of {paymentDetails && formatPrice(paymentDetails.amount, paymentDetails.currency)} has been confirmed.
+              </p>
+            </>
+          ) : (
+            <>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">Payment Successful!</h4>
+              <p className="text-sm text-gray-600">
+                Thank you for your booking. Your payment has been confirmed.
+              </p>
+            </>
+          )}
+
           <p className="text-sm text-gray-500 mt-4">
             Transaction ID: {paymentIntentId?.substring(0, 12)}...
           </p>
         </div>
+
+        {/* Deposit-specific info */}
+        {isDeposit && paymentDetails?.balanceAmount && paymentDetails?.balanceDueDate && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start">
+              <svg
+                className="w-5 h-5 text-amber-600 mt-0.5 mr-2 flex-shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <div className="text-left">
+                <p className="text-sm font-medium text-amber-800 mb-1">
+                  Balance Invoice Sent
+                </p>
+                <p className="text-sm text-amber-700">
+                  An invoice for the remaining{" "}
+                  <strong>{formatPrice(paymentDetails.balanceAmount, paymentDetails.currency)}</strong>{" "}
+                  has been sent to your email.
+                </p>
+                <p className="text-sm text-amber-700 mt-1">
+                  Payment due by:{" "}
+                  <strong>{formatDate(paymentDetails.balanceDueDate)}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {agentCode && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -151,12 +239,14 @@ export default function SuccessPage() {
           </div>
         )}
 
-        <div className="space-y-4 text-left bg-gray-50 rounded-lg p-4 mb-6">
-          <h4 className="font-semibold text-gray-700">What Happens Next:</h4>
+        <div className="space-y-3 text-left bg-gray-50 rounded-lg p-4 mb-6">
+          <h5 className="text-sm font-semibold text-gray-700">What Happens Next:</h5>
           <ul className="space-y-2 text-sm text-gray-600">
             <li>• Payment confirmation email sent within 5 minutes</li>
+            {isDeposit && (
+              <li>• Balance invoice sent to your email</li>
+            )}
             <li>• Our team will contact you within 24 hours</li>
-            <li>• Your agent will contact you</li>
             <li>
               • Please check your spam folder if you don&apos;t see the email
             </li>

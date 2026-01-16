@@ -1,6 +1,6 @@
 "use client";
 import LocationIcon from "@/components/svgs/LocationIcon";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import BgImage from "./BgImage";
