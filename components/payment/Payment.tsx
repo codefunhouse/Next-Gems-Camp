@@ -1,23 +1,34 @@
 "use client";
 
+import {
+  EligibilityResponse,
+  PaymentOption,
+  ProgramCycle,
+} from "@/types/payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Logo from "../general/Logo";
 import CheckoutForm from "./CheckoutForm";
 import ContactUs from "./ContactUs";
 import CycleSelector from "./CycleSelector";
 import PaymentOptionSelector from "./PaymentOptionSelector";
-import { EligibilityResponse, PaymentOption, ProgramCycle } from "@/types/payment";
 
 // Initialize Stripe ONCE outside the component
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
-type FlowStep = "loading" | "no-agent-code" | "cycle-select" | "payment-select" | "checkout" | "contact" | "error";
+type FlowStep =
+  | "loading"
+  | "no-agent-code"
+  | "cycle-select"
+  | "payment-select"
+  | "checkout"
+  | "contact"
+  | "error";
 
 function Payment() {
   const searchParams = useSearchParams();
@@ -26,7 +37,9 @@ function Payment() {
   const [step, setStep] = useState<FlowStep>("loading");
   const [cycles, setCycles] = useState<ProgramCycle[]>([]);
   const [selectedCycle, setSelectedCycle] = useState<ProgramCycle | null>(null);
-  const [paymentOption, setPaymentOption] = useState<PaymentOption | null>(null);
+  const [paymentOption, setPaymentOption] = useState<PaymentOption | null>(
+    null,
+  );
   const [clientSecret, setClientSecret] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [isCreatingIntent, setIsCreatingIntent] = useState(false);
@@ -76,9 +89,10 @@ function Payment() {
     setError(null);
 
     try {
-      const priceId = paymentOption === "full"
-        ? selectedCycle.pricing.full.priceId
-        : selectedCycle.pricing.deposit.priceId;
+      const priceId =
+        paymentOption === "full"
+          ? selectedCycle.pricing.full.priceId
+          : selectedCycle.pricing.deposit.priceId;
 
       const response = await fetch("/api/create-payment-intent", {
         method: "POST",
@@ -150,6 +164,35 @@ function Payment() {
     },
   };
 
+  const renderInfoBanner = () => (
+    <div className="bg-blue-50 border-l-4 mt-8 border-blue-600 p-4 mb-8 rounded">
+      <div className="flex items-start">
+        <svg
+          className="w-6 h-6 text-blue-600 mr-3 shrink-0"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <div>
+          <p className="text-sm font-medium text-blue-900">
+            This booking is for Canterbury Christ Church University
+          </p>
+          <p className="text-xs text-blue-700 mt-1">
+            Agent Code:{" "}
+            <span className="font-mono font-semibold">{agentCode}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
   // Render loading state
   if (step === "loading") {
     return (
@@ -200,7 +243,9 @@ function Payment() {
               Agent Code Required
             </h3>
             <p className="text-sm text-amber-700 mb-4">
-              You cannot proceed without a valid agent code. Please ask your agent to send you the correct booking link with their agent code attached.
+              You cannot proceed without a valid agent code. Please ask your
+              agent to send you the correct booking link with their agent code
+              attached.
             </p>
             <p className="text-xs text-amber-600 mb-5">
               The link should look like: <br />
@@ -272,7 +317,9 @@ function Payment() {
         <div className="max-w-4xl mx-auto">
           <div className="w-full flex flex-col gap-4 items-center mb-8">
             <Logo type="sec" />
-            <h2 className="font-bold text-center">Book Your Summer Camp Experience</h2>
+            <h2 className="font-bold text-center">
+              Book Your Summer Camp Experience
+            </h2>
           </div>
           <ContactUs />
         </div>
@@ -289,7 +336,9 @@ function Payment() {
         <div className="max-w-4xl mx-auto">
           <div className="w-full flex flex-col gap-4 items-center mb-4">
             <Logo type="sec" />
-            <h2 className="font-bold text-center">Book Your Summer Camp Experience</h2>
+            <h2 className="font-bold text-center">
+              Book Your Summer Camp Experience
+            </h2>
           </div>
           <div className="mb-8 text-center">
             <div className="mt-6 inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
@@ -307,6 +356,9 @@ function Payment() {
               Secure SSL Encryption
             </div>
           </div>
+
+          {/* Info Banner */}
+          {renderInfoBanner()}
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 md:p-8">
@@ -337,7 +389,7 @@ function Payment() {
                 <button
                   onClick={handleContinueToPaymentOption}
                   disabled={!selectedCycle}
-                  className="w-full md:w-auto md:ml-auto md:block px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full md:w-auto md:ml-auto md:block px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   Continue to Payment Options
                 </button>
@@ -356,7 +408,9 @@ function Payment() {
         <div className="max-w-4xl mx-auto">
           <div className="w-full flex flex-col gap-4 items-center mb-4">
             <Logo type="sec" />
-            <h2 className="font-bold text-center">Book Your Summer Camp Experience</h2>
+            <h2 className="font-bold text-center">
+              Book Your Summer Camp Experience
+            </h2>
           </div>
           <div className="mb-8 text-center">
             <div className="mt-6 inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
@@ -375,14 +429,24 @@ function Payment() {
             </div>
           </div>
 
+          {renderInfoBanner()}
+
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 md:p-8">
               {/* Progress indicator */}
               <div className="flex items-center justify-center mb-8">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-medium">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
                   <div className="w-16 h-1 bg-blue-600 mx-2"></div>
@@ -401,11 +465,13 @@ function Payment() {
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-sm text-gray-500">Selected Cycle</p>
-                    <p className="font-semibold text-gray-900">{selectedCycle.name}</p>
+                    <p className="font-semibold text-gray-900">
+                      {selectedCycle.name}
+                    </p>
                   </div>
                   <button
                     onClick={handleBackToCycleSelect}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    className="text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer"
                   >
                     Change
                   </button>
@@ -470,6 +536,7 @@ function Payment() {
               </svg>
               Secure SSL Encryption - Powered by Stripe
             </div>
+            {renderInfoBanner()}
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

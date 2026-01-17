@@ -6,7 +6,6 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 
@@ -18,6 +17,7 @@ type ChildInfo = {
 };
 
 type FormData = {
+  agentCode: string;
   parentName: string;
   parentEmail: string;
   parentAddress: string;
@@ -59,8 +59,6 @@ function CheckoutForm({
 }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
-  const searchParams = useSearchParams();
-
   const [currentStep, setCurrentStep] = useState<FormStep>(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -209,7 +207,7 @@ function CheckoutForm({
         },
         body: JSON.stringify({
           paymentIntentId,
-          agentCode: agentCode,
+          agentCode: formData.agentCode,
           parentName: formData.parentName,
           parentEmail: formData.parentEmail,
           parentAddress: formData.parentAddress,
@@ -239,7 +237,7 @@ function CheckoutForm({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/agent-payments-by-parent/success?agentCode=${encodeURIComponent(agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
+          return_url: `${window.location.origin}/agent-payments-by-parent/success?agentCode=${encodeURIComponent(formData.agentCode)}&payment_intent={PAYMENT_INTENT_CLIENT_SECRET}`,
         },
       });
 
@@ -258,47 +256,6 @@ function CheckoutForm({
       setIsProcessing(false);
     }
   };
-
-  // Show error screen if agent code is invalid
-  if (agentCodeError) {
-    return (
-      <div className="max-w-2xl mx-auto mt-12">
-        <div className="bg-red-50 border-2 border-red-200 rounded-lg p-8 text-center">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg
-              className="w-8 h-8 text-red-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
-          </div>
-          <h2 className="text-2xl font-bold text-red-900 mb-3">
-            Agent Code Required
-          </h2>
-          <p className="text-red-700 mb-6">
-            You need a valid agent code to access this payment page. Please
-            contact your agent to receive the correct booking link.
-          </p>
-          <div className="bg-white border border-red-200 rounded p-4 text-left">
-            <p className="text-sm font-medium text-red-900 mb-2">
-              Valid agent code format:
-            </p>
-            <p className="text-sm text-red-700 font-mono">XXX-AGENTNAME-SC26</p>
-            <p className="text-xs text-red-600 mt-2">
-              Example: GBR-JANEDOE-SC26 or USA-JOHNSMITH-SC26
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // Safety check
   if (!stripe || !elements) {
@@ -322,54 +279,8 @@ function CheckoutForm({
     { number: 3, title: "Payment & Finalize" },
   ];
 
-  const cycles = [
-    {
-      value: "cycle_1",
-      label: "Cycle 1",
-      dates: "6th - 20th July 2026",
-    },
-    {
-      value: "cycle_2",
-      label: "Cycle 2",
-      dates: "20th July - 3rd August 2026",
-    },
-    {
-      value: "cycle_3",
-      label: "Cycle 3",
-      dates: "3rd - 17th August 2026",
-    },
-  ];
-
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Info Banner */}
-      <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8 rounded">
-        <div className="flex items-start">
-          <svg
-            className="w-6 h-6 text-blue-600 mr-3 shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <div>
-            <p className="text-sm font-medium text-blue-900">
-              This booking is for Canterbury Christ Church University
-            </p>
-            <p className="text-xs text-blue-700 mt-1">
-              Agent Code:{" "}
-              <span className="font-mono font-semibold">{agentCode}</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
@@ -492,7 +403,7 @@ function CheckoutForm({
                 )}
               </div>
 
-              {/* Parent Phone */}
+              {/* Parent Phone - Full width on mobile, half on desktop */}
               <div className="md:col-span-1">
                 <label className="block text-sm font-medium mb-2">
                   Contact Number *
@@ -516,7 +427,7 @@ function CheckoutForm({
                 )}
               </div>
 
-              {/* Parent Address */}
+              {/* Parent Address - Full width */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium mb-2">
                   Home Address *
@@ -783,7 +694,7 @@ function CheckoutForm({
             <button
               type="button"
               onClick={prevStep}
-              className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+              className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
             >
               Previous
             </button>
@@ -793,7 +704,7 @@ function CheckoutForm({
             <button
               type="button"
               onClick={(e) => nextStep(e)}
-              className="ml-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="ml-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
             >
               Continue to {currentStep === 1 ? "Child Details" : "Payment"}
             </button>
@@ -801,7 +712,7 @@ function CheckoutForm({
             <button
               type="submit"
               disabled={!stripe || isProcessing}
-              className="ml-auto px-8 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="ml-auto px-8 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {isProcessing
                 ? "Processing..."
