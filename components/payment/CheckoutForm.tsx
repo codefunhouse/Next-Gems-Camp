@@ -14,6 +14,7 @@ type ChildInfo = {
   childName: string;
   childDOB: string;
   childAge: string;
+  preferredPathway: string;
 };
 
 type FormData = {
@@ -86,7 +87,9 @@ function CheckoutForm({
       parentEmail: "",
       parentAddress: "",
       parentPhone: "",
-      children: [{ childName: "", childDOB: "", childAge: "" }],
+      children: [
+        { childName: "", childDOB: "", childAge: "", preferredPathway: "" },
+      ],
     },
   });
 
@@ -153,6 +156,7 @@ function CheckoutForm({
         const childFields = fields.flatMap((_, index) => [
           `children.${index}.childName` as const,
           `children.${index}.childDOB` as const,
+          `children.${index}.preferredPathway` as const,
         ]);
         isValid = await trigger(childFields);
         break;
@@ -482,9 +486,9 @@ function CheckoutForm({
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Child Full Name */}
-                  <div>
+                  <div className="md:col-span-2">
                     <label className="block text-sm font-medium mb-2">
                       Full Name *
                     </label>
@@ -543,6 +547,36 @@ function CheckoutForm({
                       placeholder="Auto-calculated"
                     />
                   </div>
+
+                  {/* Preferred Pathway */}
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium mb-2">
+                      Preferred Pathway *
+                    </label>
+                    <select
+                      {...register(`children.${index}.preferredPathway`, {
+                        required: "Please select a preferred pathway",
+                      })}
+                      className={`w-full p-3 border rounded-lg ${errors.children?.[index]?.preferredPathway ? "border-red-500" : "border-gray-300"}`}
+                    >
+                      <option value="">Select a pathway...</option>
+                      <option value="Sports & Leadership">
+                        Sports & Leadership
+                      </option>
+                      <option value="Business & Entrepreneurship">
+                        Business & Entrepreneurship
+                      </option>
+                      <option value="AI & Innovation">AI & Innovation</option>
+                      <option value="Creative Media & Arts">
+                        Creative Media & Arts
+                      </option>
+                    </select>
+                    {errors.children?.[index]?.preferredPathway && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.children[index].preferredPathway?.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -551,7 +585,12 @@ function CheckoutForm({
             <button
               type="button"
               onClick={() =>
-                append({ childName: "", childDOB: "", childAge: "" })
+                append({
+                  childName: "",
+                  childDOB: "",
+                  childAge: "",
+                  preferredPathway: "",
+                })
               }
               className="w-full py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-blue-400 hover:text-blue-600 transition-colors flex items-center justify-center gap-2"
             >
