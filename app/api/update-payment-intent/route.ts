@@ -66,6 +66,10 @@ export async function POST(request: NextRequest) {
       totalAmount,
       totalBalanceAmount,
       preferredCycle,
+      promotionCodeId,
+      couponId,
+      couponName,
+      originalTotal,
     } = body;
 
     // Validate required fields
@@ -103,10 +107,95 @@ export async function POST(request: NextRequest) {
       .map((c) => c.childName)
       .join(", ");
 
-    // Update the PaymentIntent with customer, new amount, and metadata
+    // Server-side coupon validation and amount recalculation
+    let serverDiscountAmount = 0;
+    let validatedCouponName = couponName || "";
+    let validatedPercentOff = "";
+    let validatedAmountOff = "";
+    let validatedPromotionCodeId = "";
+    let validatedCouponId = "";
+
+    if (promotionCodeId) {
+      const promoCode = await stripe.promotionCodes.retrieve(
+        promotionCodeId,
+        { expand: ["promotion.coupon"] },
+      );
+
+      const coupon = promoCode.promotion.coupon as Stripe.Coupon | null;
+
+      if (!promoCode.active || !coupon?.valid) {
+        return NextResponse.json(
+          { error: "Promotion code is no longer valid" },
+          { status: 400 },
+        );
+      }
+
+      // Check minimum amount restriction
+      if (
+        promoCode.restrictions?.minimum_amount &&
+        originalTotal < promoCode.restrictions.minimum_amount
+      ) {
+        return NextResponse.json(
+          { error: "Order total does not meet the minimum for this promotion" },
+          { status: 400 },
+        );
+      }
+
+      validatedPromotionCodeId = promoCode.id;
+      validatedCouponId = coupon.id;
+      validatedCouponName = coupon.name || promoCode.code;
+
+      // Recalculate discount server-side
+      if (coupon.percent_off) {
+        validatedPercentOff = String(coupon.percent_off);
+        serverDiscountAmount = Math.round(
+          originalTotal * (coupon.percent_off / 100),
+        );
+      } else if (coupon.amount_off) {
+        validatedAmountOff = String(coupon.amount_off);
+        serverDiscountAmount = Math.min(
+          coupon.amount_off,
+          originalTotal,
+        );
+      }
+    }
+
+    // Recalculate final amounts server-side
+    const discountedTotal = originalTotal
+      ? originalTotal - serverDiscountAmount
+      : totalAmount;
+
+    // Determine if this is a deposit payment (balance > 0 means deposit)
+    const isDeposit = totalBalanceAmount > 0 || (originalTotal && totalAmount < originalTotal);
+
+    let serverFinalAmount: number;
+    let serverFinalBalanceAmount: number;
+
+    if (promotionCodeId && originalTotal) {
+      if (isDeposit) {
+        serverFinalAmount = Math.round(discountedTotal * 0.25);
+        serverFinalBalanceAmount = discountedTotal - serverFinalAmount;
+      } else {
+        serverFinalAmount = discountedTotal;
+        serverFinalBalanceAmount = 0;
+      }
+    } else {
+      serverFinalAmount = totalAmount;
+      serverFinalBalanceAmount = totalBalanceAmount || 0;
+    }
+
+    // Guard against zero or negative amounts
+    if (serverFinalAmount <= 0) {
+      return NextResponse.json(
+        { error: "Discount exceeds order total" },
+        { status: 400 },
+      );
+    }
+
+    // Update the PaymentIntent with customer, recalculated amount, and metadata
     // Setting setup_future_usage saves the card for future payments
     const paymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
-      amount: totalAmount,
+      amount: serverFinalAmount,
       customer: customer.id,
       receipt_email: parentEmail,
       setup_future_usage: "off_session",
@@ -119,8 +208,15 @@ export async function POST(request: NextRequest) {
         numberOfChildren: String(numberOfChildren || children.length),
         childrenNames: childrenNames,
         children: JSON.stringify(children),
-        totalBalanceAmount: String(totalBalanceAmount || 0),
+        totalBalanceAmount: String(serverFinalBalanceAmount),
         preferredCycle: preferredCycle || "",
+        promotionCodeId: validatedPromotionCodeId,
+        couponId: validatedCouponId || couponId || "",
+        couponName: validatedCouponName,
+        discountAmount: String(serverDiscountAmount),
+        originalTotal: String(originalTotal || totalAmount),
+        percentOff: validatedPercentOff,
+        amountOff: validatedAmountOff,
       },
     });
 

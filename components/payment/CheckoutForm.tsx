@@ -1,6 +1,6 @@
 "use client";
 
-import { PaymentOption, ProgramCycle } from "@/types/payment";
+import { PaymentOption, ProgramCycle, PromoCodeInfo } from "@/types/payment";
 import {
   PaymentElement,
   useElements,
@@ -52,6 +52,17 @@ function formatDate(dateString: string): string {
   });
 }
 
+function calculateDiscount(
+  promoInfo: PromoCodeInfo | null,
+  subtotal: number,
+): number {
+  if (!promoInfo) return 0;
+  if (promoInfo.percentOff)
+    return Math.round(subtotal * (promoInfo.percentOff / 100));
+  if (promoInfo.amountOff) return Math.min(promoInfo.amountOff, subtotal);
+  return 0;
+}
+
 function CheckoutForm({
   clientSecret,
   selectedCycle,
@@ -63,6 +74,12 @@ function CheckoutForm({
   const [currentStep, setCurrentStep] = useState<FormStep>(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoCodeInfo, setPromoCodeInfo] = useState<PromoCodeInfo | null>(
+    null,
+  );
+  const [promoError, setPromoError] = useState<string | null>(null);
+  const [isValidatingPromo, setIsValidatingPromo] = useState(false);
 
   // Get pricing info based on payment option
   const pricing =
@@ -125,13 +142,83 @@ function CheckoutForm({
     setValue(`children.${index}.childAge`, age);
   };
 
-  // Calculate total amount based on number of children
+  // Calculate total amount based on number of children and discount
   const numberOfChildren = fields.length;
-  const totalAmount = amount * numberOfChildren;
-  const totalBalanceAmount =
-    paymentOption === "deposit"
-      ? selectedCycle.pricing.deposit.balanceAmount * numberOfChildren
-      : 0;
+  const fullPricePerChild = selectedCycle.pricing.full.amount;
+  const fullTotal = fullPricePerChild * numberOfChildren;
+
+  // Apply discount to the full total first, then derive deposit/balance
+  const discountOnFullTotal = calculateDiscount(promoCodeInfo, fullTotal);
+  const discountedFullTotal = fullTotal - discountOnFullTotal;
+
+  let totalAmount: number;
+  let totalBalanceAmount: number;
+
+  if (paymentOption === "full") {
+    totalAmount = discountedFullTotal;
+    totalBalanceAmount = 0;
+  } else {
+    totalAmount = Math.round(discountedFullTotal * 0.25);
+    totalBalanceAmount = discountedFullTotal - totalAmount;
+  }
+
+  // Promo code handlers
+  const handleApplyPromoCode = async () => {
+    if (!promoCode.trim()) return;
+
+    setIsValidatingPromo(true);
+    setPromoError(null);
+
+    try {
+      const response = await fetch("/api/validate-promo-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: promoCode.trim(),
+          productId: selectedCycle.id,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!data.valid) {
+        setPromoError(data.error || "Invalid promotion code");
+        setPromoCodeInfo(null);
+        return;
+      }
+
+      // Check minimum amount
+      if (data.minimumAmount && fullTotal < data.minimumAmount) {
+        setPromoError(
+          `Minimum order of ${formatPrice(data.minimumAmount)} required for this code`,
+        );
+        setPromoCodeInfo(null);
+        return;
+      }
+
+      setPromoCodeInfo({
+        promotionCodeId: data.promotionCodeId,
+        couponId: data.couponId,
+        percentOff: data.percentOff,
+        amountOff: data.amountOff,
+        currency: data.currency,
+        name: data.name,
+        minimumAmount: data.minimumAmount,
+      });
+      setPromoError(null);
+    } catch {
+      setPromoError("Failed to validate code. Please try again.");
+      setPromoCodeInfo(null);
+    } finally {
+      setIsValidatingPromo(false);
+    }
+  };
+
+  const handleRemovePromoCode = () => {
+    setPromoCode("");
+    setPromoCodeInfo(null);
+    setPromoError(null);
+  };
 
   // Navigation functions
   const nextStep = async (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -222,6 +309,11 @@ function CheckoutForm({
           totalAmount: totalAmount,
           totalBalanceAmount: totalBalanceAmount,
           preferredCycle: selectedCycle.name,
+          promotionCodeId: promoCodeInfo?.promotionCodeId || null,
+          couponId: promoCodeInfo?.couponId || null,
+          couponName: promoCodeInfo?.name || null,
+          discountAmount: discountOnFullTotal || 0,
+          originalTotal: fullTotal,
         }),
       });
 
@@ -615,8 +707,10 @@ function CheckoutForm({
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm text-blue-800">
                   <strong>Note:</strong> You are registering {fields.length}{" "}
-                  children. Total: {formatPrice(totalAmount)} (
-                  {formatPrice(amount)} per child)
+                  children.{" "}
+                  {paymentOption === "full"
+                    ? `Total: ${formatPrice(fullTotal)} (${formatPrice(fullPricePerChild)} per child)`
+                    : `Deposit: ${formatPrice(totalAmount)} (Full price: ${formatPrice(fullPricePerChild)} per child)`}
                 </p>
               </div>
             )}
@@ -668,30 +762,147 @@ function CheckoutForm({
               />
             </div>
 
+            {/* Promotion Code */}
+            <div className="border rounded-lg p-4">
+              <h5 className="font-semibold text-sm text-gray-700 mb-3">
+                Promotion Code
+              </h5>
+              {promoCodeInfo ? (
+                <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg p-3">
+                  <div className="flex items-center">
+                    <svg
+                      className="w-5 h-5 text-green-600 mr-2 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <div>
+                      <span className="text-sm font-medium text-green-800">
+                        {promoCodeInfo.name}
+                      </span>
+                      <span className="text-xs text-green-600 ml-2">
+                        {promoCodeInfo.percentOff
+                          ? `${promoCodeInfo.percentOff}% off`
+                          : `${formatPrice(promoCodeInfo.amountOff!)} off`}
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRemovePromoCode}
+                    className="text-sm text-red-600 hover:text-red-800 font-medium"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={promoCode}
+                      onChange={(e) =>
+                        setPromoCode(e.target.value.toUpperCase())
+                      }
+                      placeholder="Enter code"
+                      className="flex-1 p-3 border border-gray-300 rounded-lg text-sm uppercase"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          handleApplyPromoCode();
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleApplyPromoCode}
+                      disabled={isValidatingPromo || !promoCode.trim()}
+                      className="px-4 py-3 bg-gray-800 text-white text-sm font-medium rounded-lg hover:bg-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isValidatingPromo ? "Checking..." : "Apply"}
+                    </button>
+                  </div>
+                  {promoError && (
+                    <p className="text-red-500 text-sm mt-2">{promoError}</p>
+                  )}
+                </div>
+              )}
+            </div>
+
             {/* Order Summary */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <h5 className="font-semibold text-sm text-gray-700 mb-3">
                 Order Summary
               </h5>
               <div className="space-y-2 text-sm">
+                {/* Full program fee line */}
                 <div className="flex justify-between">
                   <span>
-                    {paymentOption === "full"
-                      ? "Full Program Fee"
-                      : "Deposit (25%)"}
+                    Full Program Fee
                     {numberOfChildren > 1 && ` × ${numberOfChildren} children`}
                   </span>
-                  <span className="font-medium">
+                  <span
+                    className={`font-medium ${promoCodeInfo ? "line-through text-gray-400" : ""}`}
+                  >
                     {numberOfChildren > 1
-                      ? `${formatPrice(amount)} × ${numberOfChildren}`
-                      : formatPrice(amount)}
+                      ? `${formatPrice(fullPricePerChild)} × ${numberOfChildren}`
+                      : formatPrice(fullPricePerChild)}
                   </span>
                 </div>
+
+                {/* Subtotal for multiple children */}
+                {numberOfChildren > 1 && (
+                  <div className="flex justify-between">
+                    <span>Subtotal</span>
+                    <span
+                      className={`font-medium ${promoCodeInfo ? "line-through text-gray-400" : ""}`}
+                    >
+                      {formatPrice(fullTotal)}
+                    </span>
+                  </div>
+                )}
+
+                {/* Discount line */}
+                {promoCodeInfo && (
+                  <div className="flex justify-between text-green-700">
+                    <span>
+                      Discount ({promoCodeInfo.name})
+                      {promoCodeInfo.percentOff
+                        ? ` (${promoCodeInfo.percentOff}%)`
+                        : ""}
+                    </span>
+                    <span className="font-medium">
+                      -{formatPrice(discountOnFullTotal)}
+                    </span>
+                  </div>
+                )}
+
+                {/* Discounted total */}
+                {promoCodeInfo && (
+                  <div className="flex justify-between font-medium">
+                    <span>Discounted Total</span>
+                    <span>{formatPrice(discountedFullTotal)}</span>
+                  </div>
+                )}
+
+                {/* Deposit/balance breakdown */}
                 {paymentOption === "deposit" && (
                   <>
+                    <div className="border-t border-blue-200 pt-2 mt-2" />
+                    <div className="flex justify-between">
+                      <span>Deposit (25%)</span>
+                      <span className="font-medium">
+                        {formatPrice(totalAmount)}
+                      </span>
+                    </div>
                     <div className="flex justify-between text-gray-600">
                       <span>
-                        Remaining Balance
+                        Remaining Balance (75%)
                         {numberOfChildren > 1 &&
                           ` (${numberOfChildren} children)`}
                       </span>
@@ -705,6 +916,8 @@ function CheckoutForm({
                     </div>
                   </>
                 )}
+
+                {/* Due Today */}
                 <div className="border-t border-blue-200 pt-2 mt-2">
                   <div className="flex justify-between font-semibold text-base">
                     <span>Due Today</span>

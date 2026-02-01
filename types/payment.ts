@@ -27,6 +27,16 @@ export interface EligibilityResponse {
   cycles: ProgramCycle[];
 }
 
+export interface PromoCodeInfo {
+  promotionCodeId: string;
+  couponId: string;
+  percentOff: number | null;
+  amountOff: number | null;
+  currency: string | null;
+  name: string;
+  minimumAmount: number | null;
+}
+
 export interface CreatePaymentIntentRequest {
   productId: string;
   priceId: string;

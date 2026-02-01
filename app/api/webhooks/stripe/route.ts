@@ -80,7 +80,7 @@ async function createBalanceInvoice(paymentIntent: Stripe.PaymentIntent) {
       },
     });
 
-    // Add line item for balance amount
+    // Add line item(s) for balance amount
     const childrenSuffix =
       numberOfChildren > 1
         ? ` - ${numberOfChildren} children (${childrenNames})`
@@ -88,13 +88,51 @@ async function createBalanceInvoice(paymentIntent: Stripe.PaymentIntent) {
           ? ` - ${childrenNames}`
           : "";
 
-    await stripe.invoiceItems.create({
-      customer: customerId,
-      invoice: invoice.id,
-      amount: balanceAmount,
-      currency: paymentIntent.currency,
-      description: `Balance Payment - ${productName} (75% remaining)${childrenSuffix}`,
-    });
+    // Check if a coupon discount was applied
+    const discountAmount = parseInt(metadata.discountAmount || "0", 10);
+    const originalTotal = parseInt(metadata.originalTotal || "0", 10);
+    const couponName = metadata.couponName || "";
+    const percentOff = metadata.percentOff || "";
+
+    if (discountAmount > 0 && originalTotal > 0) {
+      // Calculate original balance (what it would be without discount)
+      const originalBalance = Math.round(originalTotal * 0.75);
+      // The discount portion on the balance
+      const balanceDiscount = originalBalance - balanceAmount;
+
+      // Line 1: Original balance amount
+      await stripe.invoiceItems.create({
+        customer: customerId,
+        invoice: invoice.id,
+        amount: originalBalance,
+        currency: paymentIntent.currency,
+        description: `Balance Payment - ${productName} (75% remaining)${childrenSuffix}`,
+      });
+
+      // Line 2: Discount (negative line item)
+      if (balanceDiscount > 0) {
+        await stripe.invoiceItems.create({
+          customer: customerId,
+          invoice: invoice.id,
+          amount: -balanceDiscount,
+          currency: paymentIntent.currency,
+          description: `Discount: ${couponName}${percentOff ? ` (${percentOff}%)` : ""}`,
+        });
+      }
+
+      console.log(
+        `   💰 Discount applied: ${couponName}, balance discount: ${balanceDiscount / 100} ${paymentIntent.currency.toUpperCase()}`,
+      );
+    } else {
+      // No coupon — single line item
+      await stripe.invoiceItems.create({
+        customer: customerId,
+        invoice: invoice.id,
+        amount: balanceAmount,
+        currency: paymentIntent.currency,
+        description: `Balance Payment - ${productName} (75% remaining)${childrenSuffix}`,
+      });
+    }
 
     // Finalize and send the invoice
     const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoice.id);
