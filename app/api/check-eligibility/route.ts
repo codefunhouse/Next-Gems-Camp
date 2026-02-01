@@ -55,6 +55,10 @@ export async function GET(): Promise<NextResponse<EligibilityResponse | { error:
         return null;
       }
 
+      const ageRange = product.metadata?.age_range || "";
+      const ageRangeInfo = product.metadata?.age_range_info || "";
+      const location = product.metadata?.location || "";
+
       const fullAmount = fullPrice.unit_amount || 0;
       const depositAmount = depositPrice.unit_amount || 0;
       const balanceAmount = fullAmount - depositAmount;
@@ -66,6 +70,9 @@ export async function GET(): Promise<NextResponse<EligibilityResponse | { error:
         endDate: programEnd,
         isEligible: isEligibleForDeposit(programStart),
         balanceDueDate: calculateBalanceDueDate(programStart),
+        ageRange,
+        ageRangeInfo,
+        location,
         pricing: {
           full: {
             priceId: fullPrice.id,

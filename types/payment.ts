@@ -7,10 +7,20 @@ export interface ProgramCycle {
   endDate: string;
   isEligible: boolean;
   balanceDueDate: string;
+  ageRange: string;
+  ageRangeInfo: string;
+  location: string;
   pricing: {
     full: { priceId: string; amount: number };
     deposit: { priceId: string; amount: number; balanceAmount: number };
   };
+}
+
+export interface AgeRangeGroup {
+  ageRange: string;
+  ageRangeInfo: string;
+  location: string;
+  cycleCount: number;
 }
 
 export interface EligibilityResponse {

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AgeRangeGroup,
   EligibilityResponse,
   PaymentOption,
   ProgramCycle,
@@ -9,8 +10,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../general/Logo";
+import AgeRangeSelector from "./AgeRangeSelector";
 import CheckoutForm from "./CheckoutForm";
 import ContactUs from "./ContactUs";
 import CycleSelector from "./CycleSelector";
@@ -24,6 +26,7 @@ const stripePromise = loadStripe(
 type FlowStep =
   | "loading"
   | "no-agent-code"
+  | "age-range-select"
   | "cycle-select"
   | "payment-select"
   | "checkout"
@@ -41,6 +44,8 @@ function Payment() {
     null,
   );
   const [clientSecret, setClientSecret] = useState<string>("");
+  const [ageRangeGroups, setAgeRangeGroups] = useState<AgeRangeGroup[]>([]);
+  const [selectedAgeRange, setSelectedAgeRange] = useState<AgeRangeGroup | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isCreatingIntent, setIsCreatingIntent] = useState(false);
 
@@ -68,8 +73,41 @@ function Payment() {
 
         if (eligibleCycles.length === 0) {
           setStep("contact");
-        } else {
+          return;
+        }
+
+        // Group eligible cycles by age range
+        const groupMap = new Map<string, { info: string; location: string; count: number }>();
+        for (const cycle of eligibleCycles) {
+          const key = cycle.ageRange;
+          if (!groupMap.has(key)) {
+            groupMap.set(key, {
+              info: cycle.ageRangeInfo,
+              location: cycle.location,
+              count: 1,
+            });
+          } else {
+            groupMap.get(key)!.count++;
+          }
+        }
+
+        const groups: AgeRangeGroup[] = Array.from(groupMap.entries()).map(
+          ([ageRange, data]) => ({
+            ageRange,
+            ageRangeInfo: data.info,
+            location: data.location,
+            cycleCount: data.count,
+          }),
+        );
+
+        setAgeRangeGroups(groups);
+
+        // If only 1 age range group, auto-select and skip to cycle-select
+        if (groups.length === 1) {
+          setSelectedAgeRange(groups[0]);
           setStep("cycle-select");
+        } else {
+          setStep("age-range-select");
         }
       } catch (err) {
         console.error("Failed to fetch eligibility:", err);
@@ -147,6 +185,24 @@ function Payment() {
     setStep("cycle-select");
   };
 
+  // Age range selection
+  const handleAgeRangeSelect = (group: AgeRangeGroup) => {
+    setSelectedAgeRange(group);
+  };
+
+  const handleContinueToCycleSelect = () => {
+    if (selectedAgeRange) {
+      setSelectedCycle(null);
+      setPaymentOption(null);
+      setStep("cycle-select");
+    }
+  };
+
+  const handleBackToAgeRangeSelect = () => {
+    setSelectedCycle(null);
+    setStep("age-range-select");
+  };
+
   // Stripe Elements options
   const options: StripeElementsOptions = {
     clientSecret,
@@ -182,7 +238,7 @@ function Payment() {
         </svg>
         <div>
           <p className="text-sm font-medium text-blue-900">
-            This booking is for Canterbury Christ Church University
+            This booking is for {selectedAgeRange?.location}
           </p>
           <p className="text-xs text-blue-700 mt-1">
             Agent Code:{" "}
@@ -192,6 +248,61 @@ function Payment() {
       </div>
     </div>
   );
+
+  const hasMultipleAgeRanges = ageRangeGroups.length > 1;
+
+  const renderProgressIndicator = (activeStep: number) => {
+    const totalSteps = hasMultipleAgeRanges ? 4 : 3;
+
+    return (
+      <div className="flex items-center justify-center mb-8">
+        <div className="flex items-center">
+          {Array.from({ length: totalSteps }, (_, i) => {
+            const stepNumber = i + 1;
+            const isCompleted = stepNumber < activeStep;
+            const isActive = stepNumber === activeStep;
+
+            return (
+              <React.Fragment key={stepNumber}>
+                {i > 0 && (
+                  <div
+                    className={`w-16 h-1 mx-2 ${
+                      isCompleted ? "bg-blue-600" : "bg-gray-200"
+                    }`}
+                  />
+                )}
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                    isCompleted
+                      ? "bg-blue-600 text-white"
+                      : isActive
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-200 text-gray-500"
+                  }`}
+                >
+                  {isCompleted ? (
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    stepNumber
+                  )}
+                </div>
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   // Render loading state
   if (step === "loading") {
@@ -327,9 +438,65 @@ function Payment() {
     );
   }
 
+  // Render age range selection
+  if (step === "age-range-select") {
+    return (
+      <div className="container mx-auto p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="w-full flex flex-col gap-4 items-center mb-4">
+            <Logo type="sec" />
+            <h2 className="font-bold text-center">
+              Book Your Summer Camp Experience
+            </h2>
+          </div>
+          <div className="mb-8 text-center">
+            <div className="mt-6 inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Secure SSL Encryption
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="p-6 md:p-8">
+              {renderProgressIndicator(1)}
+
+              <AgeRangeSelector
+                ageRangeGroups={ageRangeGroups}
+                selectedAgeRange={selectedAgeRange}
+                onSelect={handleAgeRangeSelect}
+              />
+
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <button
+                  onClick={handleContinueToCycleSelect}
+                  disabled={!selectedAgeRange}
+                  className="w-full md:w-auto md:ml-auto md:block px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  Continue to Cycle Selection
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Render cycle selection
   if (step === "cycle-select") {
-    const eligibleCycles = cycles.filter((c) => c.isEligible);
+    const eligibleCycles = cycles.filter(
+      (c) => c.isEligible && c.ageRange === selectedAgeRange?.ageRange,
+    );
 
     return (
       <div className="container mx-auto p-4 md:p-8">
@@ -357,27 +524,11 @@ function Payment() {
             </div>
           </div>
 
-          {/* Info Banner */}
           {renderInfoBanner()}
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 md:p-8">
-              {/* Progress indicator */}
-              <div className="flex items-center justify-center mb-8">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-medium">
-                    1
-                  </div>
-                  <div className="w-16 h-1 bg-gray-200 mx-2"></div>
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-medium">
-                    2
-                  </div>
-                  <div className="w-16 h-1 bg-gray-200 mx-2"></div>
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-medium">
-                    3
-                  </div>
-                </div>
-              </div>
+              {renderProgressIndicator(hasMultipleAgeRanges ? 2 : 1)}
 
               <CycleSelector
                 cycles={eligibleCycles}
@@ -385,7 +536,15 @@ function Payment() {
                 onSelect={handleCycleSelect}
               />
 
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="mt-8 pt-6 border-t border-gray-200 flex justify-between">
+                {hasMultipleAgeRanges && (
+                  <button
+                    onClick={handleBackToAgeRangeSelect}
+                    className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                  >
+                    Back
+                  </button>
+                )}
                 <button
                   onClick={handleContinueToPaymentOption}
                   disabled={!selectedCycle}
@@ -433,32 +592,7 @@ function Payment() {
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 md:p-8">
-              {/* Progress indicator */}
-              <div className="flex items-center justify-center mb-8">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-medium">
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="w-16 h-1 bg-blue-600 mx-2"></div>
-                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-medium">
-                    2
-                  </div>
-                  <div className="w-16 h-1 bg-gray-200 mx-2"></div>
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-medium">
-                    3
-                  </div>
-                </div>
-              </div>
+              {renderProgressIndicator(hasMultipleAgeRanges ? 3 : 2)}
 
               {/* Selected cycle summary */}
               <div className="bg-gray-50 rounded-lg p-4 mb-6">
