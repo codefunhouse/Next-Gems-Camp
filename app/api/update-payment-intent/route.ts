@@ -6,7 +6,7 @@ async function getOrCreateCustomer(
   email: string,
   name: string,
   phone?: string,
-  address?: string
+  address?: string,
 ): Promise<Stripe.Customer> {
   // Check if customer already exists
   const existingCustomers = await stripe.customers.list({
@@ -16,13 +16,16 @@ async function getOrCreateCustomer(
 
   if (existingCustomers.data.length > 0) {
     // Update existing customer with latest info
-    const customer = await stripe.customers.update(existingCustomers.data[0].id, {
-      name: name || undefined,
-      phone: phone || undefined,
-      metadata: {
-        address: address || "",
+    const customer = await stripe.customers.update(
+      existingCustomers.data[0].id,
+      {
+        name: name || undefined,
+        phone: phone || undefined,
+        metadata: {
+          address: address || "",
+        },
       },
-    });
+    );
     return customer;
   }
 
@@ -44,6 +47,7 @@ type ChildInfo = {
   childName: string;
   childDOB: string;
   childAge: string;
+  preferredPathway: string;
 };
 
 export async function POST(request: NextRequest) {
@@ -68,21 +72,21 @@ export async function POST(request: NextRequest) {
     if (!paymentIntentId) {
       return NextResponse.json(
         { error: "Payment Intent ID is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!parentEmail) {
       return NextResponse.json(
         { error: "Parent email is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!children || !Array.isArray(children) || children.length === 0) {
       return NextResponse.json(
         { error: "At least one child is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -91,7 +95,7 @@ export async function POST(request: NextRequest) {
       parentEmail,
       parentName,
       parentPhone,
-      parentAddress
+      parentAddress,
     );
 
     // Prepare children names for display (first child's name as primary)
@@ -134,13 +138,13 @@ export async function POST(request: NextRequest) {
     if (error instanceof Stripe.errors.StripeError) {
       return NextResponse.json(
         { error: error.message },
-        { status: error.statusCode || 500 }
+        { status: error.statusCode || 500 },
       );
     }
 
     return NextResponse.json(
       { error: "Failed to update payment intent" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
